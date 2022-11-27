@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            《Kafka 核心技术与实战》study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">《Kafka 核心技术与实战》study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-11-26 22:00:57</span>
+        <span class="mobile">2022-11-26 22:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-11-26 22:00:57</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MQ/">MQ</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/MQ/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="开篇词-1讲"><a href="#开篇词-1讲" class="headerlink" title="开篇词 (1讲)"></a>开篇词 (1讲)</h1><h2 id="开篇词-为什么要学习Kafka？"><a href="#开篇词-为什么要学习Kafka？" class="headerlink" title="开篇词 | 为什么要学习Kafka？"></a>开篇词 | 为什么要学习Kafka？</h2><ul>
+<li><p>当下互联网行业最火的技术当属 ABC 了</p>
+<ul>
+<li>AI 人工智能</li>
+<li>BigData 大数据</li>
+<li>Cloud 云计算云平台</li>
+</ul>
+</li>
+<li><p>对于数据密集型应用来说，如何应对数据量激增、数据复杂度增加以及数据变化速率变快，是彰显大数据工程师、架构师功力的最有效表征</p>
+<ul>
+<li>Kafka 在帮助应对这些问题方面能起到非常好的效果（Kafka 能够有效隔离上下游业务，将上游突增的流量缓存起来，以平滑的方式传导到下游子系统中，避免了流量的不规则冲击）</li>
+</ul>
+</li>
+<li><p>Kafka 有着非常广阔的应用场景</p>
+<ul>
+<li>目前 Apache Kafka 被认为是整个消息引擎领域的执牛耳者</li>
+<li>从学习技术的角度而言，Kafka 也是很有亮点的（我们仅需要学习一套框架就能在实际业务系统中实现消息引擎应用、应用程序集成、分布式存储构建，甚至是流处理应用的开发与部署）</li>
+<li>Kafka 无论是作为消息引擎还是实时流处理平台，都能在大数据工程领域发挥重要的作用</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="学透-Kafka-推荐路径"><a href="#学透-Kafka-推荐路径" class="headerlink" title="学透 Kafka 推荐路径"></a>学透 Kafka 推荐路径</h3><ul>
+<li>软件开发工程师</li>
+</ul>
+<ol>
+<li>根据你掌握的编程语言去寻找对应的 Kafka 客户端</li>
+<li>去官网上学习一下代码示例（如果能够正确编译和运行这些样例，就能轻松地驾驭客户端了）</li>
+<li>尝试修改样例代码尝试去理解并使用其他的 API（观测修改的结果）</li>
+<li>编写一个小型项目来验证下学习成果，然后就是改善和提升客户端的可靠性和性能了</li>
+<li>熟读一遍 Kafka 官网文档，确保理解了那些可能影响可靠性和性能的参数</li>
+<li>学习 Kafka 的高级功能（比如流处理应用开发。流处理 API 不仅能够生产和消费消息，还能执行高级的流式处理操作，比如时间窗口聚合、流处理连接等）</li>
+</ol>
+<ul>
+<li>系统管理员或运维工程师</li>
+</ul>
+<blockquote>
+<p>如果你是系统管理员或运维工程师，那么相应的学习目标应该是学习搭建及管理 Kafka 线上环境。如何根据实际业务需求评估、搭建生产线上环境将是你主要的学习目标。另外对生产环境的监控也是重中之重的工作，Kafka 提供了超多的 JMX 监控指标，你可以选择任意你熟知的框架进行监控。有了监控数据，作为系统运维管理员的你，势必要观测真实业务负载下的 Kafka 集群表现。之后如何利用已有的监控指标来找出系统瓶颈，然后提升整个系统的吞吐量，这也是最能体现你工作价值的地方</p>
+</blockquote>
+<br>
+
+<h3 id="专栏思维导图"><a href="#专栏思维导图" class="headerlink" title="专栏思维导图"></a>专栏思维导图</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.26rhfqn0svcw.webp" width="100%">
+
+<br>
+
+<p>（1）Kafka 入门</p>
+<ul>
+<li>介绍消息引擎这类系统大致的原理和用途，以及作为优秀消息引擎代表的 Kafka 在这方面的表现</li>
+</ul>
+<p>（2）Kafka 的基本使用</p>
+<ul>
+<li>重点探讨 Kafka 如何用于生产环境，特别是线上环境方案的制定</li>
+</ul>
+<p>（3）客户端详解</p>
+<ul>
+<li>学习 Kafka 客户端的方方面面，既有生产者的实操讲解也有消费者的原理剖析</li>
+</ul>
+<p>（4）Kafka 原理介绍</p>
+<ul>
+<li>着重介绍 Kafka 最核心的设计原理，包括 Controller 的设计机制、请求处理全流程解析等</li>
+</ul>
+<p>（5）Kafka 运维与监控</p>
+<ul>
+<li>获得高效运维 Kafka 集群以及有效监控 Kafka 的实战经验</li>
+</ul>
+<p>（6）高级 Kafka 应用</p>
+<ul>
+<li>Kafka 流处理组件 Kafka Streams 的实战应用</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Kafka入门-5讲"><a href="#Kafka入门-5讲" class="headerlink" title="Kafka入门 (5讲)"></a>Kafka入门 (5讲)</h1><h2 id="01-消息引擎系统ABC"><a href="#01-消息引擎系统ABC" class="headerlink" title="01 | 消息引擎系统ABC"></a>01 | 消息引擎系统ABC</h2><br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<img src="" width="60%">
+
+<br>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Kafka/">#Kafka</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/hello-world/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/%E3%80%8AMySQL-8-0%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">《MySQL 8.0详解与实战》study notes</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
+</body>
+</html>

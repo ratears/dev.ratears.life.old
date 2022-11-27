@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            《Nginx 核心知识 150 讲》study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">《Nginx 核心知识 150 讲》study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-10-06 23:07:51</span>
+        <span class="mobile">2022-10-06 23:07</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-10-06 23:07:51</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Nginx/">Nginx</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Nginx/">Nginx</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/study-notes/">study-notes</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="初识Nginx"><a href="#初识Nginx" class="headerlink" title="初识Nginx"></a>初识Nginx</h1><h2 id="Nginx的三个主要应用场景"><a href="#Nginx的三个主要应用场景" class="headerlink" title="Nginx的三个主要应用场景"></a>Nginx的三个主要应用场景</h2><ul>
+<li><p>静态资源服务</p>
+<ul>
+<li>通过本地文件系统提供服务</li>
+</ul>
+</li>
+<li><p>反向代理服务</p>
+<ul>
+<li>Nginx的强大性能</li>
+<li>缓存</li>
+<li>负载均衡</li>
+</ul>
+</li>
+<li><p>API服务</p>
+<ul>
+<li>OpenResty</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4ie7urbi69s0.webp" width="60%">
+
+<br>
+
+<br>
+
+<h2 id="Nginx出现的历史背景"><a href="#Nginx出现的历史背景" class="headerlink" title="Nginx出现的历史背景"></a>Nginx出现的历史背景</h2><ul>
+<li>互联网的数据量快速增长<ul>
+<li>互联网的快速普及</li>
+<li>全球化</li>
+<li>物联网</li>
+</ul>
+</li>
+<li>摩尔定律：性能提升</li>
+<li>低效的Apache<ul>
+<li>一个连接对应一个进程</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="Nginx的5个主要优点"><a href="#Nginx的5个主要优点" class="headerlink" title="Nginx的5个主要优点"></a>Nginx的5个主要优点</h2><p>（1）高并发，高性能</p>
+<p>（2）可扩展性好</p>
+<p>（3）高可靠性</p>
+<p>（4）热部署</p>
+<p>（5）BSD许可证</p>
+<br>
+
+<br>
+
+<h2 id="Nginx的4个主要组成部分"><a href="#Nginx的4个主要组成部分" class="headerlink" title="Nginx的4个主要组成部分"></a>Nginx的4个主要组成部分</h2><p>（1）Nginx 二进制可执行文件</p>
+<blockquote>
+<p>由各模块源码编译出的一个文件</p>
+</blockquote>
+<p>（2）Nginx.conf 配置文件</p>
+<blockquote>
+<p>控制 Nginx 的行为</p>
+</blockquote>
+<p>（3）access.log 访问日志</p>
+<blockquote>
+<p>记录每一条 http 请求信息</p>
+</blockquote>
+<p>（4）error.log 错误日志</p>
+<blockquote>
+<p>定位问题</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Nginx的版本发布历史"><a href="#Nginx的版本发布历史" class="headerlink" title="Nginx的版本发布历史"></a>Nginx的版本发布历史</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.cmiy02n409c.webp" width="60%">
+
+<br>
+
+<ul>
+<li>开源免费的Nginx与商业版Nginx Plus</li>
+<li>阿里巴巴的Tengine</li>
+<li>免费OpenResty与商业版OpenResty</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="编译Nginx"><a href="#编译Nginx" class="headerlink" title="编译Nginx"></a>编译Nginx</h2><ul>
+<li>如果要扩展第三方功能，可以使用编译方式安装nginx</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（1）下载nginx</span></span><br><span class="line">wget https://nginx.org/download/nginx-1.22.0.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf nginx-1.22.0.tar.gz</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装相关依赖库</span></span><br><span class="line">yum install -y pcre pcre-devel gcc zlib zlib-devel</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（2）编译安装</span></span><br><span class="line">[root@bogon nginx-1.22.0]# ./configure --prefix=/usr/local/nginx</span><br><span class="line"></span><br><span class="line">[root@bogon nginx-1.22.0]# make</span><br><span class="line"></span><br><span class="line">[root@bogon nginx-1.22.0]# make install</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<ol>
+<li>课程介绍中的问题</li>
+<li></li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<img src="" width="60%">
+
+<br>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Nginx/">#Nginx</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/study-notes/">#study-notes</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/%E3%80%8A%E6%89%9B%E5%BE%97%E4%BD%8F%E7%9A%84MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《扛得住的MySQL数据库架构》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/Nexus%E6%90%AD%E5%BB%BAMaven%E7%A7%81%E6%9C%8D/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Nexus搭建Maven私服</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
+</body>
+</html>

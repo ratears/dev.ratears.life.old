@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            Redis |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Redis</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-07-02 01:47:47</span>
+        <span class="mobile">2022-07-02 01:47</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-07-02 01:47:47</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/database/">database</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/database/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="初识Redis"><a href="#初识Redis" class="headerlink" title="初识Redis"></a>初识Redis</h1><h2 id="SQL与NoSQL"><a href="#SQL与NoSQL" class="headerlink" title="SQL与NoSQL"></a>SQL与NoSQL</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">SQL（关系型数据库）</th>
+<th align="center">NoSQL（非关系数据库）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数据结构</td>
+<td align="center">结构化</td>
+<td align="center">非结构化</td>
+</tr>
+<tr>
+<td align="center">数据关联</td>
+<td align="center">关联的</td>
+<td align="center">无关联的</td>
+</tr>
+<tr>
+<td align="center">查询方式</td>
+<td align="center">SQL查询</td>
+<td align="center">非SQL</td>
+</tr>
+<tr>
+<td align="center">事务特性</td>
+<td align="center">ACID</td>
+<td align="center">BASE</td>
+</tr>
+<tr>
+<td align="center">存储方式</td>
+<td align="center">磁盘</td>
+<td align="center">内存</td>
+</tr>
+<tr>
+<td align="center">扩展性</td>
+<td align="center">垂直</td>
+<td align="center">水平</td>
+</tr>
+<tr>
+<td align="center">使用场景</td>
+<td align="center">（1）数据结构固定<br/>（2）相关业务对数据安全性、一致性有较高要求</td>
+<td align="center">（1）数据结构不固定<br/>（2）对一致性、安全性要求不高<br/>（3）对性能要求</td>
+</tr>
+</tbody></table>
+<br/>
+
+<ul>
+<li>数据结构</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/d30b03101d4e1a06a2ed1e5be56700b.31vpj58sbty0.webp" width="80%"/>
+
+<br/>
+
+<ul>
+<li>数据关联</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/e3f1c89793ff81d6babb11413fe2ebe.1smbrmpvghq8.webp" width="80%"/>
+
+<br/>
+
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/1d6675040ee9bbcce9c49e3cc39747c.2fpd2jgc3xxc.webp" width="80%"/>
+
+<br/>
+
+<ul>
+<li>SQL查询</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/5cd0215e592bef1b35b0203d36b7a48.3x5xuvughi00.webp" width="80%" />
+
+<br/>
+
+<h3 id="常见NoSQL"><a href="#常见NoSQL" class="headerlink" title="常见NoSQL"></a>常见NoSQL</h3><h2 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><ul>
+<li>Redis诞生于2009年全称是Remote Dictionary Server，远程词典服务器，是一个基于内存的键值型NoSQL数据库。</li>
+</ul>
+<h2 id="Redis特征"><a href="#Redis特征" class="headerlink" title="Redis特征"></a>Redis特征</h2><ul>
+<li>键值（key-value）型，value支持多种不同数据结构，功能丰富</li>
+<li>单线程，每个命令具备原子性</li>
+<li>低延迟，速度快（基于内存、IO多路复用、良好的编码）</li>
+<li>支持数据持久化</li>
+<li>支持主从集群、分片集群</li>
+<li>支持多语言客户端</li>
+</ul>
+<h2 id="单机安装Redis"><a href="#单机安装Redis" class="headerlink" title="单机安装Redis"></a>单机安装Redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖 （Redis是基于C语言编写的，因此首先需要安装Redis所需要的gcc依赖）</span></span><br><span class="line">yum install -y gcc tcl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传/下载 安装包并解压</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src/</span><br><span class="line">wget https://download.redis.io/releases/redis-6.2.7.tar.gz</span><br><span class="line">tar -zxvf redis-6.2.7.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src/redis-6.2.7</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完成后。默认的安装路径是在 `/usr/local/bin`目录下</span></span><br><span class="line"></span><br><span class="line">[root@bogon src]<span class="comment"># cd /usr/local/bin/</span></span><br><span class="line">[root@bogon bin]<span class="comment"># ll</span></span><br><span class="line">总用量 18924</span><br><span class="line">-rwxr-xr-x. 1 root root 4830088 7月  25 05:51 redis-benchmark</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-check-aof -&gt; redis-server</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-check-rdb -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root 5004192 7月  25 05:51 redis-cli</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-sentinel -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root 9535928 7月  25 05:51 redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该目录已经默认配置到环境变量，因此可以在任意目录下运行这些命令。其中：</span></span><br><span class="line"></span><br><span class="line">redis-server</span><br><span class="line"><span class="comment"># 是redis的服务端启动脚本</span></span><br><span class="line"></span><br><span class="line">redis-cli</span><br><span class="line"><span class="comment"># 是redis提供的命令行客户端</span></span><br><span class="line"></span><br><span class="line">redis-sentinel</span><br><span class="line"><span class="comment"># 是redis的哨兵启动脚本</span></span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="Redis启动"><a href="#Redis启动" class="headerlink" title="Redis启动"></a>Redis启动</h2><h3 id="默认启动（前台启动）"><a href="#默认启动（前台启动）" class="headerlink" title="默认启动（前台启动）"></a>默认启动（前台启动）</h3><ul>
+<li>这种启动属于<code>前台启动</code>，会阻塞整个会话窗口，窗口关闭或者按下<code>CTRL + C</code>则Redis停止。不推荐使用。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h3 id="指定配置启动"><a href="#指定配置启动" class="headerlink" title="指定配置启动"></a>指定配置启动</h3><ul>
+<li>如果要让Redis以<code>后台</code>方式启动，则必须修改Redis配置文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们先将这个配置文件备份一份：</span></span><br><span class="line"><span class="built_in">cp</span> redis.conf redis.conf.bck</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后修改redis.conf文件中的一些配置</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许访问的地址，默认是127.0.0.1，会导致只能在本地访问。修改为0.0.0.0则可以在任意IP访问，生产环境不要设置为0.0.0.0</span></span><br><span class="line"><span class="attr">bind</span> <span class="string">0.0.0.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 守护进程，修改为yes后即可后台运行</span></span><br><span class="line"><span class="attr">daemonize</span> <span class="string">yes </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 密码，设置后访问Redis必须输入密码</span></span><br><span class="line"><span class="attr">requirepass</span> <span class="string">redis@2022</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Redis的其它常见配置</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 监听的端口</span></span><br><span class="line"><span class="attr">port</span> <span class="string">6379</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录</span></span><br><span class="line"><span class="attr">dir</span> <span class="string">.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 数据库数量，设置为1，代表只使用1个库，默认有16个库，编号0~15</span></span><br><span class="line"><span class="attr">databases</span> <span class="string">1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 设置redis能够使用的最大内存</span></span><br><span class="line"><span class="attr">maxmemory</span> <span class="string">512mb</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line"><span class="attr">logfile</span> <span class="string">&quot;redis.6379.log&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指定配置启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入redis安装目录 </span></span><br><span class="line">[root@localhost redis]<span class="comment"># /usr/local/bin</span></span><br><span class="line"></span><br><span class="line">[root@bogon bin]<span class="comment"># ll</span></span><br><span class="line">总用量 19112</span><br><span class="line">-rw-r--r--. 1 root root   93916 7月  25 06:16 redis.6379.conf</span><br><span class="line">-rw-r--r--. 1 root root    1232 7月  25 06:20 redis.6379.log</span><br><span class="line">-rwxr-xr-x. 1 root root 4830088 7月  25 05:51 redis-benchmark</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-check-aof -&gt; redis-server</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-check-rdb -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root 5004192 7月  25 05:51 redis-cli</span><br><span class="line">-rw-r--r--. 1 root root   93849 7月  25 06:08 redis.conf.bak</span><br><span class="line">lrwxrwxrwx. 1 root root      12 7月  25 05:51 redis-sentinel -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root 9535928 7月  25 05:51 redis-server</span><br><span class="line">[root@bogon bin]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">[root@localhost redis]<span class="comment"># redis-server redis.6379.conf</span></span><br><span class="line">[root@localhost redis]<span class="comment">#</span></span><br><span class="line">[root@bogon bin]<span class="comment"># ps -ef |grep redis</span></span><br><span class="line">root       8126      1  0 06:20 ?        00:00:00 redis-server 0.0.0.0:6379</span><br><span class="line">root       8194   1552  0 06:21 pts/1    00:00:00 grep --color=auto redis</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h3 id="开机自启（把redis添加到系统服务）"><a href="#开机自启（把redis添加到系统服务）" class="headerlink" title="开机自启（把redis添加到系统服务）"></a>开机自启（把redis添加到系统服务）</h3><ul>
+<li>我们也可以通过配置来实现开机自启，首先，新建一个系统服务文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/redis.service</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加如下内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=redis-server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/local/bin/redis-server /usr/local/bin/redis.6379.conf</span><br><span class="line">PrivateTmp=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后重载系统服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在，我们可以用下面这组命令来操作redis了</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start redis</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop redis</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">systemctl restart redis</span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">systemctl status redis</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行下面的命令，可以让redis开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> redis</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="Redis的其它常见配置"><a href="#Redis的其它常见配置" class="headerlink" title="Redis的其它常见配置"></a>Redis的其它常见配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 监听的端口</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录</span></span><br><span class="line"><span class="built_in">dir</span> .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库数量，设置为1，代表只使用1个库，默认有16个库，编号0~15</span></span><br><span class="line">databases 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置redis能够使用的最大内存</span></span><br><span class="line">maxmemory 512mb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line">logfile <span class="string">&quot;redis.6379.log&quot;</span></span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="Redis停止"><a href="#Redis停止" class="headerlink" title="Redis停止"></a>Redis停止</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用redis-cli来执行 shutdown 命令，即可停止 Redis 服务，</span></span><br><span class="line"><span class="comment"># 因为之前配置了密码，因此需要通过 -a 来指定密码</span></span><br><span class="line">redis-cli -a redis shutdown</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h1 id="Redis客户端"><a href="#Redis客户端" class="headerlink" title="Redis客户端"></a>Redis客户端</h1><h2 id="Redis命令行客户端"><a href="#Redis命令行客户端" class="headerlink" title="Redis命令行客户端"></a>Redis命令行客户端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli [options] [commonds]</span><br></pre></td></tr></table></figure>
+
+<p>其中常见的options有：</p>
+<ul>
+<li><code>-h 127.0.0.1</code>：指定要连接的redis节点的IP地址，默认是127.0.0.1</li>
+<li><code>-p 6379</code>：指定要连接的redis节点的端口，默认是6379</li>
+<li><code>-a 123321</code>：指定redis的访问密码 </li>
+</ul>
+<p>其中的commonds就是Redis的操作命令，例如：</p>
+<ul>
+<li><code>ping</code>：与redis服务端做心跳测试，服务端正常会返回<code>pong</code></li>
+</ul>
+<p>不指定commond时，会进入<code>redis-cli</code>的交互控制台：</p>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image-20211211110439353.2aqqz6hz4m4g.webp" width="80%" />
+
+<br/>
+
+<h2 id="图形化桌面客户端"><a href="#图形化桌面客户端" class="headerlink" title="图形化桌面客户端"></a>图形化桌面客户端</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/lework/RedisDesktopManager-Windows/releases" >https://github.com/lework/RedisDesktopManager-Windows/releases<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<br/>
+
+<h2 id="Redis的Java客户端"><a href="#Redis的Java客户端" class="headerlink" title="Redis的Java客户端"></a>Redis的Java客户端</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.6lpitp9r4g00.webp" width="80%" />
+
+<br/>
+
+<h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><h4 id="Jedis使用的基本步骤"><a href="#Jedis使用的基本步骤" class="headerlink" title="Jedis使用的基本步骤"></a>Jedis使用的基本步骤</h4><p>（1）引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Redis依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）创建Jedis对象，建立连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Jedis jedis;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@BeforeEach</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">testJedis</span><span class="params">()</span> &#123;</span><br><span class="line">       jedis = <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;192.168.163.200&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">       jedis.auth(<span class="string">&quot;redis&quot;</span>);</span><br><span class="line">       jedis.select(<span class="number">0</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）使用Jedis，方法名与Redis命令一致</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 插入数据，方法名称就是redis命令名称，非常简单</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> jedis.set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">    <span class="comment">// 获取数据</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.get(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>（4）释放资源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Deprecated</span><br><span class="line">   void <span class="function"><span class="title">tearDown</span></span>() &#123;</span><br><span class="line">       <span class="keyword">if</span> (jedis != null) &#123;</span><br><span class="line">           jedis.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h4 id="Jedis连接池"><a href="#Jedis连接池" class="headerlink" title="Jedis连接池"></a>Jedis连接池</h4><ul>
+<li>Jedis本身是线程不安全的，并且频繁的创建和销毁连接会有性能损耗，因此推荐大家使用Jedis连接池代替Jedis的直连方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisConnectionFactory</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> JedisPool jedisPool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="type">JedisPoolConfig</span> <span class="variable">jedisPoolConfig</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JedisPoolConfig</span>();</span><br><span class="line">        <span class="comment">// 最大连接</span></span><br><span class="line">        jedisPoolConfig.setMaxTotal(<span class="number">8</span>);</span><br><span class="line">        <span class="comment">// 最大空闲连接</span></span><br><span class="line">        jedisPoolConfig.setMaxIdle(<span class="number">8</span>); </span><br><span class="line">        <span class="comment">// 最小空闲连接</span></span><br><span class="line">        jedisPoolConfig.setMinIdle(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 设置最长等待时间， ms</span></span><br><span class="line">        jedisPoolConfig.setMaxWaitMillis(<span class="number">200</span>);</span><br><span class="line">        jedisPool = <span class="keyword">new</span> <span class="title class_">JedisPool</span>(jedisPoolConfig, <span class="string">&quot;localhost&quot;</span>, <span class="number">6379</span>,</span><br><span class="line">                <span class="number">1000</span>, <span class="string">&quot;123321&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取Jedis对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title function_">getJedis</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> jedisPool.getResource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h3 id="SpringDataRedis"><a href="#SpringDataRedis" class="headerlink" title="SpringDataRedis"></a>SpringDataRedis</h3><h4 id="SpringDataRedis简介"><a href="#SpringDataRedis简介" class="headerlink" title="SpringDataRedis简介"></a>SpringDataRedis简介</h4><ul>
+<li><p>SpringData是Spring中数据操作的模块，包含对各种数据库的集成，其中对Redis的集成模块就叫做SpringDataRedis，官网地址：<a class="link"   target="_blank" rel="noopener" href="https://spring.io/projects/spring-data-redis" >https://spring.io/projects/spring-data-redis<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>提供了对不同Redis客户端的整合（Lettuce和Jedis）</li>
+<li>提供了RedisTemplate统一API来操作Redis</li>
+<li>支持Redis的发布订阅模型</li>
+<li>支持Redis哨兵和Redis集群</li>
+<li>支持基于Lettuce的响应式编程</li>
+<li>支持基于JDK、JSON、字符串、Spring对象的数据序列化及反序列化</li>
+<li>支持基于Redis的JDKCollection实现</li>
+</ul>
+</li>
+<li><p>SpringDataRedis中提供了RedisTemplate工具类，其中封装了各种对Redis的操作。并且将不同数据类型的操作API封装到了不同的类型中：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">API</th>
+<th align="center">返回值类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>redisTemplate</strong>.opsForValue()</td>
+<td align="center">ValueOperations</td>
+<td align="center">操作String类型数据</td>
+</tr>
+<tr>
+<td align="center"><strong>redisTemplate</strong>.opsForHash()</td>
+<td align="center">HashOperations</td>
+<td align="center">操作Hash类型数据</td>
+</tr>
+<tr>
+<td align="center"><strong>redisTemplate</strong>.opsForList()</td>
+<td align="center">ListOperations</td>
+<td align="center">操作List类型数据</td>
+</tr>
+<tr>
+<td align="center"><strong>redisTemplate</strong>.opsForSet()</td>
+<td align="center">SetOperations</td>
+<td align="center">操作Set类型数据</td>
+</tr>
+<tr>
+<td align="center"><strong>redisTemplate</strong>.opsForZSet()</td>
+<td align="center">ZSetOperations</td>
+<td align="center">操作SortedSet类型数据</td>
+</tr>
+<tr>
+<td align="center"><strong>redisTemplate</strong></td>
+<td align="center"></td>
+<td align="center">通用的命令</td>
+</tr>
+</tbody></table>
+<br/>
+
+<h4 id="SpringDataRedis快速入门"><a href="#SpringDataRedis快速入门" class="headerlink" title="SpringDataRedis快速入门"></a>SpringDataRedis快速入门</h4><ul>
+<li>SpringBoot已经提供了对SpringDataRedis的支持，使用非常简单</li>
+</ul>
+<p>（1）引入spring-boot-starter-data-redis依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Redis依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--连接池依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）在application.yml配置Redis信息</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.163</span><span class="number">.200</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">lettuce:</span></span><br><span class="line">      <span class="attr">pool:</span></span><br><span class="line">        <span class="attr">max-active:</span> <span class="number">8</span> <span class="comment"># 最大连接</span></span><br><span class="line">        <span class="attr">max-idle:</span> <span class="number">8</span> <span class="comment"># 最大空闲连接</span></span><br><span class="line">        <span class="attr">min-idle:</span> <span class="number">0</span> <span class="comment"># 最小空闲连接</span></span><br><span class="line">        <span class="attr">max-wait:</span> <span class="number">100</span> <span class="comment"># 连接等待时间</span></span><br></pre></td></tr></table></figure>
+<p>（3）注入RedisTemplate</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private RedisTemplate redisTemplate;</span><br></pre></td></tr></table></figure>
+
+<p>（4）编写测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span> &#123; </span><br><span class="line">        <span class="comment">// 插入一条string类型数据</span></span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;李四&quot;</span>);</span><br><span class="line">        <span class="comment">// 读取一条string类型数据</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">name</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h1 id="Redis-数据类型与常见命令"><a href="#Redis-数据类型与常见命令" class="headerlink" title="Redis 数据类型与常见命令"></a>Redis 数据类型与常见命令</h1><h2 id="Redis-数据结构介绍"><a href="#Redis-数据结构介绍" class="headerlink" title="Redis 数据结构介绍"></a>Redis 数据结构介绍</h2><ul>
+<li>Redis是一个key-value的数据库，key一般是String类型，不过value的类型多种多样</li>
+</ul>
+<img src="https://git.poker/sonzonzy/image-hosting/blob/main/blog-img-bed/image.43orz7ks9kq0.webp?raw=true" width="80%"/>
+
+<h2 id="Redis通用命令"><a href="#Redis通用命令" class="headerlink" title="Redis通用命令"></a>Redis通用命令</h2><ul>
+<li>通用指令是部分数据类型的，都可以使用的指令，常见的有：<ul>
+<li>KEYS：查看符合模板的所有key</li>
+<li>DEL：删除一个指定的key</li>
+<li>EXISTS：判断key是否存在</li>
+<li>EXPIRE：给一个key设置有效期，有效期到期时该key会被自动删除</li>
+<li>TTL：查看一个KEY的剩余有效期</li>
+<li>通过help [command] 可以查看一个命令的具体用法</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<h1 id="Redis-Serializer（Redis序列化）"><a href="#Redis-Serializer（Redis序列化）" class="headerlink" title="Redis Serializer（Redis序列化）"></a>Redis Serializer（Redis序列化）</h1><h2 id="SpringDataRedis的序列化方式"><a href="#SpringDataRedis的序列化方式" class="headerlink" title="SpringDataRedis的序列化方式"></a>SpringDataRedis的序列化方式</h2><ul>
+<li>RedisTemplate可以接收任意Object作为值写入Redis，只不过写入前会把Object序列化为字节形式，默认是采用JDK序列化</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.4cko09vu3y8.webp" width="80%" />
+
+<ul>
+<li>缺点：<ul>
+<li>可读性差</li>
+<li>内存占用较大</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<h2 id="自定义RedisTemplate的序列化方式"><a href="#自定义RedisTemplate的序列化方式" class="headerlink" title="自定义RedisTemplate的序列化方式"></a>自定义RedisTemplate的序列化方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建Template</span></span><br><span class="line">        RedisTemplate&lt;String, Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">// 设置连接工厂</span></span><br><span class="line">        redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        <span class="comment">// 设置序列化工具</span></span><br><span class="line">        <span class="type">GenericJackson2JsonRedisSerializer</span> <span class="variable">jsonRedisSerializer</span> <span class="operator">=</span></span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>();</span><br><span class="line">        <span class="comment">// key和 hashKey采用 string序列化</span></span><br><span class="line">        redisTemplate.setKeySerializer(RedisSerializer.string());</span><br><span class="line">        redisTemplate.setHashKeySerializer(RedisSerializer.string());</span><br><span class="line">        <span class="comment">// value和 hashValue采用 JSON序列化</span></span><br><span class="line">        redisTemplate.setValueSerializer(jsonRedisSerializer);</span><br><span class="line">        redisTemplate.setHashValueSerializer(jsonRedisSerializer);</span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisTest2</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 插入一条string类型数据</span></span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;李四&quot;</span>);</span><br><span class="line">        <span class="comment">// 读取一条string类型数据</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">name</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSaveObject</span><span class="params">()</span> &#123;</span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;user:100&quot;</span>,<span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;果冻&quot;</span>,<span class="number">28</span>));</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> (Person) redisTemplate.opsForValue().get(<span class="string">&quot;user:100&quot;</span>);</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="StringRedisTemplate（RedisTemplate的序列化方式优化）"><a href="#StringRedisTemplate（RedisTemplate的序列化方式优化）" class="headerlink" title="StringRedisTemplate（RedisTemplate的序列化方式优化）"></a>StringRedisTemplate（RedisTemplate的序列化方式优化）</h2><ul>
+<li>尽管JSON的序列化方式可以满足我们的需求，但依然存在一些问题</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.2ajrax16lk74.webp"  width="80%" />
+
+<ul>
+<li><p>为了在反序列化时知道对象的类型，JSON序列化器会将类的class类型写入json结果中，存入Redis，会带来额外的内存开销</p>
+</li>
+<li><p>为了节省内存空间，我们并不会使用JSON序列化器来处理value，而是统一使用String序列化器，要求只能存储String类型的key和value。当需要存储Java对象时，手动完成对象的序列化和反序列化</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.35s7tory1l60.webp" width="80%" />
+
+<ul>
+<li>Spring默认提供了一个StringRedisTemplate类，它的key和value的序列化方式默认就是String方式。省去了我们自定义RedisTemplate的过程：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StingRedisTemplateTests</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// JSON工具</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ObjectMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testStringTemplate</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException &#123;</span><br><span class="line">        <span class="comment">// 准备对象</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;lily&quot;</span>, <span class="number">18</span>);</span><br><span class="line">        <span class="comment">// 手动序列化</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> mapper.writeValueAsString(user);</span><br><span class="line">        <span class="comment">// 写入一条数据到redis</span></span><br><span class="line">        stringRedisTemplate.opsForValue().set(<span class="string">&quot;user:200&quot;</span>, json);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取数据</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">val</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(<span class="string">&quot;user:200&quot;</span>);</span><br><span class="line">        <span class="comment">// 反序列化</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">user1</span> <span class="operator">=</span> mapper.readValue(val, Person.class);</span><br><span class="line">        System.out.println(<span class="string">&quot;user1 = &quot;</span> + user1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="RedisTemplate序列化总结"><a href="#RedisTemplate序列化总结" class="headerlink" title="RedisTemplate序列化总结"></a>RedisTemplate序列化总结</h2><h3 id="RedisTemplate的两种序列化实践方案："><a href="#RedisTemplate的两种序列化实践方案：" class="headerlink" title="RedisTemplate的两种序列化实践方案："></a>RedisTemplate的两种序列化实践方案：</h3><ul>
+<li><p>方案一：</p>
+<ul>
+<li>自定义RedisTemplate</li>
+<li>修改RedisTemplate的序列化器为GenericJackson2JsonRedisSerializer</li>
+</ul>
+</li>
+<li><p>方案二：</p>
+<ul>
+<li>使用StringRedisTemplate</li>
+<li>写入Redis时，手动把对象序列化为JSON</li>
+<li>读取Redis时，手动把读取到的JSON反序列化为对象</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<h1 id="Redis企业实战"><a href="#Redis企业实战" class="headerlink" title="Redis企业实战"></a>Redis企业实战</h1><h2 id="商户点评"><a href="#商户点评" class="headerlink" title="商户点评"></a>商户点评</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.6uz0qkh3xio0.webp" width="80%" />
+
+<br/>
+
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>短信登录</li>
+<li>商户查询缓存</li>
+<li>优惠券秒杀</li>
+<li>达人探店</li>
+<li>好友关注</li>
+<li>附近的商户</li>
+<li>用户签到</li>
+<li>UV统计</li>
+</ul>
+<br/>
+
+<h3 id="短信登录"><a href="#短信登录" class="headerlink" title="短信登录"></a>短信登录</h3><h4 id="（1）导入商户点评项目"><a href="#（1）导入商户点评项目" class="headerlink" title="（1）导入商户点评项目"></a>（1）导入商户点评项目</h4><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/ratears/data-resource/tree/master/db/redis/heima-dianping-init_and_import" >项目下载地址<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/ratears/data-resource/blob/master/db/redis/heima-dianping-init_and_import/hm-dianping.zip" >hm-dianping.zip<i class="fas fa-external-link-alt"></i></a> (将其下载解压缩后复制到idea工作空间，然后利用idea打开即可)（修改自己的MySQL和Redis配置）</p>
+<ul>
+<li>启动项目后，在浏览器访问：<a class="link"   target="_blank" rel="noopener" href="http://localhost:8081/shop-type/list" >http://localhost:8081/shop-type/list<i class="fas fa-external-link-alt"></i></a> ，如果可以看到数据则证明运行没有问题</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/ratears/data-resource/blob/master/db/redis/heima-dianping-init_and_import/hmdp.sql" >hmdp.sql<i class="fas fa-external-link-alt"></i></a>（导入SQL文件。Mysql的版本采用5.7及以上版本）（注意先创建数据库）</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/ratears/data-resource/blob/master/db/redis/heima-dianping-init_and_import/nginx-1.18.0.zip" >nginx-1.18.0.zip<i class="fas fa-external-link-alt"></i></a>（windows版本。解压缩后启动即可）</p>
+<ul>
+<li>访问: <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:8080/" >http://127.0.0.1:8080<i class="fas fa-external-link-alt"></i></a> ，即可看到页面</li>
+</ul>
+</blockquote>
+<br/>
+
+<img src="https://git.poker/sonzonzy/image-hosting/blob/main/blog-img-bed/image.32ghgq3ldhe0.webp?raw=true" width="80%"/>
+
+<br/>
+
+<p>（2）基于Session实现登录</p>
+<img src="https://git.poker/sonzonzy/image-hosting/blob/main/blog-img-bed/image.1jcturrchsbk.webp?raw=true" width="90%" />
+
+<ul>
+<li>集群的session共享问题</li>
+<li>基于Redis实现共享session登录</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/redis/">#redis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/%E3%80%8A%E7%90%86%E8%AE%BA-%E5%AE%9E%E6%88%98-%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%95%B4JVM%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《理论+实战 构建完整JVM知识体系》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/Git/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Git</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
+</body>
+</html>

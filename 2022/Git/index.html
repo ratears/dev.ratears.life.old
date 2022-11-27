@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            Git |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Git</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-06-22 00:36:47</span>
+        <span class="mobile">2022-06-22 00:36</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-06-22 00:36:47</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/git/">git</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/git/">git</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1、要清楚执行每个git命令后 提示信息表达的意思，不会的单词要记忆，写在这个文档里面</p>
+</blockquote>
+<h1 id="版本控制系统"><a href="#版本控制系统" class="headerlink" title="版本控制系统"></a>版本控制系统</h1><h2 id="什么是版本控制系统"><a href="#什么是版本控制系统" class="headerlink" title="什么是版本控制系统"></a>什么是版本控制系统</h2><ul>
+<li>版本控制系统是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统</li>
+</ul>
+<h2 id="为什么要使用版本控制"><a href="#为什么要使用版本控制" class="headerlink" title="为什么要使用版本控制"></a>为什么要使用版本控制</h2><ul>
+<li>软件开发中采用版本控制系统是个明智的选择</li>
+<li>有了它你就可以将某个文件回溯到之前的状态,甚至将整个项目都回退到过去某个时间点的状态</li>
+<li>就算你乱来一气把整个项目中的文件改的改删的删，你也照样可以轻松恢复到原先的样子</li>
+<li>你可以比较文件的变化细节,查出最后是谁修改了哪个地方,从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等</li>
+<li>但额外增加的工作量却微乎其微</li>
+</ul>
+<h2 id="版本管理的演变"><a href="#版本管理的演变" class="headerlink" title="版本管理的演变"></a>版本管理的演变</h2><ul>
+<li>VCS 出现前<ul>
+<li>用目录拷贝区别不不同版本</li>
+<li>公共文件容易易被覆盖</li>
+<li>成员沟通成本很高，代码集成效率低下</li>
+</ul>
+</li>
+<li>集中式 VCS<ul>
+<li>有集中的版本管理服务器</li>
+<li>具备文件版本管理和分支管理能力</li>
+<li>集成效率有明显地提高</li>
+<li>客户端必须时刻和服务器相连</li>
+</ul>
+</li>
+<li>分布式 VCS<ul>
+<li>服务端和客户端都有完整的版本库</li>
+<li>脱离服务端，客户端照样可以管理理版本</li>
+<li>查看历史和版本比较等多数操作，都不不需要访问服务器器，比集中式 VCS 更更能提⾼高版本管理理效率</li>
+</ul>
+</li>
+</ul>
+<h2 id="版本控制系统的分类"><a href="#版本控制系统的分类" class="headerlink" title="版本控制系统的分类"></a>版本控制系统的分类</h2><h3 id="集中化的版本控制系统"><a href="#集中化的版本控制系统" class="headerlink" title="集中化的版本控制系统"></a>集中化的版本控制系统</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4l3axedwasg0.webp" width="60%" >
+
+<blockquote>
+<p>集中化的版本控制系统诸如CVS, SVN 以及Perforce 等，都有一个单一的集中管理的服务器,保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器,取出最新的文件或者提交更新。多年以来,这已成为版本控制系统的标准做法,这种做法带来了许多好处,现在,每个人都可以在一定程度上看到项目中的其他人正在做些什么。而管理员也可以轻松掌控每个开发者的权限，并且管理一个集中化的版本控制系统;要远比在各个客户端上维护本地数据库来得轻松容易。</p>
+<p>事分两面，有好有坏。这么做最显而易见的缺点是中央服务器的<strong>单点故障</strong>。如果服务器宕机一小时，那么在这一小时内， 谁都无法提交更新，也就无法协同工作</p>
+</blockquote>
+<h3 id="分布式的版本控制系统"><a href="#分布式的版本控制系统" class="headerlink" title="分布式的版本控制系统"></a>分布式的版本控制系统</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4l3axedwasg0.webp" width="60%" >
+
+<ul>
+<li>由于上面集中化版本控制系统的那些缺点，于是分布式版本控制系统面世了</li>
+<li>在这类系统中，像Git, BitKeeper 等,<strong>客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来</strong></li>
+<li>许多这类系统都可以指定和<strong>若干不同的远端代码仓库进行交互</strong>。这样，你就可以在同一个项目中分别和不同工作小组的人相互协作</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.2ip2z3escfc0.webp" width="65%" >
+
+<ul>
+<li>分布式的版本控制系统在管理项目时存放的不是项目版本与版本之间的差异.它存的是索引(所需磁盘空间很少所以每个客户端都可以放下整个<br>项目的历史记录)</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.55w0uw51yhs0.webp" width="65%" >
+
+<h2 id="版本控制系统的存储方式"><a href="#版本控制系统的存储方式" class="headerlink" title="版本控制系统的存储方式"></a>版本控制系统的存储方式</h2><ul>
+<li>世界上的版本控制总共有两种存储方式，一种是存储差异，另一种是存储快照</li>
+<li>存储差异：存储base文件，以后每次存储base文件的更改，SVN就是这种方式</li>
+<li>存储快照：每次更改都存储一个新文件，Git是这种方式</li>
+</ul>
+<h1 id="Git-基础"><a href="#Git-基础" class="headerlink" title="Git 基础"></a>Git 基础</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>Git是一个<font color=#008000>免费的</font>、<font color=#008000>开源的</font><font color=#008000><strong>分布式</strong></font><font color=red>版本控制系统</font>，可以快速高效地管理从小型到大型的项目</li>
+</ul>
+<h2 id="Git-简史"><a href="#Git-简史" class="headerlink" title="Git 简史"></a>Git 简史</h2><ul>
+<li><p>Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</p>
+</li>
+<li><p>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。 他们对新的系统制订了若干目标</p>
+</li>
+</ul>
+<h2 id="Git-的使命-目标"><a href="#Git-的使命-目标" class="headerlink" title="Git 的使命 / 目标"></a>Git 的使命 / 目标</h2><p>Git在设计之初就是为了搞定linux内核这种巨无霸而设计的，所以制定了自己的使命</p>
+<ul>
+<li>速度</li>
+<li>简单的设计</li>
+<li>对非线性开发模式的强力支持（允许成千上万个并行开发的分支）</li>
+<li>完全分布式</li>
+<li>有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）</li>
+</ul>
+<h2 id="Git-的优点-特点"><a href="#Git-的优点-特点" class="headerlink" title="Git 的优点 / 特点"></a>Git 的优点 / 特点</h2><ul>
+<li>快、非凡的性能</li>
+<li>本地仓库</li>
+<li>轻量级分支</li>
+<li>分布式</li>
+<li>各种工作流</li>
+<li>最优的存储能力</li>
+<li>开源的</li>
+<li>很容易易做备份</li>
+<li>支持离线操作</li>
+<li>很容易易定制工作流程</li>
+</ul>
+<h2 id="Git-的结构"><a href="#Git-的结构" class="headerlink" title="Git 的结构"></a>Git 的结构</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.1756qy15ac5c.webp" width="60%" >
+
+<h2 id="Git-的交互方式"><a href="#Git-的交互方式" class="headerlink" title="Git 的交互方式"></a>Git 的交互方式</h2><h3 id="代码托管中心是干嘛的"><a href="#代码托管中心是干嘛的" class="headerlink" title="代码托管中心是干嘛的"></a>代码托管中心是干嘛的</h3><ul>
+<li>我们已经有了本地库，本地库可以帮我们进行版本控制，为什么还需要代码托管中心呢？<br>它的任务是帮我们维护远程库</li>
+</ul>
+<h3 id="本地库和远程库的交互方式"><a href="#本地库和远程库的交互方式" class="headerlink" title="本地库和远程库的交互方式"></a>本地库和远程库的交互方式</h3><h4 id="团队内部协作"><a href="#团队内部协作" class="headerlink" title="团队内部协作"></a>团队内部协作</h4><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.6ia1ri43p640.webp" >
+
+<h4 id="跨团队协作"><a href="#跨团队协作" class="headerlink" title="跨团队协作"></a>跨团队协作</h4><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.n89r9sjz3gw.webp" >
+
+<h3 id="托管中心种类"><a href="#托管中心种类" class="headerlink" title="托管中心种类"></a>托管中心种类</h3><ul>
+<li>局域网环境下：可以搭建 GitLab服务器作为代码托管中心，GitLab可以自己去搭建</li>
+<li>外网环境下：可以由GitHub或者Gitee作为代码托管中心，GitHub或者Gitee是现成的托管中心，不用自己去搭建 </li>
+</ul>
+<h2 id="Git-的下载安装-基本设置"><a href="#Git-的下载安装-基本设置" class="headerlink" title="Git 的下载安装 / 基本设置"></a>Git 的下载安装 / 基本设置</h2><ul>
+<li>下载安装略（官网下载，一般情况傻瓜式安装即可）</li>
+<li>查看git安装版本（是否安装成功）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
+<li>配置<code>user.name</code>和<code>user.email</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global  user.name <span class="string">&#x27;sonzonzy&#x27;</span></span><br><span class="line">git config --global  user.email <span class="string">&#x27;sonzonzy@gmail.com&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="config-的三个作用域"><a href="#config-的三个作用域" class="headerlink" title="config 的三个作用域"></a>config 的三个作用域</h3><ul>
+<li>缺省等同于 local</li>
+<li>优先级：local &gt; global &gt; system</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># local只对当前仓库有效</span></span><br><span class="line">git config --<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># global 对当前登录用户所有仓库有效</span></span><br><span class="line">git config --global</span><br><span class="line"></span><br><span class="line"><span class="comment"># system 对系统的所有用户有效</span></span><br><span class="line">git config --system</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示-config-的配置"><a href="#显示-config-的配置" class="headerlink" title="显示 config 的配置"></a>显示 config 的配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --list --<span class="built_in">local</span></span><br><span class="line">git config --list --global</span><br><span class="line">git config --list --system</span><br></pre></td></tr></table></figure>
+
+<h3 id="信息设置与清除"><a href="#信息设置与清除" class="headerlink" title="信息设置与清除"></a>信息设置与清除</h3><ul>
+<li>设置    缺省等同于 local</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">&quot;ratears&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;ratears&quot;</span></span><br><span class="line">git config --system user.name <span class="string">&quot;ratears&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除    –unset</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">unset</span> --<span class="built_in">local</span> user.name</span><br><span class="line">git config --<span class="built_in">unset</span> --global user.name</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.name</span><br></pre></td></tr></table></figure>
+
+<h1 id="Git-常用命令-amp-操作"><a href="#Git-常用命令-amp-操作" class="headerlink" title="Git 常用命令 &amp; 操作"></a>Git 常用命令 &amp; 操作</h1><h2 id="init-初始化本地仓库"><a href="#init-初始化本地仓库" class="headerlink" title="init / 初始化本地仓库"></a>init / 初始化本地仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在git终端进入到本地的文件夹 （例如 $ cd D:\dev\git_ws\git_demo） 执行如下命令</span></span><br><span class="line"><span class="comment">#初始化本地仓库，只能初始化本地仓库</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h2 id="add-添加到暂存区"><a href="#add-添加到暂存区" class="headerlink" title="add / 添加到暂存区"></a>add / 添加到暂存区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<h2 id="commit-提交到本地仓库"><a href="#commit-提交到本地仓库" class="headerlink" title="commit / 提交到本地仓库"></a>commit / 提交到本地仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把暂存区的 文件提交到本地仓库。-m&quot;message&quot; 后的双引号 填写该次提交的说明信息</span></span><br><span class="line">git commit -m<span class="string">&quot;add test1.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>注意事项</p>
+<ul>
+<li><p>不放在本地仓库中的文件，git是不进行管理</p>
+</li>
+<li><p>即使放在本地仓库的文件，git也不管理，必须通过add,commit命令操作才可以将内容提交到本地库</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="status-查看工作区和暂存区的状态"><a href="#status-查看工作区和暂存区的状态" class="headerlink" title="status / 查看工作区和暂存区的状态"></a>status / 查看工作区和暂存区的状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h2 id="mv-重命名暂存区的文件"><a href="#mv-重命名暂存区的文件" class="headerlink" title="mv / 重命名暂存区的文件"></a>mv / 重命名暂存区的文件</h2><ul>
+<li>方式一</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> readme readme.md</span><br><span class="line">git <span class="built_in">rm</span> readme</span><br><span class="line">git add readme.md</span><br><span class="line">git commit -m<span class="string">&quot;rename file&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方式二</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">mv</span> readme readme.md</span><br><span class="line">git commit -m<span class="string">&#x27;file name&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="log-查看提交日志"><a href="#log-查看提交日志" class="headerlink" title="log / 查看提交日志"></a>log / 查看提交日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以让我们查看提交的，显示从最近到最远的日志</span></span><br><span class="line">git <span class="built_in">log</span> -n[number] --graph --online --all/[branch_name]</span><br><span class="line"><span class="comment"># -n 指定查看条数</span></span><br><span class="line"><span class="comment"># --graph 图形化查看</span></span><br><span class="line"><span class="comment"># --online 简单显示</span></span><br><span class="line"><span class="comment"># --all 显示所有分支，不加则显示当前分支</span></span><br><span class="line"><span class="comment"># branch_name 指定分支</span></span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> --pretty=oneline</span><br><span class="line"></span><br><span class="line">git reflog</span><br><span class="line"><span class="comment"># 多了信息：HEAD@&#123;数字&#125; 这个数字的含义：指针回到当前这个历史版本需要走多少步</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在浏览器打开git log 的帮助文档</span></span><br><span class="line">git <span class="built_in">help</span> --web <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="gitk-git-的gui界面"><a href="#gitk-git-的gui界面" class="headerlink" title="gitk / git 的gui界面"></a>gitk / git 的gui界面</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开git的gui界面</span></span><br><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="rest-前进或者后退历史版本"><a href="#rest-前进或者后退历史版本" class="headerlink" title="rest / 前进或者后退历史版本"></a>rest / 前进或者后退历史版本</h2><h3 id="hard-参数"><a href="#hard-参数" class="headerlink" title="hard 参数"></a>hard 参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地库的指针移动的同时，重置暂存区，重置工作区</span></span><br><span class="line">git reset --hard [索引]</span><br></pre></td></tr></table></figure>
+
+<h3 id="mixed参数"><a href="#mixed参数" class="headerlink" title="mixed参数"></a>mixed参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地库的指针移动的同时，重置暂存区，但是工作区不动</span></span><br><span class="line">git reset --mixed [索引]</span><br></pre></td></tr></table></figure>
+
+<h3 id="soft参数"><a href="#soft参数" class="headerlink" title="soft参数"></a>soft参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地库的指针移动的时候，暂存区，工作区都不动</span></span><br><span class="line">git reset --soft [索引]</span><br></pre></td></tr></table></figure>
+
+<h2 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将工作区中的文件和暂存区中文件进行比较 </span></span><br><span class="line">git diff [文件名]  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较工作区中和暂存区中 所有文件的差异</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较暂存区和工作区中内容</span></span><br><span class="line">git diff [历史版本] [文件名] </span><br></pre></td></tr></table></figure>
+
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/git/">#git</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/Redis/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Redis</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/Java-Collection-Framework/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java - Collection Framework</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
+</body>
+</html>
