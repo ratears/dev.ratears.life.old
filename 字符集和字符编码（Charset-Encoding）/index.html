@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            字符集和字符编码（Charset &amp; Encoding） |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">字符集和字符编码（Charset &amp; Encoding）</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-10 21:03:57</span>
+        <span class="mobile">2022-09-10 21:03</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-09-11 01:35:45</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/computer/">computer</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/computer/character-encoding/">character encoding</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/computer/">computer</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../tags/character-encoding/">character encoding</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><ul>
+<li>复习Java I/O知识的时候，关于转换流有涉及到字符集的知识。于是想深入理解一下字符集和编码。（毕竟，字符编码是计算机技术、编程的基石，包括编程中涉及到的国际化问题，就必须懂得一点字符编码的知识）查阅相关资料后，并做了笔记</li>
+</ul>
+<br>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// charsetName：指定字符编码 </span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">InputStreamReader</span><span class="params">(InputStream in, String charsetName)</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">OutputStreamWriter</span><span class="params">(OutputStream out, String charsetName)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(fis, <span class="string">&quot;GBK&quot;</span>);</span><br><span class="line"><span class="type">OutputStreamWriter</span> <span class="variable">osw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(fos, <span class="string">&quot;GBK&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><ul>
+<li>编码：信息按照一定的规则从一种形式或格式转换为另一种形式的过程</li>
+<li>解码：是一个编码的逆转换过程</li>
+</ul>
+<blockquote>
+<p><font color="red">编码解码都是有一套预先规定的方案,无论是在编码过程还是解码过程,都要遵守这套规则来运算</font></p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="为什要编码解码"><a href="#为什要编码解码" class="headerlink" title="为什要编码解码"></a>为什要编码解码</h2><ul>
+<li>在计算机中，是不能直接存储字符的，计算机中储存的信息都是用二进制数表示的；而我们在屏幕上看到的英文、汉字等字符是二进制数转换之后的结果。通俗的说，按照何种规则将字符存储在计算机中，如’a’用什么表示，称为”编码”；反之，将存储在计算机中的二进制数解析显示出来，称为”解码”，如同密码学中的加密和解密。在解码过程中，如果使用了错误的解码规则，则导致’a’解析成’b’或者<strong>乱码</strong></li>
+<li>编码解码在不同的场景中具有不同的意义，比如常见的字符编码解码,URL编码解码等</li>
+</ul>
+<blockquote>
+<p>计算机为什么采用二进制：有很多原因.在这里简单的说几点,在技术上易实现,因为我们可以使用双稳态电路来表示1和0,高电平为1,低电平为0.且因为只有1和0,所以在传输和处理的过程中不容易出错.另外二进制的运算规则也相对来说简单.综合各方面因素,最终计算机采用二进制</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="字符集（Charset）"><a href="#字符集（Charset）" class="headerlink" title="字符集（Charset）"></a>字符集（Charset）</h2><ul>
+<li>字符集（Charset）是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="字符编码（Character-Encoding）"><a href="#字符编码（Character-Encoding）" class="headerlink" title="字符编码（Character Encoding）"></a>字符编码（Character Encoding）</h2><ul>
+<li>字符编码（Character Encoding）是一套法则，使用该法则能够对自然语言的字符的一个集合（如字母表或音节表），与其他东西的一个集合（如号码或电脉冲）进行配对。即在符号集合与数字系统之间建立对应关系，它是信息处理的一项基本技术。通常人们用符号集合（一般情况下就是文字）来表达信息。而以计算机为基础的信息处理系统则是利用元件（硬件）不同状态的组合来存储和处理信息的。元件不同状态的组合能代表数字系统的数字，因此字符编码就是将符号转换为计算机可以接受的数字系统的数，称为数字代码（通俗的讲：计算机字符编码就是将 计算机里展示的字符集 和 计算机能理解的二进制数 对应起来）</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="乱码"><a href="#乱码" class="headerlink" title="乱码"></a>乱码</h2><ul>
+<li>乱码就是因为使用了不对应的字符集导致部分或所有字符没法被正确阅读。（就比如我告诉你,打开新华字典的xx页的xx行,就是我想对你说的话.结果你拿了本牛津英汉字典,那你当然不能正确获取到我想对你说的话）</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="为什么有时候乱码都是-号"><a href="#为什么有时候乱码都是-号" class="headerlink" title="为什么有时候乱码都是 ? 号"></a>为什么有时候乱码都是 ? 号</h3><ul>
+<li>在 <code>Java</code> 开发中，经常会碰到乱码显示为 <code>?</code> 号，比如下面这个例子：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;双子孤狼&quot;</span>;</span><br><span class="line"><span class="type">byte</span>[] bytes = name.getBytes(StandardCharsets.ISO_8859_1);</span><br><span class="line">System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes));<span class="comment">//输出：????</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个输出结果的原因是中文无法用 <code>ISO_8859_1</code> 编码进行存储，而示例中却强制用 <code>ISO_8859_1</code> 编码进行解码</li>
+</ul>
+<blockquote>
+<p>在 <code>Java</code> 中提供了一个 <code>ISO_8859_1</code> 类用来解码，解码时当发现当前字符转成十进制之后大于 <code>255</code> 时就会直接不进行解码，转而直接赋一个默认值 <code>63</code>，所以上面的示例中的 <code>byte</code> 数组结果就是 <code>63 63 63 63</code>，而<code>63</code> 在 <code>ASCII</code> 中就恰好就对应了 <code>?</code> 号。</p>
+<p>所以一般我们看到编码出现 <code>?</code> 基本就说明当前是采用 <code>ISO_8859_1</code> 进行的解码，而当前的字符又大于 <code>255</code></p>
+</blockquote>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="常用字符集和字符编码"><a href="#常用字符集和字符编码" class="headerlink" title="常用字符集和字符编码"></a>常用字符集和字符编码</h1><ul>
+<li>常见字符集名称：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集等。计算机要准确的处理各种字符集文字，需要进行字符编码，以便计算机能够识别和存储各种文字</li>
+</ul>
+<br>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/微信图片_20220910225027-(1).2kjjnk2mwyy0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<br>
+
+<br>
+
+<h2 id="ASCII字符集-amp-编码"><a href="#ASCII字符集-amp-编码" class="headerlink" title="ASCII字符集&amp;编码"></a>ASCII字符集&amp;编码</h2><ul>
+<li>计算机最开始诞生于美国，而且计算机只能识别二进制，所以我们就需要把常用语言和二进制关联起来。美国人把英文里面常用的字符以及一些控制字符转换成了二进制数据，形成了一个编码对应关系表，这就是ASCII（American Standard Code for Information Interchange，美国信息交换标准代码）字符集和ASCII编码</li>
+<li>ASCII（American Standard Code for Information Interchange，美国信息交换标准代码）是基于拉丁字母的一套电脑编码系统。它主要用于显示现代英语，而其扩展版本EASCII则可以勉强显示其他西欧语言。它是现今最通用的单字节编码系统（但是有被Unicode追上的迹象），并等同于国际标准ISO/IEC 646</li>
+</ul>
+<br>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6hglwgjozx80.webp"
+                      width="70%"
+                >
+
+<br>
+
+<ul>
+<li><strong>ASCII字符集：</strong>主要包括控制字符（回车键、退格、换行键等）；可显示字符（英文大小写字符、阿拉伯数字和西文符号）</li>
+<li><strong>ASCII编码：</strong>将ASCII字符集转换为计算机可以接受的数字系统的数的规则</li>
+</ul>
+<br>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3qu3exerer80.webp"
+                      width="60%"
+                >
+
+<br>
+
+<blockquote>
+<p>使用7位（bits）表示一个字符，共128字符；但是7位编码的字符集只能支持128个字符，为了表示更多的欧洲常用字符对ASCII进行了扩展，ASCII扩展字符集使用8位（bits）表示一个字符，共256字符</p>
+</blockquote>
+<br>
+
+<ul>
+<li>ASCII编码表</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.632akue1h1s0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<ul>
+<li>扩展ASCII编码表</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4selgy9t3da0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<blockquote>
+<p><font color="red">ASCII的最大缺点是只能显示26个基本拉丁字母、阿拉伯数目字和英式标点符号，因此只能用于显示现代美国英语（而且在处理英语当中的外来词如naïve、café、élite等等时，所有重音符号都不得不去掉，即使这样做会违反拼写规则）。而EASCII虽然解决了部份西欧语言的显示问题，但对更多其他语言依然无能为力。因此现在的苹果电脑已经抛弃ASCII而转用Unicode</font></p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="GBXXXX字符集-amp-编码"><a href="#GBXXXX字符集-amp-编码" class="headerlink" title="GBXXXX字符集&amp;编码"></a>GBXXXX字符集&amp;编码</h2><ul>
+<li>当天朝也有了计算机之后，ASCII字符集（编码）不够用。为了显示中文，必须设计一套编码规则用于将汉字转换为计算机可以接受的数字系统的数</li>
+<li>天朝专家把那些127号之后的奇异符号们（即EASCII）取消掉，规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里，还把数学符号、罗马希腊的 字母、日文的假名们都编进去了，连在ASCII里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的”全角”字符，而原来在127号以下的那些就叫”半角”字符了</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="GB2312字符集-amp-编码"><a href="#GB2312字符集-amp-编码" class="headerlink" title="GB2312字符集&amp;编码"></a>GB2312字符集&amp;编码</h3><h4 id="GB2312字符集设计"><a href="#GB2312字符集设计" class="headerlink" title="GB2312字符集设计"></a>GB2312字符集设计</h4><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.376tsyyf9wu0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<ul>
+<li>01~09区表示除汉子外的682个字符</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3x9vnc4ax1c0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<ul>
+<li><p>10~15区是空白区</p>
+</li>
+<li><p>16~55区收录3755个一级汉字，按拼音排序</p>
+</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1g8kw6mqnk80.webp"
+                      width="70%"
+                >
+
+<br>
+
+<ul>
+<li>56~87区收录了3008个二级汉字，按部首/笔画排序（不太常用的、生僻汉字）</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.x9xgkbmfbhc.webp"
+                      width="70%"
+                >
+
+<br>
+
+<br>
+
+<h4 id="GB2312字符编码设计"><a href="#GB2312字符编码设计" class="headerlink" title="GB2312字符编码设计"></a>GB2312字符编码设计</h4><ul>
+<li>规定如何在计算机中存储</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5lyrzte8k8o.webp"
+                      width="70%"
+                >
+
+<br>
+
+<blockquote>
+<p>以<code>侃</code>这个字为例，<code>侃</code>这个字的码位是 <code>5709</code>，按前两位和后两位分开（<code>57</code>和<code>09</code>）并将其转化为16进制（<code>0x39</code>和<code>0x09</code>），再分别加上<code>0xA0</code>，得到<code>0xD9</code>和<code>0xA9</code>，再将其组合到一起得到<code>0xD90xA9</code>，<code>0xD90xA9</code>便是<code>侃</code>这个字的GB2312编码值。即计算机使用GB2312编码时，<code>侃</code>这个字在计算机中存储的16进制形式是：<code>D9A9</code></p>
+</blockquote>
+<ul>
+<li>Java获取某个汉字的GB2312编码值</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.46qrewk6ons0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<br>
+
+<h3 id="GB2312字符集扩展"><a href="#GB2312字符集扩展" class="headerlink" title="GB2312字符集扩展"></a>GB2312字符集扩展</h3><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.585csd88dpw0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<br>
+
+<br>
+
+<h2 id="Unicode字符集-amp-UTF编码"><a href="#Unicode字符集-amp-UTF编码" class="headerlink" title="Unicode字符集&amp;UTF编码"></a>Unicode字符集&amp;UTF编码</h2><ul>
+<li><p>Unicode 只是一个字符集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储</p>
+</li>
+<li><p>unicode是一个标准，其包含了对应的字符集和编码规则。UTF-32/ UTF-16/ UTF-8是三种字符编码方案（即：UTF-8 是 Unicode 的实现方式之一）</p>
+</li>
+</ul>
+<br>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6film7n2p0s0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<br>
+
+<h3 id="UTF-8-编码"><a href="#UTF-8-编码" class="headerlink" title="UTF-8 编码"></a>UTF-8 编码</h3><ul>
+<li><p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的<strong>可变长度字符编码（定长码）</strong>，也是一种前缀码。它可以用来表示Unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用</p>
+</li>
+<li><p>UTF-8编码是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度（每次传送8位数据）</p>
+</li>
+<li><p>UTF-8 的编码规则（存储规范）：</p>
+<ul>
+<li>对于单字节的符号，字节的第一位设为<code>0</code>，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的</li>
+<li>对于<code>n</code>字节的符号（<code>n &gt; 1</code>），第一个字节的前<code>n</code>位都设为<code>1</code>，第<code>n + 1</code>位设为<code>0</code>，后面字节的前两位一律设为<code>10</code>。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Unicode符号范围（十六进制）</th>
+<th align="left">UTF-8编码方式（二进制）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x0000 0000 - 0x0000 007F</td>
+<td align="left">0xxxxxxx</td>
+</tr>
+<tr>
+<td align="center">0x0000 0080 - 0x0000 07FF</td>
+<td align="left">110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td align="center">0x0000 0800 - 0x0000 FFFF</td>
+<td align="left">1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td align="center">0x0001 0000 - 0x0010 FFFF</td>
+<td align="left">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>跟据上表（字母x表示可用编码的位），解读 UTF-8 编码非常简单。如果一个字节的第一位是<code>0</code>，则这个字节单独就是一个字符；如果第一位是<code>1</code>，则连续有多少个<code>1</code>，就表示当前字符占用多少个字节</p>
+</blockquote>
+<ul>
+<li>以汉字<code>严</code>为例，演示如何实现 UTF-8 编码</li>
+</ul>
+<blockquote>
+<p><code>严</code>的 Unicode 是<code>4E25</code>（<code>100111000100101</code>），根据上表，可以发现<code>4E25</code>处在第三行的范围内（<code>0000 0800 - 0000 FFFF</code>），因此<code>严</code>的 UTF-8 编码需要三个字节，即格式是<code>1110xxxx 10xxxxxx 10xxxxxx</code>。然后，从<code>严</code>的最后一个二进制位开始，依次从后向前填入格式中的<code>x</code>，多出的位补<code>0</code>。这样就得到了，<code>严</code>的 UTF-8 编码是<code>11100100 10111000 10100101</code>，转换成十六进制就是<code>E4B8A5</code>。（即：计算机使用<code>Unicode</code>编码时，<code>严</code>这个字在计算机中存储的16进制形式是：<code>E4B8A5</code>）</p>
+</blockquote>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2hiq48s9b7k.webp"
+                      width="70%"
+                >
+
+<br>
+
+<h1 id="参考与延伸"><a href="#参考与延伸" class="headerlink" title="参考与延伸"></a>参考与延伸</h1><ul>
+<li>阮一峰博客：<a class="link"   target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" >字符编码笔记：ASCII，Unicode 和 UTF-8<i class="fas fa-external-link-alt"></i></a></li>
+<li>runoob（菜鸟教程）：<a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/charset-encoding.html" >字符集和字符编码<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/lonely-wolf/p/14676335.html" >字符集历史<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<br>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">字符集和字符编码（Charset &amp; Encoding）</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-09-10 21:03:57</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">字符集和字符编码（Charset-Encoding）/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/computer/">#computer</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../tags/character-encoding/">#character encoding</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../Maven%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Maven核心知识梳理</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../Java-I-O-%E7%B3%BB%E7%BB%9F/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java - I/O 系统</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">编码和解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E8%A6%81%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">为什要编码解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%EF%BC%88Charset%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">字符集（Charset）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%88Character-Encoding%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">字符编码（Character Encoding）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B1%E7%A0%81"><span class="nav-number">2.5.</span> <span class="nav-text">乱码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E6%97%B6%E5%80%99%E4%B9%B1%E7%A0%81%E9%83%BD%E6%98%AF-%E5%8F%B7"><span class="nav-number">2.5.1.</span> <span class="nav-text">为什么有时候乱码都是 ? 号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">常用字符集和字符编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII%E5%AD%97%E7%AC%A6%E9%9B%86-amp-%E7%BC%96%E7%A0%81"><span class="nav-number">3.1.</span> <span class="nav-text">ASCII字符集&amp;编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GBXXXX%E5%AD%97%E7%AC%A6%E9%9B%86-amp-%E7%BC%96%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">GBXXXX字符集&amp;编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GB2312%E5%AD%97%E7%AC%A6%E9%9B%86-amp-%E7%BC%96%E7%A0%81"><span class="nav-number">3.2.1.</span> <span class="nav-text">GB2312字符集&amp;编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GB2312%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">GB2312字符集设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GB2312%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">GB2312字符编码设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GB2312%E5%AD%97%E7%AC%A6%E9%9B%86%E6%89%A9%E5%B1%95"><span class="nav-number">3.2.2.</span> <span class="nav-text">GB2312字符集扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unicode%E5%AD%97%E7%AC%A6%E9%9B%86-amp-UTF%E7%BC%96%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">Unicode字符集&amp;UTF编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8-%E7%BC%96%E7%A0%81"><span class="nav-number">3.3.1.</span> <span class="nav-text">UTF-8 编码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%B8%8E%E5%BB%B6%E4%BC%B8"><span class="nav-number">4.</span> <span class="nav-text">参考与延伸</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2018</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
