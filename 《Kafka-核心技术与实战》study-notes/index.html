@@ -253,12 +253,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>5.3k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>18 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>22 Mins</span>
         </span>
     
     
@@ -498,6 +498,8 @@
 <ul>
 <li><strong>Apache Kafka 是消息引擎系统，也是一个分布式流处理平台</strong>（Distributed Streaming Platform）</li>
 </ul>
+<br>
+
 <ul>
 <li>Kafka 在设计之初就旨在提供三个方面的特性：<ul>
 <li>提供一套 API 实现生产者和消费者；</li>
@@ -506,9 +508,13 @@
 </ul>
 </li>
 </ul>
+<br>
+
 <blockquote>
 <p>开源之后的 Kafka 被越来越多的公司应用到它们企业内部的数据管道中，特别是在大数据工程领域，Kafka 在承接上下游、串联数据流管道方面发挥了重要的作用：所有的数据几乎都要从一个系统流入 Kafka 然后再流向下游的另一个系统中。这样的使用方式屡见不鲜以至于引发了 Kafka 社区的思考：与其我把数据从一个系统传递到下一个系统中做处理，我为何不自己实现一套流处理框架呢？基于这个考量，Kafka 社区于 0.10.0.0 版本正式推出了流处理组件 Kafka Streams，也正是从这个版本开始，Kafka 正式“变身”为分布式的流处理平台，而不仅仅是消息引擎系统了。今天 Apache Kafka 是和 Apache Storm、Apache Spark 和 Apache Flink 同等级的实时流处理平台。</p>
 </blockquote>
+<br>
+
 <h3 id="Kafka-与其他主流大数据流式计算框架相比的优势"><a href="#Kafka-与其他主流大数据流式计算框架相比的优势" class="headerlink" title="Kafka 与其他主流大数据流式计算框架相比的优势"></a>Kafka 与其他主流大数据流式计算框架相比的优势</h3><ul>
 <li><strong>第一点是更容易实现端到端的正确性（Correctness）</strong>。<ul>
 <li><strong>要实现正确性和提供能够推导时间的工具。实现正确性是流处理能够匹敌批处理的基石</strong>。</li>
@@ -519,9 +525,15 @@
 </ul>
 </li>
 </ul>
+<br>
+
+<br>
+
 <h2 id="04-我应该选择哪种Kafka？"><a href="#04-我应该选择哪种Kafka？" class="headerlink" title="04 | 我应该选择哪种Kafka？"></a>04 | 我应该选择哪种Kafka？</h2><h3 id="Kafka-Connect"><a href="#Kafka-Connect" class="headerlink" title="Kafka Connect"></a>Kafka Connect</h3><ul>
 <li>Kafka Connect 通过一个个具体的连接器（Connector），串联起上下游的外部系统。</li>
 </ul>
+<br>
+
 <ul>
 <li>Kafka Connect 组件支持的一部分外部系统，如下图</li>
 </ul>
@@ -549,27 +561,105 @@
 <ul>
 <li><strong>如果你仅仅需要一个消息引擎系统亦或是简单的流处理应用场景，同时需要对系统有较大把控度，推荐你使用 Apache Kafka。</strong></li>
 </ul>
+<br>
+
 <h4 id="Confluent-Kafka"><a href="#Confluent-Kafka" class="headerlink" title="Confluent Kafka"></a><strong>Confluent Kafka</strong></h4><ul>
 <li>Confluent 公司，它主要从事商业化 Kafka 工具开发，并在此基础上发布了 Confluent Kafka。Confluent Kafka 提供了一些 Apache Kafka 没有的高级特性，比如跨数据中心备份、Schema 注册中心以及集群监控工具等。</li>
 <li>Confluent Kafka 目前分为免费版和企业版两种。前者和 Apache Kafka 非常相像，除了常规的组件之外，免费版还包含 Schema 注册中心和 REST proxy 两大功能。前者是帮助你集中管理 Kafka 消息格式以实现数据前向 / 后向兼容；后者用开放 HTTP 接口的方式允许你通过网络访问 Kafka 的各种功能，这两个都是 Apache Kafka 所没有的。</li>
 <li>免费版包含了更多的连接器，它们都是 Confluent 公司开发并认证过的，你可以免费使用它们。至于企业版，它提供的功能就更多了。在我看来，最有用的当属跨数据中心备份和集群监控两大功能了。多个数据中心之间数据的同步以及对集群的监控历来是 Kafka 的痛点，Confluent Kafka 企业版提供了强大的解决方案帮助你“干掉”它们。</li>
 <li>Confluent 公司暂时没有发展国内业务的计划，相关的资料以及技术支持都很欠缺，很多国内 Confluent Kafka 使用者甚至无法找到对应的中文文档，因此目前 Confluent Kafka 在国内的普及率是比较低的。</li>
 </ul>
+<br>
+
 <h4 id="Cloudera-Hortonworks-Kafka"><a href="#Cloudera-Hortonworks-Kafka" class="headerlink" title="Cloudera/Hortonworks Kafka"></a><strong>Cloudera/Hortonworks Kafka</strong></h4><ul>
 <li>Cloudera 提供的 CDH 和 Hortonworks 提供的 HDP 是非常著名的大数据平台，里面集成了目前主流的大数据框架，能够帮助用户实现从分布式存储、集群调度、流处理到机器学习、实时数据库等全方位的数据处理。很多创业公司在搭建数据平台时首选就是这两个产品。不管是 CDH 还是 HDP 里面都集成了 Apache Kafka，因此我把这两款产品中的 Kafka 称为 CDH Kafka 和 HDP Kafka。</li>
 <li>Kafka（CDH/HDP Kafka）。这些大数据平台天然集成了 Apache Kafka，通过便捷化的界面操作将 Kafka 的安装、运维、管理、监控全部统一在控制台中。</li>
 <li>降低了你对 Kafka 集群的掌控程度。</li>
 <li>滞后：由于它有自己的发布周期，因此是否能及时地包含最新版本的 Kafka 就成为了一个问题。</li>
 </ul>
+<br>
+
 <ul>
 <li><strong>如果需要快速地搭建消息引擎系统，或者你需要搭建的是多框架构成的数据平台且 Kafka 只是其中一个组件，那么我推荐你使用这些大数据云公司提供的 Kafka。</strong></li>
 </ul>
+<br>
+
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
 <li>Apache Kafka，也称社区版 Kafka。优势在于迭代速度快，社区响应度高，使用它可以让你有更高的把控度；缺陷在于仅提供基础核心组件，缺失一些高级的特性。</li>
 <li>Confluent Kafka，Confluent 公司提供的 Kafka。优势在于集成了很多高级特性且由 Kafka 原班人马打造，质量上有保证；缺陷在于相关文档资料不全，普及率较低，没有太多可供参考的范例。</li>
 <li>CDH/HDP Kafka，大数据云公司提供的 Kafka，内嵌 Apache Kafka。优势在于操作简单，节省运维成本；缺陷在于把控度低，演进速度较慢。</li>
 </ul>
 <br>
+
+<br>
+
+<h2 id="05-聊聊Kafka的版本号"><a href="#05-聊聊Kafka的版本号" class="headerlink" title="05 | 聊聊Kafka的版本号"></a>05 | 聊聊Kafka的版本号</h2><ul>
+<li>评判某 Kafka 版本是不是满足业务需求，就需要了解各个版本之间的差异和功能变化</li>
+</ul>
+<br>
+
+<h3 id="Kafka-版本命名"><a href="#Kafka-版本命名" class="headerlink" title="Kafka 版本命名"></a>Kafka 版本命名</h3><ul>
+<li>kafka-2.11-2.1.1<ul>
+<li>前面的版本号是编译 Kafka 源代码的 Scala 编译器版本。（Kafka 服务器端的代码完全由 Scala 语言编写）</li>
+<li>真正的 Kafka 版本号实际上是 2.1.1<ul>
+<li>前面的 2 表示大版本号，即 Major Version；中间的 1 表示小版本号或次版本号，即 Minor Version；最后的 1 表示修订版本号，也就是 Patch 号。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Kafka 社区在发布 1.0.0 版本后特意写过一篇文章，宣布 Kafka 版本命名规则正式从 4 位演进到 3 位，比如 0.11.0.0 版本就是 4 位版本号。<ul>
+<li>假设碰到的 Kafka 版本是 0.10.2.2，你现在就知道了它的大版本是 0.10，小版本是 2，总共打了两个大的补丁，Patch 号是 2。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="Kafka-版本演进"><a href="#Kafka-版本演进" class="headerlink" title="Kafka 版本演进"></a>Kafka 版本演进</h3><ul>
+<li>Kafka 目前总共演进了 7 个大版本，分别是 0.7、0.8、0.9、0.10、0.11、1.0 和 2.0，其中的小版本和 Patch 版本很多。</li>
+</ul>
+<br>
+
+<ul>
+<li>0.7 版本<ul>
+<li>最早开源时的“上古”版本。这个版本只提供了最基础的消息队列功能，甚至连副本机制都没有</li>
+</ul>
+</li>
+<li>0.8<ul>
+<li>正式引入了<strong>副本机制</strong>，至此 Kafka 成为了一个真正意义上完备的分布式高可靠消息队列解决方案。有了副本备份机制，Kafka 就能够比较好地做到消息无丢失。那时候生产和消费消息使用的还是老版本的客户端 API，所谓的老版本是指当你用它们的 API 开发生产者和消费者应用时，你需要指定 ZooKeeper 的地址而非 Broker 的地址。</li>
+<li>老版本客户端有很多的问题，特别是生产者 API，它默认使用同步方式发送消息，可以想见其吞吐量一定不会太高。虽然它也支持异步的方式，但实际场景中可能会造成消息的丢失，因此 0.8.2.0 版本社区引入了<strong>新版本 Producer API</strong>，即需要指定 Broker 地址的 Producer。</li>
+<li>国内依然有少部分用户在使用 0.8.1.1、0.8.2 版本。<strong>建议是尽量使用比较新的版本。如果不能升级大版本，也建议至少要升级到 0.8.2.2 这个版本，因为该版本中老版本消费者 API 是比较稳定的。另外即使升到了 0.8.2.2，也不要使用新版本 Producer API，此时它的 Bug 还非常多。</strong></li>
+</ul>
+</li>
+<li>0.9.0.0 版本<ul>
+<li>2015 年 11 月，社区正式发布了 0.9.0.0 版本。</li>
+<li>0.9 大版本增加了基础的安全认证 / 权限功能，同时使用 Java 重写了新版本消费者 API，另外还引入了 Kafka Connect 组件用于实现高性能的数据抽取。</li>
+<li><strong>新版本 Producer API 在这个版本中算比较稳定了</strong>。</li>
+</ul>
+</li>
+<li>0.10.0.0<ul>
+<li>0.10.0.0 是里程碑式的大版本，因为该版本<strong>引入了 Kafka Streams</strong>。从这个版本起，Kafka 正式升级成分布式流处理平台，虽然此时的 Kafka Streams 还基本不能线上部署使用。</li>
+<li><strong>如果你依然在使用 0.10 大版本，我强烈建议你至少升级到 0.10.2.2 然后使用新版本 Consumer API。还有个事情不得不提，0.10.2.2 修复了一个可能导致 Producer 性能降低的 Bug。基于性能的缘故你也应该升级到 0.10.2.2。</strong></li>
+</ul>
+</li>
+<li>0.11.0.0 版本<ul>
+<li>2017 年 6 月，社区发布了 0.11.0.0 版本，引入了两个重量级的功能变更：一个是提供幂等性 Producer API 以及事务（Transaction） API；另一个是对 Kafka 消息格式做了重构。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li>不论你用的是哪个版本，都请尽量保持服务器端版本和客户端版本一致，否则你将损失很多 Kafka 为你提供的性能优化收益。</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Kafka的基本使用-3讲"><a href="#Kafka的基本使用-3讲" class="headerlink" title="Kafka的基本使用 (3讲)"></a>Kafka的基本使用 (3讲)</h1><h2 id="06-Kafka线上集群部署方案怎么做？"><a href="#06-Kafka线上集群部署方案怎么做？" class="headerlink" title="06 | Kafka线上集群部署方案怎么做？"></a>06 | Kafka线上集群部署方案怎么做？</h2><br>
 
 <br>
 
@@ -749,7 +839,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-1%E8%AE%B2"><span class="nav-number">1.</span> <span class="nav-text">开篇词 (1讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0Kafka%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">开篇词 | 为什么要学习Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E9%80%8F-Kafka-%E6%8E%A8%E8%8D%90%E8%B7%AF%E5%BE%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">学透 Kafka 推荐路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E6%A0%8F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">1.1.2.</span> <span class="nav-text">专栏思维导图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka%E5%85%A5%E9%97%A8-5%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">Kafka入门 (5讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9FABC"><span class="nav-number">2.1.</span> <span class="nav-text">01 | 消息引擎系统ABC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E4%BC%A0%E8%BE%93%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">消息引擎传输消息模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E"><span class="nav-number">2.1.2.</span> <span class="nav-text">为什么要使用消息引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%BF%AB%E9%80%9F%E6%90%9E%E5%AE%9AKafka%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.2.</span> <span class="nav-text">02 | 一篇文章带你快速搞定Kafka术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E6%8F%90%E4%BE%9B%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">Kafka提供高可用的手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AF%E6%9C%AC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">副本的工作机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E8%A7%A3%E5%86%B3%E4%BC%B8%E7%BC%A9%E6%80%A7"><span class="nav-number">2.2.3.</span> <span class="nav-text">Kafka解决伸缩性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">分区机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%9A%84%E4%B8%89%E5%B1%82%E6%B6%88%E6%81%AF%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">Kafka 的三层消息架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Broker-%E6%98%AF%E5%A6%82%E4%BD%95%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9A%84"><span class="nav-number">2.2.5.</span> <span class="nav-text">Kafka Broker 是如何持久化数据的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-number">2.2.6.</span> <span class="nav-text">消费者组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%B9%B3%E8%A1%A1"><span class="nav-number">2.2.7.</span> <span class="nav-text">重平衡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Kafka%E5%8F%AA%E6%98%AF%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9F%E5%90%97%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">03 | Kafka只是消息引擎系统吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E4%B8%8E%E5%85%B6%E4%BB%96%E4%B8%BB%E6%B5%81%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%E7%9B%B8%E6%AF%94%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.3.1.</span> <span class="nav-text">Kafka 与其他主流大数据流式计算框架相比的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%88%91%E5%BA%94%E8%AF%A5%E9%80%89%E6%8B%A9%E5%93%AA%E7%A7%8DKafka%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">04 | 我应该选择哪种Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Connect"><span class="nav-number">2.4.1.</span> <span class="nav-text">Kafka Connect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.4.2.</span> <span class="nav-text">Kafka种类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-Kafka"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Apache Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Confluent-Kafka"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">Confluent Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cloudera-Hortonworks-Kafka"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">Cloudera&#x2F;Hortonworks Kafka</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">2.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">3.</span> <span class="nav-text">学习备注</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-1%E8%AE%B2"><span class="nav-number">1.</span> <span class="nav-text">开篇词 (1讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0Kafka%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">开篇词 | 为什么要学习Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E9%80%8F-Kafka-%E6%8E%A8%E8%8D%90%E8%B7%AF%E5%BE%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">学透 Kafka 推荐路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E6%A0%8F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">1.1.2.</span> <span class="nav-text">专栏思维导图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka%E5%85%A5%E9%97%A8-5%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">Kafka入门 (5讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9FABC"><span class="nav-number">2.1.</span> <span class="nav-text">01 | 消息引擎系统ABC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E4%BC%A0%E8%BE%93%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">消息引擎传输消息模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E"><span class="nav-number">2.1.2.</span> <span class="nav-text">为什么要使用消息引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%BF%AB%E9%80%9F%E6%90%9E%E5%AE%9AKafka%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.2.</span> <span class="nav-text">02 | 一篇文章带你快速搞定Kafka术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E6%8F%90%E4%BE%9B%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">Kafka提供高可用的手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AF%E6%9C%AC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">副本的工作机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E8%A7%A3%E5%86%B3%E4%BC%B8%E7%BC%A9%E6%80%A7"><span class="nav-number">2.2.3.</span> <span class="nav-text">Kafka解决伸缩性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">分区机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%9A%84%E4%B8%89%E5%B1%82%E6%B6%88%E6%81%AF%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">Kafka 的三层消息架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Broker-%E6%98%AF%E5%A6%82%E4%BD%95%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9A%84"><span class="nav-number">2.2.5.</span> <span class="nav-text">Kafka Broker 是如何持久化数据的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-number">2.2.6.</span> <span class="nav-text">消费者组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%B9%B3%E8%A1%A1"><span class="nav-number">2.2.7.</span> <span class="nav-text">重平衡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Kafka%E5%8F%AA%E6%98%AF%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9F%E5%90%97%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">03 | Kafka只是消息引擎系统吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E4%B8%8E%E5%85%B6%E4%BB%96%E4%B8%BB%E6%B5%81%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%E7%9B%B8%E6%AF%94%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.3.1.</span> <span class="nav-text">Kafka 与其他主流大数据流式计算框架相比的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%88%91%E5%BA%94%E8%AF%A5%E9%80%89%E6%8B%A9%E5%93%AA%E7%A7%8DKafka%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">04 | 我应该选择哪种Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Connect"><span class="nav-number">2.4.1.</span> <span class="nav-text">Kafka Connect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.4.2.</span> <span class="nav-text">Kafka种类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-Kafka"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Apache Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Confluent-Kafka"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">Confluent Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cloudera-Hortonworks-Kafka"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">Cloudera&#x2F;Hortonworks Kafka</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">2.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E8%81%8A%E8%81%8AKafka%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">2.5.</span> <span class="nav-text">05 | 聊聊Kafka的版本号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%89%88%E6%9C%AC%E5%91%BD%E5%90%8D"><span class="nav-number">2.5.1.</span> <span class="nav-text">Kafka 版本命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B"><span class="nav-number">2.5.2.</span> <span class="nav-text">Kafka 版本演进</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-3%E8%AE%B2"><span class="nav-number">3.</span> <span class="nav-text">Kafka的基本使用 (3讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Kafka%E7%BA%BF%E4%B8%8A%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">06 | Kafka线上集群部署方案怎么做？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">4.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
