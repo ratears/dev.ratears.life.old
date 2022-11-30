@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -38,9 +38,6 @@
         <span class="scroll-progress-bar"></span>
     
 
-    
-        <span class="pjax-progress-bar"></span>
-        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -266,6 +263,10 @@
         </span>
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -315,12 +316,7 @@
 
 <br/>
 
-<h2 id="实践环境中常见的问题"><a href="#实践环境中常见的问题" class="headerlink" title="实践环境中常见的问题"></a>实践环境中常见的问题</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/0097e80f862e58ac1ee42674eb5f03e.5mzf9cefwgc0.webp"
-                       width="80%"
-                >
+<h2 id="实践环境中常见的问题"><a href="#实践环境中常见的问题" class="headerlink" title="实践环境中常见的问题"></a>实践环境中常见的问题</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/0097e80f862e58ac1ee42674eb5f03e.5mzf9cefwgc0.webp"  width="80%"/>
 
 <br/>
 
@@ -331,12 +327,7 @@
 <li>我们安装kingbase的时候，如果选择完全安装，则会帮我们安装上 数据库对象管理工具</li>
 <li>使用Kingbase 对象管理器连接数据库 操作如下图</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.6gb216h4y0g0.webp"
-                       width="90%"
-                >
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.6gb216h4y0g0.webp"  width="90%"/>
 
 <h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
 <li>业务软件所使用的对象的集合。包括：表、视图、序列、索引、函数、存储过程等……</li>
@@ -353,26 +344,11 @@
 <li><a class="link"   target="_blank" rel="noopener" href="https://dbeaver.io/download/" >官网<i class="fas fa-external-link-alt"></i></a> 下载 DBeaver</li>
 <li>使用DBeaver 连接Kingbase 数据库 操作如下图</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5o8iqfctzac0.webp"
-                       
-                >
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5o8iqfctzac0.webp"  />
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4z57m966ojc0.webp"
-                      
-                >
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4z57m966ojc0.webp" />
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.7essaooqm480.webp"
-                      
-                > 
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.7essaooqm480.webp" /> 
 
 <br/>
 
@@ -513,13 +489,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="../%E3%80%8AJava-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
+                               href="../%E5%A7%9C%E6%89%BF%E5%B0%A7-MySQL-DBA%E5%AE%9E%E6%88%98-study-notes/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">《Java 并发编程实战》study notes</span>
+                                <span class="post-nav-title-item">姜承尧 MySQL DBA实战 study notes</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
@@ -557,9 +533,9 @@
             
 
     <div class="valine-container">
-        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <script  src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script data-pjax>
+        <script >
           function loadValine() {
             new Valine({
               el: '#vcomments',
@@ -605,7 +581,7 @@
             }, 2000);
           }
 
-          if ('true' === 'true') {
+          if ('false' === 'true') {
             const loadValineTimeout = setTimeout(() => {
               loadValine();
               clearTimeout(loadValineTimeout);
@@ -652,7 +628,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2018</span> -
+                <span>2017</span> -
             
             2022
             
@@ -660,6 +636,17 @@
                 &nbsp;<a href="/">ratears</a>
             
         </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
@@ -798,10 +785,8 @@
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
 
-
-<div class="post-scripts pjax">
+<div class="post-scripts">
     
         <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
         
@@ -812,38 +797,6 @@
         
     
 </div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
 
 
 

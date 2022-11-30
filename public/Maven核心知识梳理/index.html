@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -38,9 +38,6 @@
         <span class="scroll-progress-bar"></span>
     
 
-    
-        <span class="pjax-progress-bar"></span>
-        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -258,6 +255,10 @@
         </span>
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -299,12 +300,7 @@
 <li><p>下面是前面例子中 jar 包之间的依赖关系：</p>
 </li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.mqcmj2wu734.webp"
-                      width="65%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.mqcmj2wu734.webp" width="65%" />
 
 <br>
 
@@ -319,12 +315,7 @@
 <h3 id="Maven-作为构建管理工具"><a href="#Maven-作为构建管理工具" class="headerlink" title="Maven 作为构建管理工具"></a>Maven 作为构建管理工具</h3><h4 id="①你没有注意过的构建"><a href="#①你没有注意过的构建" class="headerlink" title="①你没有注意过的构建"></a>①你没有注意过的构建</h4><ul>
 <li>可以不使用 Maven，但是构建必须要做。当我们使用 IDEA 进行开发时，构建是 IDEA 替我们做的</li>
 </ul>
-<h4 id="②脱离-IDE-环境仍需构建"><a href="#②脱离-IDE-环境仍需构建" class="headerlink" title="②脱离 IDE 环境仍需构建"></a>②脱离 IDE 环境仍需构建</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1ivp2tn48qw0.webp"
-                      width="60%"
-                >
+<h4 id="②脱离-IDE-环境仍需构建"><a href="#②脱离-IDE-环境仍需构建" class="headerlink" title="②脱离 IDE 环境仍需构建"></a>②脱离 IDE 环境仍需构建</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1ivp2tn48qw0.webp" width="60%"/>
 
 <br>
 
@@ -343,12 +334,7 @@
 <h2 id="What？什么是-Maven？"><a href="#What？什么是-Maven？" class="headerlink" title="What？什么是 Maven？"></a>What？什么是 Maven？</h2><ul>
 <li>Maven 是 Apache 软件基金会组织维护的一款专门为 Java 项目提供<strong>构建</strong>和<strong>依赖</strong>管理支持的工具</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3ecian9do5e0.webp"
-                      width="30%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3ecian9do5e0.webp" width="30%"/>
 
 <br>
 
@@ -409,12 +395,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="Maven-的工作机制"><a href="#Maven-的工作机制" class="headerlink" title="Maven 的工作机制"></a>Maven 的工作机制</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6wuv1htwzko0.webp"
-                      width="60%"
-                >
+<h3 id="Maven-的工作机制"><a href="#Maven-的工作机制" class="headerlink" title="Maven 的工作机制"></a>Maven 的工作机制</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6wuv1htwzko0.webp" width="60%"/>
 
 <br>
 
@@ -519,12 +500,7 @@
 
 
 
-<h3 id="实验操作：使用命令生成Maven工程"><a href="#实验操作：使用命令生成Maven工程" class="headerlink" title="实验操作：使用命令生成Maven工程"></a>实验操作：使用命令生成Maven工程</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.52zgdx8nqpc0.webp"
-                      width="40%"
-                >
+<h3 id="实验操作：使用命令生成Maven工程"><a href="#实验操作：使用命令生成Maven工程" class="headerlink" title="实验操作：使用命令生成Maven工程"></a>实验操作：使用命令生成Maven工程</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.52zgdx8nqpc0.webp" width="40%"/>
 
 <br>
 
@@ -563,12 +539,7 @@
 <h4 id="对应的配置文件"><a href="#对应的配置文件" class="headerlink" title="对应的配置文件"></a>对应的配置文件</h4><ul>
 <li>POM 理念集中体现在 Maven 工程根目录下 <strong>pom.xml</strong> 这个配置文件中。所以这个 pom.xml 配置文件就是 Maven 工程的核心配置文件。其实学习 Maven 就是学这个文件怎么配置，各个配置有什么用。</li>
 </ul>
-<h3 id="Maven核心概念：约定的目录结构"><a href="#Maven核心概念：约定的目录结构" class="headerlink" title="Maven核心概念：约定的目录结构"></a>Maven核心概念：约定的目录结构</h3><h4 id="①各个目录的作用"><a href="#①各个目录的作用" class="headerlink" title="①各个目录的作用"></a>①各个目录的作用</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.178pqbq36pd.webp"
-                      width="60%"
-                >
+<h3 id="Maven核心概念：约定的目录结构"><a href="#Maven核心概念：约定的目录结构" class="headerlink" title="Maven核心概念：约定的目录结构"></a>Maven核心概念：约定的目录结构</h3><h4 id="①各个目录的作用"><a href="#①各个目录的作用" class="headerlink" title="①各个目录的作用"></a>①各个目录的作用</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.178pqbq36pd.webp" width="60%"/>
 
 <br>
 
@@ -683,9 +654,9 @@
             
 
     <div class="valine-container">
-        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <script  src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script data-pjax>
+        <script >
           function loadValine() {
             new Valine({
               el: '#vcomments',
@@ -731,7 +702,7 @@
             }, 2000);
           }
 
-          if ('true' === 'true') {
+          if ('false' === 'true') {
             const loadValineTimeout = setTimeout(() => {
               loadValine();
               clearTimeout(loadValineTimeout);
@@ -778,7 +749,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2018</span> -
+                <span>2017</span> -
             
             2022
             
@@ -786,6 +757,17 @@
                 &nbsp;<a href="/">ratears</a>
             
         </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
@@ -924,10 +906,8 @@
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
 
-
-<div class="post-scripts pjax">
+<div class="post-scripts">
     
         <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
         
@@ -938,38 +918,6 @@
         
     
 </div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
 
 
 

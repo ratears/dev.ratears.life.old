@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -38,9 +38,6 @@
         <span class="scroll-progress-bar"></span>
     
 
-    
-        <span class="pjax-progress-bar"></span>
-        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -278,6 +275,10 @@
         </span>
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -403,24 +404,14 @@
 
 <br>
 
-<h2 id="数据结构和内部编码"><a href="#数据结构和内部编码" class="headerlink" title="数据结构和内部编码"></a>数据结构和内部编码</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3scu9pvrtk80.webp"
-                      width="75%" 
-                >
+<h2 id="数据结构和内部编码"><a href="#数据结构和内部编码" class="headerlink" title="数据结构和内部编码"></a>数据结构和内部编码</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3scu9pvrtk80.webp" width="75%" />
 
 <br>
 
 <ul>
 <li>redisObject</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69a05a18h8s0.webp"
-                      width="75%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69a05a18h8s0.webp" width="75%"/>
 
 <br>
 
@@ -580,12 +571,7 @@
 <ol start="2">
 <li>缓存视频的基本信息（数据源在MySQL中）</li>
 </ol>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2nspuoc7ly60.webp"
-                      width="70%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2nspuoc7ly60.webp" width="70%" />
 
 <br>
 
@@ -594,21 +580,11 @@
 </ol>
 <br>
 
-<h3 id="查漏补缺"><a href="#查漏补缺" class="headerlink" title="查漏补缺"></a>查漏补缺</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/1d121aa9afdb06c7451e0fb8bb2d560.kias448eqho.webp"
-                      width="70%" 
-                >
+<h3 id="查漏补缺"><a href="#查漏补缺" class="headerlink" title="查漏补缺"></a>查漏补缺</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/1d121aa9afdb06c7451e0fb8bb2d560.kias448eqho.webp" width="70%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/4c1ea9bb24f88ec70a3aacc637a9183.4xykrj7thuw0.webp"
-                      width="70%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/4c1ea9bb24f88ec70a3aacc637a9183.4xykrj7thuw0.webp" width="70%" />
 
 
 
@@ -626,57 +602,27 @@
 <ul>
 <li>Jedis直连</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1l6p9hnls4rk.webp"
-                      width="70%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1l6p9hnls4rk.webp" width="70%"/>
 
 <br>
 
-<h3 id="JedisPool简单使用"><a href="#JedisPool简单使用" class="headerlink" title="JedisPool简单使用"></a>JedisPool简单使用</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4ehexcty0j20.webp"
-                      width = "70%"
-                >
+<h3 id="JedisPool简单使用"><a href="#JedisPool简单使用" class="headerlink" title="JedisPool简单使用"></a>JedisPool简单使用</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4ehexcty0j20.webp" width = "70%"/>
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3r9cudbxdi00.webp"
-                      width = "70%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3r9cudbxdi00.webp" width = "70%"/>
 
 <br>
 
-<h3 id="Jedis-与-JedisPool比较"><a href="#Jedis-与-JedisPool比较" class="headerlink" title="Jedis 与 JedisPool比较"></a>Jedis 与 JedisPool比较</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/97b459332ea53d7e42b90bd2743dcda.396pfset03e0.webp"
-                      width="60%" 
-                >
+<h3 id="Jedis-与-JedisPool比较"><a href="#Jedis-与-JedisPool比较" class="headerlink" title="Jedis 与 JedisPool比较"></a>Jedis 与 JedisPool比较</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/97b459332ea53d7e42b90bd2743dcda.396pfset03e0.webp" width="60%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/7e5d97f719abbfe9b363126e682f86d.3g21qh3ltu20.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/7e5d97f719abbfe9b363126e682f86d.3g21qh3ltu20.webp" width="60%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/41e863e25d7ae1dc0c3cebe8444b9c5.2tj6g97vyck.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/41e863e25d7ae1dc0c3cebe8444b9c5.2tj6g97vyck.webp" width="60%" />
 
 <br>
 
@@ -684,105 +630,55 @@
 
 
 
-<h3 id="Jedis配置优化"><a href="#Jedis配置优化" class="headerlink" title="Jedis配置优化"></a>Jedis配置优化</h3><h4 id="pool配置-资源数控制"><a href="#pool配置-资源数控制" class="headerlink" title="pool配置 - 资源数控制"></a>pool配置 - 资源数控制</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.21oqgp1jyxnk.webp"
-                      width="60%" 
-                >
+<h3 id="Jedis配置优化"><a href="#Jedis配置优化" class="headerlink" title="Jedis配置优化"></a>Jedis配置优化</h3><h4 id="pool配置-资源数控制"><a href="#pool配置-资源数控制" class="headerlink" title="pool配置 - 资源数控制"></a>pool配置 - 资源数控制</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.21oqgp1jyxnk.webp" width="60%" />
 
 <br>
 
-<h4 id="pool配置-借还参数"><a href="#pool配置-借还参数" class="headerlink" title="pool配置 - 借还参数"></a>pool配置 - 借还参数</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7cwnd55qd1s0.webp"
-                      width="70%" 
-                >
+<h4 id="pool配置-借还参数"><a href="#pool配置-借还参数" class="headerlink" title="pool配置 - 借还参数"></a>pool配置 - 借还参数</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7cwnd55qd1s0.webp" width="70%" />
 
 <br>
 
-<h4 id="适合的-maxTotal"><a href="#适合的-maxTotal" class="headerlink" title="适合的 maxTotal"></a>适合的 maxTotal</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2mma31ou5nw0.webp"
-                      width="60%" 
-                >
+<h4 id="适合的-maxTotal"><a href="#适合的-maxTotal" class="headerlink" title="适合的 maxTotal"></a>适合的 maxTotal</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2mma31ou5nw0.webp" width="60%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6sejm8evfwc.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6sejm8evfwc.webp" width="60%" />
 
 <br>
 
-<h4 id="适合的maxIdle和minIdle"><a href="#适合的maxIdle和minIdle" class="headerlink" title="适合的maxIdle和minIdle"></a>适合的maxIdle和minIdle</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6lhcm72l9bo0.webp"
-                      width="60%" 
-                >
+<h4 id="适合的maxIdle和minIdle"><a href="#适合的maxIdle和minIdle" class="headerlink" title="适合的maxIdle和minIdle"></a>适合的maxIdle和minIdle</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6lhcm72l9bo0.webp" width="60%" />
 
 <br>
 
 <h3 id="常见问题和解决思路"><a href="#常见问题和解决思路" class="headerlink" title="常见问题和解决思路"></a>常见问题和解决思路</h3><ul>
 <li>常见问题</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.75d32k2l47g0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.75d32k2l47g0.webp" width="60%" />
 
 <br>
 
 <ul>
 <li>解决思路</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41af9urqt6a0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41af9urqt6a0.webp" width="60%" />
 
 <br>
 
 <ul>
 <li>错误示例</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.31pwe9jqbig0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.31pwe9jqbig0.webp" width="60%" />
 
 <br>
 
 <ul>
 <li>推荐写法</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69xc8p0s24o0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69xc8p0s24o0.webp" width="60%" />
 
 <br>
 
-<h1 id="Redis其他功能"><a href="#Redis其他功能" class="headerlink" title="Redis其他功能"></a>Redis其他功能</h1><h2 id="slowlog（慢查询）"><a href="#slowlog（慢查询）" class="headerlink" title="slowlog（慢查询）"></a>slowlog（慢查询）</h2><h3 id="命令生命周期"><a href="#命令生命周期" class="headerlink" title="命令生命周期"></a>命令生命周期</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.76jbqyv85l80.webp"
-                      width="70%" 
-                >
+<h1 id="Redis其他功能"><a href="#Redis其他功能" class="headerlink" title="Redis其他功能"></a>Redis其他功能</h1><h2 id="slowlog（慢查询）"><a href="#slowlog（慢查询）" class="headerlink" title="slowlog（慢查询）"></a>slowlog（慢查询）</h2><h3 id="命令生命周期"><a href="#命令生命周期" class="headerlink" title="命令生命周期"></a>命令生命周期</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.76jbqyv85l80.webp" width="70%" />
 
 <br>
 
@@ -802,12 +698,7 @@
 <li><p>慢查询队列数据保存在内存中</p>
 </li>
 </ol>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.44yrctjcttc0.webp"
-                      width="70%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.44yrctjcttc0.webp" width="70%" />
 
 <br>
 
@@ -864,33 +755,18 @@
 </ol>
 <br>
 
-<h2 id="pipeline（流水线）"><a href="#pipeline（流水线）" class="headerlink" title="pipeline（流水线）"></a>pipeline（流水线）</h2><h3 id="网络命令通信模型"><a href="#网络命令通信模型" class="headerlink" title="网络命令通信模型"></a>网络命令通信模型</h3><h4 id="1次网络命令通信模型"><a href="#1次网络命令通信模型" class="headerlink" title="1次网络命令通信模型"></a>1次网络命令通信模型</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.10peiok08sk0.webp"
-                      width="60%" 
-                >
+<h2 id="pipeline（流水线）"><a href="#pipeline（流水线）" class="headerlink" title="pipeline（流水线）"></a>pipeline（流水线）</h2><h3 id="网络命令通信模型"><a href="#网络命令通信模型" class="headerlink" title="网络命令通信模型"></a>网络命令通信模型</h3><h4 id="1次网络命令通信模型"><a href="#1次网络命令通信模型" class="headerlink" title="1次网络命令通信模型"></a>1次网络命令通信模型</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.10peiok08sk0.webp" width="60%" />
 
 <br>
 
-<h4 id="批量网络命令通信模型"><a href="#批量网络命令通信模型" class="headerlink" title="批量网络命令通信模型"></a>批量网络命令通信模型</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.yo8sxod81o0.webp"
-                      width="60%" 
-                >
+<h4 id="批量网络命令通信模型"><a href="#批量网络命令通信模型" class="headerlink" title="批量网络命令通信模型"></a>批量网络命令通信模型</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.yo8sxod81o0.webp" width="60%" />
 
 <br>
 
 <h3 id="什么是pipeline（流水线）"><a href="#什么是pipeline（流水线）" class="headerlink" title="什么是pipeline（流水线）"></a>什么是pipeline（流水线）</h3><ul>
 <li>我们知道redis的命令执行是很快的，但是网络时间却不一定。使用pipeline可以帮我们节约大量网络时间</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.v0w62a1vlc0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.v0w62a1vlc0.webp" width="60%" />
 
 <br>
 
@@ -923,12 +799,7 @@
 <ul>
 <li>举例</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2sv2n6wunz20.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2sv2n6wunz20.webp" width="60%" />
 
 <br>
 
@@ -942,48 +813,28 @@
 <ul>
 <li>没有pipe-line</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2cxbniglxcys.webp"
-                      width="70%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2cxbniglxcys.webp" width="70%" />
 
 <br>
 
 <ul>
 <li>使用pipeline</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41hpky36m4a0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41hpky36m4a0.webp" width="60%" />
 
 <br>
 
 <h3 id="pipeline与mget-mset操作的对比"><a href="#pipeline与mget-mset操作的对比" class="headerlink" title="pipeline与mget/mset操作的对比"></a>pipeline与mget/mset操作的对比</h3><ul>
 <li>原生M操作</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6m3lpwqzxqs0.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6m3lpwqzxqs0.webp" width="60%" />
 
 <br>
 
 <ul>
 <li>pipeline</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7b0lz2zro400.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7b0lz2zro400.webp" width="60%" />
 
 <br>
 
@@ -1002,12 +853,7 @@
 </ul>
 <br>
 
-<h3 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5u5skel4tjk0.webp"
-                      width="60%" 
-                >
+<h3 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5u5skel4tjk0.webp" width="60%" />
 
 <br>
 
@@ -1028,12 +874,7 @@
 
 <br>
 
-<h4 id="其它API"><a href="#其它API" class="headerlink" title="其它API"></a>其它API</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.j7q4w7w0f5c.webp"
-                       width="65%"
-                >
+<h4 id="其它API"><a href="#其它API" class="headerlink" title="其它API"></a>其它API</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.j7q4w7w0f5c.webp"  width="65%"/>
 
 
 
@@ -1043,12 +884,7 @@
 <li>Redis可以实现消息队列，消息队列是抢的模式</li>
 <li>注意二者的区别与使用场景</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.33zfet508q00.webp"
-                      width="65%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.33zfet508q00.webp" width="65%" />
 
 <br>
 
@@ -1066,12 +902,7 @@
 
 <br>
 
-<h3 id="示例（百万独立用户-内存消耗）"><a href="#示例（百万独立用户-内存消耗）" class="headerlink" title="示例（百万独立用户-内存消耗）"></a>示例（百万独立用户-内存消耗）</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.540yx2nmmgw0.webp"
-                      width="60%" 
-                >
+<h3 id="示例（百万独立用户-内存消耗）"><a href="#示例（百万独立用户-内存消耗）" class="headerlink" title="示例（百万独立用户-内存消耗）"></a>示例（百万独立用户-内存消耗）</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.540yx2nmmgw0.webp" width="60%" />
 
 <br>
 
@@ -1114,36 +945,21 @@
 <ol start="2">
 <li>持久化的方式</li>
 </ol>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.urjf6b58j5c.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.urjf6b58j5c.webp" width="60%" />
 
 <br>
 
 <h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><h3 id="什么是RDB"><a href="#什么是RDB" class="headerlink" title="什么是RDB"></a>什么是RDB</h3><ul>
 <li>RDB：在不同的时间点，将 redis 存储的数据生成快照并存储到磁盘等介质上</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.xtthna1x3gg.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.xtthna1x3gg.webp" width="60%" />
 
 <br>
 
 <h3 id="RDB触发机制的三种方式"><a href="#RDB触发机制的三种方式" class="headerlink" title="RDB触发机制的三种方式"></a>RDB触发机制的三种方式</h3><h4 id="save（同步）"><a href="#save（同步）" class="headerlink" title="save（同步）"></a>save（同步）</h4><ul>
 <li>可能会造成阻塞</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1mmseu4fo9og.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1mmseu4fo9og.webp" width="60%" />
 
 <br>
 
@@ -1159,12 +975,7 @@
 <li>客户端执行 <code>bgsave</code> redis会使用linux的 <code>fork()</code> 函数生成一个redis的子进程，由该子进程生成RDB文件</li>
 <li>一般情况下， <code>bgsave</code> 不会阻塞到redis</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1nkd5mhwgzcw.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1nkd5mhwgzcw.webp" width="60%" />
 
 <br>
 
@@ -1176,21 +987,11 @@
 </ul>
 <br>
 
-<h4 id="save-与-bgsave比较"><a href="#save-与-bgsave比较" class="headerlink" title="save 与 bgsave比较"></a>save 与 bgsave比较</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7z4y2ta7f2w.webp"
-                      width="65%" 
-                >
+<h4 id="save-与-bgsave比较"><a href="#save-与-bgsave比较" class="headerlink" title="save 与 bgsave比较"></a>save 与 bgsave比较</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7z4y2ta7f2w.webp" width="65%" />
 
 <br>
 
-<h4 id="自动"><a href="#自动" class="headerlink" title="自动"></a>自动</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.42jf7bw3rfe0.webp"
-                      width="70%" 
-                >
+<h4 id="自动"><a href="#自动" class="headerlink" title="自动"></a>自动</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.42jf7bw3rfe0.webp" width="70%" />
 
 <br>
 
@@ -1208,12 +1009,7 @@
 
 <br>
 
-<h5 id="最佳配置"><a href="#最佳配置" class="headerlink" title="最佳配置"></a>最佳配置</h5><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.23rdcl2poqrk.webp"
-                      width="70%" 
-                >
+<h5 id="最佳配置"><a href="#最佳配置" class="headerlink" title="最佳配置"></a>最佳配置</h5><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.23rdcl2poqrk.webp" width="70%" />
 
 <br>
 
@@ -1230,24 +1026,14 @@
 <h3 id="RDB现存问题"><a href="#RDB现存问题" class="headerlink" title="RDB现存问题"></a>RDB现存问题</h3><ul>
 <li>耗时耗性能</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.b2ax18993q0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.b2ax18993q0.webp" width="50%" />
 
 <br>
 
 <ul>
 <li>不可控，丢失数据</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2hq85j7f4ni0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2hq85j7f4ni0.webp" width="50%" />
 
 <br>
 
@@ -1257,36 +1043,21 @@
 <h3 id="AOF运行原理"><a href="#AOF运行原理" class="headerlink" title="AOF运行原理"></a>AOF运行原理</h3><ul>
 <li>创建</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1i410l2830jk.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1i410l2830jk.webp" width="50%" />
 
 <br>
 
 <ul>
 <li>恢复</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2ode8n5q6b80.webp"
-                      width="60%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2ode8n5q6b80.webp" width="60%" />
 
 <br>
 
 <h3 id="AOF的三种策略"><a href="#AOF的三种策略" class="headerlink" title="AOF的三种策略"></a>AOF的三种策略</h3><h4 id="always"><a href="#always" class="headerlink" title="always"></a>always</h4><ul>
 <li>写入数据不会丢失</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1nz1bf5i1ojk.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1nz1bf5i1ojk.webp" width="50%" />
 
 <br>
 
@@ -1294,12 +1065,7 @@
 <li>是redis的配置默认值</li>
 <li>可能会丢失1s的数据</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5uvzghtr78s0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5uvzghtr78s0.webp" width="50%" />
 
 <br>
 
@@ -1308,12 +1074,7 @@
 </ul>
 <br>
 
-<h3 id="AOF的三种策略对比"><a href="#AOF的三种策略对比" class="headerlink" title="AOF的三种策略对比"></a>AOF的三种策略对比</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7ezkvv0o0bg0.webp"
-                      width="50%" 
-                >
+<h3 id="AOF的三种策略对比"><a href="#AOF的三种策略对比" class="headerlink" title="AOF的三种策略对比"></a>AOF的三种策略对比</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7ezkvv0o0bg0.webp" width="50%" />
 
 <br>
 
@@ -1321,12 +1082,7 @@
 <li>减少磁盘占用量</li>
 <li>加速恢复速度</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3hr6crymmo0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3hr6crymmo0.webp" width="50%" />
 
 <br>
 
@@ -1336,60 +1092,30 @@
 </ul>
 </li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5j30ijjpor40.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5j30ijjpor40.webp" width="50%" />
 
 <br>
 
 <ul>
 <li>AOF重写配置</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.72n439aom900.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.72n439aom900.webp" width="50%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5wl4pwfy7ds0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5wl4pwfy7ds0.webp" width="50%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.yskrqzxtakw.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.yskrqzxtakw.webp" width="50%" />
 
 <br>
 
-<h4 id="AOF重写流程"><a href="#AOF重写流程" class="headerlink" title="AOF重写流程"></a>AOF重写流程</h4><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2b1z2py9ols0.webp"
-                      width="50%" 
-                >
+<h4 id="AOF重写流程"><a href="#AOF重写流程" class="headerlink" title="AOF重写流程"></a>AOF重写流程</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2b1z2py9ols0.webp" width="50%" />
 
 <br>
 
-<h2 id="RDB与AOF的抉择"><a href="#RDB与AOF的抉择" class="headerlink" title="RDB与AOF的抉择"></a>RDB与AOF的抉择</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2got5zb1qs20.webp"
-                      width="50%" 
-                >
+<h2 id="RDB与AOF的抉择"><a href="#RDB与AOF的抉择" class="headerlink" title="RDB与AOF的抉择"></a>RDB与AOF的抉择</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2got5zb1qs20.webp" width="50%" />
 
 <br>
 
@@ -1417,24 +1143,14 @@
 <h1 id="常见的持久化开发运维问题"><a href="#常见的持久化开发运维问题" class="headerlink" title="常见的持久化开发运维问题"></a>常见的持久化开发运维问题</h1><h2 id="fork操作"><a href="#fork操作" class="headerlink" title="fork操作"></a>fork操作</h2><ul>
 <li></li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3ofn5wyto2w0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3ofn5wyto2w0.webp" width="50%" />
 
 <br>
 
 <ul>
 <li>fork改善</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.25vvl1tdwgu8.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.25vvl1tdwgu8.webp" width="50%" />
 
 
 
@@ -1443,57 +1159,27 @@
 <h2 id="子进程开销和优化"><a href="#子进程开销和优化" class="headerlink" title="子进程开销和优化"></a>子进程开销和优化</h2><ul>
 <li></li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5u5w40mtg9s0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5u5w40mtg9s0.webp" width="50%" />
 
 <br>
 
-<h2 id="硬盘优化"><a href="#硬盘优化" class="headerlink" title="硬盘优化"></a>硬盘优化</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5lnrmjt1hw40.webp"
-                      width="50%" 
-                >
+<h2 id="硬盘优化"><a href="#硬盘优化" class="headerlink" title="硬盘优化"></a>硬盘优化</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5lnrmjt1hw40.webp" width="50%" />
 
 <br>
 
-<h2 id="AOF追加阻塞"><a href="#AOF追加阻塞" class="headerlink" title="AOF追加阻塞"></a>AOF追加阻塞</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6v89xx5ytl00.webp"
-                      width="50%" 
-                >
+<h2 id="AOF追加阻塞"><a href="#AOF追加阻塞" class="headerlink" title="AOF追加阻塞"></a>AOF追加阻塞</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6v89xx5ytl00.webp" width="50%" />
 
 <br>
 
-<h2 id="AOF阻塞定位"><a href="#AOF阻塞定位" class="headerlink" title="AOF阻塞定位"></a>AOF阻塞定位</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3t06d4zqkpo0.webp"
-                      width="50%" 
-                >
+<h2 id="AOF阻塞定位"><a href="#AOF阻塞定位" class="headerlink" title="AOF阻塞定位"></a>AOF阻塞定位</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3t06d4zqkpo0.webp" width="50%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3qdujdqyup60.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3qdujdqyup60.webp" width="50%" />
 
 <br>
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.60mk8wrt4lk0.webp"
-                      width="50%" 
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.60mk8wrt4lk0.webp" width="50%" />
 
 <br>
 
@@ -1509,24 +1195,14 @@
 <h2 id="主从复制实现"><a href="#主从复制实现" class="headerlink" title="主从复制实现"></a>主从复制实现</h2><h3 id="slaveof-命令"><a href="#slaveof-命令" class="headerlink" title="slaveof 命令"></a>slaveof 命令</h3><ul>
 <li>复制（slaveof 这个命令是异步的）</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2pa32y5jfz80.webp"
-                      width="60%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2pa32y5jfz80.webp" width="60%"/>
 
 <br>
 
 <ul>
 <li>取消复制</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7jnus8oq23k0.webp"
-                      width="60%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7jnus8oq23k0.webp" width="60%"/>
 
 <br>
 
@@ -1557,12 +1233,7 @@
 
 
 
-<h2 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h2><h3 id="全量复制过程原理"><a href="#全量复制过程原理" class="headerlink" title="全量复制过程原理"></a>全量复制过程原理</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.312gr8tguvm0.webp"
-                      width="50%" 
-                >
+<h2 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h2><h3 id="全量复制过程原理"><a href="#全量复制过程原理" class="headerlink" title="全量复制过程原理"></a>全量复制过程原理</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.312gr8tguvm0.webp" width="50%" />
 
 <br>
 
@@ -1573,12 +1244,7 @@
 <li>从节点加载RDB时间</li>
 <li>可能的AOF重写时间</li>
 </ol>
-<h3 id="部分复制过程原理"><a href="#部分复制过程原理" class="headerlink" title="部分复制过程原理"></a>部分复制过程原理</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3vhs1nc1dzi0.webp"
-                      width="50%" 
-                >
+<h3 id="部分复制过程原理"><a href="#部分复制过程原理" class="headerlink" title="部分复制过程原理"></a>部分复制过程原理</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3vhs1nc1dzi0.webp" width="50%" />
 
 <br>
 
@@ -1587,39 +1253,19 @@
 <li>自动故障转移</li>
 <li>故障分为master故障和slave故障</li>
 </ul>
-<h3 id="读写分离问题"><a href="#读写分离问题" class="headerlink" title="读写分离问题"></a>读写分离问题</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.a738ve0k3y8.webp"
-                      width="50%" 
-                >
+<h3 id="读写分离问题"><a href="#读写分离问题" class="headerlink" title="读写分离问题"></a>读写分离问题</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.a738ve0k3y8.webp" width="50%" />
 
 <br>
 
-<h3 id="配置不一致"><a href="#配置不一致" class="headerlink" title="配置不一致"></a>配置不一致</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.nl2kmy53a0w.webp"
-                      width="50%" 
-                >
+<h3 id="配置不一致"><a href="#配置不一致" class="headerlink" title="配置不一致"></a>配置不一致</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.nl2kmy53a0w.webp" width="50%" />
 
 <br>
 
-<h3 id="规避全量复制"><a href="#规避全量复制" class="headerlink" title="规避全量复制"></a>规避全量复制</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6pe5jkk3nm80.webp"
-                      width="50%" 
-                >
+<h3 id="规避全量复制"><a href="#规避全量复制" class="headerlink" title="规避全量复制"></a>规避全量复制</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6pe5jkk3nm80.webp" width="50%" />
 
 <br>
 
-<h3 id="规避复制风暴"><a href="#规避复制风暴" class="headerlink" title="规避复制风暴"></a>规避复制风暴</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.361o49e7h2i0.webp"
-                      width="50%" 
-                >
+<h3 id="规避复制风暴"><a href="#规避复制风暴" class="headerlink" title="规避复制风暴"></a>规避复制风暴</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.361o49e7h2i0.webp" width="50%" />
 
 <br>
 
@@ -1743,9 +1389,9 @@
             
 
     <div class="valine-container">
-        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <script  src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script data-pjax>
+        <script >
           function loadValine() {
             new Valine({
               el: '#vcomments',
@@ -1791,7 +1437,7 @@
             }, 2000);
           }
 
-          if ('true' === 'true') {
+          if ('false' === 'true') {
             const loadValineTimeout = setTimeout(() => {
               loadValine();
               clearTimeout(loadValineTimeout);
@@ -1838,7 +1484,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2018</span> -
+                <span>2017</span> -
             
             2022
             
@@ -1846,6 +1492,17 @@
                 &nbsp;<a href="/">ratears</a>
             
         </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
@@ -1984,10 +1641,8 @@
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
 
-
-<div class="post-scripts pjax">
+<div class="post-scripts">
     
         <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
         
@@ -1998,38 +1653,6 @@
         
     
 </div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
 
 
 

@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -38,9 +38,6 @@
         <span class="scroll-progress-bar"></span>
     
 
-    
-        <span class="pjax-progress-bar"></span>
-        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -266,6 +263,10 @@
         </span>
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -274,23 +275,13 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h1 id="HTTP-1-1协议"><a href="#HTTP-1-1协议" class="headerlink" title="HTTP/1.1协议"></a>HTTP/1.1协议</h1><h2 id="浏览器发起-HTTP-请求的典型场景"><a href="#浏览器发起-HTTP-请求的典型场景" class="headerlink" title="浏览器发起 HTTP 请求的典型场景"></a>浏览器发起 HTTP 请求的典型场景</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4fdm1gdg9660.webp"
-                      width="70%"
-                >
+                <h1 id="HTTP-1-1协议"><a href="#HTTP-1-1协议" class="headerlink" title="HTTP/1.1协议"></a>HTTP/1.1协议</h1><h2 id="浏览器发起-HTTP-请求的典型场景"><a href="#浏览器发起-HTTP-请求的典型场景" class="headerlink" title="浏览器发起 HTTP 请求的典型场景"></a>浏览器发起 HTTP 请求的典型场景</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4fdm1gdg9660.webp" width="70%">
 
 <br>
 
 
 
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5ln9wca3rqw0.webp"
-                      width="70%"
-                >
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5ln9wca3rqw0.webp" width="70%">
 
 <br>
 
@@ -300,12 +291,7 @@
 </ul>
 <br>
 
-<h2 id="HTTP-协议格式"><a href="#HTTP-协议格式" class="headerlink" title="HTTP 协议格式"></a>HTTP 协议格式</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.37se393k1h20.webp"
-                      width="70%"
-                >
+<h2 id="HTTP-协议格式"><a href="#HTTP-协议格式" class="headerlink" title="HTTP 协议格式"></a>HTTP 协议格式</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.37se393k1h20.webp" width="70%">
 
 <br>
 
@@ -335,12 +321,7 @@
 </ul>
 <br>
 
-<h3 id="核心规则"><a href="#核心规则" class="headerlink" title="核心规则"></a>核心规则</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4p8vbzjyq9a0.webp"
-                      width="80%"
-                >
+<h3 id="核心规则"><a href="#核心规则" class="headerlink" title="核心规则"></a>核心规则</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4p8vbzjyq9a0.webp" width="80%">
 
 <br>
 
@@ -361,30 +342,15 @@
 </ul>
 <br>
 
-<h2 id="OSI（Open-System-Interconnection-Reference-Model）概念模型"><a href="#OSI（Open-System-Interconnection-Reference-Model）概念模型" class="headerlink" title="OSI（Open System Interconnection Reference Model）概念模型"></a>OSI（Open System Interconnection Reference Model）概念模型</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4zpowyuqy1o0.webp"
-                      width="70%"
-                >
+<h2 id="OSI（Open-System-Interconnection-Reference-Model）概念模型"><a href="#OSI（Open-System-Interconnection-Reference-Model）概念模型" class="headerlink" title="OSI（Open System Interconnection Reference Model）概念模型"></a>OSI（Open System Interconnection Reference Model）概念模型</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4zpowyuqy1o0.webp" width="70%">
 
 <br>
 
-<h2 id="OSI-模型与-TCP-IP-模型对照"><a href="#OSI-模型与-TCP-IP-模型对照" class="headerlink" title="OSI 模型与 TCP/IP 模型对照"></a>OSI 模型与 TCP/IP 模型对照</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.7bh90wjw4980.webp"
-                      width="70%"
-                >
+<h2 id="OSI-模型与-TCP-IP-模型对照"><a href="#OSI-模型与-TCP-IP-模型对照" class="headerlink" title="OSI 模型与 TCP/IP 模型对照"></a>OSI 模型与 TCP/IP 模型对照</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.7bh90wjw4980.webp" width="70%">
 
 
 
-<h2 id="Wireshark-抓包及分析工具"><a href="#Wireshark-抓包及分析工具" class="headerlink" title="Wireshark 抓包及分析工具"></a>Wireshark 抓包及分析工具</h2><h2 id="报文头部"><a href="#报文头部" class="headerlink" title="报文头部"></a>报文头部</h2><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.6w78b2tep5k0.webp"
-                      width="70%"
-                >
+<h2 id="Wireshark-抓包及分析工具"><a href="#Wireshark-抓包及分析工具" class="headerlink" title="Wireshark 抓包及分析工具"></a>Wireshark 抓包及分析工具</h2><h2 id="报文头部"><a href="#报文头部" class="headerlink" title="报文头部"></a>报文头部</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.6w78b2tep5k0.webp" width="70%">
 
 <h2 id="Roy-Thomas-Fielding-与-HTTP-1-1"><a href="#Roy-Thomas-Fielding-与-HTTP-1-1" class="headerlink" title="Roy Thomas Fielding 与 HTTP/1.1"></a>Roy Thomas Fielding 与 HTTP/1.1</h2><ul>
 <li><p>参与制订 HTTP/1.0 规范（1996.5）</p>
@@ -411,12 +377,7 @@
 </ul>
 </li>
 <li><p>URI：统一资源标识符</p>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5k1vc39i85k0.webp"
-                      width="70%"
-                ></li>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.5k1vc39i85k0.webp" width="70%"></li>
 </ul>
 <h2 id="HTTP-解决了什么问题？"><a href="#HTTP-解决了什么问题？" class="headerlink" title="HTTP 解决了什么问题？"></a>HTTP 解决了什么问题？</h2><h4 id="解决-WWW-信息交互必须面对的需求："><a href="#解决-WWW-信息交互必须面对的需求：" class="headerlink" title="解决 WWW 信息交互必须面对的需求："></a>解决 WWW 信息交互必须面对的需求：</h4><p>• 低门槛<br>• 可扩展性：巨大的用户群体，超长的寿命<br>• 分布式系统下的 Hypermedia：大粒度数据的网络传输<br>• Internet 规模<br>• 无法控制的 scalability<br>• 不可预测的负载、非法格式的数据、恶意消息<br>• 客户端不能保持所有服务器信息，服务器不能保持多个请求间的状态信息<br>• 独立的组件部署：新老组件并存<br>• 向前兼容：自 1993 年起 HTTP0.9\1.0（1996）已经被广泛使用</p>
 <h2 id="评估-Web-架构的关键属性"><a href="#评估-Web-架构的关键属性" class="headerlink" title="评估 Web 架构的关键属性"></a>评估 Web 架构的关键属性</h2><h3 id="HTTP-协议应当在以下属性中取得可接受的均衡："><a href="#HTTP-协议应当在以下属性中取得可接受的均衡：" class="headerlink" title="HTTP 协议应当在以下属性中取得可接受的均衡："></a>HTTP 协议应当在以下属性中取得可接受的均衡：</h3><ol>
@@ -476,12 +437,7 @@
 <br>
 
 <h2 id="Chrome-抓包：快速定位-HTTP-协议问题"><a href="#Chrome-抓包：快速定位-HTTP-协议问题" class="headerlink" title="Chrome 抓包：快速定位 HTTP 协议问题"></a>Chrome 抓包：快速定位 HTTP 协议问题</h2><p><a class="link"   target="_blank" rel="noopener" href="https://developers.google.com/web/tools/chrome-devtools/network/" >chrome-devtools<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Chrome-抓包：Network-面板"><a href="#Chrome-抓包：Network-面板" class="headerlink" title="Chrome 抓包：Network 面板"></a>Chrome 抓包：Network 面板</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.ae6gkxyy8ws.webp"
-                      width="90%"
-                >
+<h3 id="Chrome-抓包：Network-面板"><a href="#Chrome-抓包：Network-面板" class="headerlink" title="Chrome 抓包：Network 面板"></a>Chrome 抓包：Network 面板</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.ae6gkxyy8ws.webp" width="90%">
 
 <ul>
 <li>控制器：控制面板的外观与功能</li>
@@ -493,12 +449,7 @@
 <li>请求列表：默认时间排序，可选择显示列</li>
 <li>概要：请求总数、总数据量、总花费时间等</li>
 </ul>
-<h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4sak4sx7bko0.webp"
-                      width="60%"
-                >
+<h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4sak4sx7bko0.webp" width="60%">
 
 <h3 id="过滤器：按类型"><a href="#过滤器：按类型" class="headerlink" title="过滤器：按类型"></a>过滤器：按类型</h3><ul>
 <li>XHR、JS、CSS、Img、Media、Font、Doc、WS (WebSocket)、Manifest 或 Other<br>（此处未列出的任何其他类型）</li>
@@ -563,12 +514,7 @@
 <li>Time : 总持续时间，从请求的开始到接收响应中的最后一个字节</li>
 <li>Waterfall：各请求相关活动的直观分析图</li>
 </ul>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.27b9wyvwjz9c.webp"
-                      width="70%"
-                >
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.27b9wyvwjz9c.webp" width="70%">
 
 
 
@@ -748,9 +694,9 @@
             
 
     <div class="valine-container">
-        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <script  src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script data-pjax>
+        <script >
           function loadValine() {
             new Valine({
               el: '#vcomments',
@@ -796,7 +742,7 @@
             }, 2000);
           }
 
-          if ('true' === 'true') {
+          if ('false' === 'true') {
             const loadValineTimeout = setTimeout(() => {
               loadValine();
               clearTimeout(loadValineTimeout);
@@ -843,7 +789,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2018</span> -
+                <span>2017</span> -
             
             2022
             
@@ -851,6 +797,17 @@
                 &nbsp;<a href="/">ratears</a>
             
         </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
@@ -989,10 +946,8 @@
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
 
-
-<div class="post-scripts pjax">
+<div class="post-scripts">
     
         <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
         
@@ -1003,38 +958,6 @@
         
     
 </div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
 
 
 

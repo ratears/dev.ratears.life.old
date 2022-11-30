@@ -9,7 +9,7 @@
     
     <title>
         
-            《Spring Data JPA 原理与实战》study notes |
+            《heima-Mysql高级（4天）》study notes |
         
         ratears&#39;s blog
     </title>
@@ -187,7 +187,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">《Spring Data JPA 原理与实战》study notes</span>
+                <span class="title-hover-animation">《heima-Mysql高级（4天）》study notes</span>
             </div>
 
             
@@ -209,13 +209,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-09-06 04:08:46</span>
-        <span class="mobile">2022-09-06 04:08</span>
+        <span class="pc">2022-10-24 14:29:42</span>
+        <span class="mobile">2022-10-24 14:29</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-09-06 04:47:52</span>
+        <span class="pc">2022-10-24 14:29:42</span>
     </span>
     
     
@@ -224,11 +224,11 @@
             <ul>
                 
                     <li>
-                        <a href="../categories/spring/">spring</a>&nbsp;
+                        <a href="../categories/database/">database</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="../categories/spring/jpa/">jpa</a>&nbsp;
+                        &gt; <a href="../categories/database/MySQL/">MySQL</a>&nbsp;
                     </li>
                 
             </ul>
@@ -240,11 +240,11 @@
             <ul>
                 
                     <li>
-                        <a href="../tags/spring/">spring</a>&nbsp;
+                        <a href="../tags/MySQL/">MySQL</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="../tags/jpa/">jpa</a>&nbsp;
+                        | <a href="../tags/database/">database</a>&nbsp;
                     </li>
                 
             </ul>
@@ -254,12 +254,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>679 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
         </span>
     
     
@@ -275,35 +275,262 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h1 id="Spring-Data-JPA基础知识"><a href="#Spring-Data-JPA基础知识" class="headerlink" title="Spring Data JPA基础知识"></a>Spring Data JPA基础知识</h1><h2 id="Spring-Data-JPA优势"><a href="#Spring-Data-JPA优势" class="headerlink" title="Spring Data JPA优势"></a>Spring Data JPA优势</h2><ul>
-<li>某些大公司的大部分项目都在用 Spring Data JPA，究其原因，主要缘于它具有以下 4 点优势</li>
+                <h1 id="MySQL高级课程简介"><a href="#MySQL高级课程简介" class="headerlink" title="MySQL高级课程简介"></a>MySQL高级课程简介</h1><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>Day01</th>
+<th>Day02</th>
+<th>Day03</th>
+<th>Day04</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>Linux系统安装MySQL</td>
+<td>体系结构</td>
+<td>应用优化</td>
+<td>MySQL 常用工具</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>索引</td>
+<td>存储引擎</td>
+<td>查询缓存优化</td>
+<td>MySQL 日志</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>视图</td>
+<td>优化SQL步骤</td>
+<td>内存管理及优化</td>
+<td>MySQL 主从复制</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>存储过程和函数</td>
+<td>索引使用</td>
+<td>MySQL锁问题</td>
+<td>综合案例</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>触发器</td>
+<td>SQL优化</td>
+<td>常用SQL技巧</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Mysql高级-day01"><a href="#Mysql高级-day01" class="headerlink" title="Mysql高级-day01"></a>Mysql高级-day01</h1><h2 id="安装MySQL-5-6（rpm方式）"><a href="#安装MySQL-5-6（rpm方式）" class="headerlink" title="安装MySQL 5.6（rpm方式）"></a>安装MySQL 5.6（rpm方式）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	1). 卸载 centos 中预安装的 mysql/mariadb,并删除相关文件</span></span><br><span class="line">rpm -qa | grep -i mysql</span><br><span class="line">rpm -e mysql-libs-5.1.71-1.el6.x86_64 --nodeps</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	2). 下载 mysql 的安装包</span></span><br><span class="line">wget https://cdn.mysql.com/archives/mysql-5.6/MySQL-5.6.22-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	3). 解压 mysql 的安装包</span></span><br><span class="line">tar -xvf MySQL-5.6.22-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	4). 安装依赖包</span></span><br><span class="line">yum -y install libaio.so.1 libgcc_s.so.1 libstdc++.so.6 libncurses.so.5 --setopt=protected_multilib=false autoconf net-tools</span><br><span class="line">yum update libstdc++-4.4.7-4.el6.x86_64</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	5). 安装 mysql-client</span></span><br><span class="line">rpm -ivh MySQL-client-5.6.22-1.el7.x86_64.rpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	6). 安装 mysql-server</span></span><br><span class="line">rpm -ivh MySQL-server-5.6.22-1.el7.x86_64.rpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果安装过程中缺少依赖则安装相关依赖。若安装失败，可以卸载后，删除mysql有关的文件，再重新安装</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="启动-MySQL-服务"><a href="#启动-MySQL-服务" class="headerlink" title="启动 MySQL 服务"></a>启动 MySQL 服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">service mysql stop</span><br><span class="line">service mysql status</span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="登录MySQL"><a href="#登录MySQL" class="headerlink" title="登录MySQL"></a>登录MySQL</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql 安装完成之后, 会自动生成一个随机的密码, 并且保存在一个密码文件中 : /root/.mysql_secret</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">登录之后, 修改密码 :</span></span><br><span class="line">set password = password(&#x27;root&#x27;);</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">授权远程访问 :</span></span><br><span class="line">grant all privileges on *.* to &#x27;root&#x27; @&#x27;%&#x27; identified by &#x27;root&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h3><ul>
+<li>MySQL官方对索引的定义为：索引（index）是帮助MySQL高效获取数据的数据结构（有序）。在数据之外，数据库系统还维护者满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引</li>
 </ul>
-<h3 id="第一，大势所趋，大厂必备技能"><a href="#第一，大势所趋，大厂必备技能" class="headerlink" title="第一，大势所趋，大厂必备技能"></a>第一，大势所趋，大厂必备技能</h3><blockquote>
-<p>近两年由于 Spring Cloud、Spring Boot 逐渐统一 Java 的框架江湖，而与 Spring Boot 天然集成的 Spring Data JPA 也逐渐走进了 Java 开发者的视野，大量尝鲜者享受到了这门技术带来的便利与功能。JPA 可以使团队在框架约定下进行开发，几乎很难出现有性能瓶颈的 SQL。因此你会发现很多大厂，如阿里、腾讯、抖音等公司，近几年在招聘的时候写明了要熟悉 JPA，这些大厂以及业内很多开源的新项目都在使用 JPA</p>
-</blockquote>
 <br>
 
-<h3 id="第二，提升开发效率"><a href="#第二，提升开发效率" class="headerlink" title="第二，提升开发效率"></a>第二，提升开发效率</h3><blockquote>
-<p>现在有很多人知道什么是 Spring Data JPA，但是却觉得 JPA 很难用，使用中发现 Bug 不知道原因，本来用 JPA 是为了提升开发效率的，不会使用反倒踩了很多坑，所以我们需要体系化地学习。当你遇到复杂问题，比如平时你可能要花几个小时去想方法名、SQL 逻辑，如果你可以熟练使用 JPA，那么半小时甚至几分钟就可以写好查询方法了；再配合测试用例，你的开发质量也会明显提高很多，系统地学习可以让你少走很多弯路</p>
-</blockquote>
-<br>
-
-<h3 id="第三，提高技术水平"><a href="#第三，提高技术水平" class="headerlink" title="第三，提高技术水平"></a>第三，提高技术水平</h3><blockquote>
-<p>Spring Data 对数据操作进行了大统一，统一了抽象关系型数据库和非关系型数据的接口、公共的部分，你会发现当掌握了 Spring Data JPA 框架后，你的开发水平几乎可以达到——轻易实现 Redis、MongoDB 等 NoSQL 的操作，因为它们都有统一的 Spring Data Common。如下图所示，从中你可以看到 Spring Data 和 JPA 的全景位置关系，这样一来，你可以清楚地知道 JPA 的重要作用，方便你了解 JPA 的脉络，从而更好地学习</p>
-</blockquote>
-<img src="https://git.poker/ratears/image-hosting/blob/main/blog-img-bed/image.55f368bvsmc0.webp?raw=true" width="65%" />
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6iks54eq7940.webp" width="80%">
 
 <br>
 
-<h3 id="第四，求职加分项"><a href="#第四，求职加分项" class="headerlink" title="第四，求职加分项"></a>第四，求职加分项</h3><blockquote>
-<p>如果简历中突出 Spring Data JPA 框架的使用，面试官会眼前一亮。因为掌握了 JPA，就意味着掌握了很多原理，比如 Session 原理、事务原理、PersistenceContext 原理等，而掌握了底层原理对于技术人员来说可以在开发中解决很多问题。因此，公司可以由此更好地过滤和筛选人才，也能从侧面看出求职者是否对技术足够感兴趣、有追求</p>
+<blockquote>
+<p>左边是数据表，一共有两列七条记录，最左边的是数据记录的物理地址（注意逻辑上相邻的记录在磁盘上也并不是一定物理相邻的）。为了加快Col2的查找，可以维护一个右边所示的二叉查找树，每个节点分别包含索引键值和一个指向对应数据记录物理地址的指针，这样就可以运用二叉查找快速获取到相应数据。</p>
 </blockquote>
-<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
-<ol>
-<li>第一篇需要动手跟着学习构建</li>
-</ol>
+<blockquote>
+<p>一般来说索引本身也很大，不可能全部存储在内存中，因此索引往往以索引文件的形式存储在磁盘上。索引是数据库中用来提高性能的最常用的工具</p>
 </blockquote>
+<br>
 
+<br>
+
+<h3 id="索引优势劣势"><a href="#索引优势劣势" class="headerlink" title="索引优势劣势"></a>索引优势劣势</h3><ul>
+<li>优势<ul>
+<li>1） 类似于书籍的目录索引，提高数据检索的效率，降低数据库的IO成本</li>
+<li>2） 通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗</li>
+</ul>
+</li>
+<li>劣势<ul>
+<li>1） 实际上索引也是一张表，该表中保存了主键与索引字段，并指向实体类的记录，所以索引列也是要占用空间</li>
+<li>2） 虽然索引大大提高了查询效率，同时却也降低更新表的速度，如对表进行INSERT、UPDATE、DELETE。因为更新表时，MySQL 不仅要保存数据，还要保存一下索引文件每次更新添加了索引列的字段，都会调整因为更新所带来的键值变化后的索引信息。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h3><ul>
+<li>索引是在MySQL的存储引擎层中实现的，而不是在服务器层实现的。所以每种存储引擎的索引都不一定完全相同，也不是所有的存储引擎都支持所有的索引类型的。MySQL目前提供了以下4种索引：<ul>
+<li>BTREE 索引 ： 最常见的索引类型，大部分索引都支持 B 树索引</li>
+<li>HASH 索引：只有Memory引擎支持 ， 使用场景简单</li>
+<li>R-tree 索引（空间索引）：空间索引是MyISAM引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少</li>
+<li>Full-text （全文索引） ：全文索引也是MyISAM的一个特殊索引类型，主要用于全文索引，InnoDB从Mysql5.6版本开始支持全文索引</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>MyISAM、InnoDB、Memory三种存储引擎对各种索引类型的支持</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">索引</th>
+<th align="center">InnoDB引擎</th>
+<th align="center">MyISAM引擎</th>
+<th align="center">Memory引擎</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">BTREE索引</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">HASH 索引</td>
+<td align="center">不支持</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">R-tree 索引</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+<tr>
+<td align="center">Full-text</td>
+<td align="center">5.6版本之后支持</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+</tbody></table>
+<ul>
+<li>我们平常所说的索引，如果没有特别指明，都是指B+树（多路搜索树，并不一定是二叉的）结构组织的索引。其中聚集索引、复合索引、前缀索引、唯一索引默认都是使用 B+tree 索引，统称为 索引。</li>
+</ul>
+<br>
+
+<h4 id="BTREE-结构"><a href="#BTREE-结构" class="headerlink" title="BTREE 结构"></a>BTREE 结构</h4><ul>
+<li>BTree又叫多路平衡搜索树，一颗m叉的BTree特性如下：<ul>
+<li>树中每个节点最多包含m个孩子</li>
+<li>除根节点与叶子节点外，每个节点至少有[ceil(m/2)]个孩子</li>
+<li>若根节点不是叶子节点，则至少有两个孩子</li>
+<li>所有的叶子节点都在同一层</li>
+<li>每个非叶子节点由n个key与n+1个指针组成，其中[ceil(m/2)-1] &lt;= n &lt;= m-1</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>以5叉BTree为例，key的数量：公式推导[ceil(m/2)-1] &lt;= n &lt;= m-1。所以 2 &lt;= n &lt;=4 。当n&gt;4时，中间节点分裂到父节点，两边节点分裂</p>
+</blockquote>
+<blockquote>
+<p>BTREE树 和 二叉树 相比， 查询数据的效率更高， 因为对于相同的数据量来说，BTREE的层级结构比二叉树小，因此搜索速度快</p>
+</blockquote>
+<br>
+
+<h4 id="B-TREE-结构"><a href="#B-TREE-结构" class="headerlink" title="B+TREE 结构"></a>B+TREE 结构</h4><ul>
+<li>B+Tree为BTree的变种，B+Tree与BTree的区别为：<ul>
+<li>1). n叉B+Tree最多含有n个key，而BTree最多含有n-1个key</li>
+<li>2). B+Tree的叶子节点保存所有的key信息，依key大小顺序排列</li>
+<li>3). 所有的非叶子节点都可以看作是key的索引部分</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6jme7w6ntz40.webp" width="80%">
+
+<br>
+
+<ul>
+<li>由于B+Tree只有叶子节点保存key信息，查询任何key都要从root走到叶子。所以B+Tree的查询效率更加稳定</li>
+</ul>
+<br>
+
+<h3 id="MySQL中的B-Tree"><a href="#MySQL中的B-Tree" class="headerlink" title="MySQL中的B+Tree"></a>MySQL中的B+Tree</h3><ul>
+<li>MySql索引数据结构对经典的B+Tree进行了优化。在原B+Tree的基础上，增加一个指向相邻叶子节点的链表指针，就形成了带有顺序指针的B+Tree，提高区间访问的性能</li>
+</ul>
+<ul>
+<li>MySQL中的 B+Tree 索引结构示意图:</li>
+</ul>
+<br>
+
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7bv4u1b5wk40.webp" width="100%">
+
+<br>
+
+<br>
+
+<h3 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h3><ul>
+<li>1） 单值索引 ：即一个索引只包含单个列，一个表可以有多个单列索引</li>
+<li>2） 唯一索引 ：索引列的值必须唯一，但允许有空值</li>
+<li>3） 复合索引 ：即一个索引包含多个列</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="索引语法"><a href="#索引语法" class="headerlink" title="索引语法"></a>索引语法</h3><ul>
+<li>索引在创建表的时候，可以同时创建， 也可以随时增加新的索引</li>
+</ul>
+<p>准备环境:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create databse demo_01 default charset=uft8mb4;</span><br><span class="line"></span><br><span class="line">use demo_01;</span><br><span class="line"></span><br><span class="line">create table `city` (</span><br><span class="line">	`city_id` int(11) not null auto_increment,</span><br><span class="line">    `city_name` varchar(50) not null,</span><br><span class="line">    `country_id` int(11) not null,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<img src="" width="60%">
+
+<br>
             </div>
 
             
@@ -311,16 +538,16 @@
                     <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
         <li>
-            <span class="type">Post title</span>：<span class="content">《Spring Data JPA 原理与实战》study notes</span>
+            <span class="type">Post title</span>：<span class="content">《heima-Mysql高级（4天）》study notes</span>
         </li>
         <li>
             <span class="type">Post author</span>：<span class="content">ratears</span>
         </li>
         <li>
-            <span class="type">Create time</span>：<span class="content">2022-09-06 04:08:46</span>
+            <span class="type">Create time</span>：<span class="content">2022-10-24 14:29:42</span>
         </li>
         <li class="post-link">
-            <span class="type">Post link</span>：<span class="content">《Spring-Data-JPA-原理与实战》study-notes/</span>
+            <span class="type">Post link</span>：<span class="content">《heima-Mysql高级（4天）》study-notes/</span>
         </li>
         <li>
             <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
@@ -335,11 +562,11 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="../tags/spring/">#spring</a>&nbsp;
+                            <a href="../tags/MySQL/">#MySQL</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="../tags/jpa/">#jpa</a>&nbsp;
+                            <a href="../tags/database/">#database</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -351,13 +578,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="../Gradle/"
+                               href="../%E3%80%8AKafka-%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">Gradle</span>
+                                <span class="post-nav-title-item">《Kafka 核心技术与实战》study notes</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
@@ -367,10 +594,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="../KingbaseES-KCA-study-notes/"
+                               href="../%E3%80%8AMySQL-8-0%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">KingbaseES KCA study notes</span>
+                                <span class="post-nav-title-item">《MySQL 8.0详解与实战》study notes</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -468,7 +695,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Data-JPA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">Spring Data JPA基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Data-JPA%E4%BC%98%E5%8A%BF"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Data JPA优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%EF%BC%8C%E5%A4%A7%E5%8A%BF%E6%89%80%E8%B6%8B%EF%BC%8C%E5%A4%A7%E5%8E%82%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一，大势所趋，大厂必备技能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%EF%BC%8C%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二，提升开发效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%EF%BC%8C%E6%8F%90%E9%AB%98%E6%8A%80%E6%9C%AF%E6%B0%B4%E5%B9%B3"><span class="nav-number">1.1.3.</span> <span class="nav-text">第三，提高技术水平</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%EF%BC%8C%E6%B1%82%E8%81%8C%E5%8A%A0%E5%88%86%E9%A1%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">第四，求职加分项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">2.</span> <span class="nav-text">备注</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E9%AB%98%E7%BA%A7%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">MySQL高级课程简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E9%AB%98%E7%BA%A7-day01"><span class="nav-number">2.</span> <span class="nav-text">Mysql高级-day01</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MySQL-5-6%EF%BC%88rpm%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">安装MySQL 5.6（rpm方式）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-MySQL-%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.1.1.</span> <span class="nav-text">启动 MySQL 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95MySQL"><span class="nav-number">2.1.2.</span> <span class="nav-text">登录MySQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%A6%82%E8%BF%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">索引概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8A%BF%E5%8A%A3%E5%8A%BF"><span class="nav-number">2.2.2.</span> <span class="nav-text">索引优势劣势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.3.</span> <span class="nav-text">索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BTREE-%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">BTREE 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-TREE-%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">B+TREE 结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E4%B8%AD%E7%9A%84B-Tree"><span class="nav-number">2.2.4.</span> <span class="nav-text">MySQL中的B+Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.5.</span> <span class="nav-text">索引分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E8%AF%AD%E6%B3%95"><span class="nav-number">2.2.6.</span> <span class="nav-text">索引语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">3.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
