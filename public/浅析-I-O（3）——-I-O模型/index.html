@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            浅析 I/O（3）—— I/O模型 |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">浅析 I/O（3）—— I/O模型</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-19 22:06:09</span>
+        <span class="mobile">2022-09-19 22:06</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-09-19 22:06:09</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/Operating-Systems/">Operating-Systems</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/Operating-Systems/I-O/">I/O</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/Operating-Systems/">Operating-Systems</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../tags/I-O/">I/O</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <br>
+
+<ul>
+<li>网络通信中，最底层的就是内核中的网络 I/O 模型了。</li>
+</ul>
+<blockquote>
+<p>随着技术的发展，操作系统内核的网络模型衍生出了<strong>五种 I/O 模型</strong>，《UNIX网络编程》一书将这五种 I/O 模型分为 <code>阻塞式 I/O</code>、<code>非阻塞式 I/O</code>、<code>I/O 复用</code>、<code>信号驱动式 I/O</code> 和 <code>异步 I/O</code>。每一种 I/O 模型的出现，都是基于前一种 I/O 模型的优化升级。</p>
+</blockquote>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="①-阻塞IO模型"><a href="#①-阻塞IO模型" class="headerlink" title="① 阻塞IO模型"></a>① 阻塞IO模型</h1><ul>
+<li>阻塞式 IO （Blocking IO）：应用进程从发起 IO 系统调用，至内核返回成功标识，这整个期间是处于阻塞状态的。</li>
+</ul>
+<blockquote>
+<p>当应用A发起读取数据申请时，在内核数据没有准备好之前，应用A会一直处于等待数据状态，直到内核把数据准备好了交给应用A才结束。</p>
+</blockquote>
+<blockquote>
+<p><strong>Tips：我们之前所学过的所有的套接字，默认都是阻塞方式。</strong></p>
+</blockquote>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7wrvgu36e5k.webp"
+                      width="75%"
+                >
+
+
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.qd7jcvl1as0.webp"
+                      width="75%"
+                >
+
+
+
+
+<ul>
+<li>优点：开发相对简单，在阻塞期间，用户线程被挂起，挂起期间不会占用CPU资源；</li>
+<li>缺点：<ul>
+<li>1）连接利用率不高，内核如果没有响应数据，则该连接一直处于阻塞状态，占用连接资源</li>
+<li>2）一个线程维护一个IO资源，当用大量并发请求时，需要创建等价的线程来处理请求，不适合用于高并发场景；</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="②-非阻塞IO模型"><a href="#②-非阻塞IO模型" class="headerlink" title="② 非阻塞IO模型"></a>② 非阻塞IO模型</h1><ul>
+<li>非阻塞式IO（Non-Blocking IO）：应用进程可以将 Socket 设置为非阻塞，这样应用进程在发起 IO 系统调用后，会立刻返回。应用进程可以轮询的发起 IO 系统调用，直到内核返回成功标识。</li>
+</ul>
+<blockquote>
+<p>当应用A发起读取数据申请时，在内核数据没有准备好之前，应用A会一直处于等待数据状态，直到内核把数据准备好了交给应用A才结束。</p>
+</blockquote>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3utzrtza30.webp"
+                      width="70%"
+                >
+
+
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.79dq8pifksg0.webp"
+                      width="60%"
+                >
+
+
+
+<ul>
+<li>优点：每次发起IO调用去内核获取数据时，在内核等待数据的过程中可以立即返回，用户线程不会被阻塞，实时性较好；</li>
+<li>缺点：<ul>
+<li>1）当用户线程A没有获取到数据时，不断轮询内核，查看是否有新的数据，占用大量CPU时间，效率不高；</li>
+<li>2）和阻塞IO一样，一个线程维护一个IO资源，当用大量并发请求时，需要创建等价的线程来处理请求，不适合用于高并发场景；</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="③-复用IO模型（IO多路复用模型）"><a href="#③-复用IO模型（IO多路复用模型）" class="headerlink" title="③ 复用IO模型（IO多路复用模型）"></a>③ 复用IO模型（IO多路复用模型）</h1><ul>
+<li>IO 多路复用（IO Multiplexin）：可以将多个应用进程的 Socket 注册到一个 Select（多路复用器）上，然后使用一个进程来监听该 Select（该操作会阻塞），Select 会监听所有注册进来的 Socket。只要有一个 Socket 的数据准备好，就会返回该Socket。再由应用进程发起 IO 系统调用，来完成数据读取。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5bxxajmccj00.webp"
+                      width="60%"
+                >
+
+
+
+<br>
+
+<br>
+
+<p>&emsp;&emsp;如果在并发的环境下，可能会N个人向应用B发送消息，这种情况下我们的应用就必须创建多个线程去接收N个人发送过来的请求，每个请求都是一个独立的线程来处理；在并发量呈线性增长时，我们需要创建的线程数也随之而然的激增；</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4qf0gyqhcao0.webp"
+                      width="70%"
+                >
+
+
+
+<p>&emsp;&emsp;这种情况下应用B就需要创建N个线程去读取数据，同时又因为应用线程是不知道什么时候会有数据读取，为了保证消息能及时读取到，那么这些线程自己必须不断的向内核发送请求来读取数据（非阻塞式）；</p>
+<p>&emsp;&emsp;这么多的线程不断请求数据，先不说服务器能不能扛得住这么多线程，就算扛得住那么很明显这种方式是不是太浪费资源了，线程是我们操作系统的宝贵资源，大量的线程用来去读取数据了，那么就意味着能做其它事情的线程就会少。</p>
+<p>&emsp;&emsp;后来，有人就提出了一个思路，能不能提供一种方式，可以由一个线程监控多个网络请求（<strong>linux系统把所有网络请求以一个fd来标识，我们后面将称为fd即文件描述符</strong>），这样就可以只需要一个或几个线程就可以完成数据状态询问的操作，当有数据准备就绪之后再分配对应的线程去读取数据，这么做就可以节省出大量的线程资源出来，这个就是<strong>IO复用模型</strong>的思路。</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4gods2kobxu0.webp"
+                      width="70%"
+                >
+
+
+
+<p>&emsp;&emsp;IO复用模型的思路就是系统提供了一种函数（select/poll/epoll）可以同时监控多个fd的操作，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，如果select监听的fd都没有可读数据，<strong>select调用进程会被阻塞</strong>；而只要有任何一个fd准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应的线程此时再发起请求去读取内核中准备好的数据；</p>
+<blockquote>
+<p><strong>Tips：在IO复用模型下，允许单线程内处理多个IO请求；</strong></p>
+</blockquote>
+<br>
+
+<br>
+
+<ul>
+<li><font color="red"><strong>Linux中IO复用的实现方式主要有select，poll和epoll</strong></font></li>
+</ul>
+<h2 id="1）select"><a href="#1）select" class="headerlink" title="1）select"></a>1）select</h2><ul>
+<li><strong>线性轮询扫描所有的fd</strong>，不管他们是否活跃，监听的IO最大连接数不能多于FD_ SIZE（32位操作系统1024，64位操作系统2048）。</li>
+<li>时间复杂度O(n)</li>
+</ul>
+<blockquote>
+<p><strong>Tips：select方式仅仅知道有I/O事件发生了，却并不知道是哪那几个流（可能有一个，多个，甚至全部），用户线程只能无差别轮询所有流，找出能读出数据，或者写入数据的流，对他们进行操作。所以select具有O(n)的无差别轮询复杂度，同时处理的流越多，无差别轮询时间就越长。</strong></p>
+</blockquote>
+<br>
+
+<h2 id="2）poll"><a href="#2）poll" class="headerlink" title="2）poll"></a>2）poll</h2><ul>
+<li>原理和select相似，poll底层需要分配一个pollfd结构数组，维护在内核中，它没有数量限制，但IO数量大，扫描线性性能下降。</li>
+<li>时间复杂度O(n)</li>
+</ul>
+<br>
+
+<h2 id="3）epoll"><a href="#3）epoll" class="headerlink" title="3）epoll"></a>3）epoll</h2><ul>
+<li>用于代替poll和select，没有大小限制。<strong>epoll采用事件驱动代替了轮询</strong>，epoll会把哪个流发生了怎样的I/O事件通知用户线程，所以我们说epoll实际上是事件驱动（每个事件关联上fd）的，此时用户线程对这些流的操作都是有意义的。（复杂度降低到了O(1)），另外epoll模型采用mmap内存映射实现内核与用户空间的消息传递，减少用户态和内核态数据传输的开销，epoll模型在Linux2.6后内核支持。</li>
+<li>时间复杂度O(1)</li>
+</ul>
+<br>
+
+<hr>
+<ul>
+<li><font color="red">select，poll，epoll都是IO多路复用的机制。I/O多路复用就通过一种机制，可以监视多个描述符，一旦某个描述符准备就绪，能够通知程序进行相应的读写操作。<strong>但select，poll，epoll本质上都是同步I/O</strong>，因为他们都需要在读写事件就绪后自己负责进行读写(一个个的处理)，也就是说这个读写过程是<strong>阻塞的</strong>，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。</font></li>
+</ul>
+<blockquote>
+<p>Tips：epoll跟select都能提供多路I/O复用的解决方案。在现在的Linux内核里有都能够支持，其中epoll是Linux所特有，而select则应该是POSIX所规定，一般操作系统均有实现</p>
+</blockquote>
+<br>
+
+<h2 id="复用IO模型小结"><a href="#复用IO模型小结" class="headerlink" title="复用IO模型小结"></a>复用IO模型小结</h2><ul>
+<li>关于IO复用模型，下面这个例子可以很好的说明IO复用模型的原理：</li>
+</ul>
+<blockquote>
+<p>某教室有10名学生和1名老师，这些学生上课会不停的提问，所以一个老师处理不了这么多的问题。那么学校为每个学生都配一名老师，也就是这个教室目前有10名老师。此后，只要有新的转校生，那么就会为这个学生专门分配一个老师，因为转校生也喜欢提问题。如果把以上例子中的学生比作客户端，那么老师就是负责进行数据交换的服务端。则该例子可以比作是多进程的方式。</p>
+<p>后来有一天，来了一位具有超能力的老师，这位老师回答问题非常迅速，并且可以应对所有的问题。而这位老师采用的方式是学生提问前必须先举手，确认举手学生后在回答问题。则现在的情况就是IO复用。</p>
+</blockquote>
+<ul>
+<li><strong>IO复用模型的优点</strong>：系统不必创建和维护大量的线程，只使用一个或几个线程来监听select选择器的操作，而一个选择器可同时处理成千上万个连接，大大减少了系统的开销；</li>
+<li><strong>IO复用模型的缺点</strong>：select本质上还是同步阻塞模式；</li>
+</ul>
+<p>&emsp;&emsp;<strong>总结：</strong> 复用IO的基本思路就是通过select或poll、epoll来监控多fd ，来达到不必为每个fd创建一个对应的监控线程，从而减少线程资源创建的目的。<strong>复用IO模型的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。</strong></p>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="④-信号驱动IO模型"><a href="#④-信号驱动IO模型" class="headerlink" title="④ 信号驱动IO模型"></a>④ 信号驱动IO模型</h1><ul>
+<li>信号驱动 IO（Signal Driven IO）：可以为 Socket 开启信号驱动 IO 功能，应用进程需向内核注册一个信号处理程序，该操作并立即返回。当内核中有数据准备好，会发送一个信号给应用进程，应用进程便可以在信号处理程序中发起 IO 系统调用，来完成数据读取了。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.75x9qhoc2nk0.webp"
+                      width="60%"
+                >
+
+<br>
+
+<br>
+
+<p>&emsp;&emsp;当进程发起一个IO操作，系统调用sigaction执行一个信号处理函数，该函数向内核注册一个信号处理函数（回调函数），然后进程返回，并且不阻塞当前进程；当内核数据准备好时，内核使用信号（SIGIO）通知应用线程调用recvfrom来读取数据（运行回调函数）。</p>
+<p>&emsp;&emsp;信号驱动IO它也可以看成是一种<strong>异步非阻塞IO</strong></p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1qy5yemvy6rk.webp"
+                      width="60%"
+                >
+
+
+
+<p>&emsp;&emsp;我们说信号驱动IO模型是一种异步非阻塞IO模型，指的是用户线程去内核空间请求数据时，直接注册一个信号处理函数，然后用户线程返回（异步），而内核空间接收到请求后，开始处理（此时并不会阻塞，内核空间可以同时接收多个请求，注册多个信号处理函数）；</p>
+<p>&emsp;&emsp;但是，等到内核空间读取到数据之后，应用线程需要将数据从内核空间拷贝到用户空间，<strong>此时是用户线程是阻塞的；</strong>也就是说：<strong>应用程序将数据从内核态拷贝到用户态的过程是阻塞等待的，这是和异步IO的本质区别；</strong></p>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="⑤-异步IO模型"><a href="#⑤-异步IO模型" class="headerlink" title="⑤ 异步IO模型"></a>⑤ 异步IO模型</h1><ul>
+<li>异步 IO（Asynchronous IO）： 应用进程发起 IO 系统调用后，会立即返回。当内核中数据完全准备后，并且也复制到了用户空间，会产生一个信号来通知应用进程。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.448rjyvy1va0.webp"
+                      width="70%"
+                >
+
+
+
+<br>
+
+<br>
+
+<p>&emsp;&emsp;在前面几种IO模型中，应用线程要获取数据总是先发送请求到内核，然后进行如下处理：</p>
+<blockquote>
+<p>1）<strong>阻塞IO</strong>：应用线程等待内核响应数据，期间什么都不能做</p>
+<p>2）<strong>非阻塞IO</strong>：应用线程立即响应，可以去处理其他事情，但需要不断轮询内核去获取数据</p>
+<p>3）<strong>复用IO</strong>：采用IO复用机制，请求都先交给select函数，由应用线程调用select函数来轮询所有的请求，当有请求需要获取数据时，应用线程再去内核获取数据；</p>
+<p>4）<strong>信号驱动IO</strong>：系统注册一个信号处理函数（回调函数），然后应用线程返回（不阻塞）；当内核中准备好数据后，应用线程需要把内核中的数据拷贝到用户空间，<strong>此时用户线程是阻塞的</strong>；</p>
+</blockquote>
+<p>&emsp;&emsp;在以上4种IO模型中，每次要去读取数据时都是事先发送请求询问内核是否有可读数据，然后再发起真正的读取数据请求；</p>
+<p>&emsp;&emsp;在异步IO模型中，应用只需要向内核发送一个请求，告诉内核它要读取数据后即刻返回；内核收到请求后会建立一个信号联系，当数据准备就绪，<strong>内核会主动把数据从内核复制到用户空间</strong>（而信号驱动是告诉应用程序何时可以开始拷贝数据），异步IO模型真正的做到了完完全全的非阻塞；</p>
+<blockquote>
+<p>Tips：异步IO模型和前面模型最大的区别是：<strong>前4个都是阻塞的</strong>，需要自己把用户准备好的数据，去内核拷贝到用户空间。而全异步不同，用户线程完全不需要关心实际的整个IO操作是如何进行的，只需要先发起一个请求，当接收内核返回的成功信号时表示IO操作已经完成，可以直接去使用数据，它是最理想的模型。</p>
+</blockquote>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>&emsp;&emsp;从上述五种 IO 模型可以看出，应用进程对内核发起 IO 系统调用后，内核会经过两个阶段来完成数据的传输：</p>
+<ul>
+<li>第一阶段：等待数据。即应用进程发起 IO 系统调用后，会一直等待数据；当有数据传入服务器，会将数据放入内核空间，此时数据准备好。</li>
+<li>第二阶段：将数据从内核空间复制到用户空间，并返回给应用程序成功标识。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.1i7o657cwvsw.webp"
+                      width="60%"
+                >
+
+
+
+<p>&emsp;&emsp;前四种模型的第二阶段是相同的，都是处于阻塞状态，其主要区别在第一阶段。而异步 IO 模型则不同，应用进程在这两个阶段是完全不阻塞的。</p>
+<table>
+<thead>
+<tr>
+<th align="center">IO 模型</th>
+<th align="center">第一阶段</th>
+<th align="center">第二阶段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">阻塞式IO</td>
+<td align="center">阻塞</td>
+<td align="center">阻塞</td>
+</tr>
+<tr>
+<td align="center">非阻塞式IO</td>
+<td align="center">非阻塞</td>
+<td align="center">阻塞</td>
+</tr>
+<tr>
+<td align="center">IO多路程复用</td>
+<td align="center">阻塞（Select）</td>
+<td align="center">阻塞</td>
+</tr>
+<tr>
+<td align="center">信号驱动式IO</td>
+<td align="center">异步</td>
+<td align="center">阻塞</td>
+</tr>
+<tr>
+<td align="center">异步IO</td>
+<td align="center">异步</td>
+<td align="center">异步</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li>segmentfault：<a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039898780" >浅聊Linux的五种IO模型<i class="fas fa-external-link-alt"></i></a></li>
+<li>w3cjava：<a class="link"   target="_blank" rel="noopener" href="https://www.w3cjava.com/e-book/operate-system/124699009.html" >五种IO模型：操作系统五种IO模型大全<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<br>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">浅析 I/O（3）—— I/O模型</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-09-19 22:06:09</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">浅析-I-O（3）——-I-O模型/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/Operating-Systems/">#Operating-Systems</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../tags/I-O/">#I/O</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E6%B5%85%E6%9E%90-%E2%80%94%E2%80%94-%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5-%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">浅析 —— 同步异步&amp;阻塞非阻塞</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../%E6%B5%85%E6%9E%90-I-O%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94-I-O%E5%88%86%E7%B1%BB/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">浅析 I/O（2）—— I/O分类</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%91%A0-%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">① 阻塞IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%91%A1-%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">② 非阻塞IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%91%A2-%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B%EF%BC%88IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">③ 复用IO模型（IO多路复用模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%BC%89select"><span class="nav-number">3.1.</span> <span class="nav-text">1）select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%BC%89poll"><span class="nav-number">3.2.</span> <span class="nav-text">2）poll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%BC%89epoll"><span class="nav-number">3.3.</span> <span class="nav-text">3）epoll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B%E5%B0%8F%E7%BB%93"><span class="nav-number">3.4.</span> <span class="nav-text">复用IO模型小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%91%A3-%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">④ 信号驱动IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%91%A4-%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">⑤ 异步IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2018</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

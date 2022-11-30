@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            《Kafka 核心技术与实战》study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">《Kafka 核心技术与实战》study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-11-26 22:00:57</span>
+        <span class="mobile">2022-11-26 22:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-11-26 22:00:57</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/MQ/">MQ</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/MQ/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>22 Mins</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="开篇词-1讲"><a href="#开篇词-1讲" class="headerlink" title="开篇词 (1讲)"></a>开篇词 (1讲)</h1><h2 id="开篇词-为什么要学习Kafka？"><a href="#开篇词-为什么要学习Kafka？" class="headerlink" title="开篇词 | 为什么要学习Kafka？"></a>开篇词 | 为什么要学习Kafka？</h2><ul>
+<li><p>当下互联网行业最火的技术当属 ABC 了</p>
+<ul>
+<li>AI 人工智能</li>
+<li>BigData 大数据</li>
+<li>Cloud 云计算云平台</li>
+</ul>
+</li>
+<li><p>对于数据密集型应用来说，如何应对数据量激增、数据复杂度增加以及数据变化速率变快，是彰显大数据工程师、架构师功力的最有效表征</p>
+<ul>
+<li>Kafka 在帮助应对这些问题方面能起到非常好的效果（Kafka 能够有效隔离上下游业务，将上游突增的流量缓存起来，以平滑的方式传导到下游子系统中，避免了流量的不规则冲击）</li>
+</ul>
+</li>
+<li><p>Kafka 有着非常广阔的应用场景</p>
+<ul>
+<li>目前 Apache Kafka 被认为是整个消息引擎领域的执牛耳者</li>
+<li>从学习技术的角度而言，Kafka 也是很有亮点的（我们仅需要学习一套框架就能在实际业务系统中实现消息引擎应用、应用程序集成、分布式存储构建，甚至是流处理应用的开发与部署）</li>
+<li>Kafka 无论是作为消息引擎还是实时流处理平台，都能在大数据工程领域发挥重要的作用</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="学透-Kafka-推荐路径"><a href="#学透-Kafka-推荐路径" class="headerlink" title="学透 Kafka 推荐路径"></a>学透 Kafka 推荐路径</h3><ul>
+<li>软件开发工程师</li>
+</ul>
+<ol>
+<li>根据你掌握的编程语言去寻找对应的 Kafka 客户端</li>
+<li>去官网上学习一下代码示例（如果能够正确编译和运行这些样例，就能轻松地驾驭客户端了）</li>
+<li>尝试修改样例代码尝试去理解并使用其他的 API（观测修改的结果）</li>
+<li>编写一个小型项目来验证下学习成果，然后就是改善和提升客户端的可靠性和性能了</li>
+<li>熟读一遍 Kafka 官网文档，确保理解了那些可能影响可靠性和性能的参数</li>
+<li>学习 Kafka 的高级功能（比如流处理应用开发。流处理 API 不仅能够生产和消费消息，还能执行高级的流式处理操作，比如时间窗口聚合、流处理连接等）</li>
+</ol>
+<ul>
+<li>系统管理员或运维工程师</li>
+</ul>
+<blockquote>
+<p>如果你是系统管理员或运维工程师，那么相应的学习目标应该是学习搭建及管理 Kafka 线上环境。如何根据实际业务需求评估、搭建生产线上环境将是你主要的学习目标。另外对生产环境的监控也是重中之重的工作，Kafka 提供了超多的 JMX 监控指标，你可以选择任意你熟知的框架进行监控。有了监控数据，作为系统运维管理员的你，势必要观测真实业务负载下的 Kafka 集群表现。之后如何利用已有的监控指标来找出系统瓶颈，然后提升整个系统的吞吐量，这也是最能体现你工作价值的地方</p>
+</blockquote>
+<br>
+
+<h3 id="专栏思维导图"><a href="#专栏思维导图" class="headerlink" title="专栏思维导图"></a>专栏思维导图</h3><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.26rhfqn0svcw.webp"
+                      width="100%"
+                >
+
+<br>
+
+<p>（1）Kafka 入门</p>
+<ul>
+<li>介绍消息引擎这类系统大致的原理和用途，以及作为优秀消息引擎代表的 Kafka 在这方面的表现</li>
+</ul>
+<p>（2）Kafka 的基本使用</p>
+<ul>
+<li>重点探讨 Kafka 如何用于生产环境，特别是线上环境方案的制定</li>
+</ul>
+<p>（3）客户端详解</p>
+<ul>
+<li>学习 Kafka 客户端的方方面面，既有生产者的实操讲解也有消费者的原理剖析</li>
+</ul>
+<p>（4）Kafka 原理介绍</p>
+<ul>
+<li>着重介绍 Kafka 最核心的设计原理，包括 Controller 的设计机制、请求处理全流程解析等</li>
+</ul>
+<p>（5）Kafka 运维与监控</p>
+<ul>
+<li>获得高效运维 Kafka 集群以及有效监控 Kafka 的实战经验</li>
+</ul>
+<p>（6）高级 Kafka 应用</p>
+<ul>
+<li>Kafka 流处理组件 Kafka Streams 的实战应用</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Kafka入门-5讲"><a href="#Kafka入门-5讲" class="headerlink" title="Kafka入门 (5讲)"></a>Kafka入门 (5讲)</h1><h2 id="01-消息引擎系统ABC"><a href="#01-消息引擎系统ABC" class="headerlink" title="01 | 消息引擎系统ABC"></a>01 | 消息引擎系统ABC</h2><ul>
+<li><strong>Apache Kafka 是一款开源的消息引擎系统</strong></li>
+<li>消息引擎系统是一组规范。企业利用这组规范在不同系统之间传递语义准确的消息，实现松耦合的异步式数据传递</li>
+<li>Kafka使用纯二进制字节序列传递消息，消息也是有结构的</li>
+</ul>
+<br>
+
+<h3 id="消息引擎传输消息模型"><a href="#消息引擎传输消息模型" class="headerlink" title="消息引擎传输消息模型"></a>消息引擎传输消息模型</h3><ul>
+<li><strong>点对点模型</strong>：一对一发送or接收消息</li>
+<li><strong>发布 / 订阅模型</strong>：它有一个主题（Topic）的概念（可以理解成逻辑语义相近的消息容器）。发送方也称为发布者（Publisher），接收方称为订阅者（Subscriber）。和点对点模型不同的是，这个模型可能存在多个发布者向相同的主题发送消息，而订阅者也可能存在多个</li>
+</ul>
+<br>
+
+<ul>
+<li>JMS：JMS 是 Java Message Service，它也是支持上面这两种消息引擎模型的。严格来说它并非传输协议而仅仅是一组 API 罢了</li>
+</ul>
+<br>
+
+<h3 id="为什么要使用消息引擎"><a href="#为什么要使用消息引擎" class="headerlink" title="为什么要使用消息引擎"></a>为什么要使用消息引擎</h3><ul>
+<li><strong>削峰填谷</strong></li>
+</ul>
+<blockquote>
+<p>​    所谓的“削峰填谷”就是指缓冲上下游瞬时突发流量，使其更平滑。特别是对于那种发送能力很强的上游系统，如果没有消息引擎的保护，“脆弱”的下游系统可能会直接被压垮导致全链路服务“雪崩”。但是，一旦有了消息引擎，它能够有效地对抗上游的流量冲击，真正做到将上游的“峰”填满到“谷”中，避免了流量的震荡。消息引擎系统的另一大好处在于发送方和接收方的松耦合，这也在一定程度上简化了应用的开发，减少了系统间不必要的交互。</p>
+</blockquote>
+<ul>
+<li>当引入了 Kafka 之后。上游订单服务不再直接与下游子服务进行交互。当新订单生成后它仅仅是向 Kafka Broker 发送一条订单消息即可。类似地，下游的各个子服务订阅 Kafka 中的对应主题，并实时从该主题的各自分区（Partition）中获取到订单消息进行处理，从而实现了上游订单服务与下游订单处理服务的解耦。这样当出现秒杀业务时，Kafka 能够将瞬时增加的订单流量全部以消息形式保存在对应的主题中，既不影响上游服务的 TPS，同时也给下游子服务留出了充足的时间去消费它们。这就是 Kafka 这类消息引擎系统的最大意义所在。</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="02-一篇文章带你快速搞定Kafka术语"><a href="#02-一篇文章带你快速搞定Kafka术语" class="headerlink" title="02 | 一篇文章带你快速搞定Kafka术语"></a>02 | 一篇文章带你快速搞定Kafka术语</h2><ul>
+<li>消息：Record。Kafka 是消息引擎，这里的消息就是指 Kafka 处理的主要对象。</li>
+<li>主题：Topic。主题是承载消息的逻辑容器，在实际使用中多用来区分具体的业务。</li>
+<li>分区：Partition。一个有序不变的消息序列。每个主题下可以有多个分区。</li>
+<li>消息位移：Offset。表示分区中每条消息的位置信息，是一个单调递增且不变的值。</li>
+<li>副本：Replica。Kafka 中同一条消息能够被拷贝到多个地方以提供数据冗余，这些地方就是所谓的副本。副本还分为领导者副本和追随者副本，各自有不同的角色划分。副本是在分区层级下的，即每个分区可配置多个副本实现高可用。</li>
+<li>生产者：Producer。向主题发布新消息的应用程序。</li>
+<li>消费者：Consumer。从主题订阅新消息的应用程序。</li>
+<li>消费者位移：Consumer Offset。表征消费者消费进度，每个消费者都有自己的消费者位移。</li>
+<li>消费者组：Consumer Group。多个消费者实例共同组成的一个组，同时消费多个分区以实现高吞吐。</li>
+<li>重平衡：Rebalance。消费者组内某个消费者实例挂掉后，其他消费者实例自动重新分配订阅主题分区的过程。Rebalance 是 Kafka 消费者端实现高可用的重要手段。</li>
+</ul>
+<br>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2etr83rywssg.webp"
+                      width="80%"
+                >
+
+<br>
+
+<ul>
+<li>生产者和消费者统称为客户端（Clients）</li>
+<li>Kafka 的服务器端由被称为 Broker 的服务进程构成，即一个 Kafka 集群由多个 Broker 组成，Broker 负责接收和处理客户端发送过来的请求，以及对消息进行持久化。</li>
+</ul>
+<br>
+
+<h3 id="Kafka提供高可用的手段"><a href="#Kafka提供高可用的手段" class="headerlink" title="Kafka提供高可用的手段"></a>Kafka提供高可用的手段</h3><ul>
+<li>多个 Broker 进程能够运行在同一台机器上，但更常见的做法是将不同的 Broker 分散运行在不同的机器上（这样如果集群中某一台机器宕机，即使在它上面运行的所有 Broker 进程都挂掉了，其他机器上的 Broker 也依然能够对外提供服务）</li>
+<li>备份机制（Replication）（把相同的数据拷贝到多台机器上，而这些相同的数据拷贝在 Kafka 中被称为副本（Replica））</li>
+</ul>
+<br>
+
+<h3 id="副本的工作机制"><a href="#副本的工作机制" class="headerlink" title="副本的工作机制"></a>副本的工作机制</h3><ul>
+<li>生产者总是向领导者副本写消息；而消费者总是从领导者副本读消息。至于追随者副本，它只做一件事：向领导者副本发送请求，请求领导者把最新生产的消息发给它，这样它能保持与领导者的同步。</li>
+<li>副本机制可以保证数据的持久化或消息不丢失</li>
+</ul>
+<br>
+
+<h3 id="Kafka解决伸缩性"><a href="#Kafka解决伸缩性" class="headerlink" title="Kafka解决伸缩性"></a>Kafka解决伸缩性</h3><ul>
+<li>伸缩性即所谓的 Scalability，是分布式系统中非常重要且必须要谨慎对待的问题</li>
+<li>什么是伸缩性：我们拿副本来说，虽然现在有了领导者副本和追随者副本，但倘若领导者副本积累了太多的数据以至于单台 Broker 机器都无法容纳了，此时应该怎么办呢？<strong>把数据分割成多份保存在不同的 Broker 上</strong>。这种机制就是所谓的分区（Partitioning）</li>
+</ul>
+<br>
+
+<h4 id="分区机制"><a href="#分区机制" class="headerlink" title="分区机制"></a>分区机制</h4><ul>
+<li>Kafka 中的分区机制指的是将每个主题划分成多个分区（Partition），每个分区是一组有序的消息日志。</li>
+</ul>
+<blockquote>
+<p>生产者生产的每条消息只会被发送到一个分区中，也就是说如果向一个双分区的主题发送一条消息，这条消息要么在分区 0 中，要么在分区 1 中。如你所见，Kafka 的分区编号是从 0 开始的，如果 Topic 有 100 个分区，那么它们的分区号就是从 0 到 99。</p>
+</blockquote>
+<ul>
+<li><strong>副本</strong>：副本是在分区这个层级定义的。</li>
+</ul>
+<blockquote>
+<p>每个分区下可以配置若干个副本，其中只能有 1 个领导者副本和 N-1 个追随者副本。生产者向分区写入消息，每条消息在分区中的位置信息由一个叫位移（Offset）的数据来表征。分区位移总是从 0 开始，假设一个生产者向一个空分区写入了 10 条消息，那么这 10 条消息的位移依次是 0、1、2、…、9。</p>
+</blockquote>
+<br>
+
+<h3 id="Kafka-的三层消息架构"><a href="#Kafka-的三层消息架构" class="headerlink" title="Kafka 的三层消息架构"></a>Kafka 的三层消息架构</h3><ul>
+<li>第一层是主题层，每个主题可以配置 M 个分区，而每个分区又可以配置 N 个副本。</li>
+<li>第二层是分区层，每个分区的 N 个副本中只能有一个充当领导者角色，对外提供服务；其他 N-1 个副本是追随者副本，只是提供数据冗余之用。</li>
+<li>第三层是消息层，分区中包含若干条消息，每条消息的位移从 0 开始，依次递增。</li>
+<li>最后，客户端程序只能与分区的领导者副本进行交互。</li>
+</ul>
+<br>
+
+<h3 id="Kafka-Broker-是如何持久化数据的"><a href="#Kafka-Broker-是如何持久化数据的" class="headerlink" title="Kafka Broker 是如何持久化数据的"></a>Kafka Broker 是如何持久化数据的</h3><ul>
+<li>Kafka 使用消息日志（Log）来保存数据，一个日志就是磁盘上一个只能追加写（Append-only）消息的物理文件。</li>
+</ul>
+<blockquote>
+<p>因为只能追加写入，故避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作，<strong>这也是实现 Kafka 高吞吐量特性的一个重要手段。</strong></p>
+</blockquote>
+<ul>
+<li>日志段（Log Segment）机制<ul>
+<li>在 Kafka 底层，一个日志又近一步细分成多个日志段，消息被追加写到当前最新的日志段中，当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="消费者组"><a href="#消费者组" class="headerlink" title="消费者组"></a>消费者组</h3><ul>
+<li>Kafka 中实现这种 P2P 模型的方法就是引入了消费者组（Consumer Group）。</li>
+</ul>
+<blockquote>
+<p>所谓的消费者组，指的是多个消费者实例共同组成一个组来消费一组主题。这组主题中的每个分区都只会被组内的一个消费者实例消费，其他消费者实例不能消费它。为什么要引入消费者组呢？主要是为了提升消费者端的吞吐量。多个消费者实例同时消费，加速整个消费端的吞吐量（TPS）。</p>
+</blockquote>
+<blockquote>
+<p>这里的消费者实例可以是运行消费者应用的进程，也可以是一个线程，它们都称为一个消费者实例（Consumer Instance）。</p>
+</blockquote>
+<br>
+
+<h3 id="重平衡"><a href="#重平衡" class="headerlink" title="重平衡"></a>重平衡</h3><blockquote>
+<p>消费者组里面的所有消费者实例不仅“瓜分”订阅主题的数据，而且更酷的是它们还能彼此协助。</p>
+</blockquote>
+<ul>
+<li>假设组内某个实例挂掉了，Kafka 能够自动检测到，然后把这个 Failed 实例之前负责的分区转移给其他活着的消费者。这个过程就是 Kafka 中大名鼎鼎的“重平衡”（Rebalance）。</li>
+</ul>
+<blockquote>
+<p>由重平衡引发的消费者问题比比皆是。事实上，目前很多重平衡的 Bug 社区都无力解决。</p>
+</blockquote>
+<br>
+
+<ul>
+<li>每个消费者在消费消息的过程中必然需要有个字段记录它当前消费到了分区的哪个位置上，这个字段就是消费者位移（Consumer Offset）。</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="03-Kafka只是消息引擎系统吗？"><a href="#03-Kafka只是消息引擎系统吗？" class="headerlink" title="03 | Kafka只是消息引擎系统吗？"></a>03 | Kafka只是消息引擎系统吗？</h2><p><strong>有的时候我们会觉得说了解一个系统或框架的前世今生似乎没什么必要，直接开始学具体的技术不是更快更好吗？其实，不论是学习哪种技术，直接扎到具体的细节中，亦或是从一个很小的点开始学习，你很快就会感到厌烦。为什么呢？因为你虽然快速地搞定了某个技术细节，但无法建立全局的认知观，这会导致你只是在单个的点上有所进展，却没法将其串联成一条线进而扩展成一个面，从而实现系统地学习。</strong></p>
+<ul>
+<li><strong>Apache Kafka 是消息引擎系统，也是一个分布式流处理平台</strong>（Distributed Streaming Platform）</li>
+</ul>
+<br>
+
+<ul>
+<li>Kafka 在设计之初就旨在提供三个方面的特性：<ul>
+<li>提供一套 API 实现生产者和消费者；</li>
+<li>降低网络传输和磁盘存储开销；</li>
+<li>实现高伸缩性架构。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<blockquote>
+<p>开源之后的 Kafka 被越来越多的公司应用到它们企业内部的数据管道中，特别是在大数据工程领域，Kafka 在承接上下游、串联数据流管道方面发挥了重要的作用：所有的数据几乎都要从一个系统流入 Kafka 然后再流向下游的另一个系统中。这样的使用方式屡见不鲜以至于引发了 Kafka 社区的思考：与其我把数据从一个系统传递到下一个系统中做处理，我为何不自己实现一套流处理框架呢？基于这个考量，Kafka 社区于 0.10.0.0 版本正式推出了流处理组件 Kafka Streams，也正是从这个版本开始，Kafka 正式“变身”为分布式的流处理平台，而不仅仅是消息引擎系统了。今天 Apache Kafka 是和 Apache Storm、Apache Spark 和 Apache Flink 同等级的实时流处理平台。</p>
+</blockquote>
+<br>
+
+<h3 id="Kafka-与其他主流大数据流式计算框架相比的优势"><a href="#Kafka-与其他主流大数据流式计算框架相比的优势" class="headerlink" title="Kafka 与其他主流大数据流式计算框架相比的优势"></a>Kafka 与其他主流大数据流式计算框架相比的优势</h3><ul>
+<li><strong>第一点是更容易实现端到端的正确性（Correctness）</strong>。<ul>
+<li><strong>要实现正确性和提供能够推导时间的工具。实现正确性是流处理能够匹敌批处理的基石</strong>。</li>
+</ul>
+</li>
+<li><strong>对于流式计算的定位</strong><ul>
+<li>需要自己选择适合的工具或系统来帮助 Kafka 流处理应用实现这些功能</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="04-我应该选择哪种Kafka？"><a href="#04-我应该选择哪种Kafka？" class="headerlink" title="04 | 我应该选择哪种Kafka？"></a>04 | 我应该选择哪种Kafka？</h2><h3 id="Kafka-Connect"><a href="#Kafka-Connect" class="headerlink" title="Kafka Connect"></a>Kafka Connect</h3><ul>
+<li>Kafka Connect 通过一个个具体的连接器（Connector），串联起上下游的外部系统。</li>
+</ul>
+<br>
+
+<ul>
+<li>Kafka Connect 组件支持的一部分外部系统，如下图</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6ktbply8no00.webp"
+                      width="60%"
+                >
+
+<br>
+
+<h3 id="Kafka种类"><a href="#Kafka种类" class="headerlink" title="Kafka种类"></a>Kafka种类</h3><h4 id="Apache-Kafka"><a href="#Apache-Kafka" class="headerlink" title="Apache Kafka"></a><strong>Apache Kafka</strong></h4><ul>
+<li>Apache Kafka 是最“正宗”的 Kafka，也应该是你最熟悉的发行版了。自 Kafka 开源伊始，它便在 Apache 基金会孵化并最终毕业成为顶级项目，它也被称为社区版 Kafka。<ul>
+<li>后面提到的发行版要么是原封不动地继承了 Apache Kafka，要么是在此之上扩展了新功能</li>
+<li>开发人数最多、版本迭代速度最快的 Kafka。社区活跃</li>
+<li>劣势：仅仅提供最最基础的组件<ul>
+<li>社区版 Kafka 只提供一种连接器，即读写磁盘文件的连接器，而没有与其他外部系统交互的连接器，在实际使用过程中需要自行编写代码实现</li>
+</ul>
+</li>
+<li>Apache Kafka 没有提供任何监控框架或工具。必然需要借助第三方的监控框架实现对 Kafka 的监控。（好消息是目前有一些开源的监控框架可以帮助用于监控 Kafka（比如 Kafka manager））</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>如果你仅仅需要一个消息引擎系统亦或是简单的流处理应用场景，同时需要对系统有较大把控度，推荐你使用 Apache Kafka。</strong></li>
+</ul>
+<br>
+
+<h4 id="Confluent-Kafka"><a href="#Confluent-Kafka" class="headerlink" title="Confluent Kafka"></a><strong>Confluent Kafka</strong></h4><ul>
+<li>Confluent 公司，它主要从事商业化 Kafka 工具开发，并在此基础上发布了 Confluent Kafka。Confluent Kafka 提供了一些 Apache Kafka 没有的高级特性，比如跨数据中心备份、Schema 注册中心以及集群监控工具等。</li>
+<li>Confluent Kafka 目前分为免费版和企业版两种。前者和 Apache Kafka 非常相像，除了常规的组件之外，免费版还包含 Schema 注册中心和 REST proxy 两大功能。前者是帮助你集中管理 Kafka 消息格式以实现数据前向 / 后向兼容；后者用开放 HTTP 接口的方式允许你通过网络访问 Kafka 的各种功能，这两个都是 Apache Kafka 所没有的。</li>
+<li>免费版包含了更多的连接器，它们都是 Confluent 公司开发并认证过的，你可以免费使用它们。至于企业版，它提供的功能就更多了。在我看来，最有用的当属跨数据中心备份和集群监控两大功能了。多个数据中心之间数据的同步以及对集群的监控历来是 Kafka 的痛点，Confluent Kafka 企业版提供了强大的解决方案帮助你“干掉”它们。</li>
+<li>Confluent 公司暂时没有发展国内业务的计划，相关的资料以及技术支持都很欠缺，很多国内 Confluent Kafka 使用者甚至无法找到对应的中文文档，因此目前 Confluent Kafka 在国内的普及率是比较低的。</li>
+</ul>
+<br>
+
+<h4 id="Cloudera-Hortonworks-Kafka"><a href="#Cloudera-Hortonworks-Kafka" class="headerlink" title="Cloudera/Hortonworks Kafka"></a><strong>Cloudera/Hortonworks Kafka</strong></h4><ul>
+<li>Cloudera 提供的 CDH 和 Hortonworks 提供的 HDP 是非常著名的大数据平台，里面集成了目前主流的大数据框架，能够帮助用户实现从分布式存储、集群调度、流处理到机器学习、实时数据库等全方位的数据处理。很多创业公司在搭建数据平台时首选就是这两个产品。不管是 CDH 还是 HDP 里面都集成了 Apache Kafka，因此我把这两款产品中的 Kafka 称为 CDH Kafka 和 HDP Kafka。</li>
+<li>Kafka（CDH/HDP Kafka）。这些大数据平台天然集成了 Apache Kafka，通过便捷化的界面操作将 Kafka 的安装、运维、管理、监控全部统一在控制台中。</li>
+<li>降低了你对 Kafka 集群的掌控程度。</li>
+<li>滞后：由于它有自己的发布周期，因此是否能及时地包含最新版本的 Kafka 就成为了一个问题。</li>
+</ul>
+<br>
+
+<ul>
+<li><strong>如果需要快速地搭建消息引擎系统，或者你需要搭建的是多框架构成的数据平台且 Kafka 只是其中一个组件，那么我推荐你使用这些大数据云公司提供的 Kafka。</strong></li>
+</ul>
+<br>
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>Apache Kafka，也称社区版 Kafka。优势在于迭代速度快，社区响应度高，使用它可以让你有更高的把控度；缺陷在于仅提供基础核心组件，缺失一些高级的特性。</li>
+<li>Confluent Kafka，Confluent 公司提供的 Kafka。优势在于集成了很多高级特性且由 Kafka 原班人马打造，质量上有保证；缺陷在于相关文档资料不全，普及率较低，没有太多可供参考的范例。</li>
+<li>CDH/HDP Kafka，大数据云公司提供的 Kafka，内嵌 Apache Kafka。优势在于操作简单，节省运维成本；缺陷在于把控度低，演进速度较慢。</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="05-聊聊Kafka的版本号"><a href="#05-聊聊Kafka的版本号" class="headerlink" title="05 | 聊聊Kafka的版本号"></a>05 | 聊聊Kafka的版本号</h2><ul>
+<li>评判某 Kafka 版本是不是满足业务需求，就需要了解各个版本之间的差异和功能变化</li>
+</ul>
+<br>
+
+<h3 id="Kafka-版本命名"><a href="#Kafka-版本命名" class="headerlink" title="Kafka 版本命名"></a>Kafka 版本命名</h3><ul>
+<li>kafka-2.11-2.1.1<ul>
+<li>前面的版本号是编译 Kafka 源代码的 Scala 编译器版本。（Kafka 服务器端的代码完全由 Scala 语言编写）</li>
+<li>真正的 Kafka 版本号实际上是 2.1.1<ul>
+<li>前面的 2 表示大版本号，即 Major Version；中间的 1 表示小版本号或次版本号，即 Minor Version；最后的 1 表示修订版本号，也就是 Patch 号。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Kafka 社区在发布 1.0.0 版本后特意写过一篇文章，宣布 Kafka 版本命名规则正式从 4 位演进到 3 位，比如 0.11.0.0 版本就是 4 位版本号。<ul>
+<li>假设碰到的 Kafka 版本是 0.10.2.2，你现在就知道了它的大版本是 0.10，小版本是 2，总共打了两个大的补丁，Patch 号是 2。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="Kafka-版本演进"><a href="#Kafka-版本演进" class="headerlink" title="Kafka 版本演进"></a>Kafka 版本演进</h3><ul>
+<li>Kafka 目前总共演进了 7 个大版本，分别是 0.7、0.8、0.9、0.10、0.11、1.0 和 2.0，其中的小版本和 Patch 版本很多。</li>
+</ul>
+<br>
+
+<ul>
+<li>0.7 版本<ul>
+<li>最早开源时的“上古”版本。这个版本只提供了最基础的消息队列功能，甚至连副本机制都没有</li>
+</ul>
+</li>
+<li>0.8<ul>
+<li>正式引入了<strong>副本机制</strong>，至此 Kafka 成为了一个真正意义上完备的分布式高可靠消息队列解决方案。有了副本备份机制，Kafka 就能够比较好地做到消息无丢失。那时候生产和消费消息使用的还是老版本的客户端 API，所谓的老版本是指当你用它们的 API 开发生产者和消费者应用时，你需要指定 ZooKeeper 的地址而非 Broker 的地址。</li>
+<li>老版本客户端有很多的问题，特别是生产者 API，它默认使用同步方式发送消息，可以想见其吞吐量一定不会太高。虽然它也支持异步的方式，但实际场景中可能会造成消息的丢失，因此 0.8.2.0 版本社区引入了<strong>新版本 Producer API</strong>，即需要指定 Broker 地址的 Producer。</li>
+<li>国内依然有少部分用户在使用 0.8.1.1、0.8.2 版本。<strong>建议是尽量使用比较新的版本。如果不能升级大版本，也建议至少要升级到 0.8.2.2 这个版本，因为该版本中老版本消费者 API 是比较稳定的。另外即使升到了 0.8.2.2，也不要使用新版本 Producer API，此时它的 Bug 还非常多。</strong></li>
+</ul>
+</li>
+<li>0.9.0.0 版本<ul>
+<li>2015 年 11 月，社区正式发布了 0.9.0.0 版本。</li>
+<li>0.9 大版本增加了基础的安全认证 / 权限功能，同时使用 Java 重写了新版本消费者 API，另外还引入了 Kafka Connect 组件用于实现高性能的数据抽取。</li>
+<li><strong>新版本 Producer API 在这个版本中算比较稳定了</strong>。</li>
+</ul>
+</li>
+<li>0.10.0.0<ul>
+<li>0.10.0.0 是里程碑式的大版本，因为该版本<strong>引入了 Kafka Streams</strong>。从这个版本起，Kafka 正式升级成分布式流处理平台，虽然此时的 Kafka Streams 还基本不能线上部署使用。</li>
+<li><strong>如果你依然在使用 0.10 大版本，我强烈建议你至少升级到 0.10.2.2 然后使用新版本 Consumer API。还有个事情不得不提，0.10.2.2 修复了一个可能导致 Producer 性能降低的 Bug。基于性能的缘故你也应该升级到 0.10.2.2。</strong></li>
+</ul>
+</li>
+<li>0.11.0.0 版本<ul>
+<li>2017 年 6 月，社区发布了 0.11.0.0 版本，引入了两个重量级的功能变更：一个是提供幂等性 Producer API 以及事务（Transaction） API；另一个是对 Kafka 消息格式做了重构。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li>不论你用的是哪个版本，都请尽量保持服务器端版本和客户端版本一致，否则你将损失很多 Kafka 为你提供的性能优化收益。</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Kafka的基本使用-3讲"><a href="#Kafka的基本使用-3讲" class="headerlink" title="Kafka的基本使用 (3讲)"></a>Kafka的基本使用 (3讲)</h1><h2 id="06-Kafka线上集群部署方案怎么做？"><a href="#06-Kafka线上集群部署方案怎么做？" class="headerlink" title="06 | Kafka线上集群部署方案怎么做？"></a>06 | Kafka线上集群部署方案怎么做？</h2><br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<img src="" width="60%">
+
+<br>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">《Kafka 核心技术与实战》study notes</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-11-26 22:00:57</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">《Kafka-核心技术与实战》study-notes/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/Kafka/">#Kafka</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8AKafka%E5%A4%9A%E7%BB%B4%E5%BA%A6%E7%B3%BB%E7%BB%9F%E7%B2%BE%E8%AE%B2%EF%BC%8C%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%86%9F%E7%BB%83%E6%8E%8C%E6%8F%A1%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《Kafka多维度系统精讲，从入门到熟练掌握》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../%E3%80%8AMySQL-8-0%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">《MySQL 8.0详解与实战》study notes</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-1%E8%AE%B2"><span class="nav-number">1.</span> <span class="nav-text">开篇词 (1讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0Kafka%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">开篇词 | 为什么要学习Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E9%80%8F-Kafka-%E6%8E%A8%E8%8D%90%E8%B7%AF%E5%BE%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">学透 Kafka 推荐路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E6%A0%8F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">1.1.2.</span> <span class="nav-text">专栏思维导图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka%E5%85%A5%E9%97%A8-5%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">Kafka入门 (5讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9FABC"><span class="nav-number">2.1.</span> <span class="nav-text">01 | 消息引擎系统ABC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E4%BC%A0%E8%BE%93%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">消息引擎传输消息模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E"><span class="nav-number">2.1.2.</span> <span class="nav-text">为什么要使用消息引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%BF%AB%E9%80%9F%E6%90%9E%E5%AE%9AKafka%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.2.</span> <span class="nav-text">02 | 一篇文章带你快速搞定Kafka术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E6%8F%90%E4%BE%9B%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">Kafka提供高可用的手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AF%E6%9C%AC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">副本的工作机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E8%A7%A3%E5%86%B3%E4%BC%B8%E7%BC%A9%E6%80%A7"><span class="nav-number">2.2.3.</span> <span class="nav-text">Kafka解决伸缩性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">分区机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%9A%84%E4%B8%89%E5%B1%82%E6%B6%88%E6%81%AF%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">Kafka 的三层消息架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Broker-%E6%98%AF%E5%A6%82%E4%BD%95%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9A%84"><span class="nav-number">2.2.5.</span> <span class="nav-text">Kafka Broker 是如何持久化数据的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-number">2.2.6.</span> <span class="nav-text">消费者组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%B9%B3%E8%A1%A1"><span class="nav-number">2.2.7.</span> <span class="nav-text">重平衡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Kafka%E5%8F%AA%E6%98%AF%E6%B6%88%E6%81%AF%E5%BC%95%E6%93%8E%E7%B3%BB%E7%BB%9F%E5%90%97%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">03 | Kafka只是消息引擎系统吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E4%B8%8E%E5%85%B6%E4%BB%96%E4%B8%BB%E6%B5%81%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%E7%9B%B8%E6%AF%94%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.3.1.</span> <span class="nav-text">Kafka 与其他主流大数据流式计算框架相比的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%88%91%E5%BA%94%E8%AF%A5%E9%80%89%E6%8B%A9%E5%93%AA%E7%A7%8DKafka%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">04 | 我应该选择哪种Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-Connect"><span class="nav-number">2.4.1.</span> <span class="nav-text">Kafka Connect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.4.2.</span> <span class="nav-text">Kafka种类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-Kafka"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Apache Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Confluent-Kafka"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">Confluent Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cloudera-Hortonworks-Kafka"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">Cloudera&#x2F;Hortonworks Kafka</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">2.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E8%81%8A%E8%81%8AKafka%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">2.5.</span> <span class="nav-text">05 | 聊聊Kafka的版本号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%89%88%E6%9C%AC%E5%91%BD%E5%90%8D"><span class="nav-number">2.5.1.</span> <span class="nav-text">Kafka 版本命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B"><span class="nav-number">2.5.2.</span> <span class="nav-text">Kafka 版本演进</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-3%E8%AE%B2"><span class="nav-number">3.</span> <span class="nav-text">Kafka的基本使用 (3讲)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Kafka%E7%BA%BF%E4%B8%8A%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">06 | Kafka线上集群部署方案怎么做？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">4.</span> <span class="nav-text">学习备注</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2018</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
