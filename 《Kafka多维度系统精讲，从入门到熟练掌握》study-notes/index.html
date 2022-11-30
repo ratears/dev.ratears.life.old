@@ -212,23 +212,53 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-11-29 19:23:07</span>
-        <span class="mobile">2022-11-29 19:23</span>
+        <span class="pc">2022-11-26 22:00:57</span>
+        <span class="mobile">2022-11-26 22:00</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-11-29 19:23:07</span>
+        <span class="pc">2022-11-26 22:00:57</span>
     </span>
     
     
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/MQ/">MQ</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/MQ/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/Kafka/">Kafka</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>932 Words</span>
+        </span>
+    
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
         </span>
     
     
@@ -240,7 +270,138 @@
             
 
             <div class="article-content keep-markdown-body">
-                
+                <h1 id="第1章-课程导学与学习指南"><a href="#第1章-课程导学与学习指南" class="headerlink" title="第1章 课程导学与学习指南"></a>第1章 课程导学与学习指南</h1><br>
+
+<br>
+
+<br>
+
+<h1 id="第2章-Kafka入门——开发环境准备"><a href="#第2章-Kafka入门——开发环境准备" class="headerlink" title="第2章 Kafka入门——开发环境准备"></a>第2章 Kafka入门——开发环境准备</h1><br>
+
+<br>
+
+<br>
+
+<h1 id="第3章-Kafka入门——Kafka基础操作"><a href="#第3章-Kafka入门——Kafka基础操作" class="headerlink" title="第3章 Kafka入门——Kafka基础操作"></a>第3章 Kafka入门——Kafka基础操作</h1><h2 id="Kafka介绍"><a href="#Kafka介绍" class="headerlink" title="Kafka介绍"></a>Kafka介绍</h2><ul>
+<li>一个分布式流处理平台</li>
+<li>Kafka是基于zookeeper的分布式消息系统</li>
+<li>Kafka具有高吞吐率、高性能、实时及高可靠等特点</li>
+</ul>
+<br>
+
+<h2 id="Kafka安装"><a href="#Kafka安装" class="headerlink" title="Kafka安装"></a>Kafka安装</h2><ul>
+<li>安装准备<ul>
+<li>jdk-8u181-linux-x64.tar.gz（因为Kafka是scala开发的，scala是基于jdk的，固需需要安装jdk）</li>
+<li>apache-zookeeper-3.5.7-bin.tar.gz</li>
+<li>kafka_2.11-2.4.0.tgz</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="step1-安装jdk"><a href="#step1-安装jdk" class="headerlink" title="step1 安装jdk"></a>step1 安装jdk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">准备jdk安装包，并解压到 /usr/local/ 目录下</span></span><br><span class="line">tar -zxvf jdk-8u181-linux-x64.tar.gz -C /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建软连接</span></span><br><span class="line">ln -s jdk-8u181-linux-x64 jdk1.8</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置jdk环境变量</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文档末尾追加如下内容</span></span><br><span class="line">export JAVA_HOME=/usr/local/jdk1.8</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证jdk环境</span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="step2-安装zookeeper"><a href="#step2-安装zookeeper" class="headerlink" title="step2 安装zookeeper"></a>step2 安装zookeeper</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">准备zookeeper安装包，并解压到 /usr/local/ 目录下</span></span><br><span class="line">tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建软连接</span></span><br><span class="line">ln -s apache-zookeeper-3.5.7-bin zookeeper</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">准备配置文件</span></span><br><span class="line">cd /usr/local/zookeeper/conf/</span><br><span class="line"></span><br><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line"></span><br><span class="line">vim zoo.cfg</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改 dataDir 然后保存（生产环境应该把dataDir设置成磁盘比较大的目录）</span></span><br><span class="line">dataDir=/usr/local/zookeeper/data</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建data目录</span></span><br><span class="line">mkdir -p /usr/local/zookeeper/data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动zookeeper</span></span><br><span class="line">cd /usr/local/zookeeper/bin/</span><br><span class="line">./zkServer.sh start</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用zookeeper 自带的客户端连接 zookeeper</span></span><br><span class="line">cd /usr/local/zookeeper/bin/</span><br><span class="line">./zkCli.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="step3-安装Kafka"><a href="#step3-安装Kafka" class="headerlink" title="step3 安装Kafka"></a>step3 安装Kafka</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">准备zookeeper安装包，并解压到 /usr/local/ 目录下</span></span><br><span class="line">tar -zxvf kafka_2.11-2.4.0.tar.gz -C /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建软连接</span></span><br><span class="line">ln -s kafka_2.11-2.4.0 kafka</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改配置文件</span></span><br><span class="line">cd /usr/local/kafka/config/</span><br><span class="line"></span><br><span class="line">vim server.properties</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line">listeners=PLAINTEXT://192.168.146.135:9092</span><br><span class="line"></span><br><span class="line">advertised.listeners=PLAINTEXT://192.168.146.135:9092</span><br><span class="line"></span><br><span class="line">log.dirs=/usr/local/kafka/kafka-logs</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意生产环境该配置会变化，目前我们就使用如下配置，保持不变</span></span><br><span class="line">zookeeper.connect=localhost:2181</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">####################################################</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建logs目录</span></span><br><span class="line">mkdir -p /usr/local/kafka/kafka-logs</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Kafka常用命令"><a href="#Kafka常用命令" class="headerlink" title="Kafka常用命令"></a>Kafka常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意执行命令需要在kafka的根目录下</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、启动Kafka</span></span><br><span class="line">bin/kafka-server-start.sh config/server.properties &amp;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、停止Kafka</span></span><br><span class="line">bin/kafka-server-stop.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、创建Topic</span></span><br><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic jiangzh-topic</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、查看已经创建的Topic信息</span></span><br><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5、发送消息</span></span><br><span class="line">bin/kafka-console-producer.sh --broker-list 192.168.146.135:9092 --topic jiangzh-topic</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">6、接收消息</span></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server 192.168.146.135:9092 --topic jiangzh-topic --from-beginning</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Kafka基本概念"><a href="#Kafka基本概念" class="headerlink" title="Kafka基本概念"></a>Kafka基本概念</h2><ul>
+<li>Topic：一个虚拟的概念，由1到多个Partitions组成</li>
+<li>Partition：实际消息存储单位</li>
+<li>Producer：消息生产者</li>
+<li>Consumer：消息消费者</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第4章-Kafka核心API——Kafka客户端操作"><a href="#第4章-Kafka核心API——Kafka客户端操作" class="headerlink" title="第4章 Kafka核心API——Kafka客户端操作"></a>第4章 Kafka核心API——Kafka客户端操作</h1><h2 id="五类Kafka客户端-API"><a href="#五类Kafka客户端-API" class="headerlink" title="五类Kafka客户端 API"></a>五类Kafka客户端 API</h2><ul>
+<li>Producer API: 向主题(一个或多个)发布消息；</li>
+<li>Consumer API: 订阅主题(一个或多个)，拉取这些主题上发布的消息；</li>
+<li>Stream API: 作为流处理器，从主题消费消息，向主题发布消息，把输出流转换为输入流；</li>
+<li>Connect API: 作为下游或上游，把主题连接到应用程序或数据系统(比如关系数据库)，通常不需要直接使用这些API，而是使用 现成的连接器；</li>
+<li>AdminClient API: 管理(或巡查) topic, brokers, 或其他 kafka 对象；</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.32hkgl5c6x20.webp"
+                      width="60%"
+                >
+
+<br>
+
+<h2 id="AdminClient客户端建立"><a href="#AdminClient客户端建立" class="headerlink" title="AdminClient客户端建立"></a>AdminClient客户端建立</h2><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3dkg228f3zm0.webp"
+                      width="70%"
+                >
+
+<br>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AdminSimple</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">AdminClient</span> <span class="variable">adminClient</span> <span class="operator">=</span> adminClient();</span><br><span class="line">        System.out.println(<span class="string">&quot;adminClient:&quot;</span>+adminClient);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> AdminClient <span class="title function_">adminClient</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.setProperty(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;192.168.146.135:9092&quot;</span>);</span><br><span class="line">        <span class="type">AdminClient</span> <span class="variable">adminClient</span> <span class="operator">=</span> AdminClient.create(properties);</span><br><span class="line">        <span class="keyword">return</span> adminClient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="创建Topic演示"><a href="#创建Topic演示" class="headerlink" title="创建Topic演示"></a>创建Topic演示</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AdminSimple</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"><span class="comment">//        AdminClient adminClient = adminClient();</span></span><br><span class="line"><span class="comment">//        System.out.println(&quot;adminClient:&quot;+adminClient);</span></span><br><span class="line">        createTopic();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">createTopic</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">AdminClient</span> <span class="variable">adminClient</span> <span class="operator">=</span> adminClient();</span><br><span class="line">        <span class="type">short</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="type">NewTopic</span> <span class="variable">newTopic</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NewTopic</span>(<span class="string">&quot;demo_topic&quot;</span>,<span class="number">10</span>,rs);</span><br><span class="line">        <span class="type">CreateTopicsResult</span> <span class="variable">topics</span> <span class="operator">=</span> adminClient.createTopics(Arrays.asList(newTopic));</span><br><span class="line">        System.out.println(<span class="string">&quot;CreateTopicsResult :&quot;</span>+topics.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> AdminClient <span class="title function_">adminClient</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.setProperty(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;192.168.146.135:9092&quot;</span>);</span><br><span class="line">        <span class="type">AdminClient</span> <span class="variable">adminClient</span> <span class="operator">=</span> AdminClient.create(properties);</span><br><span class="line">        <span class="keyword">return</span> adminClient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<img src="" width="60%">
+
+<br>
             </div>
 
             
@@ -254,7 +415,7 @@
             <span class="type">Post author</span>：<span class="content">ratears</span>
         </li>
         <li>
-            <span class="type">Create time</span>：<span class="content">2022-11-29 19:23:07</span>
+            <span class="type">Create time</span>：<span class="content">2022-11-26 22:00:57</span>
         </li>
         <li class="post-link">
             <span class="type">Post link</span>：<span class="content">《Kafka多维度系统精讲，从入门到熟练掌握》study-notes/</span>
@@ -269,18 +430,41 @@
             
 
             
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/Kafka/">#Kafka</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
 
             
                 <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8A%E6%B7%B1%E5%85%A5%E6%8B%86%E8%A7%A3-Java-%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《深入拆解 Java 虚拟机》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
                     
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="../%E3%80%8A%E6%B7%B1%E5%85%A5%E6%8B%86%E8%A7%A3-Java-%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8Bstudy-notes/"
+                               href="../%E3%80%8AKafka-%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">《深入拆解 Java 虚拟机》study notes</span>
+                                <span class="post-nav-title-item">《Kafka 核心技术与实战》study notes</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -378,7 +562,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E8%AF%BE%E7%A8%8B%E5%AF%BC%E5%AD%A6%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">第1章 课程导学与学习指南</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Kafka%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">第2章 Kafka入门——开发环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-Kafka%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94Kafka%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">第3章 Kafka入门——Kafka基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">Kafka介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">Kafka安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1-%E5%AE%89%E8%A3%85jdk"><span class="nav-number">3.2.1.</span> <span class="nav-text">step1 安装jdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2-%E5%AE%89%E8%A3%85zookeeper"><span class="nav-number">3.2.2.</span> <span class="nav-text">step2 安装zookeeper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3-%E5%AE%89%E8%A3%85Kafka"><span class="nav-number">3.2.3.</span> <span class="nav-text">step3 安装Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">Kafka常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.4.</span> <span class="nav-text">Kafka基本概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-Kafka%E6%A0%B8%E5%BF%83API%E2%80%94%E2%80%94Kafka%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">第4章 Kafka核心API——Kafka客户端操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E7%B1%BBKafka%E5%AE%A2%E6%88%B7%E7%AB%AF-API"><span class="nav-number">4.1.</span> <span class="nav-text">五类Kafka客户端 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdminClient%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BB%BA%E7%AB%8B"><span class="nav-number">4.2.</span> <span class="nav-text">AdminClient客户端建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BATopic%E6%BC%94%E7%A4%BA"><span class="nav-number">4.3.</span> <span class="nav-text">创建Topic演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">5.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
