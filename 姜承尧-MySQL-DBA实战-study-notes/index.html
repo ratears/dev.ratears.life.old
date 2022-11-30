@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            姜承尧 MySQL DBA实战 study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">姜承尧 MySQL DBA实战 study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-05-18 01:33:04</span>
+        <span class="mobile">2022-05-18 01:33</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-05-18 01:33:04</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/database/">database</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/database/mysql/">mysql</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/mysql/">mysql</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>20 Mins</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="第01天-Mysql简介与前景"><a href="#第01天-Mysql简介与前景" class="headerlink" title="第01天_Mysql简介与前景"></a>第01天_Mysql简介与前景</h1><br>
+
+<br>
+
+<br>
+
+<h1 id="第02天-MySQL安装与基本命令"><a href="#第02天-MySQL安装与基本命令" class="headerlink" title="第02天_MySQL安装与基本命令"></a>第02天_MySQL安装与基本命令</h1><h2 id="MySQL安装步骤"><a href="#MySQL安装步骤" class="headerlink" title="MySQL安装步骤"></a>MySQL安装步骤</h2><ul>
+<li>卸载操作系统自带的mariadb，下载mysql安装的的依赖</li>
+<li>创建mysql用户组和用户</li>
+<li>配置<code>/etc/my.cnf</code></li>
+<li>官网下载mysql数据库</li>
+<li>创建目录，设置权限。初始化mysql元数据库</li>
+<li>将mysql添加到启动项</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="MySQL-5-6-安装过程"><a href="#MySQL-5-6-安装过程" class="headerlink" title="MySQL 5.6 安装过程"></a>MySQL 5.6 安装过程</h2><ul>
+<li>官网MySQL 5.6安装参考手册：<a class="link"   target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.6/en/binary-installation.html" >MySQL 5.6 Reference Manual-Installing MySQL on Unix/Linux Using Generic Binaries<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<ul>
+<li>（1）卸载操作系统自带的 mariadb/mysql 数据库</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa | grep mariadb | xargs yum remove -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）创建数据目录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p /install /backup /data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（3）创建mysql用户和用户组</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（4）下载安装过程中可能需要的依赖</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y libaio autoconf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（5）新建/编辑 <code>/etc/my.cnf</code> 文件（需要先配置好这个文件，否则，安装后启动报错）</li>
+</ul>
+<p><code>vim /etc/my.cnf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">所有客户端登录进去后可以配置的参数</span></span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql这个命名登录进去后配置的参数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql服务器启动时候的参数</span></span><br><span class="line">port = 3306</span><br><span class="line">user = mysql</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（6）下载mysql5.6的安装包，并解压到 <code>/usr/local/</code> 目录下，创建软连接（便于管理mysql）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost install]# wget wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.6.51-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">校验下载的数据库压缩包MD5值，和官网进行比较，辨别是否被篡改过</span></span><br><span class="line">[root@localhost install]# md5sum mysql-5.6.51-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">[root@localhost install]# tar -zxvf mysql-5.6.51-linux-glibc2.12-x86_64.tar.gz -C /usr/local/</span><br><span class="line"></span><br><span class="line">[root@localhost local]# cd /usr/local/</span><br><span class="line">[root@localhost local]# ln -s mysql-5.6.51-linux-glibc2.12-x86_64/ mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（7）设置目录权限</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# chown -R mysql.mysql /data/</span><br><span class="line">[root@localhost local]# chmod 750 /data/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（8）初始化mysql</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# cd /usr/local/mysql</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql初始化数据库的语句，5.6 和 5.7 是不一样的，需要注意</span></span><br><span class="line">[root@localhost mysql]# scripts/mysql_install_db --user=mysql</span><br><span class="line"></span><br><span class="line">[root@localhost mysql]# bin/mysqld_safe --user=mysql &amp;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拷贝启动脚本（服务）到指定位置，便于管理、使用</span></span><br><span class="line">[root@localhost mysql]# cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="MySQL-5-7-安装过程"><a href="#MySQL-5-7-安装过程" class="headerlink" title="MySQL 5.7 安装过程"></a>MySQL 5.7 安装过程</h2><ul>
+<li>官网MySQL 5.7安装参考手册：<a class="link"   target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/binary-installation.html" >MySQL 5.7 Reference Manual-Installing MySQL on Unix/Linux Using Generic Binaries<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<ul>
+<li>（1）卸载操作系统自带的 mariadb/mysql 数据库</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa | grep mariadb | xargs yum remove -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）创建数据目录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p /install /backup /data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（3）创建mysql用户和用户组</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（4）下载安装过程中可能需要的依赖</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y libaio autoconf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（5）新建/编辑 <code>/etc/my.cnf</code> 文件（需要先配置好这个文件，否则，安装后启动报错）</li>
+</ul>
+<p><code>vim /etc/my.cnf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">所有客户端登录进去后可以配置的参数</span></span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql这个命令登录进去后配置的参数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql服务器启动时候的参数</span></span><br><span class="line">port = 3306</span><br><span class="line">user = mysql</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（6）上传mysql5.7的安装包，并解压到 <code>/usr/local/</code> 目录下，创建软连接（便于管理mysql）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost install]# tar -zxvf mysql-5.7.39-linux-glibc2.12-x86_64.tar.gz -C /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">校验下载的数据库压缩包MD5值，和官网进行比较，辨别是否被篡改过</span></span><br><span class="line">[root@localhost install]# md5sum mysql-5.7.39-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">[root@localhost local]# cd /usr/local/</span><br><span class="line">[root@localhost local]# ln -s mysql-5.7.39-linux-glibc2.12-x86_64/ mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（7）设置目录权限</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# chown -R mysql.mysql /data/</span><br><span class="line">[root@localhost local]# chmod 750 /data/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（8）初始化mysql</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# cd /usr/local/mysql</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql初始化数据库的语句，5.6 和 5.7 是不一样的，需要注意</span></span><br><span class="line">[root@localhost mysql]# bin/mysqld --initialize --user=mysql</span><br><span class="line"></span><br><span class="line">[root@localhost mysql]# bin/mysqld_safe --user=mysql &amp;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拷贝启动脚本（服务）到指定位置，便于管理、使用</span></span><br><span class="line">[root@localhost mysql]# cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="MySQL安装成功后进行基础配置"><a href="#MySQL安装成功后进行基础配置" class="headerlink" title="MySQL安装成功后进行基础配置"></a>MySQL安装成功后进行基础配置</h2><ul>
+<li>（1）设置MySQL开机自启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把 mysql 的服务加入开机自启动项目</span></span><br><span class="line">[root@localhost ~]<span class="comment"># chkconfig --add mysql.server</span></span><br><span class="line">[root@localhost ~]<span class="comment"># chkconfig --list</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）配置MySQL环境变量</li>
+</ul>
+<p><code>vim /etc/profile</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/usr/local/mysql/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<p><code>source /etc/profile</code></p>
+<ul>
+<li>（3）添加日志文件配置</li>
+</ul>
+<p><code>vim /etc/my.cnf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log_error = error.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（4）修改初始密码</li>
+</ul>
+<blockquote>
+<p>5.7</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set password=&#x27;root&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5.6</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set password=password(&quot;root&quot;);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="MySQL的其它配置"><a href="#MySQL的其它配置" class="headerlink" title="MySQL的其它配置"></a>MySQL的其它配置</h2><h3 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h3><p><code>vim /etc/my.cnf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">#  mysql这个命令每次启动的时候，会去读配置文件，读到[client]标签，会自动把用户名和密码添加到后面。所以输入 mysql 后回车便可直接登录</span><br><span class="line">user = root</span><br><span class="line">password = root</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="定制MySQL终端提示符"><a href="#定制MySQL终端提示符" class="headerlink" title="定制MySQL终端提示符"></a>定制MySQL终端提示符</h3><p><code>vim /etc/my.cnf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysql]</span><br><span class="line">prompt = (\u@\h) [\d]&gt;\_</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="允许MySQL远程登录"><a href="#允许MySQL远程登录" class="headerlink" title="允许MySQL远程登录"></a>允许MySQL远程登录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(root@localhost) [(none)]&gt; grant all on *.* to root@&#x27;%&#x27; identified by &#x27;root&#x27; with grant option;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">(root@localhost) [(none)]&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="MySQL-5-6与5-7-安装上的差异"><a href="#MySQL-5-6与5-7-安装上的差异" class="headerlink" title="MySQL 5.6与5.7 安装上的差异"></a>MySQL 5.6与5.7 安装上的差异</h2><ul>
+<li><p>（1）5.6 安装完没有密码，而5.7初始化完成会有密码</p>
+<blockquote>
+<p>如果希望MySQL5.7安装初始化的时候表现跟MySQL5.6一样-没有密码，则可以在初始化数据库的语句中    <code>bin/mysqld --initialize --user=mysql</code>，把    <code>--initialize</code>    替换成    <code>--initialize-insecure</code>。（可以通过     <code>mysqld --verbose --help | less    </code>查看到两个参数的说明）</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>（2）初始化命令不一样<ul>
+<li>5.6：<code>scripts/mysql_install_db --user=mysql</code></li>
+<li>5.7：<code>bin/mysqld --initialize --user=mysql</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>（3）设置密码的方式不一样<ul>
+<li>5.6：<code>set password = password(&quot;mysql&quot;);</code></li>
+<li>5.7：<code>set password=&#39;mysql&#39;;</code></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="查看MySQL-安装后的默认参数"><a href="#查看MySQL-安装后的默认参数" class="headerlink" title="查看MySQL 安装后的默认参数"></a>查看MySQL 安装后的默认参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --verbose --help</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><blockquote>
+<p>熟练安装 mysql 5.6、5.7</p>
+<p>mysql 5.6、5.7 自动安装的脚本。</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="MySQL-5-6-升级到-5-7"><a href="#MySQL-5-6-升级到-5-7" class="headerlink" title="MySQL 5.6 升级到 5.7"></a>MySQL 5.6 升级到 5.7</h2><h1 id="第03天-MySQL客户端连接与权限管理"><a href="#第03天-MySQL客户端连接与权限管理" class="headerlink" title="第03天_MySQL客户端连接与权限管理"></a>第03天_MySQL客户端连接与权限管理</h1><h2 id="mysql最优配置文件参考"><a href="#mysql最优配置文件参考" class="headerlink" title="mysql最优配置文件参考"></a>mysql最优配置文件参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/jdaaaaaavid/mysql_best_configuration/blob/master/my.cnf" > mysql_best_configuration<i class="fas fa-external-link-alt"></i></a></p>
+<br>
+
+<br>
+
+<h2 id="MySQL可以有多个配置文件"><a href="#MySQL可以有多个配置文件" class="headerlink" title="MySQL可以有多个配置文件"></a>MySQL可以有多个配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mysql 在启动的时候会依次去读取下面的文件</span><br><span class="line">[root@localhost ~]# mysql --verbose --help | grep my.cnf</span><br><span class="line">                      order of preference, my.cnf, $MYSQL_TCP_PORT,</span><br><span class="line">/etc/my.cnf /etc/mysql/my.cnf /usr/local/mysql/etc/my.cnf ~/.my.cnf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>遵循参数替换原则。后面的参数会替换前面的参数</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="MySQL的配置文件参数"><a href="#MySQL的配置文件参数" class="headerlink" title="MySQL的配置文件参数"></a>MySQL的配置文件参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"># 所有客户端登录进去后可以配置的参数</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line"># mysql这个命令登录进去后配置的参数</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"># mysql服务器启动时候的参数</span><br><span class="line">port = 3306</span><br><span class="line">user = mysql</span><br><span class="line">datadir = /data</span><br><span class="line">log_error = error.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看mysql的参数，当前配置的值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 默认省略了session</span><br><span class="line">show variables;</span><br><span class="line"></span><br><span class="line">show session variables;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;log_error&#x27;;</span><br><span class="line"></span><br><span class="line">show global variables like &#x27;%log%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 对已经创建的连接不生效，只对新创建的连接生效</span><br><span class="line">set global long_query_time=5;</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SHOW [GLOBAL |SESSION] VARIABLES [LIKE  ‘pattern’ |WHERE expr]</td>
+<td align="center">查看变量，可根据like进行过滤</td>
+</tr>
+<tr>
+<td align="center">SET [GLOBAL|SESSION] VARIABLES = xxx</td>
+<td align="center">修改global或session的参数</td>
+</tr>
+</tbody></table>
+<h2 id="MySQL的参数分类"><a href="#MySQL的参数分类" class="headerlink" title="MySQL的参数分类"></a>MySQL的参数分类</h2><ul>
+<li>从作用域上可分为global和session<ul>
+<li>seesion：只对当前这一个连接有效</li>
+<li>global：全局有效</li>
+</ul>
+</li>
+<li>从类型上又可分为可修改和只读参数<ul>
+<li>用户可在线修改非只读参数</li>
+<li>只读参数只能通过配置文件修改并重启</li>
+<li>所有参数的修改都不持久化</li>
+</ul>
+</li>
+</ul>
+<h3 id="当前会话下，查看其它连接的-variables"><a href="#当前会话下，查看其它连接的-variables" class="headerlink" title="当前会话下，查看其它连接的 variables"></a>当前会话下，查看其它连接的 variables</h3><ul>
+<li>mysql5.7开始，多了一个数据库    <code>performance_schema</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">use performance_schema;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">show tables like &#x27;%variables%&#x27;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(root@localhost) [performance_schema]&gt; select * from variables_by_thread where variable_name = &#x27;long_query_time&#x27;;</span><br><span class="line">+-----------+-----------------+----------------+</span><br><span class="line">| THREAD_ID | VARIABLE_NAME   | VARIABLE_VALUE |</span><br><span class="line">+-----------+-----------------+----------------+</span><br><span class="line">|        31 | long_query_time | 10.000000      |</span><br><span class="line">|        33 | long_query_time | 10.000000      |</span><br><span class="line">+-----------+-----------------+----------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看当前连接到mysql的线程列表，以及它在做什么事情；</span><br><span class="line">(root@localhost) [performance_schema]&gt; show processlist;</span><br><span class="line">+----+------+-----------+--------------------+---------+------+----------+------------------+</span><br><span class="line">| Id | User | Host      | db                 | Command | Time | State    | Info             |</span><br><span class="line">+----+------+-----------+--------------------+---------+------+----------+------------------+</span><br><span class="line">|  6 | root | localhost | performance_schema | Sleep   |  766 |          | NULL             |</span><br><span class="line">|  8 | root | localhost | performance_schema | Query   |    0 | starting | show processlist |</span><br><span class="line">+----+------+-----------+--------------------+---------+------+----------+------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看当前连接的id，这个id在processlist 里面</span><br><span class="line">(root@localhost) [performance_schema]&gt; select connection_id();</span><br><span class="line">+-----------------+</span><br><span class="line">| connection_id() |</span><br><span class="line">+-----------------+</span><br><span class="line">|               8 |</span><br><span class="line">+-----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 这张表里 有 thread_id 和 processlist_id，通过这张表，做关联查询，则可以查询其它会话的变量值</span><br><span class="line">(root@localhost) [performance_schema]&gt; select * from threads limit 1\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">          THREAD_ID: 1</span><br><span class="line">               NAME: thread/sql/main</span><br><span class="line">               TYPE: BACKGROUND</span><br><span class="line">     PROCESSLIST_ID: NULL</span><br><span class="line">   PROCESSLIST_USER: NULL</span><br><span class="line">   PROCESSLIST_HOST: NULL</span><br><span class="line">     PROCESSLIST_DB: NULL</span><br><span class="line">PROCESSLIST_COMMAND: NULL</span><br><span class="line">   PROCESSLIST_TIME: 1967</span><br><span class="line">  PROCESSLIST_STATE: NULL</span><br><span class="line">   PROCESSLIST_INFO: NULL</span><br><span class="line">   PARENT_THREAD_ID: NULL</span><br><span class="line">               ROLE: NULL</span><br><span class="line">       INSTRUMENTED: YES</span><br><span class="line">            HISTORY: YES</span><br><span class="line">    CONNECTION_TYPE: NULL</span><br><span class="line">       THREAD_OS_ID: 3562</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><ul>
+<li>mysql的权限认证分成：用户名、密码、IP</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/1652975371(1).66aoeywjsa80.webp"
+                      
+                >
+
+<ul>
+<li><p>mysql的权限分成：全局（所有库）、指定库、指定表、指定列</p>
+</li>
+<li><p>常用的权限</p>
+<ul>
+<li>SQL语句：SELECT、INSERT、UPDATE、DELETE、INDEX</li>
+<li>存储过程：CREATE ROUTINE、ALTER ROUTINE、EXECUTE、TRIGGER</li>
+<li>管理权限：SUPER、RELOAD、SHOW DATABASE、SHUTDOWN、GRANT OPTION</li>
+</ul>
+</li>
+<li><p>常用权限、用户相关sql语句</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">create user &#x27;sao&#x27;@&#x27;192.168.%.%&#x27; identified by &#x27;sao&#x27;;</span><br><span class="line"></span><br><span class="line">drop user &#x27;sao&#x27;@&#x27;192.168.%.%&#x27;;</span><br><span class="line"></span><br><span class="line">#显示当前用户的权限 这三个是同一个意思</span><br><span class="line">show grants;</span><br><span class="line">show grants for current_user;</span><br><span class="line">show grants for current_user();</span><br><span class="line"></span><br><span class="line">grant select,update,delete,insert on mysql.* to &#x27;sao&#x27;@&#x27;192.168.%.%&#x27;;</span><br><span class="line"></span><br><span class="line">show grants for &#x27;sao&#x27;@&#x27;192.168.%.%&#x27;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 不推荐 使用grant 同时创建权限和用户。</span><br><span class="line">(root@localhost) [(none)]&gt; grant select,update,delete,insert on mysql.* to &#x27;sa&#x27;@&#x27;192.168.%.%&#x27; identified by &#x27;sa&#x27;;</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">(root@localhost) [(none)]&gt; show warnings;</span><br><span class="line">+---------+------+------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Level   | Code | Message                                                                                                                            |</span><br><span class="line">+---------+------+------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Warning | 1287 | Using GRANT for creating new user is deprecated and will be removed in future release. Create new user with CREATE USER statement. |</span><br><span class="line">+---------+------+------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">alter user &#x27;sao&#x27;@&#x27;192.168.%.%&#x27; identified by &#x27;saosao&#x27;;</span><br><span class="line"></span><br><span class="line">revoke select on mysql.* from &#x27;sao&#x27;@&#x27;192.168.%.%&#x27;;</span><br><span class="line"></span><br><span class="line">grant create,index on mysql.* to &#x27;sao&#x27;@&#x27;192.168.%.%&#x27; with grant option;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># mysql 下的 mysql库中的权限表</span><br><span class="line"># user表中存放全局权限</span><br><span class="line">user</span><br><span class="line">db</span><br><span class="line">tables_priv </span><br><span class="line">columns_priv</span><br></pre></td></tr></table></figure>
+
+<p><font color="red"><strong>注意：不要通过修改权限表来更改用户权限</strong></font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mysql 5.7 密码加密使用的是 password()这个函数</span><br><span class="line">select password(&#x27;456&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h2><ul>
+<li>MAX_QUERIES_PER_HOUR <em>count</em></li>
+<li>MAX_UPDATES_PER_HOUR <em>count</em></li>
+<li>MAX_CONNECTIONS_PER_HOUR <em>count</em></li>
+<li>MAX_USER_CONNECTIONS <em>count</em></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 修改用户的最大连接数</span><br><span class="line">alter user &#x27;sao&#x27;@&#x27;192.168.%.%&#x27; with MAX_USER_CONNECTIONS 2;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第04天-SSL加密连接与密码插件"><a href="#第04天-SSL加密连接与密码插件" class="headerlink" title="第04天_SSL加密连接与密码插件"></a>第04天_SSL加密连接与密码插件</h1><h2 id="连接MySQL实例"><a href="#连接MySQL实例" class="headerlink" title="连接MySQL实例"></a>连接MySQL实例</h2><h3 id="通过本地socket进行连接"><a href="#通过本地socket进行连接" class="headerlink" title="通过本地socket进行连接"></a>通过本地<em>socket</em>进行连接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mysql服务器本地 ，默认使用socket方式连接。 默认省略 -S/tmp/mysql.socket</span><br><span class="line">mysql -uroot -p -S/tmp/mysql.socket</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(root@localhost) [(none)]&gt; show variables like &#x27;%socket%&#x27;</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-----------------------------------------+-----------------+</span><br><span class="line">| Variable_name                           | Value           |</span><br><span class="line">+-----------------------------------------+-----------------+</span><br><span class="line">| performance_schema_max_socket_classes   | 10              |</span><br><span class="line">| performance_schema_max_socket_instances | -1              |</span><br><span class="line">| socket                                  | /tmp/mysql.sock |</span><br><span class="line">+-----------------------------------------+-----------------+</span><br><span class="line">3 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看当前连接的状态</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(root@localhost) [mysql]&gt; \s</span><br><span class="line">--------------</span><br><span class="line">mysql  Ver 14.14 Distrib 5.7.37, for linux-glibc2.12 (x86_64) using  EditLine wrapper</span><br><span class="line"></span><br><span class="line">Connection id:          2</span><br><span class="line">Current database:       mysql</span><br><span class="line">Current user:           root@localhost</span><br><span class="line">SSL:                    Not in use</span><br><span class="line">Current pager:          stdout</span><br><span class="line">Using outfile:          &#x27;&#x27;</span><br><span class="line">Using delimiter:        ;</span><br><span class="line">Server version:         5.7.37 MySQL Community Server (GPL)</span><br><span class="line">Protocol version:       10</span><br><span class="line">Connection:             Localhost via UNIX socket</span><br><span class="line">Server characterset:    latin1</span><br><span class="line">Db     characterset:    latin1</span><br><span class="line">Client characterset:    utf8</span><br><span class="line">Conn.  characterset:    utf8</span><br><span class="line">UNIX socket:            /tmp/mysql.sock</span><br><span class="line">Uptime:                 35 sec</span><br><span class="line"></span><br><span class="line">Threads: 1  Questions: 41  Slow queries: 0  Opens: 136  Flush tables: 1  Open tables: 129  Queries per second avg: 1.171</span><br><span class="line">--------------</span><br><span class="line"></span><br><span class="line">(root@localhost) [mysql]&gt; status;</span><br><span class="line">--------------</span><br><span class="line">mysql  Ver 14.14 Distrib 5.7.37, for linux-glibc2.12 (x86_64) using  EditLine wrapper</span><br><span class="line"></span><br><span class="line">Connection id:          2</span><br><span class="line">Current database:       mysql</span><br><span class="line">Current user:           root@localhost</span><br><span class="line">SSL:                    Not in use</span><br><span class="line">Current pager:          stdout</span><br><span class="line">Using outfile:          &#x27;&#x27;</span><br><span class="line">Using delimiter:        ;</span><br><span class="line">Server version:         5.7.37 MySQL Community Server (GPL)</span><br><span class="line">Protocol version:       10</span><br><span class="line">Connection:             Localhost via UNIX socket</span><br><span class="line">Server characterset:    latin1</span><br><span class="line">Db     characterset:    latin1</span><br><span class="line">Client characterset:    utf8</span><br><span class="line">Conn.  characterset:    utf8</span><br><span class="line">UNIX socket:            /tmp/mysql.sock</span><br><span class="line">Uptime:                 39 sec</span><br><span class="line"></span><br><span class="line">Threads: 1  Questions: 44  Slow queries: 0  Opens: 136  Flush tables: 1  Open tables: 129  Queries per second avg: 1.128</span><br><span class="line">--------------</span><br><span class="line"></span><br><span class="line">(root@localhost) [mysql]&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<br/>
+
+<h3 id="通过TCP-IP协议远程连接"><a href="#通过TCP-IP协议远程连接" class="headerlink" title="通过TCP/IP协议远程连接"></a>通过TCP/IP协议远程连接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -h192.168.163.200 -P3306 -p</span><br></pre></td></tr></table></figure>
+
+<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><ul>
+<li>mysql 5.7开始 客户端默认使用ssl通信<ul>
+<li>只有通过 tcp/ip 的连接的方式 ，ssl才生效，socket方式不会生效</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 开启ssl后，默认使用none</span><br><span class="line">mysql -uroot -h192.168.163.200 -P3306 -p --ssl-mode=none</span><br><span class="line"></span><br><span class="line">mysql -uroot -h192.168.163.200 -P3306 -p --ssl-mode=DISABLED</span><br><span class="line"></span><br><span class="line">alter user &#x27;any&#x27;@&#x27;%&#x27; require ssl;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ssl 加密 对性能有影响（影响较小）</li>
+<li>ssl的另一种方式 x509<ul>
+<li>要求：用户名 + 密码 + 启用ssl+公钥 </li>
+</ul>
+</li>
+</ul>
+<h2 id="作业-1"><a href="#作业-1" class="headerlink" title="作业"></a>作业</h2><blockquote>
+<p>了解5.6如何使用ssl</p>
+</blockquote>
+<h2 id="密码插件"><a href="#密码插件" class="headerlink" title="密码插件"></a>密码插件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show plugins;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mysql 5.6 开始就有了密码插件 <code>validate_password</code></li>
+</ul>
+<h3 id="validate-password"><a href="#validate-password" class="headerlink" title="validate_password"></a>validate_password</h3><ul>
+<li><code>validate_password</code>插件安装方式有以下两种</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># （1）在my.cnf文件中添加如下配置，再重启mysql</span><br><span class="line">[mysqld]</span><br><span class="line">plugin-load-add=validate_password.so</span><br><span class="line"></span><br><span class="line"># （2）执行如下命令 </span><br><span class="line">INSTALL PLUGIN validate_password SONAME &#x27;validate_password.so&#x27;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 安装完成插件后，对密码就有要求了</span><br><span class="line">(root@localhost) [mysql]&gt; alter user &#x27;andy&#x27;@&#x27;%&#x27; identified by &#x27;andy&#x27;;</span><br><span class="line">ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(root@localhost) [(none)]&gt; show variables like &#x27;%validate%&#x27;;</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">| Variable_name                        | Value  |</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">| query_cache_wlock_invalidate         | OFF    |</span><br><span class="line">| validate_password_check_user_name    | OFF    |</span><br><span class="line">| validate_password_dictionary_file    |        |</span><br><span class="line">| validate_password_length             | 8      |</span><br><span class="line">| validate_password_mixed_case_count   | 1      |</span><br><span class="line">| validate_password_number_count       | 1      |</span><br><span class="line">| validate_password_policy             | MEDIUM |</span><br><span class="line">| validate_password_special_char_count | 1      |</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建议生产环境使用该插件<ul>
+<li>如果使用该插件，则需要在配置文件中做如下配置 </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 默认mysql启动就使用该插件</span><br><span class="line">[mysqld]</span><br><span class="line">plugin-load = validate_password.so</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">Policy</th>
+<th align="left">Tests Performed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>0</code> or <code>LOW</code></td>
+<td align="left">Length</td>
+</tr>
+<tr>
+<td align="left"><code>1</code> or <code>MEDIUM</code></td>
+<td align="left">Length; numeric, lowercase/uppercase, and special characters</td>
+</tr>
+<tr>
+<td align="left"><code>2</code> or <code>STRONG</code></td>
+<td align="left">Length; numeric, lowercase/uppercase, and special characters; dictionary file</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Strong中有一个 dictionary file 。该dictionary file 表示，设置的密码中不能包含 dictionary file 文件中的字符串（即dictionary file 中的字符串不能作为密码的一部分）。如果要启动这个策略，那么  <code>validate_password_policy </code> 要设置为 <code>Strong</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">(root@localhost) [(none)]&gt; set global validate_password_dictionary_file = &#x27;/mysql_data/dic.file&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">(root@localhost) [(none)]&gt; exit</span><br><span class="line">Bye</span><br><span class="line">[root@localhost mysql_data]# vim /mysql_data/dic.file</span><br><span class="line">[root@localhost mysql_data]# ll /mysql_data/</span><br><span class="line">总用量 123008</span><br><span class="line">-rw-r-----. 1 mysql mysql       56 5月  19 00:45 auto.cnf</span><br><span class="line">-rw-r-----. 1 mysql mysql        5 5月  20 00:06 bogon.pid</span><br><span class="line">-rw-------. 1 mysql mysql     1680 5月  19 00:45 ca-key.pem</span><br><span class="line">-rw-r--r--. 1 mysql mysql     1112 5月  19 00:45 ca.pem</span><br><span class="line">-rw-r--r--. 1 mysql mysql     1112 5月  19 00:45 client-cert.pem</span><br><span class="line">-rw-------. 1 mysql mysql     1676 5月  19 00:45 client-key.pem</span><br><span class="line">-rw-r--r--. 1 root  root        13 5月  21 21:51 dic.file</span><br><span class="line">-rw-r-----. 1 mysql mysql    47519 5月  21 21:50 error.log</span><br><span class="line">-rw-r-----. 1 mysql mysql      333 5月  21 21:40 ib_buffer_pool</span><br><span class="line">-rw-r-----. 1 mysql mysql 12582912 5月  21 21:40 ibdata1</span><br><span class="line">-rw-r-----. 1 mysql mysql 50331648 5月  21 21:40 ib_logfile0</span><br><span class="line">-rw-r-----. 1 mysql mysql 50331648 5月  19 00:45 ib_logfile1</span><br><span class="line">-rw-r-----. 1 mysql mysql 12582912 5月  21 21:40 ibtmp1</span><br><span class="line">-rw-r-----. 1 mysql mysql        5 5月  21 21:40 localhost.pid</span><br><span class="line">drwxr-x---. 2 mysql mysql     4096 5月  19 00:45 mysql</span><br><span class="line">drwxr-x---. 2 mysql mysql     8192 5月  19 00:45 performance_schema</span><br><span class="line">-rw-------. 1 mysql mysql     1680 5月  19 00:45 private_key.pem</span><br><span class="line">-rw-r--r--. 1 mysql mysql      452 5月  19 00:45 public_key.pem</span><br><span class="line">-rw-r--r--. 1 mysql mysql     1112 5月  19 00:45 server-cert.pem</span><br><span class="line">-rw-------. 1 mysql mysql     1680 5月  19 00:45 server-key.pem</span><br><span class="line">drwxr-x---. 2 mysql mysql     8192 5月  19 00:45 sys</span><br><span class="line">[root@localhost mysql_data]# chown -R mysql:mysql dic.file</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>validate_password_check_user_name </code> 这个开启后，表示密码中不能使用用户名，逆序也不行</li>
+<li>作为了解。可以看看大厂实际生产环境，如何使用密码的。</li>
+</ul>
+<h2 id="多实例安装"><a href="#多实例安装" class="headerlink" title="多实例安装"></a>多实例安装</h2><ul>
+<li>一台服务器上安装多个实例，充分利用硬件资源</li>
+<li>mysql 原生就支持多实例安装</li>
+<li>通过 <code>mysqld_multi</code> 实现</li>
+</ul>
+<h3 id="多实例安装操作流程"><a href="#多实例安装操作流程" class="headerlink" title="多实例安装操作流程"></a>多实例安装操作流程</h3><ul>
+<li>在配置文件 <code>my.cnf</code> 中新增加如下内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld1]</span><br><span class="line">port = 3307</span><br><span class="line">user = mysql</span><br><span class="line">datadir = /mysql_data1</span><br><span class="line">socket = /tmp/mysql1.sock</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>执行 <code>mysqld --initialize --datadir=/mysql_data1</code> 会发现生成了 <code>/mysql_data1/</code>目录，初始密码在 <code>error.log</code>中</p>
+</li>
+<li><p>在配置文件 <code>my.cnf</code> 中新增 <code>mysqld_multi</code>，并增加如下内容</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld = /usr/local/mysql/bin/mysqld_safe</span><br><span class="line">mysqladmin = /usr/local/mysql/bin/mysqladmin</span><br><span class="line">log = /usr/local/mysql/mysqld_multi.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行 <code> mysqld_multi report</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is not running</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看运行状态与启停、登录</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]# mysqld_multi start 1</span><br><span class="line"></span><br><span class="line">[root@localhost mysql]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is running</span><br><span class="line"></span><br><span class="line">[root@localhost mysql_data1]# mysql -uroot -p&#x27;huah5jqpdJ?+&#x27; -S/tmp/mysql1.sock</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 可以查看到3307 端口已经被占用</span><br><span class="line">[root@localhost mysql_data1]# netstat -ntl</span><br><span class="line">Active Internet connections (only servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN</span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN</span><br><span class="line">tcp6       0      0 :::3306                 :::*                    LISTEN</span><br><span class="line">tcp6       0      0 :::3307                 :::*                    LISTEN</span><br><span class="line">[root@localhost mysql_data1]#</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：<ul>
+<li>最开始安装的 mysql 实例 也可以使用 mysql_multi start 进行启动，配置好便可</li>
+<li>默认 error.log 在各自的mysql data 目录中，所以不需要配置</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<h1 id="第05天-MySQL启动与关闭-amp-多实例安装不同版本数据库"><a href="#第05天-MySQL启动与关闭-amp-多实例安装不同版本数据库" class="headerlink" title="第05天_MySQL启动与关闭 &amp; 多实例安装不同版本数据库"></a>第05天_MySQL启动与关闭 &amp; 多实例安装不同版本数据库</h1><h2 id="MySQL-的启动与关闭"><a href="#MySQL-的启动与关闭" class="headerlink" title="MySQL 的启动与关闭"></a>MySQL 的启动与关闭</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysql.server start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost bin]# mysqld --defaults-file=/etc/my.cnf</span><br><span class="line"></span><br><span class="line"># 守护进程方式启动mysql，当mysql进程挂了以后，会自动把mysql进程拉起来</span><br><span class="line">[root@localhost bin]# mysqld_safe --user=mysql &amp;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 需要密码</span><br><span class="line">(root@localhost) [(none)]&gt; shutdown;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"># 不提供用户名和密码</span><br><span class="line">/etc/init.d/mysql.server stop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 需要密码</span><br><span class="line">[root@localhost bin]# mysqladmin -uroot -proot shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为什么mysql不需要密码就可以关闭呢？</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 是安全关闭的</span><br><span class="line">/etc/init.d/mysql.server stop</span><br><span class="line"></span><br><span class="line"># 是一个shell执行脚本</span><br><span class="line">[root@localhost bin]# file /etc/init.d/mysql.server</span><br><span class="line">/etc/init.d/mysql.server: POSIX shell script, ASCII text executable</span><br><span class="line"></span><br><span class="line"># mysql利用了linux中的信号机制 ,查看 /etc/init.d/mysql.server 脚本，可以看到 kill -0 [进程号]</span><br><span class="line"></span><br><span class="line">     if (kill -0 $mysqld_pid 2&gt;/dev/null)</span><br><span class="line">      then</span><br><span class="line">        echo $echo_n &quot;Shutting down MySQL&quot;</span><br><span class="line">        kill $mysqld_pid</span><br><span class="line"></span><br><span class="line"># kill -0 [进程号] 表示 发送一个信号给这个进程。 然后 kill 掉这个进程，所以其是安全关闭的</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[mysqld_multi]</span><br><span class="line"># 使用哪个程序来启动mysql</span><br><span class="line">mysqld = /usr/local/mysql/bin/mysqld_safe</span><br><span class="line"># 通过mysqladmin 这个命令来关闭数据库</span><br><span class="line">mysqladmin = /usr/local/mysql/bin/mysqladmin</span><br><span class="line">log = /usr/local/mysql/mysqld_multi.log</span><br><span class="line">user=root</span><br><span class="line">pass=Root1_2022</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h2 id="MySQL-忘记密码了怎么办"><a href="#MySQL-忘记密码了怎么办" class="headerlink" title="MySQL 忘记密码了怎么办"></a>MySQL 忘记密码了怎么办</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 编辑 mysql配置文件 my.cnf，添加如下内容</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">skip-grant-tables</span><br><span class="line"></span><br><span class="line"># 然后重启数据库</span><br><span class="line"></span><br><span class="line"># 此时登录mysql不需要密码,use mysql 然后修改user表的密码字段即可</span><br><span class="line">update mysql set authentication_string = password(&#x27;root&#x27;) where user=&#x27;root&#x27; and host = &#x27;localhost&#x27;;</span><br><span class="line"></span><br><span class="line">(root@localhost) [mysql]&gt; flush privileges;</span><br><span class="line"></span><br><span class="line"># 再去掉参数，重启数据库即可</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL5-7-的新参数"><a href="#MySQL5-7-的新参数" class="headerlink" title="MySQL5.7 的新参数"></a>MySQL5.7 的新参数</h2><ul>
+<li><code>default_password_lifetime</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;jeffrey&#x27;@&#x27;localhost&#x27; PASSWORD EXPIRE;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">default_password_lifetime=180</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">default_password_lifetime=0</span><br><span class="line"></span><br><span class="line">SET GLOBAL default_password_lifetime = 180;</span><br><span class="line">SET GLOBAL default_password_lifetime = 0;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h1 id="第07天-数据类型、常用函数、编码"><a href="#第07天-数据类型、常用函数、编码" class="headerlink" title="第07天_数据类型、常用函数、编码"></a>第07天_数据类型、常用函数、编码</h1><h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<ol>
+<li>第一天的内容，最后还需要认真学习一遍，做好笔记</li>
+<li>权限管理这块，还需要实践，继续熟悉</li>
+</ol>
+</blockquote>
+<br>
+
+<img src="" width="80%"/>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
+<p>熟悉mysql官网</p>
+<p>hexo new post “MySQL - 简介、版本特性与选择、安装与初始化配置、升级、启停”</p>
+</blockquote>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">姜承尧 MySQL DBA实战 study notes</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-05-18 01:33:04</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">姜承尧-MySQL-DBA实战-study-notes/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/mysql/">#mysql</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8ANginx%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5%EF%BC%8DNginx%E4%B8%AD%E9%97%B4%E4%BB%B6%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《Nginx入门到实践－Nginx中间件》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../kingbase/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">kingbase</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC01%E5%A4%A9-Mysql%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%89%8D%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">第01天_Mysql简介与前景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC02%E5%A4%A9-MySQL%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">第02天_MySQL安装与基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">MySQL安装步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-5-6-%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">MySQL 5.6 安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-5-7-%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">MySQL 5.7 安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E5%90%8E%E8%BF%9B%E8%A1%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">MySQL安装成功后进行基础配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E5%85%B6%E5%AE%83%E9%85%8D%E7%BD%AE"><span class="nav-number">2.5.</span> <span class="nav-text">MySQL的其它配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-number">2.5.1.</span> <span class="nav-text">免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6MySQL%E7%BB%88%E7%AB%AF%E6%8F%90%E7%A4%BA%E7%AC%A6"><span class="nav-number">2.5.2.</span> <span class="nav-text">定制MySQL终端提示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%81%E8%AE%B8MySQL%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-number">2.5.3.</span> <span class="nav-text">允许MySQL远程登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-5-6%E4%B8%8E5-7-%E5%AE%89%E8%A3%85%E4%B8%8A%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">2.6.</span> <span class="nav-text">MySQL 5.6与5.7 安装上的差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BMySQL-%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="nav-number">2.7.</span> <span class="nav-text">查看MySQL 安装后的默认参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-number">2.8.</span> <span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-5-6-%E5%8D%87%E7%BA%A7%E5%88%B0-5-7"><span class="nav-number">2.9.</span> <span class="nav-text">MySQL 5.6 升级到 5.7</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC03%E5%A4%A9-MySQL%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">第03天_MySQL客户端连接与权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E6%9C%80%E4%BC%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83"><span class="nav-number">3.1.</span> <span class="nav-text">mysql最优配置文件参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%A4%9A%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">MySQL可以有多个配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">MySQL的配置文件参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E5%8F%82%E6%95%B0%E5%88%86%E7%B1%BB"><span class="nav-number">3.4.</span> <span class="nav-text">MySQL的参数分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%E4%B8%8B%EF%BC%8C%E6%9F%A5%E7%9C%8B%E5%85%B6%E5%AE%83%E8%BF%9E%E6%8E%A5%E7%9A%84-variables"><span class="nav-number">3.4.1.</span> <span class="nav-text">当前会话下，查看其它连接的 variables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">3.5.</span> <span class="nav-text">权限管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="nav-number">3.6.</span> <span class="nav-text">资源管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC04%E5%A4%A9-SSL%E5%8A%A0%E5%AF%86%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%AF%86%E7%A0%81%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">第04天_SSL加密连接与密码插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text">连接MySQL实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9C%AC%E5%9C%B0socket%E8%BF%9B%E8%A1%8C%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.1.1.</span> <span class="nav-text">通过本地socket进行连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87TCP-IP%E5%8D%8F%E8%AE%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.1.2.</span> <span class="nav-text">通过TCP&#x2F;IP协议远程连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL"><span class="nav-number">4.1.3.</span> <span class="nav-text">SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A-1"><span class="nav-number">4.2.</span> <span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E6%8F%92%E4%BB%B6"><span class="nav-number">4.3.</span> <span class="nav-text">密码插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#validate-password"><span class="nav-number">4.3.1.</span> <span class="nav-text">validate_password</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%AE%9E%E4%BE%8B%E5%AE%89%E8%A3%85"><span class="nav-number">4.4.</span> <span class="nav-text">多实例安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AE%9E%E4%BE%8B%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.1.</span> <span class="nav-text">多实例安装操作流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC05%E5%A4%A9-MySQL%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%85%B3%E9%97%AD-amp-%E5%A4%9A%E5%AE%9E%E4%BE%8B%E5%AE%89%E8%A3%85%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">5.</span> <span class="nav-text">第05天_MySQL启动与关闭 &amp; 多实例安装不同版本数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E7%9A%84%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-number">5.1.</span> <span class="nav-text">MySQL 的启动与关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">5.2.</span> <span class="nav-text">MySQL 忘记密码了怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL5-7-%E7%9A%84%E6%96%B0%E5%8F%82%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text">MySQL5.7 的新参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC07%E5%A4%A9-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E3%80%81%E7%BC%96%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">第07天_数据类型、常用函数、编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">7.</span> <span class="nav-text">学习备注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">8.</span> <span class="nav-text">备注</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2018</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
