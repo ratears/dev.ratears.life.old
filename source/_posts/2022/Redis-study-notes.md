@@ -1,35 +1,20 @@
 ---
-title: {{ title }}
-date: {{ date }}
+title: Redis study notes
 author: ratears
-updated: {{ date }}
+date: 2022-12-01 02:31:29
+updated: 2022-12-01 02:31:29
 categories:
+	- [Database,Redis]
+	- [cache]
 tags:
+	- Redis
+	- Cache
+	- Database
 ---
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 第1章 Redis 概述
 
 
 
@@ -72,3 +57,4 @@ tags:
 <img src="" width="60%">
 
 <br>
+
