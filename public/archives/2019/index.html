@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -38,6 +38,9 @@
         <span class="scroll-progress-bar"></span>
     
 
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -385,15 +388,15 @@
                 
                     <li class="article-item">
                         <a class="article-title"
-                           href="../../Git/"
-                        >Git</a>
+                           href="../../Java-Collection-Framework/"
+                        >Java - Collection Framework</a>
                         <span class="article-date">06-22</span>
                     </li>
                 
                     <li class="article-item">
                         <a class="article-title"
-                           href="../../Java-Collection-Framework/"
-                        >Java - Collection Framework</a>
+                           href="../../Git/"
+                        >Git</a>
                         <span class="article-date">06-22</span>
                     </li>
                 
@@ -506,7 +509,7 @@
             
         </div>
         
-            <script async 
+            <script async data-pjax
                     src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
                 
@@ -633,9 +636,41 @@
 
 
 
-<div class="post-scripts">
+<div class="post-scripts pjax">
     
 </div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 
