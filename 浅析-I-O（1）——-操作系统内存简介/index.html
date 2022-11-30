@@ -24,7 +24,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"stay focused and work hard","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -266,6 +266,10 @@
         </span>
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -277,12 +281,7 @@
                 <h1 id="操作系统的应用与内核"><a href="#操作系统的应用与内核" class="headerlink" title="操作系统的应用与内核"></a>操作系统的应用与内核</h1><p>&emsp;&emsp;现代计算机是由硬件和操作系统组成，我们的应用程序要操作硬件（如往磁盘上写数据），就需要先与内核交互，然后再由内核与硬件交互；</p>
 <p>&emsp;&emsp;操作系统可以划分为：<strong>内核</strong>与<strong>应用</strong>两部分；</p>
 <p>&emsp;&emsp;内核提供进程管理、内存管理、网络等底层功能，封装了与硬件交互的接口，通过系统调用提供给上层应用使用。</p>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/6a59c5e5-a44b-444d-b5de-22a47319e41a.5r3m1k43n280.webp"
-                      width="80%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/6a59c5e5-a44b-444d-b5de-22a47319e41a.5r3m1k43n280.webp" width="80%">
 
 <br>
 
@@ -293,12 +292,7 @@
 <h1 id="内核空间与用户空间"><a href="#内核空间与用户空间" class="headerlink" title="内核空间与用户空间"></a>内核空间与用户空间</h1><p>&emsp;&emsp;现在操作系统都是采用虚拟地址空间，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间（内核空间），也有访问底层硬件设备的所有权限。</p>
 <p>&emsp;&emsp;为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操心系统将虚拟空间划分为两部分，一部分为<strong>内核空间</strong>，一部分为<strong>用户空间</strong>。内核空间是操作系统内核访问的区域，独立于普通的应用程序，是<strong>受保护的内存空间</strong>。用户空间是普通应用程序可访问的内存区域。</p>
 <p>&emsp;&emsp;针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。</p>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.23luuh3fhlwg.webp"
-                      width="60%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.23luuh3fhlwg.webp" width="60%">
 
 <p>&emsp;&emsp;<strong>用户态的程序不能随意操作内核地址空间，即使用户的程序崩溃了，内核也不受影响。这样对操作系统具有一定的安全保护作用。</strong></p>
 <br>
@@ -308,12 +302,7 @@
 <br>
 
 <h1 id="CPU指令等级"><a href="#CPU指令等级" class="headerlink" title="CPU指令等级"></a>CPU指令等级</h1><p>&emsp;&emsp;其实早期操作系统是不区分内核空间和用户空间的，但是应用程序能访问任意内存空间，如果程序不稳定常常把系统搞崩溃，比如清除操作系统的内存数据。后来觉得让应用程序随便访问内存太危险了，就按照CPU 指令的重要程度对指令进行了分级；</p>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5dnygfmt0ow0.webp"
-                      width="40%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5dnygfmt0ow0.webp" width="40%">
 
 
 
@@ -334,12 +323,7 @@
 <blockquote>
 <p>比如我们 Java 中需要新建一个线程，调用 start() 方法时，基于Hotspot Linux 的JVM 源码实现，最终是调<code>pthread_create</code>系统方法来创建的线程，这里会从用户态切换到内核态完成系统资源的分配，线程的创建。</p>
 </blockquote>
-<img  
-                     lazyload
-                     alt="image"
-                     data-src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.ymdgdg0666o.webp"
-                      width="60%"
-                >
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.ymdgdg0666o.webp" width="60%">
 
 <ul>
 <li>当一个任务（进程）执行系统调用而陷入内核代码中执行时，称进程处于内核运行态（内核态）</li>
@@ -577,7 +561,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-                <span>2018</span> -
+                <span>2017</span> -
             
             2022
             
@@ -585,6 +569,17 @@
                 &nbsp;<a href="/">ratears</a>
             
         </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
@@ -722,8 +717,6 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts pjax">
