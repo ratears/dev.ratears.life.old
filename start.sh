@@ -1,0 +1,1 @@
+git add . && echo "******add succes******" && git commit -m "add file" && echo "******commit succes******" && git push && echo "******push succes******" && hexo clean && echo "******hexo clean succes******" && hexo g && echo "******hexo g succes******" && hexo d && echo "******hexo d succes******" && hexo s --drafts && echo "******hexo s succes******" 
