@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            《Nginx体系化深度精讲》study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">《Nginx体系化深度精讲》study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-05-24 02:47:23</span>
+        <span class="mobile">2019-05-24 02:47</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-05-24 02:47:23</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/Nginx/">Nginx</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/Nginx/">Nginx</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>24 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="Nginx初体验"><a href="#Nginx初体验" class="headerlink" title="Nginx初体验"></a>Nginx初体验</h1><h2 id="Nginx概念"><a href="#Nginx概念" class="headerlink" title="Nginx概念"></a>Nginx概念</h2><ul>
+<li><p>Nginx (engine x) 是一个<strong>高性能的HTTP和反向代理web服务器</strong>，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，公开版本1.19.6发布于2020年12月15日。</p>
+</li>
+<li><p>其将源代码以类BSD许可证的形式发布，因它的稳定性、丰富的功能集、简单的配置文件和低系统资源的消耗而闻名。2022年01月25日，nginx 1.21.6发布。</p>
+</li>
+<li><p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好。</p>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="Nginx缘起历史"><a href="#Nginx缘起历史" class="headerlink" title="Nginx缘起历史"></a>Nginx缘起历史</h2><ul>
+<li>互联网数据的快速增长</li>
+<li>Apache处理请求的低效性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Apache</th>
+<th align="center">Nginx</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">一个进程处理一个请求</td>
+<td align="center">一个进程处理多个请求</td>
+</tr>
+<tr>
+<td align="center">阻塞式的</td>
+<td align="center">非阻塞式的</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="Nginx三个主要企业应用场景"><a href="#Nginx三个主要企业应用场景" class="headerlink" title="Nginx三个主要企业应用场景"></a>Nginx三个主要企业应用场景</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4z8gliurmhc0.webp" width="90%" />
+
+<br>
+
+<br>
+
+<h2 id="Nginx核心优势"><a href="#Nginx核心优势" class="headerlink" title="Nginx核心优势"></a>Nginx核心优势</h2><ul>
+<li>高并发、高性能</li>
+<li>扩展性好</li>
+<li>异步非阻塞的事件驱动模型</li>
+<li>高可靠性</li>
+<li>热部署</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="安装rpm包Nginx"><a href="#安装rpm包Nginx" class="headerlink" title="安装rpm包Nginx"></a>安装rpm包Nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（1）下载epel yum源</span></span><br><span class="line">yum install epel-release -y</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（2）查看yum源里可安装的nginx</span></span><br><span class="line">yum list all |grep nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（3）下载nginx</span></span><br><span class="line">yum install nginx -y</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（4）列出 nginx 安装的文件</span></span><br><span class="line">rpm -ql nginx</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（5）查看nginx启动文件所在目录</span></span><br><span class="line">rpm -ql nginx |grep bin</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Nginx的二进制文件所在目录</span></span><br><span class="line">/usr/sbin/nginx</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Nginx进程结构与热部署"><a href="#Nginx进程结构与热部署" class="headerlink" title="Nginx进程结构与热部署"></a>Nginx进程结构与热部署</h1><h2 id="多进程与多线程"><a href="#多进程与多线程" class="headerlink" title="多进程与多线程"></a>多进程与多线程</h2><h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><h2 id="Nginx的进程结构"><a href="#Nginx的进程结构" class="headerlink" title="Nginx的进程结构"></a>Nginx的进程结构</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/56b03da1dfa88b5a292f320a90fbb9d.2bzqwmpmcuas.webp" width="70%"/>
+
+<ul>
+<li>真正处理请求的不是 master process，二是 worker process</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="Linux的信号量管理机制"><a href="#Linux的信号量管理机制" class="headerlink" title="Linux的信号量管理机制"></a>Linux的信号量管理机制</h2><ul>
+<li>linux中的所有信号量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost nginx]<span class="comment"># kill -l</span></span><br><span class="line"> 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP</span><br><span class="line"> 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1</span><br><span class="line">11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM</span><br><span class="line">16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP</span><br><span class="line">21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR</span><br><span class="line">31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1  64) SIGRTMAX</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>常用信号量</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.2l38lbs30tc0.webp" width="50%"/>
+
+<br>
+
+<br>
+
+<h2 id="利用信号量管理Nginx"><a href="#利用信号量管理Nginx" class="headerlink" title="利用信号量管理Nginx"></a>利用信号量管理Nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭nginx</span></span><br><span class="line"><span class="built_in">kill</span> -s SIGTERM [nginx master进程pid]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新读取配置文件，会关闭之前的work子进程，生成新的work子进程 </span></span><br><span class="line"><span class="built_in">kill</span> -s SIGHUP [nginx master进程pid]</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.682s0oj5i400.webp" width="50%"/>
+
+<br>
+
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.4ouapvas0x40.webp" width="50%"/>
+
+<br/>
+
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.zftbgjpnhzk.webp" width="50%"/>
+
+<br>
+
+<br>
+
+<h2 id="配置文件重载的原理真相"><a href="#配置文件重载的原理真相" class="headerlink" title="配置文件重载的原理真相"></a>配置文件重载的原理真相</h2><h3 id="reload-重载配置文件的流程"><a href="#reload-重载配置文件的流程" class="headerlink" title="reload 重载配置文件的流程"></a><code>reload</code> 重载配置文件的流程</h3><ol>
+<li>向master进程发送HUP信号（reload命令）</li>
+<li>master进程检查配置语法是否正确</li>
+<li>master进程打开监听端口</li>
+<li>master进程使用新的配置文件启动新的worker子进程</li>
+<li>master进程向老的worker子进程发送QUIT信号</li>
+<li>旧的worker进程关闭监听句柄，处理完当前连接后关闭进程</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.7cv9qios6300.webp" width="65%" />
+
+<br>
+
+<br>
+
+<h2 id="Nginx的热部署"><a href="#Nginx的热部署" class="headerlink" title="Nginx的热部署"></a>Nginx的热部署</h2><h3 id="热升级的流程（前提：新旧Nginx的编译目录一致）"><a href="#热升级的流程（前提：新旧Nginx的编译目录一致）" class="headerlink" title="热升级的流程（前提：新旧Nginx的编译目录一致）"></a>热升级的流程（前提：新旧Nginx的编译目录一致）</h3><ol>
+<li>将旧的nginx文件替换成新的nginx文件（二进制主程序文件）</li>
+<li>向master进程发送USR2信号</li>
+<li>master进程修改pid文件，加后缀.oldbin</li>
+<li>master进程用新nginx文件启动新master进程</li>
+<li>向旧的master进程发送WINCH信号，旧的worker子进程退出</li>
+<li>回滚槽形：向旧master发送HUP ,向新的master发送QUIT</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.3s80krndr7m0.webp" width="75%" />
+
+<br>
+
+<h3 id="Nginx热部署完整步骤演示"><a href="#Nginx热部署完整步骤演示" class="headerlink" title="Nginx热部署完整步骤演示"></a>Nginx热部署完整步骤演示</h3><h4 id="Nginx热升级核心命令解释"><a href="#Nginx热升级核心命令解释" class="headerlink" title="Nginx热升级核心命令解释"></a>Nginx热升级核心命令解释</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份nginx二进制文件</span></span><br><span class="line"><span class="built_in">cp</span> nginx nginx.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成新的nginx 主进程 和子进程（新老master、worker进程共存）</span></span><br><span class="line"><span class="built_in">kill</span> -s SIGUSR2 [pid]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭nginx master进程下的worker子进程</span></span><br><span class="line"><span class="built_in">kill</span> -s SIGWINCH [pid]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭进程</span></span><br><span class="line"><span class="built_in">kill</span> -s SIGQUIT [pid]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 让旧master进程 启动work子进程（使用的还是旧的nginx二进制文件）</span></span><br><span class="line"><span class="built_in">kill</span> -s SIGHUP [pid]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意事项</li>
+</ul>
+<blockquote>
+<p>不能使用 <code>kill -s SIGHU []</code> 退出旧的master进程，如果这样做的话，旧的 master主进程和其子进程会直接退出（被kill掉），这样（当新启的nginx进程有问题时）就无法回滚。</p>
+<p>所以应该使用 <code>kill -s SIGWINCH []</code>，先将旧的master主进程下的work子进程全部kill掉，验证新启的nginx进程没有问题后，再使用 <code>kill -s SIGHU []</code>    kill掉旧的master进程。如果验证新启的nginx进程有问题，这时使用 <code>kill -s SIGHUP []</code> 就可以让旧master进程重新启动work子进程。（达到回滚的效果）</p>
+</blockquote>
+<br/>
+
+<h4 id="Nginx正常热升级详细步骤演示"><a href="#Nginx正常热升级详细步骤演示" class="headerlink" title="Nginx正常热升级详细步骤演示"></a>Nginx正常热升级详细步骤演示</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># （1）查看nginx处于正常运行状态</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     105723   1480  0 16:35 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@bogon nginx]<span class="comment"># /usr/local/nginx/sbin/nginx</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     105739      1  0 16:35 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    105740 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105741 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105742 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105743 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     105747   1480  0 16:35 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># （2）备份nginx的二进制文件，并将新的nginx替换成旧的nginx</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># cd /usr/local/nginx/sbin/</span></span><br><span class="line">[root@bogon sbin]<span class="comment"># ll</span></span><br><span class="line">总用量 6128</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:16 nginx</span><br><span class="line">[root@bogon sbin]<span class="comment"># cp nginx nginx.old</span></span><br><span class="line">[root@bogon sbin]<span class="comment"># ll</span></span><br><span class="line">总用量 12256</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:16 nginx</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:36 nginx.old</span><br><span class="line"></span><br><span class="line"><span class="comment"># （3）给旧的nginx master 进程发送 SIGUSR2信号后。nginx 新旧master进程、worker子进程共存。</span></span><br><span class="line">[root@bogon sbin]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     105739      1  0 16:35 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    105740 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105741 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105742 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105743 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     106243   1480  0 16:45 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@bogon sbin]<span class="comment"># kill -s SIGUSR2 105739</span></span><br><span class="line">[root@bogon sbin]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     105739      1  0 16:35 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    105740 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105741 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105742 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    105743 105739  0 16:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     106255 105739  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    106256 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106257 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106258 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106259 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">root     106268   1480  0 16:45 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll pid/</span></span><br><span class="line">总用量 8</span><br><span class="line">-rw-r--r--. 1 root root 7 10月  6 16:45 nginx.pid</span><br><span class="line">-rw-r--r--. 1 root root 7 10月  6 16:35 nginx.pid.oldbin</span><br><span class="line">[root@bogon nginx]<span class="comment"># cat pid/nginx.pid</span></span><br><span class="line">106255</span><br><span class="line">[root@bogon nginx]<span class="comment"># cat pid/nginx.pid.oldbin</span></span><br><span class="line">105739</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># （4）向旧的master进程发送 SIGWINCH 信号，旧的 worker子进程退出。此时，所有请求会被新的worker进程处理</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGWINCH 105739</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     105739      1  0 16:35 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">root     106255 105739  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    106256 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106257 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106258 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106259 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">root     106643   1480  0 16:52 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># （5）验证新的ngixn 的 worker子进程没有错误后，向旧的master进程发送 SIGQUIT 信号。此时 旧的master进程退出。</span></span><br><span class="line"><span class="comment"># 至此，nginx热升级成功</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGQUIT 105739</span></span><br><span class="line">[root@bogon nginx]<span class="comment">#</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    106256 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106257 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106258 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106259 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">root     106814   1480  0 16:56 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll pid/</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r--. 1 root root 7 10月  6 16:45 nginx.pid</span><br><span class="line">[root@bogon nginx]<span class="comment"># cat pid/nginx.pid</span></span><br><span class="line">106255</span><br><span class="line"></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll sbin/</span></span><br><span class="line">总用量 12256</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:16 nginx</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:36 nginx.old</span><br><span class="line">[root@bogon nginx]<span class="comment"># rm -rf sbin/nginx.old</span></span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<h4 id="Nginx热升级——回滚情形演示"><a href="#Nginx热升级——回滚情形演示" class="headerlink" title="Nginx热升级——回滚情形演示"></a>Nginx热升级——回滚情形演示</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># （1）~（2）查看nginx处于正常运行状态；备份nginx的二进制文件，并将新的nginx替换成旧的nginx</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll sbin/</span></span><br><span class="line">总用量 6128</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:16 nginx</span><br><span class="line">[root@bogon nginx]<span class="comment"># cp sbin/nginx sbin/nginx.bak</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll sbin/</span></span><br><span class="line">总用量 12256</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 16:16 nginx</span><br><span class="line">-rwxr-xr-x. 1 root root 6272440 10月  6 17:01 nginx.bak</span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    106256 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106257 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106258 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106259 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107093   1480  0 17:01 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># （3）给旧的nginx master 进程发送 SIGUSR2信号后。nginx 新旧master进程、worker子进程共存。</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGUSR2 106255</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    106256 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106257 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106258 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    106259 106255  0 16:45 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107206 106255  0 17:03 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    107207 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107208 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107209 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107210 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107217   1480  0 17:04 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># （4）向旧的master进程发送 SIGWINCH 信号，旧的 worker子进程退出。此时，所有请求会被新的worker进程处理</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGWINCH 106255</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">root     107206 106255  0 17:03 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    107207 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107208 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107209 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107210 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107264   1480  0 17:04 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># （5）验证新的ngixn 的 worker子进程 发现有错误，开启回滚：</span></span><br><span class="line"><span class="comment"># 向旧的master 发送 SIGHUP 信号；向 新的master进程发送 SIGQUIT 信号</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGWINCH 106255</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">root     107206 106255  0 17:03 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    107207 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107208 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107209 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107210 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107264   1480  0 17:04 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGHUP 106255</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">root     107206 106255  0 17:03 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    107207 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107208 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107209 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107210 107206  0 17:03 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107401 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107402 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107403 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107404 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107412   1480  0 17:07 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@bogon nginx]<span class="comment"># kill -s SIGQUIT 107206</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef |grep nginx</span></span><br><span class="line">root     106255      1  0 16:45 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx</span><br><span class="line">nginx    107401 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107402 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107403 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">nginx    107404 106255  0 17:07 ?        00:00:00 nginx: worker process</span><br><span class="line">root     107440   1480  0 17:08 pts/0    00:00:00 grep --color=auto nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 至此，nginx热升级回滚成功</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Nginx模块化设计机制"><a href="#Nginx模块化设计机制" class="headerlink" title="Nginx模块化设计机制"></a>Nginx模块化设计机制</h2><h3 id="模块结构图"><a href="#模块结构图" class="headerlink" title="模块结构图"></a>模块结构图</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.5piekf14yes0.webp" width="60%" />
+
+<br/>
+
+<br>
+
+<h3 id="模块体系结构"><a href="#模块体系结构" class="headerlink" title="模块体系结构"></a>模块体系结构</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.2miqh0m6jdo0.webp" width="40%" />
+
+<br/>
+
+<br>
+
+<h2 id="Nginx编译安装的配置参数"><a href="#Nginx编译安装的配置参数" class="headerlink" title="Nginx编译安装的配置参数"></a>Nginx编译安装的配置参数</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.7jfdxqlxm340.webp" width="60%"/>
+
+<br>
+
+<br>
+
+<h2 id="定制编译安装Nginx"><a href="#定制编译安装Nginx" class="headerlink" title="定制编译安装Nginx"></a>定制编译安装Nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># （0）准备nginx的管理用户</span></span><br><span class="line">[root@bogon install]<span class="comment"># useradd nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># （1）准备安装文件</span></span><br><span class="line">[root@localhost install]<span class="comment"># wget https://nginx.org/download/nginx-1.22.1.tar.gz</span></span><br><span class="line"></span><br><span class="line">[root@bogon install]<span class="comment"># ll</span></span><br><span class="line">总用量 3688</span><br><span class="line">-rw-r--r--. 1 root root 1073322 5月  24 22:29 nginx-1.22.0.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 2085854 10月  6 16:08 pcre-8.43.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  607698 1月  16 2017 zlib-1.2.11.tar.gz</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># （2）解压安装文件</span></span><br><span class="line">[root@bogon install]<span class="comment"># ll</span></span><br><span class="line">总用量 16</span><br><span class="line">drwxr-xr-x.  8 1001  1001  158 5月  24 07:59 nginx-1.22.0</span><br><span class="line">drwxr-xr-x.  7 1169  1169 8192 2月  24 2019 pcre-8.43</span><br><span class="line">drwxr-xr-x. 14  501 games 4096 1月  16 2017 zlib-1.2.11</span><br><span class="line"></span><br><span class="line"><span class="comment"># （3）解压后进入 nginx源码目录，查看相关编译参数</span></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># ./configure --help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># （4）编译安装前下载相关依赖</span></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel gd gd-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># （5）编译安装</span></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/usr/local/nginx/conf/nginx.conf --user=nginx --group=nginx --pid-path=/usr/local/nginx/pid/nginx.pid --error-log-path=/usr/local/nginx/logs/error.log --with-pcre=/install/pcre-8.43 --with-zlib=/install/zlib-1.2.11 --with-http_ssl_module --with-http_image_filter_module --with-http_stub_status_module --http-log-path=/usr/local/nginx/logs/access.log</span></span><br><span class="line"></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># make</span></span><br><span class="line"></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># make install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 至次，nginx编译安装完成</span></span><br><span class="line"></span><br><span class="line">[root@bogon nginx-1.22.0]<span class="comment"># cd /usr/local/nginx/</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ll</span></span><br><span class="line">总用量 4</span><br><span class="line">drwxr-xr-x. 2 root root 4096 10月  6 16:16 conf</span><br><span class="line">drwxr-xr-x. 2 root root   40 10月  6 16:16 html</span><br><span class="line">drwxr-xr-x. 2 root root    6 10月  6 16:16 logs</span><br><span class="line">drwxr-xr-x. 2 root root    6 10月  6 16:16 pid</span><br><span class="line">drwxr-xr-x. 2 root root   19 10月  6 16:16 sbin</span><br><span class="line"></span><br><span class="line">[root@bogon nginx]<span class="comment"># sbin/nginx</span></span><br><span class="line">[root@bogon nginx]<span class="comment"># ps -ef | grep nginx</span></span><br><span class="line">root     104771      1  0 16:18 ?        00:00:00 nginx: master process sbin/nginx</span><br><span class="line">nginx    104772 104771  0 16:18 ?        00:00:00 nginx: worker process</span><br><span class="line">root     104780   1480  0 16:18 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Nginx配置文件结构"><a href="#Nginx配置文件结构" class="headerlink" title="Nginx配置文件结构"></a>Nginx配置文件结构</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/blog-img-bed/image.69cd7t6e47k0.webp" width="65%"/>
+
+<br>
+
+<br>
+
+<h2 id="虚拟主机的分类（三种）"><a href="#虚拟主机的分类（三种）" class="headerlink" title="虚拟主机的分类（三种）"></a>虚拟主机的分类（三种）</h2><ul>
+<li>基于多IP的虚拟主机<ul>
+<li>多网卡多IP</li>
+<li>单网卡多IP</li>
+</ul>
+</li>
+<li>基于多端口的虚拟主机</li>
+<li>基于域名的虚拟主机</li>
+</ul>
+<br>
+
+<h3 id="基于多网卡的虚拟主机实现"><a href="#基于多网卡的虚拟主机实现" class="headerlink" title="基于多网卡的虚拟主机实现"></a>基于多网卡的虚拟主机实现</h3><ul>
+<li>这里我们使用多网卡多IP的方式</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">192.168.146.132:8080</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_ip/<span class="number">132</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">192.168.146.133:8080</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_ip/<span class="number">133</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">192.168.146.134:8080</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_ip/<span class="number">134</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h3 id="基于端口的虚拟主机实现"><a href="#基于端口的虚拟主机实现" class="headerlink" title="基于端口的虚拟主机实现"></a>基于端口的虚拟主机实现</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">90</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_port/<span class="number">90</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">91</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_port/<span class="number">91</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">92</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	localhost;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_port/<span class="number">92</span>;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="基于域名的虚拟主机实现"><a href="#基于域名的虚拟主机实现" class="headerlink" title="基于域名的虚拟主机实现"></a>基于域名的虚拟主机实现</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">9090</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	test1.nginx.com;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_domain/test1;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">9090</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	test2.nginx.com;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_domain/test2;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span>	<span class="number">9090</span>;</span><br><span class="line">	<span class="attribute">server_name</span>	test3.nginx.com;</span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span>	/usr/local/nginx/html/virtual_host_by_domain/test3;</span><br><span class="line">		<span class="attribute">index</span>	index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="核心指令-Nginx基础应用"><a href="#核心指令-Nginx基础应用" class="headerlink" title="核心指令-Nginx基础应用"></a>核心指令-Nginx基础应用</h1><h2 id="配置文件main段核心参数用法"><a href="#配置文件main段核心参数用法" class="headerlink" title="配置文件main段核心参数用法"></a>配置文件main段核心参数用法</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># main段核心参数:</span></span><br><span class="line"><span class="attribute">user</span> USERNAME [GROUP]</span><br><span class="line">    解释：指定运行nginx的worker子进程的属主和属组，其中属组可以不指定 </span><br><span class="line">	示例：</span><br><span class="line">		user nginx nginx;</span><br><span class="line"></span><br><span class="line"><span class="attribute">pid</span> DIR</span><br><span class="line">    解释：指定运行nginx的master主进程的pid文件存放路径 </span><br><span class="line">	示例：</span><br><span class="line">		pid /ropt/nginx/logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_rlimit_nofile</span> number</span><br><span class="line">   	解春：指定worker子进程可以打开的最大文件句柄数 </span><br><span class="line">	示例：</span><br><span class="line">         worker_rlimit_nofile <span class="number">20480</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_rlimit_core</span> size</span><br><span class="line"> 	一 解释：指定worker子进程异常终止后的core文件，用于记录分析问题 </span><br><span class="line">	示例：</span><br><span class="line">         worker_rlimit_core <span class="number">50M</span>;</span><br><span class="line">         <span class="attribute">working_directory</span> /opt/nginx/tmp;</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_processes</span> number | auto</span><br><span class="line">   解释：指定nginx启动的worker子进程数量</span><br><span class="line">   示例：</span><br><span class="line">         worker_processes <span class="number">4</span>;</span><br><span class="line">         <span class="attribute">worker_processes</span> auto;</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_cpu_affinity</span> cpumaskl cpumask2...</span><br><span class="line">   解霹：将每个worker子进程与我们的CPU物理核心绑定。</span><br><span class="line">   示例：</span><br><span class="line">         worker_cpu_affinity <span class="number">0001</span> <span class="number">0010</span> <span class="number">0100</span> <span class="number">1000</span>； <span class="comment">#</span></span><br><span class="line">         <span class="number">4</span>个物理核心，<span class="number">4</span>个worker子进程</span><br><span class="line">         worker_cpu_affinity <span class="number">00000001</span> <span class="number">00000010</span> <span class="number">00000100</span> <span class="number">00001000</span> <span class="number">00010000</span></span><br><span class="line">         <span class="number">00100060</span> <span class="number">01000000</span> <span class="number">10000000</span>; <span class="comment"># 8物理核心，8个worker子进程</span></span><br><span class="line">         <span class="attribute">worker_cpu_affinity</span> <span class="number">01</span> <span class="number">10</span> <span class="number">01</span> <span class="number">10</span>;         <span class="comment"># 2个物理核心，4个子进程</span></span><br><span class="line">  备注：将每个worker子进程与特定CPU物理核心绑定，优势在于：避免同个worker子进程</span><br><span class="line">  在不同的CPU核心上切换，缓存失效，降低性能；其并不能真正的避免进程切换</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_priority</span> number</span><br><span class="line">   解释：指定worker子进程的nice值，以调整运行nginx的优先级，通常设定为负值，以优先 调用nginx</span><br><span class="line">   示例：</span><br><span class="line">        worker_priority -<span class="number">10</span>;</span><br><span class="line">   备注：Linux默认进程的优先级值是120,值越小越优先；nice设定范围为-20到+19</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_shutdown_timeout</span> time</span><br><span class="line">   解春：指定证WOrker子进程优雅退出时的超时时间</span><br><span class="line">   示例：</span><br><span class="line">        worker_shutdown_timeout <span class="number">5s</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">timer_resolution</span> time</span><br><span class="line">   解释：worker子进程内部使用的计时器精度，调整时间间隔越大，系统调用越少，有利于性 能提升；反之，系统调用越多，性能下降</span><br><span class="line">   示例：</span><br><span class="line">        worker_resolution 100ms;</span><br><span class="line"></span><br><span class="line"><span class="attribute">daemon</span> <span class="literal">on</span>|<span class="literal">off</span></span><br><span class="line">  解释：设定nginx的运行方式，前台还是后台，前台用户调试，后台用于生产 示例：</span><br><span class="line">       daemon <span class="literal">off</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">lock_file</span> DIR</span><br><span class="line">  解释：负载均衡互斥锁文件存放路径</span><br><span class="line">       lock_file logs/nginx.lock</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="配置文件events段核心参数用法"><a href="#配置文件events段核心参数用法" class="headerlink" title="配置文件events段核心参数用法"></a>配置文件events段核心参数用法</h2><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">use</td>
+<td align="center">nginx使用何种事件驱动模型</td>
+</tr>
+<tr>
+<td align="center">worker_connections</td>
+<td align="center">worker子进程能够处理的最大并发连接数</td>
+</tr>
+<tr>
+<td align="center">accept_mutex</td>
+<td align="center">是否打开负载均衡互斥锁</td>
+</tr>
+<tr>
+<td align="center">accept_mutex_delay</td>
+<td align="center">新连接分配给worker子进程的超时时间</td>
+</tr>
+<tr>
+<td align="center">muti_accept</td>
+<td align="center">worker子进程可以接收的新连接个数</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">语法</th>
+<th align="center">可选值</th>
+<th align="center">默认配置</th>
+<th align="center">推荐配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">use</td>
+<td align="center">use method</td>
+<td align="center">select、poll、kqueue、epoll、/dev/poll、eventport</td>
+<td align="center">无</td>
+<td align="center">不指定，让nginx自己选择</td>
+</tr>
+<tr>
+<td align="center">worker_connections</td>
+<td align="center">worker_connections number</td>
+<td align="center"></td>
+<td align="center">worker_connections 1024</td>
+<td align="center">worker_connections 65535/worker_processes|65535</td>
+</tr>
+<tr>
+<td align="center">accept_mutex</td>
+<td align="center">accept_mutex on|off</td>
+<td align="center">on、off</td>
+<td align="center">accept_mutex off</td>
+<td align="center">accept_mutex on</td>
+</tr>
+<tr>
+<td align="center">accept_mutex_delay</td>
+<td align="center">accept_mutex_delay time</td>
+<td align="center"></td>
+<td align="center">accept_mutex_delay 500ms</td>
+<td align="center">accept_mutex_delay 200ms</td>
+</tr>
+<tr>
+<td align="center">muti_accept</td>
+<td align="center">muti_accept on|off</td>
+<td align="center">on、off</td>
+<td align="center">muti_accept off</td>
+<td align="center">muti_accept on</td>
+</tr>
+</tbody></table>
+<br>
+
+<h2 id="配置文件http段核心参数用法"><a href="#配置文件http段核心参数用法" class="headerlink" title="配置文件http段核心参数用法"></a>配置文件http段核心参数用法</h2><h3 id="server-name指令"><a href="#server-name指令" class="headerlink" title="server_name指令"></a>server_name指令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以写多个server name，可以使用正则表达式，通配符，也可以是ip 具体的域名。</span></span><br><span class="line">server_name name1 name2 name3;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匹配优先级<ul>
+<li>精确匹配 &gt; 左侧通配符匹配 &gt; 右侧通配符匹配 &gt; 正则表达式匹配</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="root和alias"><a href="#root和alias" class="headerlink" title="root和alias"></a>root和alias</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">语法</th>
+<th align="center">上下文</th>
+<th align="center">共同点</th>
+<th align="center">区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">root</td>
+<td align="center">root path;</td>
+<td align="center">http server location if</td>
+<td align="center">URI到磁盘文件的映射</td>
+<td align="center">root会将定义路径与URI叠加</td>
+</tr>
+<tr>
+<td align="center">alias</td>
+<td align="center">alias path;</td>
+<td align="center">location</td>
+<td align="center">URI到磁盘文件的映射</td>
+<td align="center">alias只取定义路径</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="location的基础用法"><a href="#location的基础用法" class="headerlink" title="location的基础用法"></a>location的基础用法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">语法：</span></span><br><span class="line">	localtion [ = | ~ | ~* | ^~ ] uri &#123;...&#125;</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上下文：</span></span><br><span class="line">	server location</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">匹配规则</th>
+<th align="center">含义</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">=</td>
+<td align="center">精确匹配</td>
+<td align="center"><code>location = /images/ &#123;...&#125;</code></td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">正则匹配，区分大小写</td>
+<td align="center">`location ~ .(jpg</td>
+</tr>
+<tr>
+<td align="center">~*</td>
+<td align="center">正则匹配，不区分大小写</td>
+<td align="center">`location ~* .(jpg</td>
+</tr>
+<tr>
+<td align="center">^~</td>
+<td align="center">匹配到即停止搜索</td>
+<td align="center"><code>location ^~ /images/ &#123;...&#125;</code></td>
+</tr>
+<tr>
+<td align="center">不带任何符号</td>
+<td align="center"></td>
+<td align="center"><code>location / &#123;...&#125;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>匹配规则优先级</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4dfzxu6vkws0.webp" width="45%" />
+
+<br>
+
+<h3 id="理解location中url结尾的反斜线"><a href="#理解location中url结尾的反斜线" class="headerlink" title="理解location中url结尾的反斜线"></a>理解location中url结尾的反斜线</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /some-dir &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /some-dir/ &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果URL的结构是<code>https://domain.com/some-dir/</code>。尾部如果缺少<code>/</code>将导致重定向。因为根据约定，URL尾部的<code>/</code>表示目录，没有<code>/</code>表示文件。<ul>
+<li>所以访问<code>/some-dir/</code>时，服务器会自动去该目录下找对应的默认文件。</li>
+<li>如果访问<code>/some-dir</code>的话，服务器会先去找<code>some-dir</code>文件，找不到的话会将<code>some-dir</code>当成目录，重定向到<code>/some-dir/</code>，去该目录下找默认文件。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="stub-status模块用法"><a href="#stub-status模块用法" class="headerlink" title="stub_status模块用法"></a>stub_status模块用法</h3><ul>
+<li><code>stub_status</code>的使用，需要Nginx编译进去</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">语法结构</span></span><br><span class="line">	stub_status;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">低于1.7.5 版本：</span></span><br><span class="line">	stub_status on;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上下文：</span></span><br><span class="line">	server location</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置示例</span></span><br><span class="line">	location /uri &#123;</span><br><span class="line">		stub_status;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>状态项</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.98fiesmzwzk.webp" width="65%" />
+
+<br>
+
+<ul>
+<li>内嵌变量</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5h4bf27xt4c0.webp" width="65%" />
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="HTTP核心模块"><a href="#HTTP核心模块" class="headerlink" title="HTTP核心模块"></a>HTTP核心模块</h1><h2 id="connection-amp-request"><a href="#connection-amp-request" class="headerlink" title="connection &amp; request"></a>connection &amp; request</h2><ul>
+<li>connection 是连接，即常说的tcp连接，三次握手，状态机</li>
+<li>request是请求，例如http请求，无状态的协议</li>
+<li>request是必须建立在connection之上的</li>
+</ul>
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<ol>
+<li>linux信号量这块的管理机制可以再抽时间深入理解一下</li>
+<li>第三章、4 的相关内容算是比较简单，后续实践一下</li>
+<li>需要理解请求过程，连接、请求</li>
+<li>其实第二章的内容也很重要，要对Nginx有总体上的认知，特点、优势等等，需要说出个所以然来</li>
+<li>多进程和多线程相关的知识还需要深入理解一下</li>
+<li>Nginx的模块整体还需要有一个把握</li>
+<li>location这块的内容 还需要进一步熟悉一下</li>
+</ol>
+</blockquote>
+<br>
+
+<img src="" width="65%" />
+
+<br>
+
+<br>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">《Nginx体系化深度精讲》study notes</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2019-05-24 02:47:23</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">《Nginx体系化深度精讲》study-notes/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/Nginx/">#Nginx</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../kingbase/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">kingbase</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">Nginx初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">Nginx概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E7%BC%98%E8%B5%B7%E5%8E%86%E5%8F%B2"><span class="nav-number">1.2.</span> <span class="nav-text">Nginx缘起历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E4%B8%89%E4%B8%AA%E4%B8%BB%E8%A6%81%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.3.</span> <span class="nav-text">Nginx三个主要企业应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E6%A0%B8%E5%BF%83%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.</span> <span class="nav-text">Nginx核心优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85rpm%E5%8C%85Nginx"><span class="nav-number">1.5.</span> <span class="nav-text">安装rpm包Nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9E%84%E4%B8%8E%E7%83%AD%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">Nginx进程结构与热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">多进程与多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">多进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx的进程结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">Linux的信号量管理机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%AE%A1%E7%90%86Nginx"><span class="nav-number">2.4.</span> <span class="nav-text">利用信号量管理Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8E%9F%E7%90%86%E7%9C%9F%E7%9B%B8"><span class="nav-number">2.5.</span> <span class="nav-text">配置文件重载的原理真相</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reload-%E9%87%8D%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">2.5.1.</span> <span class="nav-text">reload 重载配置文件的流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E7%9A%84%E7%83%AD%E9%83%A8%E7%BD%B2"><span class="nav-number">2.6.</span> <span class="nav-text">Nginx的热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E5%8D%87%E7%BA%A7%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%88%E5%89%8D%E6%8F%90%EF%BC%9A%E6%96%B0%E6%97%A7Nginx%E7%9A%84%E7%BC%96%E8%AF%91%E7%9B%AE%E5%BD%95%E4%B8%80%E8%87%B4%EF%BC%89"><span class="nav-number">2.6.1.</span> <span class="nav-text">热升级的流程（前提：新旧Nginx的编译目录一致）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx%E7%83%AD%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%95%B4%E6%AD%A5%E9%AA%A4%E6%BC%94%E7%A4%BA"><span class="nav-number">2.6.2.</span> <span class="nav-text">Nginx热部署完整步骤演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx%E7%83%AD%E5%8D%87%E7%BA%A7%E6%A0%B8%E5%BF%83%E5%91%BD%E4%BB%A4%E8%A7%A3%E9%87%8A"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">Nginx热升级核心命令解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx%E6%AD%A3%E5%B8%B8%E7%83%AD%E5%8D%87%E7%BA%A7%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4%E6%BC%94%E7%A4%BA"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">Nginx正常热升级详细步骤演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx%E7%83%AD%E5%8D%87%E7%BA%A7%E2%80%94%E2%80%94%E5%9B%9E%E6%BB%9A%E6%83%85%E5%BD%A2%E6%BC%94%E7%A4%BA"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">Nginx热升级——回滚情形演示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%9C%BA%E5%88%B6"><span class="nav-number">2.7.</span> <span class="nav-text">Nginx模块化设计机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-number">2.7.1.</span> <span class="nav-text">模块结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.7.2.</span> <span class="nav-text">模块体系结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-number">2.8.</span> <span class="nav-text">Nginx编译安装的配置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85Nginx"><span class="nav-number">2.9.</span> <span class="nav-text">定制编译安装Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.10.</span> <span class="nav-text">Nginx配置文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89"><span class="nav-number">2.11.</span> <span class="nav-text">虚拟主机的分类（三种）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%9A%E7%BD%91%E5%8D%A1%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.11.1.</span> <span class="nav-text">基于多网卡的虚拟主机实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%AB%AF%E5%8F%A3%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.11.2.</span> <span class="nav-text">基于端口的虚拟主机实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.11.3.</span> <span class="nav-text">基于域名的虚拟主机实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%8C%87%E4%BB%A4-Nginx%E5%9F%BA%E7%A1%80%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">核心指令-Nginx基础应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6main%E6%AE%B5%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E7%94%A8%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">配置文件main段核心参数用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6events%E6%AE%B5%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E7%94%A8%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">配置文件events段核心参数用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6http%E6%AE%B5%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E7%94%A8%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">配置文件http段核心参数用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#server-name%E6%8C%87%E4%BB%A4"><span class="nav-number">3.3.1.</span> <span class="nav-text">server_name指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E5%92%8Calias"><span class="nav-number">3.3.2.</span> <span class="nav-text">root和alias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">3.3.3.</span> <span class="nav-text">location的基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3location%E4%B8%ADurl%E7%BB%93%E5%B0%BE%E7%9A%84%E5%8F%8D%E6%96%9C%E7%BA%BF"><span class="nav-number">3.3.4.</span> <span class="nav-text">理解location中url结尾的反斜线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stub-status%E6%A8%A1%E5%9D%97%E7%94%A8%E6%B3%95"><span class="nav-number">3.3.5.</span> <span class="nav-text">stub_status模块用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">HTTP核心模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#connection-amp-request"><span class="nav-number">4.1.</span> <span class="nav-text">connection &amp; request</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">5.</span> <span class="nav-text">学习备注</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

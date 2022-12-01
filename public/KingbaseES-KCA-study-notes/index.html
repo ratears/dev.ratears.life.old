@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            KingbaseES KCA study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">KingbaseES KCA study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-03 17:19:20</span>
+        <span class="mobile">2022-09-03 17:19</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-09-27 13:11:41</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../categories/database/">database</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../categories/database/kingbase/">kingbase</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../tags/database/">database</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../tags/kingbase/">kingbase</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>5.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>22 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="Kingbase安装与卸载"><a href="#Kingbase安装与卸载" class="headerlink" title="Kingbase安装与卸载"></a>Kingbase安装与卸载</h1><h2 id="KES安装"><a href="#KES安装" class="headerlink" title="KES安装"></a>KES安装</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><table>
+<thead>
+<tr>
+<th align="center">环境</th>
+<th align="center">要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">操作系统</td>
+<td align="center">CentOS 7.x</td>
+</tr>
+<tr>
+<td align="center">机器规格 - 内存大小</td>
+<td align="center">3GB 及以上</td>
+</tr>
+<tr>
+<td align="center">机器规格 - 磁盘空间</td>
+<td align="center">20GB 及以上</td>
+</tr>
+<tr>
+<td align="center">KES 安装包版本</td>
+<td align="center">KingbaseES_V008R006C006B0013_Lin64_install.iso</td>
+</tr>
+<tr>
+<td align="center">jdk 版本</td>
+<td align="center">1.8+</td>
+</tr>
+</tbody></table>
+<h3 id="安装前准备工作"><a href="#安装前准备工作" class="headerlink" title="安装前准备工作"></a>安装前准备工作</h3><ol>
+<li>服务器安装jdk1.8+版本并配置环境变量</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum list |grep jdk</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# yum -y install java-1.8.0-openjdk</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# java -version</span><br><span class="line">openjdk version &quot;1.8.0_342&quot;</span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_342-b07)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.342-b07, mixed mode)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>创建用于管理Kingbase的用户</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd kingbase</span><br><span class="line">[root@localhost ~]# </span><br><span class="line">[root@localhost ~]# id kingbase</span><br><span class="line">uid=1000(kingbase) gid=1000(kingbase) 组=1000(kingbase)</span><br><span class="line"></span><br><span class="line">[root@localhost install]# passwd kingbase</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>按实施规范创建目录，设置权限</li>
+</ol>
+<ul>
+<li>为了利于数据库的日常运维、持续使用、存储扩容等，我们在安装前须做好选项、存储目录规划</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">目录</td>
+<td align="center">安装软件存储目录：/install<br/>备份目录：/backup<br/>归档目录：/archive<br/>数据存储目录：/data<br/>KES 安装目录：/KingbaseES/V8</td>
+</tr>
+<tr>
+<td align="center">端口</td>
+<td align="center">54321</td>
+</tr>
+<tr>
+<td align="center">SYSTEM 密码</td>
+<td align="center">system</td>
+</tr>
+<tr>
+<td align="center">数据库编码格式</td>
+<td align="center">UTF8</td>
+</tr>
+<tr>
+<td align="center">大小写是否敏感</td>
+<td align="center">ENABLE_CI，默认为 off，表示大小写敏感（根据需求选择）</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户，创建目录，设置权限</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建目录</span></span><br><span class="line">[root@localhost ~]# mkdir -p /install /KingbaseES/V8 /backup /data /archive</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改目录属组、属主、权限</span></span><br><span class="line">[root@localhost ~]# chown -R kingbase:kingbase /install /KingbaseES /backup /archive /data</span><br><span class="line">[root@localhost ~]# chmod -R 775 /install /KingbaseES /backup /archive</span><br><span class="line">[root@localhost ~]# chmod -R 700 /data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# ls -l / |grep kingbase</span><br><span class="line">drwxrwxr-x.   2 kingbase kingbase    6 9月   4 22:39 archive</span><br><span class="line">drwxrwxr-x.   2 kingbase kingbase    6 9月   4 22:39 backup</span><br><span class="line">drwx------.   2 kingbase kingbase    6 9月   4 22:39 data</span><br><span class="line">drwxrwxr-x.   2 kingbase kingbase    6 9月   4 22:39 install</span><br><span class="line">drwxrwxr-x.   3 kingbase kingbase   16 9月   4 22:39 KingbaseES</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="上传安装包、授权文件、检查-md5、解压"><a href="#上传安装包、授权文件、检查-md5、解压" class="headerlink" title="上传安装包、授权文件、检查 md5、解压"></a>上传安装包、授权文件、检查 md5、解压</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户将安装文件上传到/install 下</span></span><br><span class="line">[root@localhost install]# ll</span><br><span class="line">-rw-r--r--. 1 root root 2180431872 9月   4 22:56 KingbaseES_V008R006C006B0013_Lin64_install.iso</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户将授权文件上传到/install。设置授权文件的属主为kingbase和权限并验证</span></span><br><span class="line">[root@localhost install]# ll</span><br><span class="line">-rw-rw-r--. 1 kingbase kingbase       3534 4月  26 11:51 license_18720_0.dat</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查和校验安装文件的 md5 值</span></span><br><span class="line">[root@localhost install]# md5sum KingbaseES_V008R006C006B0013_Lin64_install.iso</span><br><span class="line">c1410ba7062fbaff3308c1453797ce3e  KingbaseES_V008R006C006B0013_Lin64_install.iso</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户挂载 KES 安装虚拟光盘文件</span></span><br><span class="line">[root@localhost install]# mount -o loop /install/KingbaseES_V008R006C006B0013_Lin64_install.iso /mnt/</span><br><span class="line">mount: /dev/loop0 写保护，将以只读方式挂载</span><br><span class="line">[root@localhost install]# ll /mnt/</span><br><span class="line">总用量 6</span><br><span class="line">dr-xr-xr-x. 2 root root 2048 6月  14 01:09 setup</span><br><span class="line">-r-xr-xr-x. 1 root root 3820 6月  14 01:09 setup.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 kingbase 用户复制挂载后的安装文件到/install 下</span></span><br><span class="line">[kingbase@bogon ~]$ ll /mnt/</span><br><span class="line">总用量 6</span><br><span class="line">dr-xr-xr-x. 2 root root 2048 6月  14 01:09 setup</span><br><span class="line">-r-xr-xr-x. 1 root root 3820 6月  14 01:09 setup.sh</span><br><span class="line">[kingbase@bogon ~]$ mkdir -p /install/KES_V8R6CB13_INSTALL</span><br><span class="line">[kingbase@bogon ~]$ cp -r /mnt/* /install/KES_V8R6CB13_INSTALL/</span><br><span class="line">[kingbase@bogon ~]$ ll /install/KES_V8R6CB13_INSTALL/</span><br><span class="line">总用量 4</span><br><span class="line">dr-xr-xr-x. 2 kingbase kingbase   54 9月   4 23:14 setup</span><br><span class="line">-r-xr-xr-x. 1 kingbase kingbase 3820 9月   4 23:14 setup.sh</span><br><span class="line"></span><br><span class="line">[kingbase@bogon ~]$ du -sm /mnt/</span><br><span class="line">2080    /mnt/</span><br><span class="line">[kingbase@bogon ~]$ du -sm /install/KES_V8R6CB13_INSTALL/</span><br><span class="line">2080    /install/KES_V8R6CB13_INSTALL/</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="字符界面安装-KES-程序"><a href="#字符界面安装-KES-程序" class="headerlink" title="字符界面安装 KES 程序"></a>字符界面安装 KES 程序</h3><h4 id="启动字符界面安装向导进入“简介”界面"><a href="#启动字符界面安装向导进入“简介”界面" class="headerlink" title="启动字符界面安装向导进入“简介”界面"></a>启动字符界面安装向导进入“简介”界面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ cd /install/KES_V8R6CB13_INSTALL/</span><br><span class="line"></span><br><span class="line">[kingbase@bogon KES_V8R6CB13_INSTALL]$ bash ./setup.sh -i console</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装目录输入: /KingbaseES/V8</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="创建和初始化数据库集簇"><a href="#创建和初始化数据库集簇" class="headerlink" title="创建和初始化数据库集簇"></a>创建和初始化数据库集簇</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据存储目录输入: /data</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">直接回车接受参数的默认值或根据规划要求指定参数的值：</span></span><br><span class="line">（1）端口：54321（生产环境可以根据需求，自定义为其它端口）。</span><br><span class="line">（2）输入 SYSTEM 超级管理员的密码（本实验环境密码设置为 system）。</span><br><span class="line">（3）设置数据库编码格式（推荐设置为“UTF8”）。</span><br><span class="line">（4）选择数据库模式（默认为 oracle 模式）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="将-KES-服务注册为-linux-系统服务"><a href="#将-KES-服务注册为-linux-系统服务" class="headerlink" title="将 KES 服务注册为 linux 系统服务"></a>将 KES 服务注册为 linux 系统服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户执行安装程序提供的脚本/KingbaseES/V8/Scripts/root.sh</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# /KingbaseES/V8/install/script/root.sh</span><br><span class="line">Starting KingbaseES V8:</span><br><span class="line">waiting for server to start.... done</span><br><span class="line">server started</span><br><span class="line">KingbaseES V8 started successfully</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="重启-linux-确认-KES-服务自动启动"><a href="#重启-linux-确认-KES-服务自动启动" class="headerlink" title="重启 linux 确认 KES 服务自动启动"></a>重启 linux 确认 KES 服务自动启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ ps -xf |grep -v grep |grep -i &#x27;kingbase&#x27;</span><br><span class="line">  2116 ?        S      0:00 sshd: kingbase@notty</span><br><span class="line">  2092 ?        S      0:00 sshd: kingbase@pts/1</span><br><span class="line">  4919 ?        Ss     0:00 /KingbaseES/V8/KESRealPro/V008R006C006B0013/Server/bin/kingbase -D /data</span><br><span class="line">  4920 ?        Ss     0:00  \_ kingbase: logger</span><br><span class="line">  4922 ?        Ss     0:00  \_ kingbase: checkpointer</span><br><span class="line">  4923 ?        Ss     0:00  \_ kingbase: background writer</span><br><span class="line">  4924 ?        Ss     0:00  \_ kingbase: walwriter</span><br><span class="line">  4925 ?        Ss     0:00  \_ kingbase: autovacuum launcher</span><br><span class="line">  4926 ?        Ss     0:00  \_ kingbase: stats collector</span><br><span class="line">  4927 ?        Ss     0:00  \_ kingbase: ksh writer</span><br><span class="line">  4928 ?        Ss     0:00  \_ kingbase: ksh collector</span><br><span class="line">  4929 ?        Ss     0:00  \_ kingbase: kwr collector</span><br><span class="line">  4930 ?        Ss     0:00  \_ kingbase: logical replication launcher</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="确认-KES-是否已正确安装"><a href="#确认-KES-是否已正确安装" class="headerlink" title="确认 KES 是否已正确安装"></a>确认 KES 是否已正确安装</h2><ul>
+<li>可以使用以下几个角度确认 KES 是否已正确安装或启动</li>
+</ul>
+<ol>
+<li>查看安装过程日志，确认没有错误记录</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ cd /install/KES_V8R6CB13_INSTALL/</span><br><span class="line"></span><br><span class="line">[kingbase@bogon KES_V8R6CB13_INSTALL]$ ls -al *.log</span><br><span class="line">ls: 无法访问*.log: 没有那个文件或目录</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>查看开始菜单中是否已成功安装相关程序</li>
+</ol>
+<ol start="3">
+<li>查看相关进程是否启动</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ ps -xf |grep -v grep |grep -i &#x27;kingbase&#x27;</span><br><span class="line">  2116 ?        S      0:00 sshd: kingbase@notty</span><br><span class="line">  2092 ?        S      0:00 sshd: kingbase@pts/1</span><br><span class="line">  4919 ?        Ss     0:00 /KingbaseES/V8/KESRealPro/V008R006C006B0013/Server/bin/kingbase -D /data</span><br><span class="line">  4920 ?        Ss     0:00  \_ kingbase: logger</span><br><span class="line">  4922 ?        Ss     0:00  \_ kingbase: checkpointer</span><br><span class="line">  4923 ?        Ss     0:00  \_ kingbase: background writer</span><br><span class="line">  4924 ?        Ss     0:00  \_ kingbase: walwriter</span><br><span class="line">  4925 ?        Ss     0:00  \_ kingbase: autovacuum launcher</span><br><span class="line">  4926 ?        Ss     0:00  \_ kingbase: stats collector</span><br><span class="line">  4927 ?        Ss     0:00  \_ kingbase: ksh writer</span><br><span class="line">  4928 ?        Ss     0:00  \_ kingbase: ksh collector</span><br><span class="line">  4929 ?        Ss     0:00  \_ kingbase: kwr collector</span><br><span class="line">  4930 ?        Ss     0:00  \_ kingbase: logical replication launcher</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>验证数据库连接是否正常</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用 ksql 工具测试能否连接到数据库</span></span><br><span class="line">[kingbase@bogon ~]$ /KingbaseES/V8/Server/bin/ksql test system</span><br><span class="line">ksql (V8.0)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">test=#</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在桌面环境中启动“数据库对象管理工具”测试能否连接数据库</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>查看服务是否已设为开机自启</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ systemctl list-dependencies |grep kingbase</span><br><span class="line">● ├─kingbase8d.service</span><br><span class="line">[kingbase@bogon ~]$ chkconfig --list |grep kingbase</span><br><span class="line"></span><br><span class="line">注：该输出结果只显示 SysV 服务，并不包含</span><br><span class="line">原生 systemd 服务。SysV 配置数据</span><br><span class="line">可能被原生 systemd 配置覆盖。</span><br><span class="line"></span><br><span class="line">      要列出 systemd 服务，请执行 &#x27;systemctl list-unit-files&#x27;。</span><br><span class="line">      查看在具体 target 启用的服务请执行</span><br><span class="line">      &#x27;systemctl list-dependencies [target]&#x27;。</span><br><span class="line"></span><br><span class="line">kingbase8d      0:关    1:关    2:开    3:开    4:开    5:开    6:关</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="启停-KES-服务"><a href="#启停-KES-服务" class="headerlink" title="启停 KES 服务"></a>启停 KES 服务</h2><h3 id="root用户管理KES服务"><a href="#root用户管理KES服务" class="headerlink" title="root用户管理KES服务"></a>root用户管理KES服务</h3><ul>
+<li>以 root 用户身份登录</li>
+</ul>
+<h4 id="root-用户将-KES-注册为-linux-开机自启服务"><a href="#root-用户将-KES-注册为-linux-开机自启服务" class="headerlink" title="root 用户将 KES 注册为 linux 开机自启服务"></a>root 用户将 KES 注册为 linux 开机自启服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 root 用户执行安装程序提供的脚本/KingbaseES/V8/Scripts/root.sh 来注册系统服务，这样开机时会自己启动 KES 数据库服务</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# /KingbaseES/V8/install/script/root.sh</span><br><span class="line">Starting KingbaseES V8:</span><br><span class="line">waiting for server to start.... done</span><br><span class="line">server started</span><br><span class="line">KingbaseES V8 started successfully</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="systemctl-管理-KES-服务"><a href="#systemctl-管理-KES-服务" class="headerlink" title="systemctl 管理 KES 服务"></a>systemctl 管理 KES 服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">root 用户使用 systemctl 管理 KES 服务</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、确认 KES 服务状态。</span></span><br><span class="line">systemctl status kingbase8d.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、停止 KES 服务。</span></span><br><span class="line">systemctl status kingbase8d.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、启动 KES 服务。</span></span><br><span class="line">systemctl start kingbase8d.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、重启 KES 服务。</span></span><br><span class="line">systemctl restart kingbase8d.service</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="service-管理-KES-服务"><a href="#service-管理-KES-服务" class="headerlink" title="service 管理 KES 服务"></a>service 管理 KES 服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">root 用户使用 service 管理 KES 服务</span></span><br><span class="line"></span><br><span class="line">service kingbase8d status</span><br><span class="line"></span><br><span class="line">service kingbase8d start</span><br><span class="line"></span><br><span class="line">service kingbase8d restart</span><br><span class="line"></span><br><span class="line">service kingbase8d stop</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="kingbase用户管理KES服务"><a href="#kingbase用户管理KES服务" class="headerlink" title="kingbase用户管理KES服务"></a>kingbase用户管理KES服务</h3><ul>
+<li>使用 kingbase 用户登录后执行 sys_ctl 命令</li>
+</ul>
+<h4 id="使用金仓-sys-ctl-命令管理-KES-服务"><a href="#使用金仓-sys-ctl-命令管理-KES-服务" class="headerlink" title="使用金仓 sys_ctl 命令管理 KES 服务"></a>使用金仓 sys_ctl 命令管理 KES 服务</h4><h5 id="sys-ctl-长命令格式"><a href="#sys-ctl-长命令格式" class="headerlink" title="sys_ctl 长命令格式"></a>sys_ctl 长命令格式</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/KingbaseES/V8/Server/bin/sys_ctl status -D /data</span><br><span class="line"></span><br><span class="line">/KingbaseES/V8/Server/bin/sys_ctl stop -D /data</span><br><span class="line"></span><br><span class="line">/KingbaseES/V8/Server/bin/sys_ctl start -D /data</span><br><span class="line"></span><br><span class="line">/KingbaseES/V8/Server/bin/sys_ctl restart -D /data</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="sys-ctl-语法大纲"><a href="#sys-ctl-语法大纲" class="headerlink" title="sys_ctl 语法大纲"></a>sys_ctl 语法大纲</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sys_ctl start 	[-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s]</span><br><span class="line">				[-o OPTIONS] [-p PATH] [-c]</span><br><span class="line">				</span><br><span class="line">sys_ctl stop 	[-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line"></span><br><span class="line">sys_ctl restart [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">				[-o OPTIONS] [-c]</span><br><span class="line">				</span><br><span class="line">sys_ctl reload 	[-D DATADIR] [-s]</span><br><span class="line"></span><br><span class="line">sys_ctl status 	[-D DATADIR]</span><br><span class="line"></span><br><span class="line">sys_ctl promote [-D DATADIR] [-W] [-t SECS] [-s]</span><br><span class="line"></span><br><span class="line">sys_ctl logrotate [-D DATADIR] [-s]</span><br><span class="line"></span><br><span class="line">sys_ctl kill SIGNALNAME PID</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="使用-kingbase-命令启动-KES-服务"><a href="#使用-kingbase-命令启动-KES-服务" class="headerlink" title="使用 kingbase 命令启动 KES 服务"></a>使用 kingbase 命令启动 KES 服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/KingbaseES/V8/Server/bin/kingbase -D /data &gt;log1 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="环境变量对相关命令的影响"><a href="#环境变量对相关命令的影响" class="headerlink" title="环境变量对相关命令的影响"></a>环境变量对相关命令的影响</h2><ol>
+<li>定位金仓 sys_ctl 的路径</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon bin]$ find /KingbaseES/ -name sys_ctl</span><br><span class="line">/KingbaseES/V8/KESRealPro/V008R006C006B0013/Server/bin/sys_ctl</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>定位主数据目录</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon bin]$ ps -ef|grep &#x27;\ -D\ &#x27;</span><br><span class="line">kingbase   6723   2093  0 00:27 pts/1    00:00:00 /KingbaseES/V8/Server/bin/kingbase -D /data</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# find / -name kingbase.conf</span><br><span class="line">/data/kingbase.conf</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>修改环境变量</li>
+</ol>
+<p>（1）KINGBASE_DATA 变量</p>
+<ul>
+<li>该环境变量指向 KES 主数据目录，此变量名是金仓程序员指定的命名，不要修改</li>
+<li>未指定该变量时，sys_ctl 工具在执行时需要加-D 参数来给定主数据目录位置</li>
+</ul>
+<p>（2）修改 shell 的 profile</p>
+<ul>
+<li>把【/KingbaseES/V8/Server/bin】加到$PATH 变量里面</li>
+<li> 把/data 赋值给$KINGBASE_DATA</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑 kingbase 的环境变量文件，添加相应路径</span></span><br><span class="line">vi /home/kingbase/.bashrc</span><br><span class="line"></span><br><span class="line">export PATH=/KingbaseES/V8/Server/bin:$PATH</span><br><span class="line">export KINGBASE_DATA=/data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">让环境变量生效</span></span><br><span class="line">source /home/kingbase/.bashrc</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置变量后命令行比较简捷</span></span><br><span class="line">sys_ctl stop -D $KINGBASE_DATA </span><br><span class="line">kingbase -D /data &gt;log1 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="授权文件license-dat"><a href="#授权文件license-dat" class="headerlink" title="授权文件license.dat"></a>授权文件license.dat</h2><h3 id="查看license有效天数"><a href="#查看license有效天数" class="headerlink" title="查看license有效天数"></a>查看license有效天数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test=# select get_license_validdays();</span><br><span class="line"> get_license_validdays</span><br><span class="line">-----------------------</span><br><span class="line">                    89</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">test=#</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="license过期后的故障现象"><a href="#license过期后的故障现象" class="headerlink" title="license过期后的故障现象"></a>license过期后的故障现象</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41abq8t29n80.webp" />
+
+<br>
+
+<h3 id="license过期故障解决"><a href="#license过期故障解决" class="headerlink" title="license过期故障解决"></a>license过期故障解决</h3><ul>
+<li>使用 kingbase 用户登录，上传新的 lincense.dat 到 kingbase的安装目录 <code>/KingbaseES/V8</code>下——替换原旧的 license.dat。然后重新加载数据库（或者重新启动）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意 lincese.dat 的 属组和属组 必须是 kingbase，授权文件名称 必须是 lincese.dat</span></span><br><span class="line"></span><br><span class="line">[kingbase@bogon ~]$ sys_ctl reload -D $KINGBASE_DATA</span><br><span class="line">server signaled</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="KES卸载"><a href="#KES卸载" class="headerlink" title="KES卸载"></a>KES卸载</h2><ol>
+<li>使用 root 用户执行 rootuninstall.sh 脚本移除 KES 开机自启服务</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br><span class="line"></span><br><span class="line">/KingbaseES/V8/install/script/rootuninstall.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>以 kingbase 用户执行 bash /KingbaseES/V8/Uninstall/Uninstaller -i console</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ bash /KingbaseES/V8/Uninstall/Uninstaller -i console</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">卸载完后，执行`<span class="built_in">echo</span> $?`的 结果为 0，则 Uninstaller -i console 执行成功</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>清除安装目录下残留文件</li>
+</ol>
+<ul>
+<li>方法一：执行 <code>rm –fr /KingbaseES/V8</code> 直接删除安装目录</li>
+<li>方法二：执行 <code>mv /KingbaseES/V8 /KingbaseES/V8.bak</code> 将安装目录改名</li>
+</ul>
+<br>
+
+<h1 id="数据库对象管理工具"><a href="#数据库对象管理工具" class="headerlink" title="数据库对象管理工具"></a>数据库对象管理工具</h1><ul>
+<li>参考培训文档，做实验，以及做好记录</li>
+</ul>
+<br>
+
+<h1 id="命令行工具KSQL"><a href="#命令行工具KSQL" class="headerlink" title="命令行工具KSQL"></a>命令行工具KSQL</h1><h2 id="KSQL简介"><a href="#KSQL简介" class="headerlink" title="KSQL简介"></a>KSQL简介</h2><ul>
+<li>KSQL 是金仓提供给 DBA 的与 KES 数据库交互的命令行客户端程序（部分工作场景是无法使用图形界面工具来工作的；还有部分场景使用SQL效率更高）。熟练使用 KSQL 工具可以帮助 DBA 快速的操作和维护数据库</li>
+</ul>
+<h3 id="查看-KSQL-工具的帮助"><a href="#查看-KSQL-工具的帮助" class="headerlink" title="查看 KSQL 工具的帮助"></a>查看 KSQL 工具的帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ ksql --help</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>部分参数解析</li>
+</ul>
+<ol>
+<li>连接参数</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-h</td>
+<td align="center">连接服务器的监听 IP 或主机名(-h 缺省时为 localhost 方式登录)</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td align="center">连接服务器的监听端口号<br>当为端口号为默认值 54321 时可缺省-p<br/>设置了 KINGBASE_PORT 环境变量时也可缺省-p</td>
+</tr>
+<tr>
+<td align="center">-U</td>
+<td align="center">连接服务器的用户名</td>
+</tr>
+<tr>
+<td align="center">-W</td>
+<td align="center">强制输入密码</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>通用参数</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-c</td>
+<td align="center">指定连接数据库后执行的单行命令，执行完成后自动退出数据库连接</td>
+</tr>
+<tr>
+<td align="center">-d</td>
+<td align="center">指定连接时登录的数据库</td>
+</tr>
+<tr>
+<td align="center">-f</td>
+<td align="center">指定连接数据库时执行的脚本，执行完成后自动退出数据库连接</td>
+</tr>
+<tr>
+<td align="center">-l</td>
+<td align="center">打印数据库列表</td>
+</tr>
+<tr>
+<td align="center">-V</td>
+<td align="center">打印数据库版本信息</td>
+</tr>
+<tr>
+<td align="center">-?</td>
+<td align="center">打印 ksql 命令的帮助信息</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>输入输出参数</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-H</td>
+<td align="center">以 html 格式展示输出结果</td>
+</tr>
+<tr>
+<td align="center">-E</td>
+<td align="center">展示元命令所执行的 sql</td>
+</tr>
+<tr>
+<td align="center">-t</td>
+<td align="center">不输出字段名</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="center">调整查询结果为纵向展示</td>
+</tr>
+<tr>
+<td align="center">-q</td>
+<td align="center">不输出登录提示信息</td>
+</tr>
+<tr>
+<td align="center">-o</td>
+<td align="center">将命令输出结果保存到指定的文件中</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="查看标准-SQL-命令的帮助"><a href="#查看标准-SQL-命令的帮助" class="headerlink" title="查看标准 SQL 命令的帮助"></a>查看标准 SQL 命令的帮助</h3><ol>
+<li>使用 <code>\h</code> 列出所有的 SQL 命令清单</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test<span class="operator">=</span># \h</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>使用 <code>\h &lt;sql 命令&gt;</code> 列出某个 SQL 命令的语法大纲</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test<span class="operator">=</span># \h <span class="keyword">delete</span></span><br><span class="line">Command:     <span class="keyword">DELETE</span></span><br><span class="line">Description: 删除数据表中的数据列</span><br><span class="line">Syntax:</span><br><span class="line">[ <span class="keyword">WITH</span> [ <span class="keyword">RECURSIVE</span> ] <span class="keyword">with</span>查询语句(with_query) [, ...] ]</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> [ <span class="keyword">ONLY</span> ] 表名 [ <span class="operator">*</span> ] [ [ <span class="keyword">AS</span> ] 别名 ]</span><br><span class="line">    [ <span class="keyword">USING</span> <span class="keyword">USING</span>列表(using_list) ]</span><br><span class="line">    [ <span class="keyword">WHERE</span> 条件 <span class="operator">|</span> <span class="keyword">WHERE</span> <span class="keyword">CURRENT</span> <span class="keyword">OF</span> 游标名称 ]</span><br><span class="line">    [ RETURNING <span class="operator">*</span> <span class="operator">|</span> 输出表达式 [ [ <span class="keyword">AS</span> ] 输出名称 ] [, ...] ]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="查看-KSQL-元命令的帮助"><a href="#查看-KSQL-元命令的帮助" class="headerlink" title="查看 KSQL 元命令的帮助"></a>查看 KSQL 元命令的帮助</h3><ol>
+<li>元命令介绍</li>
+</ol>
+<blockquote>
+<p>（1）ksql 提供了一组以“\”开头的快捷命令，称之为 ksql 元命令。<br>（2）搭配通配符“*”或“?”提高查询效率。<br>（3）使用选项“S”显示系统对象。<br>（4）使用选项“+”显示更加丰富的信息。</p>
+</blockquote>
+<ol start="2">
+<li>常用元命令介绍</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\d[S+]</td>
+<td align="center">列出表,视图和序列,其中 S 表示包含系统对象，+表示列出详细信息</td>
+</tr>
+<tr>
+<td align="center">\d[S+] 名称</td>
+<td align="center">描述表，视图，序列，或索引</td>
+</tr>
+<tr>
+<td align="center">\db[+] [模式]</td>
+<td align="center">列出表空间</td>
+</tr>
+<tr>
+<td align="center">\di[S+] [模式]</td>
+<td align="center">列出索引</td>
+</tr>
+<tr>
+<td align="center">\dp [模式]</td>
+<td align="center">列出表，视图和序列的访问权限(\z 和相同)</td>
+</tr>
+<tr>
+<td align="center">\ds[S+] [模式]</td>
+<td align="center">列出序列</td>
+</tr>
+<tr>
+<td align="center">\du[+]</td>
+<td align="center">列出角色</td>
+</tr>
+<tr>
+<td align="center">\l[+]</td>
+<td align="center">列出所有的数据库</td>
+</tr>
+</tbody></table>
+<h3 id="KSQL-连接到数据库"><a href="#KSQL-连接到数据库" class="headerlink" title="KSQL 连接到数据库"></a>KSQL 连接到数据库</h3><h4 id="使用-SOCKET-方式登录数据库"><a href="#使用-SOCKET-方式登录数据库" class="headerlink" title="使用 SOCKET 方式登录数据库"></a>使用 SOCKET 方式登录数据库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@localhost ~]$ ksql -U system -d test</span><br><span class="line">ksql (V8.0)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">test=# </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用-TCP-IP-方式登录数据库"><a href="#使用-TCP-IP-方式登录数据库" class="headerlink" title="使用 TCP/IP 方式登录数据库"></a>使用 TCP/IP 方式登录数据库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@localhost ~]$ ksql -h 192.168.146.129 -p 54321 -U system -d test</span><br><span class="line">用户 system 的口令：</span><br><span class="line">ksql (V8.0)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">test=# </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="在-KSQL-中切换登录用户和数据库"><a href="#在-KSQL-中切换登录用户和数据库" class="headerlink" title="在 KSQL 中切换登录用户和数据库"></a>在 KSQL 中切换登录用户和数据库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ ksql -Usystem -d test</span><br><span class="line">ksql (V8.0)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">test=# \c tfsdb</span><br><span class="line">您现在已经连接到数据库 &quot;tfsdb&quot;,用户 &quot;system&quot;.</span><br><span class="line"></span><br><span class="line">tfsdb=# \c - tfsdb</span><br><span class="line">您现在已经连接到数据库 &quot;tfsdb&quot;,用户 &quot;tfsdb&quot;.</span><br><span class="line"></span><br><span class="line">tfsdb=# \c test system</span><br><span class="line">您现在已经连接到数据库 &quot;test&quot;,用户 &quot;system&quot;.</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="KSQL-引用环境变量进行快速登录"><a href="#KSQL-引用环境变量进行快速登录" class="headerlink" title="KSQL 引用环境变量进行快速登录"></a>KSQL 引用环境变量进行快速登录</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3xiqo6d2q3g0.webp" width="60%"/>
+
+<br>
+
+
+
+<h3 id="执行-SQL-的几种方式"><a href="#执行-SQL-的几种方式" class="headerlink" title="执行 SQL 的几种方式"></a>执行 SQL 的几种方式</h3><ol>
+<li>交互方式执行 SQL</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">登录ksql</span></span><br><span class="line">tfsdb=# select * from pa_user;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>非交互方式执行 SQL (单条 SQL 语句)</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用“-c”选项登录 tfsdb 数据库查看</span></span><br><span class="line"></span><br><span class="line">[kingbase@bogon ~]$ ksql -U tfsdb -d tfsdb -c &#x27;select * from pa_user;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>非交互方式执行 SQL (成批的 SQL 语句、SQL文件)</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[kingbase@bogon ~]$ ll</span><br><span class="line">总用量 8</span><br><span class="line">-rw-rw-r--  1 kingbase kingbase  23 9月   9 18:00 demo.sql</span><br><span class="line">-rw-------. 1 kingbase kingbase 712 8月  20 19:13 restart.log</span><br><span class="line"></span><br><span class="line">[kingbase@bogon ~]$ cat demo.sql</span><br><span class="line">select * from pa_user;</span><br><span class="line"></span><br><span class="line">[kingbase@bogon ~]$ ksql -U tfsdb -d tfsdb -f /home/kingbase/demo.sql</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="KSQL-元命令介绍"><a href="#KSQL-元命令介绍" class="headerlink" title="KSQL 元命令介绍"></a>KSQL 元命令介绍</h3><ul>
+<li>略（查看官网）</li>
+</ul>
+<h3 id="使用元命令实现异构数据库数据交换"><a href="#使用元命令实现异构数据库数据交换" class="headerlink" title="使用元命令实现异构数据库数据交换"></a>使用元命令实现异构数据库数据交换</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">导出表数据库到 csv 文件</span></span><br><span class="line">tfsdb=# \copy tfsdb.pa_user to /home/kingbase/pa_user.csv csv</span><br><span class="line">COPY 16</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 csv</span></span><br><span class="line">tfsdb=# \! cat /home/kingbase/pa_user.csv</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将 csv 文件导入数据库表中</span></span><br><span class="line">tfsdb=# \copy tfsdb.pa_user from /home/kingbase/pa_user.csv csv</span><br><span class="line">COPY 16</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="用户与角色"><a href="#用户与角色" class="headerlink" title="用户与角色"></a>用户与角色</h1><ul>
+<li>用户和角色是数据库管理的基础</li>
+<li>本章主要介绍如何在 KES 数据库中创建用户和角色，以及利用“角色”对多个用户批量授权，使 KES 管理体系更加清晰、简单</li>
+</ul>
+<h2 id="数据库用户"><a href="#数据库用户" class="headerlink" title="数据库用户"></a>数据库用户</h2><h3 id="用户管理概述"><a href="#用户管理概述" class="headerlink" title="用户管理概述"></a>用户管理概述</h3><ol>
+<li>数据库用户代表数据库的使用者</li>
+<li>应该为每个使用者创建用户</li>
+<li>尽量避免多人使用同一个数据库用户</li>
+</ol>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
+<li><p>增删改查 略（参考官网）</p>
+</li>
+<li><p>当待删除用户是部分对象的拥有者时，因对象依赖会导致删除用户失败</p>
+</li>
+</ul>
+<h2 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h2><h3 id="角色的概念"><a href="#角色的概念" class="headerlink" title="角色的概念"></a>角色的概念</h3><ol>
+<li>将一组具有相同权限的用户组织在一起，这一组具有相同权限的用户就称为角色（Role）</li>
+<li>角色在生产系统中一般被视作用户组，利用角色对用户执行批量授权</li>
+</ol>
+<h3 id="角色管理"><a href="#角色管理" class="headerlink" title="角色管理"></a>角色管理</h3><ul>
+<li>增删改查 略（参考官网）</li>
+<li>当待删除角色是部分对象的拥有者时，因对象依赖会导致删除角色失败</li>
+<li>当待删除角色被显式授予对象权限时，因权限依赖会导致删除角色失败</li>
+</ul>
+<h1 id="对象的访问权限入门"><a href="#对象的访问权限入门" class="headerlink" title="对象的访问权限入门"></a>对象的访问权限入门</h1><ul>
+<li>数据库的表、索引、视图、图表、缺省值、规则、触发器、语法等等，在数据库中的一切，都称为数据库对象，对象分为如下两类：</li>
+</ul>
+<ol>
+<li>模式（SCHEMA）对象：可视为一个表的集合，可以理解为一个存储目录，包含视图、索引、数据类型、函数和操作符等</li>
+<li>非模式对象：其他的数据库对象，如数据库、表空间、用户、权限。</li>
+</ol>
+<ul>
+<li>用户或角色访问模式对象或非模式对象的能力称之为对象权限</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="简单巡检"><a href="#简单巡检" class="headerlink" title="简单巡检"></a>简单巡检</h1><h2 id="查看-KES-版本信息"><a href="#查看-KES-版本信息" class="headerlink" title="查看 KES 版本信息"></a>查看 KES 版本信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 sys_ctl 查看版本</span></span><br><span class="line">[kingbase@localhost ~]$ sys_ctl -V</span><br><span class="line">sys_ctl (Kingbase) 12.1</span><br><span class="line">[kingbase@localhost ~]$ sys_ctl --version</span><br><span class="line">sys_ctl (Kingbase) 12.1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 version 函数查看版本</span></span><br><span class="line">test=# select version();</span><br><span class="line">                                                       version</span><br><span class="line">----------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> KingbaseES V008R006C006B0013 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 4.1.2 20080704 (Red Hat 4.1.2-46), 64-bit</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看-license-有效期"><a href="#查看-license-有效期" class="headerlink" title="查看 license 有效期"></a>查看 license 有效期</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test=# select get_license_validdays();</span><br><span class="line"> get_license_validdays</span><br><span class="line">-----------------------</span><br><span class="line">                    66</span><br><span class="line">(1 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看-KES-实例启动时间和运行时长"><a href="#查看-KES-实例启动时间和运行时长" class="headerlink" title="查看 KES 实例启动时间和运行时长"></a>查看 KES 实例启动时间和运行时长</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看数据库实例启动时间</span></span><br><span class="line">test=# select sys_postmaster_start_time();</span><br><span class="line">   sys_postmaster_start_time</span><br><span class="line">-------------------------------</span><br><span class="line"> 2022-09-25 08:04:56.261041+08</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 KES 无故障运行时长</span></span><br><span class="line">test=# select date_trunc(&#x27;second&#x27;,current_timestamp - sys_postmaster_start_time()) as uptime;</span><br><span class="line">         uptime</span><br><span class="line">------------------------</span><br><span class="line"> 2 days 16:28:15.000000</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看数据库列表"><a href="#查看数据库列表" class="headerlink" title="查看数据库列表"></a>查看数据库列表</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 ksql 的-l 参数或元命令\l</span></span><br><span class="line">[kingbase@localhost ~]$ ksql -Usystem -d test -l</span><br><span class="line">                                           数据库列表</span><br><span class="line">    名称     |   拥有者    | 字元编码 | 校对规则 |    Ctype    |            存取权限</span><br><span class="line">-------------+-------------+----------+----------+-------------+--------------------------------</span><br><span class="line"> security    | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 |</span><br><span class="line"> template0   | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 | =c/system                     +</span><br><span class="line">             |             |          |          |             | system=CTc/system</span><br><span class="line"> template1   | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 | =c/system                     +</span><br><span class="line">             |             |          |          |             | system=CTc/system</span><br><span class="line"> test        | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 |</span><br><span class="line"> xjnxdb_test | xjnxdb_test | UTF8     | ci_x_icu | zh_CN.UTF-8 | =Tc/xjnxdb_test               +</span><br><span class="line">             |             |          |          |             | xjnxdb_test=C*T*c*/xjnxdb_test</span><br><span class="line">(5 行记录)</span><br><span class="line"></span><br><span class="line">test=# \l</span><br><span class="line">                                           数据库列表</span><br><span class="line">    名称     |   拥有者    | 字元编码 | 校对规则 |    Ctype    |            存取权限</span><br><span class="line">-------------+-------------+----------+----------+-------------+--------------------------------</span><br><span class="line"> security    | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 |</span><br><span class="line"> template0   | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 | =c/system                     +</span><br><span class="line">             |             |          |          |             | system=CTc/system</span><br><span class="line"> template1   | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 | =c/system                     +</span><br><span class="line">             |             |          |          |             | system=CTc/system</span><br><span class="line"> test        | system      | UTF8     | ci_x_icu | zh_CN.UTF-8 |</span><br><span class="line"> xjnxdb_test | xjnxdb_test | UTF8     | ci_x_icu | zh_CN.UTF-8 | =Tc/xjnxdb_test               +</span><br><span class="line">             |             |          |          |             | xjnxdb_test=C*T*c*/xjnxdb_test</span><br><span class="line">(5 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用数据字典</span></span><br><span class="line">test=# select datname from sys_database;</span><br><span class="line">   datname</span><br><span class="line">-------------</span><br><span class="line"> test</span><br><span class="line"> security</span><br><span class="line"> template1</span><br><span class="line"> template0</span><br><span class="line"> xjnxdb_test</span><br><span class="line">(5 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看数据库占用的磁盘空间"><a href="#查看数据库占用的磁盘空间" class="headerlink" title="查看数据库占用的磁盘空间"></a>查看数据库占用的磁盘空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计当前数据库占用的磁盘空间</span></span><br><span class="line">test=# select sys_database_size(current_database())/1024/1024 || &#x27;MB&#x27; MB;</span><br><span class="line">  MB</span><br><span class="line">------</span><br><span class="line"> 12MB</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计所有数据库占用的磁盘空间总量</span></span><br><span class="line">xjnxdb_test=# select (sum(sys_database_size(datname))/1024/1024) || &#x27;MB&#x27; MB from sys_database;</span><br><span class="line">           MB</span><br><span class="line">------------------------</span><br><span class="line"> 234.1652364730834961MB</span><br><span class="line">(1 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看表和索引的大小"><a href="#查看表和索引的大小" class="headerlink" title="查看表和索引的大小"></a>查看表和索引的大小</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计表的空间占用</span></span><br><span class="line">xjnxdb_test=# select sys_relation_size(&#x27;xjnxdb_test.pa_user&#x27;)/1024 || &#x27;KB&#x27; KB;</span><br><span class="line">  KB</span><br><span class="line">------</span><br><span class="line"> 48KB</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select sys_size_pretty(sys_relation_size(&#x27;xjnxdb_test.pa_user&#x27;));</span><br><span class="line"> sys_size_pretty</span><br><span class="line">-----------------</span><br><span class="line"> 48 kB</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计表和与表关联的索引占用空间总量</span></span><br><span class="line">xjnxdb_test=# select sys_total_relation_size(&#x27;xjnxdb_test.pa_user&#x27;)/1024 || &#x27;KB&#x27; KB;</span><br><span class="line">  KB</span><br><span class="line">------</span><br><span class="line"> 88KB</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select sys_size_pretty(sys_total_relation_size(&#x27;xjnxdb_test.pa_user&#x27;));</span><br><span class="line"> sys_size_pretty</span><br><span class="line">-----------------</span><br><span class="line"> 88 kB</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计表的记录数</span></span><br><span class="line">xjnxdb_test=# select count(*) || &#x27; rows&#x27; &quot;rows&quot; from xjnxdb_test.pa_user;</span><br><span class="line">   rows</span><br><span class="line">----------</span><br><span class="line"> 145 rows</span><br><span class="line">(1 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看时区和时间"><a href="#查看时区和时间" class="headerlink" title="查看时区和时间"></a>查看时区和时间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看最近一次加载参数文件的时间</span></span><br><span class="line">xjnxdb_test=# select sys_conf_load_time();</span><br><span class="line">      sys_conf_load_time</span><br><span class="line">-------------------------------</span><br><span class="line"> 2022-09-25 08:04:55.822231+08</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看时区</span></span><br><span class="line">xjnxdb_test=# show timezone;</span><br><span class="line">   TimeZone</span><br><span class="line">---------------</span><br><span class="line"> Asia/Shanghai</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看当前日期或时间</span></span><br><span class="line">xjnxdb_test=# select now();</span><br><span class="line">              now</span><br><span class="line">-------------------------------</span><br><span class="line"> 2022-09-28 05:43:22.416126+08</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select current_timestamp;</span><br><span class="line">       current_timestamp</span><br><span class="line">-------------------------------</span><br><span class="line"> 2022-09-28 05:43:45.124372+08</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select sysdate;</span><br><span class="line">       sysdate</span><br><span class="line">---------------------</span><br><span class="line"> 2022-09-28 05:44:16</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select current_date;</span><br><span class="line"> current_date</span><br><span class="line">--------------</span><br><span class="line"> 2022-09-28</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看当前登录数据库的名称"><a href="#查看当前登录数据库的名称" class="headerlink" title="查看当前登录数据库的名称"></a>查看当前登录数据库的名称</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xjnxdb_test=# select current_catalog;</span><br><span class="line"> current_catalog</span><br><span class="line">-----------------</span><br><span class="line"> xjnxdb_test</span><br><span class="line">(1 行记录)</span><br><span class="line"></span><br><span class="line">xjnxdb_test=# select current_database();</span><br><span class="line"> current_database</span><br><span class="line">------------------</span><br><span class="line"> xjnxdb_test</span><br><span class="line">(1 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看当前会话信息"><a href="#查看当前会话信息" class="headerlink" title="查看当前会话信息"></a>查看当前会话信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看当前会话的客户端 IP 和端口。</span></span><br><span class="line">test=# select inet_client_addr(),inet_client_port();</span><br><span class="line"> inet_client_addr | inet_client_port</span><br><span class="line">------------------+------------------</span><br><span class="line"> 10.114.200.15    |            52665</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看服务器的 IP 和端口。</span></span><br><span class="line">test=# select inet_server_addr(),inet_server_port();</span><br><span class="line"> inet_server_addr | inet_server_port</span><br><span class="line">------------------+------------------</span><br><span class="line"> 10.114.12.66     |            54321</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看当前会话的后台进程 ID。</span></span><br><span class="line">test=# select sys_backend_pid();</span><br><span class="line"> sys_backend_pid</span><br><span class="line">-----------------</span><br><span class="line">          341129</span><br><span class="line">(1 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看数据库中的连接信息"><a href="#查看数据库中的连接信息" class="headerlink" title="查看数据库中的连接信息"></a>查看数据库中的连接信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">test=# select datname,usename,client_addr,client_port  from sys_stat_activity;</span><br><span class="line">   datname    |   usename    |  client_addr   | client_port</span><br><span class="line">--------------+--------------+----------------+-------------</span><br><span class="line">              |              |                |</span><br><span class="line">              | system       |                |</span><br><span class="line">              | system       |                |</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45560</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45584</span><br><span class="line"> xjnxdb_test2 | xjnxdb_test2 | 10.114.12.67   |       45624</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45630</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看会话执行的-SQL-信息"><a href="#查看会话执行的-SQL-信息" class="headerlink" title="查看会话执行的 SQL 信息"></a>查看会话执行的 SQL 信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（1）设置参数 track_activities 为 on。</span></span><br><span class="line">test=# show track_activities;</span><br><span class="line"> track_activities</span><br><span class="line">------------------</span><br><span class="line"> on</span><br><span class="line">(1 行记录)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有会话执行的 SQL 信息</span></span><br><span class="line">test=# select datname,usename,client_addr,client_port  from sys_stat_activity;</span><br><span class="line">   datname    |   usename    |  client_addr   | client_port</span><br><span class="line">--------------+--------------+----------------+-------------</span><br><span class="line">              |              |                |</span><br><span class="line">              | system       |                |</span><br><span class="line">              | system       |                |</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45654</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45694</span><br><span class="line"> tfsdb        | tfsdb        | 10.43.1.113    |       55971</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45630</span><br><span class="line"> xjnxdb_2_pt  | xjnxdb_2_pt  | 10.114.12.67   |       45684</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只看正在运行的 SQL 信息</span></span><br><span class="line">test=# select datname,usename,client_addr,client_port  from sys_stat_activity where state not like &#x27;idle%&#x27;;</span><br><span class="line">   datname   |   usename   |  client_addr   | client_port</span><br><span class="line">-------------+-------------+----------------+-------------</span><br><span class="line"> xjnxdb_test | xjnxdb_test | 10.114.12.67   |       45706</span><br><span class="line"> xjnxdb      | xjnxdb      | 10.114.200.108 |       54113</span><br><span class="line"> test        | system      | 10.114.200.15  |       56839</span><br><span class="line">(3 行记录)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="查看耗时较长的-SQL"><a href="#查看耗时较长的-SQL" class="headerlink" title="查看耗时较长的 SQL"></a>查看耗时较长的 SQL</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tfsdb=# select current_timestamp - query_start as runtime ,datname,usename,pid,query from  sys_stat_activity where state != &#x27;idle&#x27; order by 1 desc;</span><br><span class="line">-[ RECORD 1 ]----------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">runtime | 00:00:00.000000</span><br><span class="line">datname | tfsdb</span><br><span class="line">usename | system</span><br><span class="line">pid     | 341563</span><br><span class="line">query   | select current_timestamp - query_start as runtime ,datname,usename,pid,query from  sys_stat_activity where state != &#x27;idle&#x27; order by 1 desc;</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h2 id="事务阻塞会话的简单处理"><a href="#事务阻塞会话的简单处理" class="headerlink" title="事务阻塞会话的简单处理"></a>事务阻塞会话的简单处理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">会话 1—关闭自动提交后删除记录</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h1><br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">熟悉语义 /KingbaseES/V8/Server/bin/kingbase -D /data &gt;log1 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">systemctl , sys_ctl service各个命令的隔离性？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">几种关闭模式需要详细了解和实验记录，需要自己动手做实验</span><br><span class="line"></span><br><span class="line">sql 的元命令 需要详细了解一下呢</span><br><span class="line"></span><br><span class="line">copy 和 \copy</span><br><span class="line"></span><br><span class="line">事务阻塞会话的简单处理 这一块还需要了解一下</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">KingbaseES KCA study notes</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-09-03 17:19:20</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">KingbaseES-KCA-study-notes/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../tags/database/">#database</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../tags/kingbase/">#kingbase</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8ASpring-Data-JPA-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《Spring Data JPA 原理与实战》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../%E3%80%8A%E4%B8%80%E7%AB%99%E5%BC%8F%E5%AD%A6%E4%B9%A0Redis-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">《一站式学习Redis-从入门到高可用分布式实践》study notes</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kingbase%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">Kingbase安装与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KES%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">KES安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装前准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E5%AE%89%E8%A3%85%E5%8C%85%E3%80%81%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6%E3%80%81%E6%A3%80%E6%9F%A5-md5%E3%80%81%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">上传安装包、授权文件、检查 md5、解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%95%8C%E9%9D%A2%E5%AE%89%E8%A3%85-KES-%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.1.4.</span> <span class="nav-text">字符界面安装 KES 程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AD%97%E7%AC%A6%E7%95%8C%E9%9D%A2%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E8%BF%9B%E5%85%A5%E2%80%9C%E7%AE%80%E4%BB%8B%E2%80%9D%E7%95%8C%E9%9D%A2"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">启动字符界面安装向导进入“简介”界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%B0%87"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">创建和初始化数据库集簇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86-KES-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%BA-linux-%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">将 KES 服务注册为 linux 系统服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AF-linux-%E7%A1%AE%E8%AE%A4-KES-%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">重启 linux 确认 KES 服务自动启动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4-KES-%E6%98%AF%E5%90%A6%E5%B7%B2%E6%AD%A3%E7%A1%AE%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">确认 KES 是否已正确安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%81%9C-KES-%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.</span> <span class="nav-text">启停 KES 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86KES%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.1.</span> <span class="nav-text">root用户管理KES服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#root-%E7%94%A8%E6%88%B7%E5%B0%86-KES-%E6%B3%A8%E5%86%8C%E4%B8%BA-linux-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">root 用户将 KES 注册为 linux 开机自启服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#systemctl-%E7%AE%A1%E7%90%86-KES-%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">systemctl 管理 KES 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-%E7%AE%A1%E7%90%86-KES-%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">service 管理 KES 服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kingbase%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86KES%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">kingbase用户管理KES服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%87%91%E4%BB%93-sys-ctl-%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86-KES-%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">使用金仓 sys_ctl 命令管理 KES 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sys-ctl-%E9%95%BF%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">sys_ctl 长命令格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sys-ctl-%E8%AF%AD%E6%B3%95%E5%A4%A7%E7%BA%B2"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">sys_ctl 语法大纲</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-kingbase-%E5%91%BD%E4%BB%A4%E5%90%AF%E5%8A%A8-KES-%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">使用 kingbase 命令启动 KES 服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%AF%B9%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.4.</span> <span class="nav-text">环境变量对相关命令的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6license-dat"><span class="nav-number">1.5.</span> <span class="nav-text">授权文件license.dat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Blicense%E6%9C%89%E6%95%88%E5%A4%A9%E6%95%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">查看license有效天数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#license%E8%BF%87%E6%9C%9F%E5%90%8E%E7%9A%84%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.5.2.</span> <span class="nav-text">license过期后的故障现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#license%E8%BF%87%E6%9C%9F%E6%95%85%E9%9A%9C%E8%A7%A3%E5%86%B3"><span class="nav-number">1.5.3.</span> <span class="nav-text">license过期故障解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KES%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.6.</span> <span class="nav-text">KES卸载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E8%B1%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">数据库对象管理工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7KSQL"><span class="nav-number">3.</span> <span class="nav-text">命令行工具KSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KSQL%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">KSQL简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-KSQL-%E5%B7%A5%E5%85%B7%E7%9A%84%E5%B8%AE%E5%8A%A9"><span class="nav-number">3.1.1.</span> <span class="nav-text">查看 KSQL 工具的帮助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%A0%87%E5%87%86-SQL-%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B8%AE%E5%8A%A9"><span class="nav-number">3.1.2.</span> <span class="nav-text">查看标准 SQL 命令的帮助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-KSQL-%E5%85%83%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B8%AE%E5%8A%A9"><span class="nav-number">3.1.3.</span> <span class="nav-text">查看 KSQL 元命令的帮助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KSQL-%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.4.</span> <span class="nav-text">KSQL 连接到数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-SOCKET-%E6%96%B9%E5%BC%8F%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">使用 SOCKET 方式登录数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-TCP-IP-%E6%96%B9%E5%BC%8F%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">使用 TCP&#x2F;IP 方式登录数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-KSQL-%E4%B8%AD%E5%88%87%E6%8D%A2%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.4.3.</span> <span class="nav-text">在 KSQL 中切换登录用户和数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KSQL-%E5%BC%95%E7%94%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%BF%9B%E8%A1%8C%E5%BF%AB%E9%80%9F%E7%99%BB%E5%BD%95"><span class="nav-number">3.1.4.4.</span> <span class="nav-text">KSQL 引用环境变量进行快速登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C-SQL-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.5.</span> <span class="nav-text">执行 SQL 的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KSQL-%E5%85%83%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.6.</span> <span class="nav-text">KSQL 元命令介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%83%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2"><span class="nav-number">3.1.7.</span> <span class="nav-text">使用元命令实现异构数据库数据交换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%B8%8E%E8%A7%92%E8%89%B2"><span class="nav-number">4.</span> <span class="nav-text">用户与角色</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="nav-number">4.1.</span> <span class="nav-text">数据库用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.1.</span> <span class="nav-text">用户管理概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-number">4.1.2.</span> <span class="nav-text">用户管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2"><span class="nav-number">4.2.</span> <span class="nav-text">数据库角色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">4.2.1.</span> <span class="nav-text">角色的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">角色管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E5%85%A5%E9%97%A8"><span class="nav-number">5.</span> <span class="nav-text">对象的访问权限入门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A1%E6%A3%80"><span class="nav-number">6.</span> <span class="nav-text">简单巡检</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-KES-%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">6.1.</span> <span class="nav-text">查看 KES 版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-license-%E6%9C%89%E6%95%88%E6%9C%9F"><span class="nav-number">6.2.</span> <span class="nav-text">查看 license 有效期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-KES-%E5%AE%9E%E4%BE%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E9%95%BF"><span class="nav-number">6.3.</span> <span class="nav-text">查看 KES 实例启动时间和运行时长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E8%A1%A8"><span class="nav-number">6.4.</span> <span class="nav-text">查看数据库列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8D%A0%E7%94%A8%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4"><span class="nav-number">6.5.</span> <span class="nav-text">查看数据库占用的磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8%E5%92%8C%E7%B4%A2%E5%BC%95%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">6.6.</span> <span class="nav-text">查看表和索引的大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%B6%E5%8C%BA%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">6.7.</span> <span class="nav-text">查看时区和时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="nav-number">6.8.</span> <span class="nav-text">查看当前登录数据库的名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%E4%BF%A1%E6%81%AF"><span class="nav-number">6.9.</span> <span class="nav-text">查看当前会话信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="nav-number">6.10.</span> <span class="nav-text">查看数据库中的连接信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BC%9A%E8%AF%9D%E6%89%A7%E8%A1%8C%E7%9A%84-SQL-%E4%BF%A1%E6%81%AF"><span class="nav-number">6.11.</span> <span class="nav-text">查看会话执行的 SQL 信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%80%97%E6%97%B6%E8%BE%83%E9%95%BF%E7%9A%84-SQL"><span class="nav-number">6.12.</span> <span class="nav-text">查看耗时较长的 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%98%BB%E5%A1%9E%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86"><span class="nav-number">6.13.</span> <span class="nav-text">事务阻塞会话的简单处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">7.</span> <span class="nav-text">单表查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">8.</span> <span class="nav-text">学习备注</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
