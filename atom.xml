@@ -93,14 +93,12 @@
     
     <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/"/>
     
-    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/Redis/"/>
-    
     <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/study-notes/"/>
+    
+    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/Redis/"/>
     
     
     <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Database/"/>
-    
-    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/study-notes/"/>
     
     <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Redis/"/>
     
