@@ -80,8 +80,16 @@
                         </li>
                     
                         <li class="menu-item">
+                            <a class=""
+                               href="../../archives/"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
                             <a class="active"
-                               href="../../categories"
+                               href="../../categories/"
                             >
                                 CATEGORIES
                             </a>
@@ -89,7 +97,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../tags"
+                               href="../../tags/"
                             >
                                 TAGS
                             </a>
@@ -97,7 +105,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../links"
+                               href="../../links/"
                             >
                                 LINKS
                             </a>
@@ -105,7 +113,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../about"
+                               href="../../about/"
                             >
                                 ABOUT
                             </a>
@@ -138,23 +146,28 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../archives/">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
                     <a class="active"
-                       href="../../categories">CATEGORIES</a>
+                       href="../../categories/">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../tags">TAGS</a>
+                       href="../../tags/">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../links">LINKS</a>
+                       href="../../links/">LINKS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../about">ABOUT</a>
+                       href="../../about/">ABOUT</a>
                 </li>
             
         </ul>
@@ -353,55 +366,6 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
-
-
-
-
-<div class="post-scripts pjax">
-    
-</div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-</body>
-</html>
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
 
 
 
