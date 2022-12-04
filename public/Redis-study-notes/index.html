@@ -234,6 +234,10 @@
                         &gt; <a href="../categories/Database/Redis/">Redis</a>&nbsp;
                     </li>
                 
+                    <li>
+                        &gt; <a href="../categories/study-notes/">study-notes</a>&nbsp;
+                    </li>
+                
             </ul>
         </span>
     
@@ -243,15 +247,19 @@
             <ul>
                 
                     <li>
-                        <a href="../tags/Redis/">Redis</a>&nbsp;
+                        <a href="../tags/Database/">Database</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../tags/study-notes/">study-notes</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../tags/Redis/">Redis</a>&nbsp;
                     </li>
                 
                     <li>
                         | <a href="../tags/Cache/">Cache</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="../tags/Database/">Database</a>&nbsp;
                     </li>
                 
             </ul>
@@ -261,12 +269,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>8.1k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>13.2k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>30 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>49 Mins</span>
         </span>
     
     
@@ -873,14 +881,430 @@
 </ul>
 <br>
 
-<h4 id="check-sum"><a href="#check-sum" class="headerlink" title="check_sum"></a>check_sum</h4><p><a href="/download/%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2.epub">人类简史：从动物到上帝（完整图文版）.epub</a></p>
+<h4 id="check-sum"><a href="#check-sum" class="headerlink" title="check_sum"></a>check_sum</h4><ul>
+<li>校验和 check_sum 用于判断 RDB 文件中的内容是否出现数据异常。其采用的是 CRC 校验算法。</li>
+<li>CRC 校验算法：</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>在持久化时，先将 SOF、rdb_version 及内存数据库中的数据快照这三者的二进制数据拼接起来，形成一个二进制数（假设称为数 a），然后再使用这个 a 除以校验和 check_sum，此时可获取到一个余数 b，然后再将这个 b 拼接到 a 的后面，形成 databases。</p>
+</li>
+<li><p>在加载时，需要先使用 check_sum 对 RDB 文件进行数据损坏验证。验证过程：只需将RDB 文件中除 EOF 与 check_sum 外的数据除以 check_sum。只要除得的余数不是 0，就说明文件发生损坏。当然，如果余数是 0，也不能肯定文件没有损坏。</p>
+</li>
+<li><p>这种验证算法，是数据损坏校验，而不是数据没有损坏的校验。</p>
+</li>
+</ul>
+</blockquote>
+<br>
+
+<h4 id="databases"><a href="#databases" class="headerlink" title="databases"></a>databases</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.65mcvofo1ik0.webp" width="80%">
+
+<br>
+
+<ul>
+<li>databases 部分是 RDB 文件中最重要的数据部分，其可以包含任意多个非空数据库。而每个 database 又是由三部分构成：<ul>
+<li>SODB：是一个常量，占 1 个字节，用于标识一个数据库的开始。</li>
+<li>db_number：数据库编号。</li>
+<li>key_value_pairs：当前数据库中的键值对数据。（每个 key_value_pairs 又由很多个用于描述键值对的数据构成。）<ul>
+<li>VALUE_TYPE：是一个常量，占 1 个字节，用于标识该键值对中 value 的类型。</li>
+<li>EXPIRETIME_UNIT：是一个常量，占 1 个字节，用于标识过期时间的单位是秒还是毫秒。</li>
+<li>time：当前 key-value 的过期时间。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.fn8asgxhol4.webp" width="100%">
+
+<br>
+
+<h3 id="RDB-持久化过程"><a href="#RDB-持久化过程" class="headerlink" title="RDB 持久化过程"></a>RDB 持久化过程</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2c0fq381m9xc.webp" width="70%">
+
+<br>
+
+<ul>
+<li><p>对于 Redis 默认的 RDB 持久化，在进行 bgsave 持久化时，redis-server 进程会 fork 出一个 bgsave 子进程，由该子进程以<font color=red>异步方式</font>负责完成持久化。而在持久化过程中，redis-server进程不会阻塞，其会继续接收并处理用户的读写请求。</p>
+</li>
+<li><p>bgsave 子进程的详细工作原理如下：</p>
+</li>
+</ul>
+<blockquote>
+<p>由于子进程可以继承父进程的所有资源，且父进程不能拒绝子进程的继承权。所以，bgsave 子进程有权读取到 redis-server 进程写入到内存中的用户数据，使得将内存数据持久化到 dump.rdb 成为可能。</p>
+<p>bgsave 子进程在持久化时首先会将内存中的全量数据 copy 到磁盘中的一个 RDB 临时文件，copy 结束后，再将该文件 rename 为 dump.rdb，替换掉原来的同名文件。</p>
+<p>不过，在进行持久化过程中，如果 redis-server 进程接收到了用户写请求，则系统会将内存中发生数据修改的物理块 copy 出一个副本。等内存中的全量数据 copy 结束后，会再将副本中的数据 copy 到 RDB 临时文件。这个副本的生成是由于 Linux 系统的写时复制技术（Copy-On-Write）实现的。</p>
+</blockquote>
+<img src="" width="60%">
+
+<br>
+
+<blockquote>
+<p><strong>写时复制技术是 Linux 系统的一种进程管理技术。</strong></p>
+<p>原本在 Unix 系统中，当一个主进程通过 fork()系统调用创建子进程后，内核进程会复制主进程的整个内存空间中的数据，然后分配给子进程。这种方式存在的问题有以下几点：</p>
+<ul>
+<li>这个过程非常耗时</li>
+<li>这个过程降低了系统性能</li>
+<li>如果主进程修改了其内存数据，子进程副本中的数据是没有修改的。即出现了数据冗余，而冗余数据最大的问题是数据一致性无法保证。而写时复制则是在任何一方需要写入数据到共享内存时都会出现异常，此时内核进程就会将需要写入的数据 copy 出一个副本写入到另外一块非共享内存区域</li>
+</ul>
+</blockquote>
+<br>
+
+<h2 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>AOF，Append Only File，是指 Redis 将每一次的写操作都以日志的形式记录到一个 AOF文件中的持久化技术。当需要恢复内存数据时，将这些写操作重新执行一次，便会恢复到之前的内存数据状态。</li>
+</ul>
+<br>
+
+<h3 id="AOF-基础配置"><a href="#AOF-基础配置" class="headerlink" title="AOF 基础配置"></a>AOF 基础配置</h3><h4 id="AOF-的开启"><a href="#AOF-的开启" class="headerlink" title="AOF 的开启"></a>AOF 的开启</h4><ul>
+<li>默认情况下 AOF 持久化是没有开启的，通过修改配置文件中的 appendonly 属性为 yes 可以开启。</li>
+</ul>
+<br>
+
+<h4 id="文件名配置"><a href="#文件名配置" class="headerlink" title="文件名配置"></a>文件名配置</h4><ul>
+<li>Redis 7 在这里发生了重大变化。原来只有一个 appendonly.aof 文件，现在具有了三类多个文件：<ul>
+<li>基本文件：可以是 RDF 格式也可以是 AOF 格式。其存放的内容是由 RDB 转为 AOF 当时内存的快照数据。该文件可以有多个。</li>
+<li>增量文件：以操作日志形式记录转为 AOF 后的写入操作。该文件可以有多个。</li>
+<li>清单文件：用于维护 AOF 文件的创建顺序，保障激活时的应用顺序。该文件只有一个。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h4 id="混合式持久化开启"><a href="#混合式持久化开启" class="headerlink" title="混合式持久化开启"></a>混合式持久化开启</h4><ul>
+<li>对于基本文件可以是 RDF 格式也可以是 AOF 格式。通过 aof-use-rdb-preamble 属性可以选择。其默认值为 yes，即默认 AOF 持久化的基本文件为 rdb 格式文件，也就是默认采用混合式持久化。</li>
+</ul>
+<br>
+
+<h4 id="AOF-文件目录配置"><a href="#AOF-文件目录配置" class="headerlink" title="AOF 文件目录配置"></a>AOF 文件目录配置</h4><ul>
+<li>为了方便管理，可以专门为 AOF 持久化文件指定存放目录。目录名由 appenddirname属性指定，存放在 redis.conf 配置文件的 dir 属性指定的目录，默认为 Redis 安装目录。</li>
+</ul>
+<br>
+
+<h3 id="AOF-文件格式"><a href="#AOF-文件格式" class="headerlink" title="AOF 文件格式"></a>AOF 文件格式</h3><ul>
+<li>AOF 文件包含三类文件：基本文件、增量文件与清单文件。其中基本文件一般为 rdb 格式，在前面已经研究过了。</li>
+</ul>
+<br>
+
+<h4 id="Redis-协议"><a href="#Redis-协议" class="headerlink" title="Redis 协议"></a>Redis 协议</h4><ul>
+<li>增量文件扩展名为.aof，采用 AOF 格式。AOF 格式其实就是 Redis 通讯协议格式，AOF持久化文件的本质就是基于 Redis 通讯协议的文本，将命令以纯文本的方式写入到文件中。</li>
+<li>Redis 协议规定，Redis 文本是以行来划分，每行以\r\n 行结束。每一行都有一个消息头，以表示消息类型。消息头由六种不同的符号表示，其意义如下：<ul>
+<li>(+) 表示一个正确的状态信息</li>
+<li>(-) 表示一个错误信息</li>
+<li>(*) 表示消息体总共有多少行，不包括当前行</li>
+<li>($) 表示下一行消息数据的长度，不包括换行符长度\r\n</li>
+<li>(空) 表示一个消息数据</li>
+<li>(:) 表示返回一个数值</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h4 id="查看-AOF-文件"><a href="#查看-AOF-文件" class="headerlink" title="查看 AOF 文件"></a>查看 AOF 文件</h4><p>打开 appendonly.aof.1.incr.aof 文件，可以看到如下格式内容。</p>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5w0csfakr4k0.webp" width="40%">
+
+<br>
+
+<ul>
+<li>以上内容中框起来的是三条命令。一条数据库切换命令 SELECT 0，两条 set 命令。它们的意义如下：</li>
+</ul>
+<blockquote>
+<p>*2 – 表示当前命令包含 2 个参数<br>$6 – 表示第 1 个参数包含 6 个字符<br>SELECT – 第 1 个参数<br>$1 – 表示第 2 个参数包含 1 个字符<br>0 – 第 2 个参数<br>*3 –表示当前命令包含 3 个参数<br>$3 – 表示第 1 个参数包含 3 个字符<br>set – 第 1 个参数<br>$3 – 表示第 2 个参数包含 3 个字符<br>k11 – 第 2 个参数<br>$3 – 表示第 3 个参数包含 2 个字符<br>v11 – 第 3 个参数<br>*3</p>
+</blockquote>
+<br>
+
+<h4 id="清单文件"><a href="#清单文件" class="headerlink" title="清单文件"></a>清单文件</h4><ul>
+<li>打开清单文件 appendonly.aof.manifest，查看其内容如下：</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2uuk3oh389k0.webp" width="60%">
+
+<br>
+
+<ul>
+<li><p>该文件首先会按照 seq 序号列举出所有基本文件，基本文件 type 类型为 b，然后再按照seq 序号再列举出所有增量文件，增量文件 type 类型为 i。</p>
+</li>
+<li><p>对于 Redis 启动时的数据恢复，也会按照该文件由上到下依次加载它们中的数据。</p>
+</li>
+</ul>
+<br>
+
+<h3 id="Rewrite-机制"><a href="#Rewrite-机制" class="headerlink" title="Rewrite 机制"></a>Rewrite 机制</h3><ul>
+<li>随着使用时间的推移，AOF 文件会越来越大。为了防止 AOF 文件由于太大而占用大量的磁盘空间，降低性能，Redis 引入了 Rewrite 机制来对 AOF 文件进行压缩。</li>
+</ul>
+<br>
+
+<h4 id="何为-rewrite"><a href="#何为-rewrite" class="headerlink" title="何为 rewrite"></a>何为 rewrite</h4><ul>
+<li>所谓 Rewrite 其实就是对 AOF 文件进行重写整理。当 Rewrite 开启后，主进程 redis-server创建出一个子进程 bgrewriteaof，由该子进程完成 rewrite 过程。其首先对现有 aof 文件进行rewrite 计算，将计算结果写入到一个临时文件，写入完毕后，再 rename 该临时文件为原 aof文件名，覆盖原有文件。</li>
+</ul>
+<br>
+
+<h4 id="rewrite-计算"><a href="#rewrite-计算" class="headerlink" title="rewrite 计算"></a>rewrite 计算</h4><ul>
+<li>rewrite 计算也称为 rewrite 策略。rewrite 计算遵循以下策略：<ul>
+<li>读操作命令不写入文件</li>
+<li>无效命令不写入文件</li>
+<li>过期数据不写入文件</li>
+<li>多条命令合并写入文件</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h4 id="手动开启-rewrite"><a href="#手动开启-rewrite" class="headerlink" title="手动开启 rewrite"></a>手动开启 rewrite</h4><ul>
+<li>Rewrite 过程的执行有两种方式。一种是通过 bgrewriteaof 命令手动开启，一种是通过设置条件自动开启。</li>
+</ul>
+<p>以下是手动开启方式：</p>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5hbstfr9bgw0.webp" width="70%">
+
+<br>
+
+<ul>
+<li>该命令会使主进程 redis-server 创建出一个子进程 bgrewriteaof，由该子进程完成 rewrite过程。而在 rewrite 期间，redis-server 仍是可以对外提供读写服务的。</li>
+</ul>
+<br>
+
+<h4 id="自动开启-rewrite"><a href="#自动开启-rewrite" class="headerlink" title="自动开启 rewrite"></a>自动开启 rewrite</h4><ul>
+<li>手动方式需要人办干预，所以一般采用自动方式。由于 Rewrite 过程是一个计算过程，需要消耗大量系统资源，会降低系统性能。所以，Rewrite 过程并不是随时随地任意开启的，而是通过设置一些条件，当满足条件后才会启动，以降低对性能的影响。</li>
+<li><strong>auto-aof-rewrite-percentage</strong>：开启 rewrite 的增大比例，默认 100%。指定为 0，表示禁用自动 rewrite。</li>
+<li><strong>auto-aof-rewrite-min-size</strong>：开启 rewrite 的 AOF 文件最小值，默认 64M。该值的设置主要是为了防止小 AOF 文件被 rewrite，从而导致性能下降。</li>
+</ul>
+<blockquote>
+<p>自动重写 AOF 文件。当 AOF 日志文件大小增长到指定的百分比时，Redis 主进程redis-server 会 fork 出一个子进程 bgrewriteaof 来完成 rewrite 过程。</p>
+<p>其工作原理如下：Redis 会记住最新 rewrite 后的 AOF 文件大小作为基本大小，如果从主机启动后就没有发生过重写，则基本大小就使用启动时 AOF 的大小。</p>
+<p>如果当前 AOF 文件大于基本大小的配置文件中指定的百分比阈值，且当前 AOF 文件大<br>于配置文件中指定的最小阈值，则会触发 rewrite。</p>
+</blockquote>
+<br>
+
+<h2 id="AOF-优化配置"><a href="#AOF-优化配置" class="headerlink" title="AOF 优化配置"></a>AOF 优化配置</h2><h3 id="appendfsync"><a href="#appendfsync" class="headerlink" title="appendfsync"></a>appendfsync</h3><ul>
+<li>当客户端提交写操作命令后，该命令就会写入到 aof_buf 中，而 aof_buf 中的数据持久化到磁盘 AOF 文件的过程称为数据同步。</li>
+<li>何时将 aof_buf 中的数据同步到 AOF 文件？采用不同的数据同步策略，同时的时机是不同的，有三种策略：<ul>
+<li>always：写操作命令写入 aof_buf 后会立即调用 fsync()系统函数，将其追加到 AOF 文件。该策略效率较低，但相对比较安全，不会丢失太多数据。最多就是刚刚执行过的写操作在尚未同步时出现宕机或重启，将这一操作丢失。</li>
+<li>no：写操作命令写入 aof_buf 后什么也不做，不会调用 fsync()函数。而将 aof_buf 中的数据同步磁盘的操作由操作系统负责。Linux 系统默认同步周期为 30 秒。效率较高。</li>
+<li>everysec：默认策略。写操作命令写入 aof_buf 后并不直接调用 fsync()，而是每秒调用一次 fsync()系统函数来完成同步。该策略兼顾到了性能与安全，是一种折中方案。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="no-appendfsync-on-rewrite"><a href="#no-appendfsync-on-rewrite" class="headerlink" title="no-appendfsync-on-rewrite"></a>no-appendfsync-on-rewrite</h3><ul>
+<li>该属性用于指定，当 AOF fsync 策略设置为 always 或 everysec，当主进程创建了子进程正在执行 bgsave 或 bgrewriteaof 时，主进程是否不调用 fsync()来做数据同步。设置为 no，双重否定即肯定，主进程会调用 fsync()做同步。而 yes 则不会调用 fsync()做数据同步</li>
+<li>如果调用 fsync()，在需要同步的数据量非常大时，会阻塞主进程对外提供服务，即会存在延迟问题。如果不调用 fsync()，则 AOF fsync 策略相当于设置为了 no，可能会存在 30 秒数据丢失的风险。</li>
+</ul>
+<br>
+
+<h3 id="aof-rewrite-incremental-fsync"><a href="#aof-rewrite-incremental-fsync" class="headerlink" title="aof-rewrite-incremental-fsync"></a>aof-rewrite-incremental-fsync</h3><ul>
+<li>当 bgrewriteaof 在执行过程也是先将 rewrite 计算的结果写入到了 aof_rewrite_buf 缓存中，然后当缓存中数据达到一定量后就会调用 fsync()进行刷盘操作，即数据同步，将数据写入到临时文件。该属性用于控制 fsync()每次刷盘的数据量最大不超过 4MB。这样可以避免由于单次刷盘量过大而引发长时间阻塞</li>
+</ul>
+<br>
+
+<h3 id="aof-load-truncated"><a href="#aof-load-truncated" class="headerlink" title="aof-load-truncated"></a>aof-load-truncated</h3><ul>
+<li>在进行 AOF 持久化过程中可能会出现系统突然宕机的情况，此时写入到 AOF 文件中的最后一条数据可能会不完整。当主机启动后，Redis 在 AOF 文件不完整的情况下是否可以启动，取决于属性 aof-load-truncated 的设置。其值为：<ul>
+<li>yes：AOF 文件最后不完整的数据直接从 AOF 文件中截断删除，不影响 Redis 的启动。</li>
+<li>no：AOF 文件最后不完整的数据不可以被截断删除，Redis 无法启动。</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="aof-timestamp-enabeld"><a href="#aof-timestamp-enabeld" class="headerlink" title="aof-timestamp-enabeld"></a>aof-timestamp-enabeld</h3><ul>
+<li>该属性设置为 yes 则会开启在 AOF 文件中增加时间戳的显示功能，可方便按照时间对数据进行恢复。但该方式可能会与 AOF 解析器不兼容，所以默认值为 no，不开启。</li>
+</ul>
+<br>
+
+<h2 id="AOF-持久化过程"><a href="#AOF-持久化过程" class="headerlink" title="AOF 持久化过程"></a>AOF 持久化过程</h2><h3 id="AOF-详细的持久化过程如下："><a href="#AOF-详细的持久化过程如下：" class="headerlink" title="AOF 详细的持久化过程如下："></a>AOF 详细的持久化过程如下：</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6cqgnli756w0.webp" width="90%">
+
+<br>
+
+<ol>
+<li><p>   Redis 接收到的写操作命令并不是直接追加到磁盘的 AOF 文件的，而是将每一条写命令按照 redis 通讯协议格式暂时添加到 AOF 缓冲区 aof_buf。</p>
+</li>
+<li><p>   根据设置的数据同步策略，当同步条件满足时，再将缓冲区中的数据一次性写入磁盘的AOF 文件，以减少磁盘 IO 次数，提高性能。</p>
+</li>
+<li><p>   当磁盘的 AOF 文件大小达到了 rewrite 条件时，redis-server 主进程会 fork 出一个子进程bgrewriteaof，由该子进程完成 rewrite 过程。</p>
+</li>
+<li><p>   子进程 bgrewriteaof 首先对该磁盘 AOF 文件进行 rewrite 计算，将计算结果写入到一个临时文件，全部写入完毕后，再 rename 该临时文件为磁盘文件的原名称，覆盖原文件。</p>
+</li>
+<li><p>   如果在 rewrite 过程中又有写操作命令追加，那么这些数据会暂时写入 aof_rewrite_buf缓冲区。等将全部 rewrite 计算结果写入临时文件后，会先将 aof_rewrite_buf 缓冲区中的数据写入临时文件，然后再 rename 为磁盘文件的原名称，覆盖原文件。</p>
+</li>
+</ol>
+<br>
+
+<h2 id="RDB-与-AOF-对比"><a href="#RDB-与-AOF-对比" class="headerlink" title="RDB 与 AOF 对比"></a>RDB 与 AOF 对比</h2><h3 id="RDB-优势与不足"><a href="#RDB-优势与不足" class="headerlink" title="RDB 优势与不足"></a>RDB 优势与不足</h3><h4 id="RDB-优势"><a href="#RDB-优势" class="headerlink" title="RDB 优势"></a>RDB 优势</h4><ul>
+<li>RDB 文件较小</li>
+<li>数据恢复较快</li>
+</ul>
+<br>
+
+<h4 id="RDB-不足"><a href="#RDB-不足" class="headerlink" title="RDB 不足"></a>RDB 不足</h4><ul>
+<li>数据安全性较差</li>
+<li>写时复制会降低性能</li>
+<li>RDB 文件可读性较差</li>
+</ul>
+<br>
+
+<h3 id="AOF-优势与不足"><a href="#AOF-优势与不足" class="headerlink" title="AOF 优势与不足"></a>AOF 优势与不足</h3><h4 id="AOF-优势"><a href="#AOF-优势" class="headerlink" title="AOF 优势"></a>AOF 优势</h4><ul>
+<li>数据安全性高</li>
+<li>AOF 文件可读性强</li>
+</ul>
+<br>
+
+<h4 id="AOF-不足"><a href="#AOF-不足" class="headerlink" title="AOF 不足"></a>AOF 不足</h4><ul>
+<li>AOF 文件较大</li>
+<li>写操作会影响性能</li>
+<li>数据恢复较慢</li>
+</ul>
+<br>
+
+<h2 id="持久化技术选型"><a href="#持久化技术选型" class="headerlink" title="持久化技术选型"></a>持久化技术选型</h2><ul>
+<li>官方推荐使用 RDB 与 AOF 混合式持久化。</li>
+<li>若对数据安全性要求不高，则推荐使用纯 RDB 持久化方式</li>
+<li>不推荐使用纯 AOF 持久化方式。</li>
+<li>若 Redis 仅用于缓存，则无需使用任何持久化技术。</li>
+</ul>
 <br>
 
 <br>
 
 <br>
 
-<h1 id="第6章-Redis-主从集群"><a href="#第6章-Redis-主从集群" class="headerlink" title="第6章 Redis 主从集群"></a>第6章 Redis 主从集群</h1><br>
+<h1 id="第6章-Redis-主从集群"><a href="#第6章-Redis-主从集群" class="headerlink" title="第6章 Redis 主从集群"></a>第6章 Redis 主从集群</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>为了避免 Redis 的单点故障问题，我们可以搭建一个 Redis 集群，将数据备份到集群中的其它节点上。若一个 Redis 节点宕机，则由集群中的其它节点顶上</li>
+</ul>
+<br>
+
+<h2 id="主从集群搭建"><a href="#主从集群搭建" class="headerlink" title="主从集群搭建"></a>主从集群搭建</h2><ul>
+<li>Redis 的主从集群是一个“一主多从”的读写分离集群。集群中的 Master 节点负责处理客户端的读写请求，而 Slave 节点仅能处理客户端的读请求。只所以要将集群搭建为读写分离模式，主要原因是，对于数据库集群，写操作压力一般都较小，压力大多数来自于读操作请求。所以，只有一个节点负责处理写操作请求即可。</li>
+</ul>
+<br>
+
+<h2 id="伪集群搭建与配置"><a href="#伪集群搭建与配置" class="headerlink" title="伪集群搭建与配置"></a>伪集群搭建与配置</h2><ul>
+<li>在采用单线程 IO 模型时，为了提高处理器的利用率，一般会在一个主机中安装多台 Redis，构建一个 Redis 主从伪集群。当然，搭建伪集群的另一个场景是，在学习 Redis，而学习用主机内存不足以创建多个虚拟机。</li>
+<li>下面要搭建的读写分离伪集群包含一个 Master 与两个 Slave。它们的端口号分别是：6380、6381、6382。</li>
+</ul>
+<br>
+
+<h3 id="复制-redis-conf"><a href="#复制-redis-conf" class="headerlink" title="复制 redis.conf"></a>复制 redis.conf</h3><ul>
+<li>在 redis 安装目录中 mkdir 一个目录，名称随意。这里命名为 cluster。然后将 redis.conf文件复制到 cluster 目录中。该文件后面会被其它配置文件包含，所以该文件中需要设置每个 Redis 节点相同的公共的属性。</li>
+</ul>
+<br>
+
+<h3 id="修改-redis-conf"><a href="#修改-redis-conf" class="headerlink" title="修改 redis.conf"></a>修改 redis.conf</h3><blockquote>
+<p>在 redis.conf 中做如下几项修改：</p>
+</blockquote>
+<ul>
+<li><strong>masterauth</strong></li>
+</ul>
+<blockquote>
+<p>因为我们要搭建主从集群，且每个主机都有可能会是 Master，所以最好不要设置密码验证属性 requirepass。如果真需要设置，一定要每个主机的密码都设置为相同的。此时每个配置文件中都要设置两个完全相同的属性：requirepass 与 masterauth。其中 requirepass 用于指定当前主机的访问密码，而 masterauth 用于指定当前 slave 访问 master 时向 master 提交的访问密码，用于让 master 验证自己身份是否合法。</p>
+</blockquote>
+<ul>
+<li><strong>repl-disable-tcp-nodelay</strong></li>
+</ul>
+<blockquote>
+<p>该属性用于设置是否禁用 TCP 特性 tcp-nodelay。设置为 yes 则禁用 tcp-nodelay，此时master 与 slave 间的通信会产生延迟，但使用的 TCP 包数量会较少，占用的网络带宽会较小。相反，如果设置为 no，则网络延迟会变小，但使用的 TCP 包数量会较多，相应占用的网络带宽会大。</p>
+</blockquote>
+<blockquote>
+<p>tcp-nodelay：为了充分复用网络带宽，TCP 总是希望发送尽可能大的数据块。为了达到该目的，TCP 中使用了一个名为 Nagle 的算法</p>
+<p>Nagle 算法的工作原理是，网络在接收到要发送的数据后，并不直接发送，而是等待着数据量足够大（由 TCP 网络特性决定）时再一次性发送出去。这样，网络上传输的有效数据比例就得到了大大提升，无效数据传递量极大减少，于是就节省了网络带宽，缓解了网络压力。</p>
+<p>tcp-nodelay 则是 TCP 协议中 Nagle 算法的开头。</p>
+</blockquote>
+<br>
+
+<h3 id="新建-redis6380-conf"><a href="#新建-redis6380-conf" class="headerlink" title="新建 redis6380.conf"></a>新建 redis6380.conf</h3><ul>
+<li>新建一个 redis 配置文件 redis6380.conf，该配置文件中的 Redis 端口号为 6380。</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7gbc2hre5u40.webp" width="60%">
+
+<br>
+
+<h3 id="再复制出两个-conf-文件"><a href="#再复制出两个-conf-文件" class="headerlink" title="再复制出两个 conf 文件"></a>再复制出两个 conf 文件</h3><p>再使用 redis6380.conf 复制出两个 conf 文件：redis6381.conf 与 redis6382.conf。然后修改其中的内容。</p>
+<ul>
+<li>修改 redis6381.conf 的内容如下：</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.xffys58raao.webp" width="60%">
+
+<br>
+
+<ul>
+<li>修改 redis6382.conf 的内容如下：</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5e6keop3ns00.webp" width="60%">
+
+<br>
+
+<h3 id="启动三台-Redis"><a href="#启动三台-Redis" class="headerlink" title="启动三台 Redis"></a>启动三台 Redis</h3><ul>
+<li>分别使用 redis6380.conf、redis6381.conf 与 redis6382.conf 三个配置文件启动三台 Redis</li>
+</ul>
+<br>
+
+<h3 id="设置主从关系"><a href="#设置主从关系" class="headerlink" title="设置主从关系"></a>设置主从关系</h3><ul>
+<li>再打开三个会话框，分别使用客户端连接三台 Redis。然后通过 slaveof 命令，指定 6380的 Redis 为 Master。</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.4bf4uzhhovq0.webp" width="60%">
+
+<br>
+
+<h3 id="查看状态信息"><a href="#查看状态信息" class="headerlink" title="查看状态信息"></a>查看状态信息</h3><ul>
+<li>通过 info replication 命令可查看当前连接的 Redis 的状态信息</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5uupdo5hec00.webp" width="60%">
+
+<br>
+
+<h2 id="分级管理"><a href="#分级管理" class="headerlink" title="分级管理"></a>分级管理</h2><ul>
+<li>若 Redis 主从集群中的 Slave 较多时，它们的数据同步过程会对 Master 形成较大的性能压力。此时可以对这些 Slave 进行分级管理。</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2mzrpmmhd3q0.webp" width="70%">
+
+<br>
+
+<ul>
+<li>设置方式很简单，只需要让低级别 Slave 指定其 slaveof 的主机为其上一级 Slave 即可。不过，上一级 Slave 的状态仍为 Slave，只不过，其是更上一级的 Slave。</li>
+<li>例如，指定 6382 主机为 6381 主机的 Slave，而 6381 主机仍为真正的 Master 的 Slave。</li>
+<li>此时会发现，Master 的 Slave 只有 6381 一个主机</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.jtz8pen64f4.webp" width="70%">
+
+<br>
+
+<h2 id="容灾冷处理"><a href="#容灾冷处理" class="headerlink" title="容灾冷处理"></a>容灾冷处理</h2><ul>
+<li><p>在 Master/Slave 的 Redis 集群中，若 Master 出现宕机怎么办呢？有两种处理方式，一种是通过手工角色调整，使 Slave 晋升为 Master 的冷处理；一种是使用哨兵模式，实现 Redis集群的高可用 HA，即热处理。</p>
+</li>
+<li><p>无论 Master 是否宕机，Slave 都可通过 slaveof no one 将自己由 Slave 晋升为 Master。如果其原本就有下一级的 Slave，那么，其就直接变为了这些 Slave 的真正的 Master 了。而原来的 Master 也会失去这个原来的 Slave。</p>
+</li>
+</ul>
+<img src="" width="60%">
+
+<br>
+
+<h2 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h2><h3 id="主从复制过程"><a href="#主从复制过程" class="headerlink" title="主从复制过程"></a>主从复制过程</h3><ul>
+<li>当一个 Redis 节点（slave 节点）接收到类似 slaveof 127.0.0.1 6380 的指令后直至其可以从 master 持续复制数据，大体经历了如下几个过程：</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/dd571f3f00e4d6950ede0c9190c73ef.5uuiaga2r2g0.webp" width="80%">
+
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/731d169b0deeb64901d4cc82ec49558.1c8izssggrz4.webp" width="80%">
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第7章-Redis-分布式系统"><a href="#第7章-Redis-分布式系统" class="headerlink" title="第7章 Redis 分布式系统"></a>第7章 Redis 分布式系统</h1><br>
 
 <br>
 
@@ -935,15 +1359,19 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
+                            <a href="../tags/Database/">#Database</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../tags/study-notes/">#study-notes</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
                             <a href="../tags/Redis/">#Redis</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
                             <a href="../tags/Cache/">#Cache</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="../tags/Database/">#Database</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1072,7 +1500,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-Redis-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">第1章 Redis 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Redis 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">NoSQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.3.</span> <span class="nav-text">Redis 的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">Redis 特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84-IO-%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">Redis 的 IO 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">混合线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.3.</span> <span class="nav-text">多线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.4.</span> <span class="nav-text">优缺点总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">多线程模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Redis-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">第2章 Redis 的安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Redis 的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装前的准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Redis"><span class="nav-number">2.1.2.</span> <span class="nav-text">安装 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.</span> <span class="nav-text">Redis 启动与停止</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">前台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">命令式后台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E7%9A%84%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">Redis 的停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">配置式后台启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.4.</span> <span class="nav-text">连接前的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%AE%A2%E6%88%B7%E7%AB%AF-IP"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">绑定客户端 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">关闭保护模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">设置访问密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2-%E9%87%8D%E5%91%BD%E5%90%8D%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">禁止&#x2F;重命名命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AFredis"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">重启redis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">Redis 客户端分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.1.</span> <span class="nav-text">命令行客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.2.</span> <span class="nav-text">图形界面客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">第3章 Redis 配置文件详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-Redis-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">第4章 Redis 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">Redis 基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%83%E8%B7%B3%E5%91%BD%E4%BB%A4-ping"><span class="nav-number">4.1.1.</span> <span class="nav-text">心跳命令 ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%AE%E5%80%BC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.2.</span> <span class="nav-text">读写键值命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DB-%E5%88%87%E6%8D%A2-select"><span class="nav-number">4.1.3.</span> <span class="nav-text">DB 切换 select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-key-%E6%95%B0%E9%87%8F-dbsize"><span class="nav-number">4.1.4.</span> <span class="nav-text">查看 key 数量 dbsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE-flushdb"><span class="nav-number">4.1.5.</span> <span class="nav-text">删除当前库中数据 flushdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%91%BD%E4%BB%A4-flushall"><span class="nav-number">4.1.6.</span> <span class="nav-text">删除所有库中数据命令 flushall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.7.</span> <span class="nav-text">退出客户端命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">Key 操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-%E5%9E%8B-Value-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">String 型 Value 操作命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-Redis-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">第5章 Redis 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">持久化基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.3.</span> <span class="nav-text">RDB 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="nav-number">5.3.1.</span> <span class="nav-text">持久化的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-save-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">手动 save 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-bgsave-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">手动 bgsave 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9D%A1%E4%BB%B6%E8%A7%A6%E5%8F%91"><span class="nav-number">5.3.1.3.</span> <span class="nav-text">自动条件触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%B6%E9%97%B4"><span class="nav-number">5.3.1.4.</span> <span class="nav-text">查看持久化时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.2.</span> <span class="nav-text">RDB 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#save"><span class="nav-number">5.3.2.1.</span> <span class="nav-text">save</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stop-write-on-bgsave-error"><span class="nav-number">5.3.2.2.</span> <span class="nav-text">stop-write-on-bgsave-error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbcompression"><span class="nav-number">5.3.2.3.</span> <span class="nav-text">rdbcompression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbchecksum"><span class="nav-number">5.3.2.4.</span> <span class="nav-text">rdbchecksum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sanitize-dump-payload"><span class="nav-number">5.3.2.5.</span> <span class="nav-text">sanitize-dump-payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dbfilename"><span class="nav-number">5.3.2.6.</span> <span class="nav-text">dbfilename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-del-sync-files"><span class="nav-number">5.3.2.7.</span> <span class="nav-text">rdb-del-sync-files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">5.3.2.8.</span> <span class="nav-text">dir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">5.3.3.</span> <span class="nav-text">RDB 文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SOF"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">SOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-version"><span class="nav-number">5.3.3.2.</span> <span class="nav-text">rdb_version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EOF"><span class="nav-number">5.3.3.3.</span> <span class="nav-text">EOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check-sum"><span class="nav-number">5.3.3.4.</span> <span class="nav-text">check_sum</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-Redis-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">第6章 Redis 主从集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">7.</span> <span class="nav-text">学习备注</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-Redis-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">第1章 Redis 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Redis 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">NoSQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.3.</span> <span class="nav-text">Redis 的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">Redis 特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84-IO-%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">Redis 的 IO 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">混合线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.3.</span> <span class="nav-text">多线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.4.</span> <span class="nav-text">优缺点总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">多线程模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Redis-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">第2章 Redis 的安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Redis 的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装前的准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Redis"><span class="nav-number">2.1.2.</span> <span class="nav-text">安装 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.</span> <span class="nav-text">Redis 启动与停止</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">前台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">命令式后台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E7%9A%84%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">Redis 的停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">配置式后台启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.4.</span> <span class="nav-text">连接前的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%AE%A2%E6%88%B7%E7%AB%AF-IP"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">绑定客户端 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">关闭保护模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">设置访问密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2-%E9%87%8D%E5%91%BD%E5%90%8D%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">禁止&#x2F;重命名命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AFredis"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">重启redis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">Redis 客户端分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.1.</span> <span class="nav-text">命令行客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.2.</span> <span class="nav-text">图形界面客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">第3章 Redis 配置文件详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-Redis-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">第4章 Redis 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">Redis 基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%83%E8%B7%B3%E5%91%BD%E4%BB%A4-ping"><span class="nav-number">4.1.1.</span> <span class="nav-text">心跳命令 ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%AE%E5%80%BC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.2.</span> <span class="nav-text">读写键值命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DB-%E5%88%87%E6%8D%A2-select"><span class="nav-number">4.1.3.</span> <span class="nav-text">DB 切换 select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-key-%E6%95%B0%E9%87%8F-dbsize"><span class="nav-number">4.1.4.</span> <span class="nav-text">查看 key 数量 dbsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE-flushdb"><span class="nav-number">4.1.5.</span> <span class="nav-text">删除当前库中数据 flushdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%91%BD%E4%BB%A4-flushall"><span class="nav-number">4.1.6.</span> <span class="nav-text">删除所有库中数据命令 flushall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.7.</span> <span class="nav-text">退出客户端命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">Key 操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-%E5%9E%8B-Value-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">String 型 Value 操作命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-Redis-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">第5章 Redis 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">持久化基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.3.</span> <span class="nav-text">RDB 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="nav-number">5.3.1.</span> <span class="nav-text">持久化的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-save-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">手动 save 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-bgsave-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">手动 bgsave 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9D%A1%E4%BB%B6%E8%A7%A6%E5%8F%91"><span class="nav-number">5.3.1.3.</span> <span class="nav-text">自动条件触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%B6%E9%97%B4"><span class="nav-number">5.3.1.4.</span> <span class="nav-text">查看持久化时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.2.</span> <span class="nav-text">RDB 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#save"><span class="nav-number">5.3.2.1.</span> <span class="nav-text">save</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stop-write-on-bgsave-error"><span class="nav-number">5.3.2.2.</span> <span class="nav-text">stop-write-on-bgsave-error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbcompression"><span class="nav-number">5.3.2.3.</span> <span class="nav-text">rdbcompression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbchecksum"><span class="nav-number">5.3.2.4.</span> <span class="nav-text">rdbchecksum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sanitize-dump-payload"><span class="nav-number">5.3.2.5.</span> <span class="nav-text">sanitize-dump-payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dbfilename"><span class="nav-number">5.3.2.6.</span> <span class="nav-text">dbfilename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-del-sync-files"><span class="nav-number">5.3.2.7.</span> <span class="nav-text">rdb-del-sync-files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">5.3.2.8.</span> <span class="nav-text">dir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">5.3.3.</span> <span class="nav-text">RDB 文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SOF"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">SOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-version"><span class="nav-number">5.3.3.2.</span> <span class="nav-text">rdb_version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EOF"><span class="nav-number">5.3.3.3.</span> <span class="nav-text">EOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check-sum"><span class="nav-number">5.3.3.4.</span> <span class="nav-text">check_sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#databases"><span class="nav-number">5.3.3.5.</span> <span class="nav-text">databases</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">5.3.4.</span> <span class="nav-text">RDB 持久化过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.4.</span> <span class="nav-text">AOF 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.</span> <span class="nav-text">AOF 基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E7%9A%84%E5%BC%80%E5%90%AF"><span class="nav-number">5.4.2.1.</span> <span class="nav-text">AOF 的开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.2.</span> <span class="nav-text">文件名配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E5%BC%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%BC%80%E5%90%AF"><span class="nav-number">5.4.2.3.</span> <span class="nav-text">混合式持久化开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.4.</span> <span class="nav-text">AOF 文件目录配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">5.4.3.</span> <span class="nav-text">AOF 文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.4.3.1.</span> <span class="nav-text">Redis 协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-AOF-%E6%96%87%E4%BB%B6"><span class="nav-number">5.4.3.2.</span> <span class="nav-text">查看 AOF 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6"><span class="nav-number">5.4.3.3.</span> <span class="nav-text">清单文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rewrite-%E6%9C%BA%E5%88%B6"><span class="nav-number">5.4.4.</span> <span class="nav-text">Rewrite 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E4%B8%BA-rewrite"><span class="nav-number">5.4.4.1.</span> <span class="nav-text">何为 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rewrite-%E8%AE%A1%E7%AE%97"><span class="nav-number">5.4.4.2.</span> <span class="nav-text">rewrite 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">5.4.4.3.</span> <span class="nav-text">手动开启 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">5.4.4.4.</span> <span class="nav-text">自动开启 rewrite</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.5.</span> <span class="nav-text">AOF 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendfsync"><span class="nav-number">5.5.1.</span> <span class="nav-text">appendfsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-appendfsync-on-rewrite"><span class="nav-number">5.5.2.</span> <span class="nav-text">no-appendfsync-on-rewrite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-rewrite-incremental-fsync"><span class="nav-number">5.5.3.</span> <span class="nav-text">aof-rewrite-incremental-fsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-load-truncated"><span class="nav-number">5.5.4.</span> <span class="nav-text">aof-load-truncated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-timestamp-enabeld"><span class="nav-number">5.5.5.</span> <span class="nav-text">aof-timestamp-enabeld</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">5.6.</span> <span class="nav-text">AOF 持久化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E8%AF%A6%E7%BB%86%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">5.6.1.</span> <span class="nav-text">AOF 详细的持久化过程如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E4%B8%8E-AOF-%E5%AF%B9%E6%AF%94"><span class="nav-number">5.7.</span> <span class="nav-text">RDB 与 AOF 对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.1.</span> <span class="nav-text">RDB 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF"><span class="nav-number">5.7.1.1.</span> <span class="nav-text">RDB 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.1.2.</span> <span class="nav-text">RDB 不足</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.2.</span> <span class="nav-text">AOF 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF"><span class="nav-number">5.7.2.1.</span> <span class="nav-text">AOF 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.2.2.</span> <span class="nav-text">AOF 不足</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">5.8.</span> <span class="nav-text">持久化技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-Redis-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">第6章 Redis 主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-number">6.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="nav-number">6.2.</span> <span class="nav-text">主从集群搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">6.3.</span> <span class="nav-text">伪集群搭建与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6-redis-conf"><span class="nav-number">6.3.1.</span> <span class="nav-text">复制 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-redis-conf"><span class="nav-number">6.3.2.</span> <span class="nav-text">修改 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-redis6380-conf"><span class="nav-number">6.3.3.</span> <span class="nav-text">新建 redis6380.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E5%A4%8D%E5%88%B6%E5%87%BA%E4%B8%A4%E4%B8%AA-conf-%E6%96%87%E4%BB%B6"><span class="nav-number">6.3.4.</span> <span class="nav-text">再复制出两个 conf 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%89%E5%8F%B0-Redis"><span class="nav-number">6.3.5.</span> <span class="nav-text">启动三台 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BB%E4%BB%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">6.3.6.</span> <span class="nav-text">设置主从关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF"><span class="nav-number">6.3.7.</span> <span class="nav-text">查看状态信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">6.4.</span> <span class="nav-text">分级管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E7%81%BE%E5%86%B7%E5%A4%84%E7%90%86"><span class="nav-number">6.5.</span> <span class="nav-text">容灾冷处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">6.6.</span> <span class="nav-text">主从复制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="nav-number">6.6.1.</span> <span class="nav-text">主从复制过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-Redis-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">第7章 Redis 分布式系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">8.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
