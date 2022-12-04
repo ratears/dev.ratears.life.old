@@ -4,8 +4,8 @@ author: ratears
 date: 2022-12-01 02:31:29
 updated: 2022-12-01 02:31:29
 categories:
-	- [Database,Redis]
-	- [study-notes]
+- [Database, Redis]
+- [study-notes] 
 tags:
 	- Redis
 	- Cache
