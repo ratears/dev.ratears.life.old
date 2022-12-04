@@ -60,15 +60,10 @@ tags:
 > 1
 
 ```html
+<font color=red></font>
 &emsp;&emsp;
 ```
 
-<br>
-
-<br>
-
-<br>
-
-<img src="" width="60%">
+<img src="" width="70%">
 
 <br>
