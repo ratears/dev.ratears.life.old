@@ -81,7 +81,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../archives/"
+                               href="../../Archives/"
                             >
                                 ARCHIVES
                             </a>
@@ -89,7 +89,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../categories/"
+                               href="../../Categories/"
                             >
                                 CATEGORIES
                             </a>
@@ -97,7 +97,7 @@
                     
                         <li class="menu-item">
                             <a class="active"
-                               href="../../tags/"
+                               href="../../Tags/"
                             >
                                 TAGS
                             </a>
@@ -105,7 +105,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../links/"
+                               href="../../Links/"
                             >
                                 LINKS
                             </a>
@@ -113,7 +113,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="../../about/"
+                               href="../../About/"
                             >
                                 ABOUT
                             </a>
@@ -147,27 +147,27 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../archives/">ARCHIVES</a>
+                       href="../../Archives/">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../categories/">CATEGORIES</a>
+                       href="../../Categories/">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class="active"
-                       href="../../tags/">TAGS</a>
+                       href="../../Tags/">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../links/">LINKS</a>
+                       href="../../Links/">LINKS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="../../about/">ABOUT</a>
+                       href="../../About/">ABOUT</a>
                 </li>
             
         </ul>
@@ -368,6 +368,60 @@
 
 
 <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
+.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
 
 
 
