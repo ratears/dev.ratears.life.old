@@ -35,18 +35,18 @@
     
     
     
-    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Database/"/>
+    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/"/>
     
-    <category term="NoSQL" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Database/NoSQL/"/>
+    <category term="NoSQL" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/NoSQL/"/>
     
-    <category term="MongoDB" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Database/NoSQL/MongoDB/"/>
+    <category term="MongoDB" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/NoSQL/MongoDB/"/>
     
     
-    <category term="MongoDB" scheme="https://ratears.gitee.io/dev.ratears.life/tags/MongoDB/"/>
+    <category term="MongoDB" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/MongoDB/"/>
     
-    <category term="NoSQL" scheme="https://ratears.gitee.io/dev.ratears.life/tags/NoSQL/"/>
+    <category term="NoSQL" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/NoSQL/"/>
     
-    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Database/"/>
+    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Database/"/>
     
   </entry>
   
@@ -67,10 +67,10 @@
     
     
     
-    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/categories/jvm/"/>
+    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/jvm/"/>
     
     
-    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/tags/jvm/"/>
+    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/jvm/"/>
     
   </entry>
   
@@ -91,20 +91,20 @@
     
     
     
-    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Database/"/>
+    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/"/>
     
-    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Database/Redis/"/>
+    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Database/Redis/"/>
     
-    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/categories/study-notes/"/>
+    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/study-notes/"/>
     
     
-    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Database/"/>
+    <category term="Database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Database/"/>
     
-    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/tags/study-notes/"/>
+    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/study-notes/"/>
     
-    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Redis/"/>
+    <category term="Redis" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Redis/"/>
     
-    <category term="Cache" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Cache/"/>
+    <category term="Cache" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Cache/"/>
     
   </entry>
   
@@ -125,12 +125,12 @@
     
     
     
-    <category term="Java" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Java/"/>
+    <category term="Java" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Java/"/>
     
-    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Java/jvm/"/>
+    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Java/jvm/"/>
     
     
-    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/tags/jvm/"/>
+    <category term="jvm" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/jvm/"/>
     
   </entry>
   
@@ -157,12 +157,12 @@
     
     
     
-    <category term="MQ" scheme="https://ratears.gitee.io/dev.ratears.life/categories/MQ/"/>
+    <category term="MQ" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/MQ/"/>
     
-    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/categories/MQ/Kafka/"/>
+    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/MQ/Kafka/"/>
     
     
-    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Kafka/"/>
+    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Kafka/"/>
     
   </entry>
   
@@ -183,12 +183,12 @@
     
     
     
-    <category term="MQ" scheme="https://ratears.gitee.io/dev.ratears.life/categories/MQ/"/>
+    <category term="MQ" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/MQ/"/>
     
-    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/categories/MQ/Kafka/"/>
+    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/MQ/Kafka/"/>
     
     
-    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Kafka/"/>
+    <category term="Kafka" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Kafka/"/>
     
   </entry>
   
@@ -209,14 +209,14 @@
     
     
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/"/>
     
-    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/MySQL/"/>
+    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/MySQL/"/>
     
     
-    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/MySQL/"/>
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/tags/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/database/"/>
     
   </entry>
   
@@ -246,14 +246,14 @@
     
     
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/"/>
     
-    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/MySQL/"/>
+    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/MySQL/"/>
     
     
-    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/MySQL/"/>
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/tags/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/database/"/>
     
   </entry>
   
@@ -274,12 +274,12 @@
     
     
     
-    <category term="Nginx" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Nginx/"/>
+    <category term="Nginx" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Nginx/"/>
     
     
-    <category term="Nginx" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Nginx/"/>
+    <category term="Nginx" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Nginx/"/>
     
-    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/tags/study-notes/"/>
+    <category term="study-notes" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/study-notes/"/>
     
   </entry>
   
@@ -301,14 +301,14 @@
     
     
     
-    <category term="Maven" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Maven/"/>
+    <category term="Maven" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Maven/"/>
     
-    <category term="Nexus" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Maven/Nexus/"/>
+    <category term="Nexus" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Maven/Nexus/"/>
     
     
-    <category term="Nexus" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Nexus/"/>
+    <category term="Nexus" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Nexus/"/>
     
-    <category term="Maven" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Maven/"/>
+    <category term="Maven" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Maven/"/>
     
   </entry>
   
@@ -338,14 +338,14 @@
     
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/I-O/"/>
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Operating-Systems/"/>
     
-    <category term="communication-mechanism" scheme="https://ratears.gitee.io/dev.ratears.life/tags/communication-mechanism/"/>
+    <category term="communication-mechanism" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/communication-mechanism/"/>
     
   </entry>
   
@@ -372,14 +372,14 @@
     
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/I-O/"/>
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/tags/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/I-O/"/>
     
   </entry>
   
@@ -409,14 +409,14 @@
     
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/I-O/"/>
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/tags/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/I-O/"/>
     
   </entry>
   
@@ -437,14 +437,14 @@
     
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/I-O/"/>
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/tags/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/tags/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/I-O/"/>
     
   </entry>
   
@@ -465,10 +465,10 @@
     
     
     
-    <category term="maven" scheme="https://ratears.gitee.io/dev.ratears.life/categories/maven/"/>
+    <category term="maven" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/maven/"/>
     
     
-    <category term="maven" scheme="https://ratears.gitee.io/dev.ratears.life/tags/maven/"/>
+    <category term="maven" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/maven/"/>
     
   </entry>
   
@@ -490,14 +490,14 @@
     
     
     
-    <category term="computer" scheme="https://ratears.gitee.io/dev.ratears.life/categories/computer/"/>
+    <category term="computer" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/computer/"/>
     
-    <category term="character encoding" scheme="https://ratears.gitee.io/dev.ratears.life/categories/computer/character-encoding/"/>
+    <category term="character encoding" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/computer/character-encoding/"/>
     
     
-    <category term="computer" scheme="https://ratears.gitee.io/dev.ratears.life/tags/computer/"/>
+    <category term="computer" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/computer/"/>
     
-    <category term="character encoding" scheme="https://ratears.gitee.io/dev.ratears.life/tags/character-encoding/"/>
+    <category term="character encoding" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/character-encoding/"/>
     
   </entry>
   
@@ -519,14 +519,14 @@
     
     
     
-    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/"/>
+    <category term="Operating-Systems" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/"/>
     
-    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/categories/Operating-Systems/I-O/"/>
+    <category term="I/O" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/Operating-Systems/I-O/"/>
     
     
-    <category term="java" scheme="https://ratears.gitee.io/dev.ratears.life/tags/java/"/>
+    <category term="java" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/java/"/>
     
-    <category term="io" scheme="https://ratears.gitee.io/dev.ratears.life/tags/io/"/>
+    <category term="io" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/io/"/>
     
   </entry>
   
@@ -547,10 +547,10 @@
     
     
     
-    <category term="gradle" scheme="https://ratears.gitee.io/dev.ratears.life/categories/gradle/"/>
+    <category term="gradle" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/gradle/"/>
     
     
-    <category term="gradle" scheme="https://ratears.gitee.io/dev.ratears.life/tags/gradle/"/>
+    <category term="gradle" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/gradle/"/>
     
   </entry>
   
@@ -571,14 +571,14 @@
     
     
     
-    <category term="spring" scheme="https://ratears.gitee.io/dev.ratears.life/categories/spring/"/>
+    <category term="spring" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/spring/"/>
     
-    <category term="jpa" scheme="https://ratears.gitee.io/dev.ratears.life/categories/spring/jpa/"/>
+    <category term="jpa" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/spring/jpa/"/>
     
     
-    <category term="spring" scheme="https://ratears.gitee.io/dev.ratears.life/tags/spring/"/>
+    <category term="spring" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/spring/"/>
     
-    <category term="jpa" scheme="https://ratears.gitee.io/dev.ratears.life/tags/jpa/"/>
+    <category term="jpa" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/jpa/"/>
     
   </entry>
   
@@ -599,14 +599,14 @@
     
     
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/"/>
     
-    <category term="kingbase" scheme="https://ratears.gitee.io/dev.ratears.life/categories/database/kingbase/"/>
+    <category term="kingbase" scheme="https://ratears.gitee.io/dev.ratears.life/Categories/database/kingbase/"/>
     
     
-    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/tags/database/"/>
+    <category term="database" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/database/"/>
     
-    <category term="kingbase" scheme="https://ratears.gitee.io/dev.ratears.life/tags/kingbase/"/>
+    <category term="kingbase" scheme="https://ratears.gitee.io/dev.ratears.life/Tags/kingbase/"/>
     
   </entry>
   
