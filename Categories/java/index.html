@@ -197,9 +197,16 @@
         <section class="archive-item">
             <div class="archive-item-header">
                 <span class="archive-year">2022</span>
-                <span class="archive-year-post-count">[1]</span>
+                <span class="archive-year-post-count">[2]</span>
             </div>
             <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="../../%E3%80%8A%E7%BA%BF%E7%A8%8B%E5%85%AB%E5%A4%A7%E6%A0%B8%E5%BF%83-Java%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%B9%B6%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%8Bstudy-notes/"
+                        >《线程八大核心+Java并发原理及企业级并发解决方案》study notes</a>
+                        <span class="article-date">12-26</span>
+                    </li>
                 
                     <li class="article-item">
                         <a class="article-title"
@@ -240,7 +247,7 @@
             
                 <span>2017</span> -
             
-            2022
+            2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
                 &nbsp;<a href="/">ratears</a>
@@ -388,6 +395,33 @@
                 '.page-container',
                 '.pjax'
             ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
+,
             history: true,
             debug: false,
             cacheBust: false,

@@ -276,6 +276,8 @@
 <h1 id="版本控制系统"><a href="#版本控制系统" class="headerlink" title="版本控制系统"></a>版本控制系统</h1><h2 id="什么是版本控制系统"><a href="#什么是版本控制系统" class="headerlink" title="什么是版本控制系统"></a>什么是版本控制系统</h2><ul>
 <li>版本控制系统是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统</li>
 </ul>
+<br>
+
 <h2 id="为什么要使用版本控制"><a href="#为什么要使用版本控制" class="headerlink" title="为什么要使用版本控制"></a>为什么要使用版本控制</h2><ul>
 <li>软件开发中采用版本控制系统是个明智的选择</li>
 <li>有了它你就可以将某个文件回溯到之前的状态,甚至将整个项目都回退到过去某个时间点的状态</li>
@@ -283,6 +285,8 @@
 <li>你可以比较文件的变化细节,查出最后是谁修改了哪个地方,从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等</li>
 <li>但额外增加的工作量却微乎其微</li>
 </ul>
+<br>
+
 <h2 id="版本管理的演变"><a href="#版本管理的演变" class="headerlink" title="版本管理的演变"></a>版本管理的演变</h2><ul>
 <li>VCS 出现前<ul>
 <li>用目录拷贝区别不不同版本</li>
@@ -304,6 +308,8 @@
 </ul>
 </li>
 </ul>
+<br>
+
 <h2 id="版本控制系统的分类"><a href="#版本控制系统的分类" class="headerlink" title="版本控制系统的分类"></a>版本控制系统的分类</h2><h3 id="集中化的版本控制系统"><a href="#集中化的版本控制系统" class="headerlink" title="集中化的版本控制系统"></a>集中化的版本控制系统</h3><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.4l3axedwasg0.webp" width="60%" >
 
 <blockquote>
@@ -329,15 +335,23 @@
 <li>存储差异：存储base文件，以后每次存储base文件的更改，SVN就是这种方式</li>
 <li>存储快照：每次更改都存储一个新文件，Git是这种方式</li>
 </ul>
+<br>
+
+<br>
+
+<br>
+
 <h1 id="Git-基础"><a href="#Git-基础" class="headerlink" title="Git 基础"></a>Git 基础</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
 <li>Git是一个<font color=#008000>免费的</font>、<font color=#008000>开源的</font><font color=#008000><strong>分布式</strong></font><font color=red>版本控制系统</font>，可以快速高效地管理从小型到大型的项目</li>
 </ul>
+<br>
+
 <h2 id="Git-简史"><a href="#Git-简史" class="headerlink" title="Git 简史"></a>Git 简史</h2><ul>
-<li><p>Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</p>
-</li>
-<li><p>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。 他们对新的系统制订了若干目标</p>
-</li>
+<li>Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</li>
+<li>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。 他们对新的系统制订了若干目标</li>
 </ul>
+<br>
+
 <h2 id="Git-的使命-目标"><a href="#Git-的使命-目标" class="headerlink" title="Git 的使命 / 目标"></a>Git 的使命 / 目标</h2><p>Git在设计之初就是为了搞定linux内核这种巨无霸而设计的，所以制定了自己的使命</p>
 <ul>
 <li>速度</li>
@@ -346,6 +360,8 @@
 <li>完全分布式</li>
 <li>有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）</li>
 </ul>
+<br>
+
 <h2 id="Git-的优点-特点"><a href="#Git-的优点-特点" class="headerlink" title="Git 的优点 / 特点"></a>Git 的优点 / 特点</h2><ul>
 <li>快、非凡的性能</li>
 <li>本地仓库</li>
@@ -358,6 +374,8 @@
 <li>支持离线操作</li>
 <li>很容易易定制工作流程</li>
 </ul>
+<br>
+
 <h2 id="Git-的结构"><a href="#Git-的结构" class="headerlink" title="Git 的结构"></a>Git 的结构</h2><img src="https://cdn.jsdelivr.net/gh/sonzonzy/image-hosting@main/gitee-blog/image.1756qy15ac5c.webp" width="60%" >
 
 <h2 id="Git-的交互方式"><a href="#Git-的交互方式" class="headerlink" title="Git 的交互方式"></a>Git 的交互方式</h2><h3 id="代码托管中心是干嘛的"><a href="#代码托管中心是干嘛的" class="headerlink" title="代码托管中心是干嘛的"></a>代码托管中心是干嘛的</h3><ul>
@@ -371,26 +389,32 @@
 <li>局域网环境下：可以搭建 GitLab服务器作为代码托管中心，GitLab可以自己去搭建</li>
 <li>外网环境下：可以由GitHub或者Gitee作为代码托管中心，GitHub或者Gitee是现成的托管中心，不用自己去搭建 </li>
 </ul>
+<br>
+
 <h2 id="Git-的下载安装-基本设置"><a href="#Git-的下载安装-基本设置" class="headerlink" title="Git 的下载安装 / 基本设置"></a>Git 的下载安装 / 基本设置</h2><ul>
 <li>下载安装略（官网下载，一般情况傻瓜式安装即可）</li>
 <li>查看git安装版本（是否安装成功）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
 
-<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
-<li>配置<code>user.name</code>和<code>user.email</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global  user.name <span class="string">&#x27;sonzonzy&#x27;</span></span><br><span class="line">git config --global  user.email <span class="string">&#x27;sonzonzy@gmail.com&#x27;</span></span><br></pre></td></tr></table></figure>
+<br>
 
 <h3 id="config-的三个作用域"><a href="#config-的三个作用域" class="headerlink" title="config 的三个作用域"></a>config 的三个作用域</h3><ul>
 <li>缺省等同于 local</li>
-<li>优先级：local &gt; global &gt; system</li>
+<li>优先级：local &gt; global &gt; system<ul>
+<li>local只对当前仓库有效</li>
+<li>global 对当前登录用户所有仓库有效</li>
+<li>system 对系统的所有用户有效</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># local只对当前仓库有效</span></span><br><span class="line">git config --<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># global 对当前登录用户所有仓库有效</span></span><br><span class="line">git config --global</span><br><span class="line"></span><br><span class="line"><span class="comment"># system 对系统的所有用户有效</span></span><br><span class="line">git config --system</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<br>
 
-<h3 id="显示-config-的配置"><a href="#显示-config-的配置" class="headerlink" title="显示 config 的配置"></a>显示 config 的配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --list --<span class="built_in">local</span></span><br><span class="line">git config --list --global</span><br><span class="line">git config --list --system</span><br></pre></td></tr></table></figure>
+<h3 id="显示-Git-config-的配置"><a href="#显示-Git-config-的配置" class="headerlink" title="显示 Git config 的配置"></a>显示 Git config 的配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --list --<span class="built_in">local</span></span><br><span class="line">git config --list --global</span><br><span class="line">git config --list --system</span><br></pre></td></tr></table></figure>
 
-<h3 id="信息设置与清除"><a href="#信息设置与清除" class="headerlink" title="信息设置与清除"></a>信息设置与清除</h3><ul>
+<br>
+
+<h3 id="Git-基础信息设置与清除"><a href="#Git-基础信息设置与清除" class="headerlink" title="Git 基础信息设置与清除"></a>Git 基础信息设置与清除</h3><ul>
 <li>设置    缺省等同于 local</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">&quot;ratears&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;ratears&quot;</span></span><br><span class="line">git config --system user.name <span class="string">&quot;ratears&quot;</span></span><br></pre></td></tr></table></figure>
@@ -398,9 +422,21 @@
 <ul>
 <li>清除    –unset</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">unset</span> --<span class="built_in">local</span> user.name</span><br><span class="line">git config --<span class="built_in">unset</span> --global user.name</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.name</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">unset</span> --<span class="built_in">local</span> user.name <span class="string">&#x27;&#x27;</span></span><br><span class="line">git config --<span class="built_in">unset</span> --global user.name <span class="string">&#x27;&#x27;</span></span><br><span class="line">git config --<span class="built_in">unset</span> --system user.name <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Git-常用命令-amp-操作"><a href="#Git-常用命令-amp-操作" class="headerlink" title="Git 常用命令 &amp; 操作"></a>Git 常用命令 &amp; 操作</h1><h2 id="init-初始化本地仓库"><a href="#init-初始化本地仓库" class="headerlink" title="init / 初始化本地仓库"></a>init / 初始化本地仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在git终端进入到本地的文件夹 （例如 $ cd D:\dev\git_ws\git_demo） 执行如下命令</span></span><br><span class="line"><span class="comment">#初始化本地仓库，只能初始化本地仓库</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Git-常用命令-amp-操作"><a href="#Git-常用命令-amp-操作" class="headerlink" title="Git 常用命令 &amp; 操作"></a>Git 常用命令 &amp; 操作</h1><h2 id="建-Git-仓库"><a href="#建-Git-仓库" class="headerlink" title="建 Git 仓库"></a>建 Git 仓库</h2><h3 id="用-Git-之前已经有项目代码"><a href="#用-Git-之前已经有项目代码" class="headerlink" title="用 Git 之前已经有项目代码"></a>用 Git 之前已经有项目代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># init / 初始化本地仓库</span></span><br><span class="line"><span class="built_in">cd</span> 项⽬目代码所在的⽂文件夹</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="用-Git-之前还没有项目代码"><a href="#用-Git-之前还没有项目代码" class="headerlink" title="用 Git 之前还没有项目代码"></a>用 Git 之前还没有项目代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 某个⽂件夹</span><br><span class="line">git init your_project <span class="comment">#会在当前路径下创建和项⽬名称同名的⽂件夹</span></span><br><span class="line"><span class="built_in">cd</span> your_project</span><br></pre></td></tr></table></figure>
+
+<br>
 
 <h2 id="add-添加到暂存区"><a href="#add-添加到暂存区" class="headerlink" title="add / 添加到暂存区"></a>add / 添加到暂存区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
 
@@ -603,7 +639,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">1.</span> <span class="nav-text">学习备注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">版本控制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是版本控制系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">为什么要使用版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E7%AE%A1%EF%A7%A4%E7%9A%84%E6%BC%94%E5%8F%98"><span class="nav-number">2.3.</span> <span class="nav-text">版本管理的演变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.4.</span> <span class="nav-text">版本控制系统的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E4%B8%AD%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.4.1.</span> <span class="nav-text">集中化的版本控制系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.4.2.</span> <span class="nav-text">分布式的版本控制系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">版本控制系统的存储方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">Git 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%AE%80%E5%8F%B2"><span class="nav-number">3.2.</span> <span class="nav-text">Git 简史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BD%BF%E5%91%BD-%E7%9B%AE%E6%A0%87"><span class="nav-number">3.3.</span> <span class="nav-text">Git 的使命 &#x2F; 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BC%98%E7%82%B9-%E7%89%B9%E7%82%B9"><span class="nav-number">3.4.</span> <span class="nav-text">Git 的优点 &#x2F; 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">3.5.</span> <span class="nav-text">Git 的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text">Git 的交互方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E4%B8%AD%E5%BF%83%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84"><span class="nav-number">3.6.1.</span> <span class="nav-text">代码托管中心是干嘛的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BA%93%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="nav-number">3.6.2.</span> <span class="nav-text">本地库和远程库的交互方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A2%E9%98%9F%E5%86%85%E9%83%A8%E5%8D%8F%E4%BD%9C"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">团队内部协作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="nav-number">3.6.2.2.</span> <span class="nav-text">跨团队协作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%98%E7%AE%A1%E4%B8%AD%E5%BF%83%E7%A7%8D%E7%B1%BB"><span class="nav-number">3.6.3.</span> <span class="nav-text">托管中心种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.7.</span> <span class="nav-text">Git 的下载安装 &#x2F; 基本设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.7.1.</span> <span class="nav-text">基本设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#config-%E7%9A%84%E4%B8%89%E4%B8%AA%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.7.2.</span> <span class="nav-text">config 的三个作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA-config-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">3.7.3.</span> <span class="nav-text">显示 config 的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%B8%85%E9%99%A4"><span class="nav-number">3.7.4.</span> <span class="nav-text">信息设置与清除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-amp-%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">Git 常用命令 &amp; 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">4.1.</span> <span class="nav-text">init &#x2F; 初始化本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">add &#x2F; 添加到暂存区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#commit-%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">4.3.</span> <span class="nav-text">commit &#x2F; 提交到本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#status-%E6%9F%A5%E7%9C%8B%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">4.4.</span> <span class="nav-text">status &#x2F; 查看工作区和暂存区的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-%E9%87%8D%E5%91%BD%E5%90%8D%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text">mv &#x2F; 重命名暂存区的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97"><span class="nav-number">4.6.</span> <span class="nav-text">log &#x2F; 查看提交日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitk-git-%E7%9A%84gui%E7%95%8C%E9%9D%A2"><span class="nav-number">4.7.</span> <span class="nav-text">gitk &#x2F; git 的gui界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rest-%E5%89%8D%E8%BF%9B%E6%88%96%E8%80%85%E5%90%8E%E9%80%80%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC"><span class="nav-number">4.8.</span> <span class="nav-text">rest &#x2F; 前进或者后退历史版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hard-%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.1.</span> <span class="nav-text">hard 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mixed%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.2.</span> <span class="nav-text">mixed参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#soft%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.3.</span> <span class="nav-text">soft参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff"><span class="nav-number">4.9.</span> <span class="nav-text">diff</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-number">5.</span> <span class="nav-text">分支</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">1.</span> <span class="nav-text">学习备注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">版本控制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是版本控制系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">为什么要使用版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E7%AE%A1%EF%A7%A4%E7%9A%84%E6%BC%94%E5%8F%98"><span class="nav-number">2.3.</span> <span class="nav-text">版本管理的演变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.4.</span> <span class="nav-text">版本控制系统的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E4%B8%AD%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.4.1.</span> <span class="nav-text">集中化的版本控制系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.4.2.</span> <span class="nav-text">分布式的版本控制系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">版本控制系统的存储方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">Git 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%AE%80%E5%8F%B2"><span class="nav-number">3.2.</span> <span class="nav-text">Git 简史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BD%BF%E5%91%BD-%E7%9B%AE%E6%A0%87"><span class="nav-number">3.3.</span> <span class="nav-text">Git 的使命 &#x2F; 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BC%98%E7%82%B9-%E7%89%B9%E7%82%B9"><span class="nav-number">3.4.</span> <span class="nav-text">Git 的优点 &#x2F; 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">3.5.</span> <span class="nav-text">Git 的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text">Git 的交互方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E4%B8%AD%E5%BF%83%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84"><span class="nav-number">3.6.1.</span> <span class="nav-text">代码托管中心是干嘛的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BA%93%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="nav-number">3.6.2.</span> <span class="nav-text">本地库和远程库的交互方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A2%E9%98%9F%E5%86%85%E9%83%A8%E5%8D%8F%E4%BD%9C"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">团队内部协作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="nav-number">3.6.2.2.</span> <span class="nav-text">跨团队协作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%98%E7%AE%A1%E4%B8%AD%E5%BF%83%E7%A7%8D%E7%B1%BB"><span class="nav-number">3.6.3.</span> <span class="nav-text">托管中心种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.7.</span> <span class="nav-text">Git 的下载安装 &#x2F; 基本设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-%E7%9A%84%E4%B8%89%E4%B8%AA%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.7.1.</span> <span class="nav-text">config 的三个作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA-Git-config-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">3.7.2.</span> <span class="nav-text">显示 Git config 的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%B8%85%E9%99%A4"><span class="nav-number">3.7.3.</span> <span class="nav-text">Git 基础信息设置与清除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-amp-%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">Git 常用命令 &amp; 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA-Git-%E4%BB%93%E5%BA%93"><span class="nav-number">4.1.</span> <span class="nav-text">建 Git 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-Git-%E4%B9%8B%E5%89%8D%E5%B7%B2%E7%BB%8F%E6%9C%89%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.1.</span> <span class="nav-text">用 Git 之前已经有项目代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-Git-%E4%B9%8B%E5%89%8D%E8%BF%98%E6%B2%A1%E6%9C%89%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.2.</span> <span class="nav-text">用 Git 之前还没有项目代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">add &#x2F; 添加到暂存区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#commit-%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">4.3.</span> <span class="nav-text">commit &#x2F; 提交到本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#status-%E6%9F%A5%E7%9C%8B%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">4.4.</span> <span class="nav-text">status &#x2F; 查看工作区和暂存区的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-%E9%87%8D%E5%91%BD%E5%90%8D%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text">mv &#x2F; 重命名暂存区的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97"><span class="nav-number">4.6.</span> <span class="nav-text">log &#x2F; 查看提交日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitk-git-%E7%9A%84gui%E7%95%8C%E9%9D%A2"><span class="nav-number">4.7.</span> <span class="nav-text">gitk &#x2F; git 的gui界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rest-%E5%89%8D%E8%BF%9B%E6%88%96%E8%80%85%E5%90%8E%E9%80%80%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC"><span class="nav-number">4.8.</span> <span class="nav-text">rest &#x2F; 前进或者后退历史版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hard-%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.1.</span> <span class="nav-text">hard 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mixed%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.2.</span> <span class="nav-text">mixed参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#soft%E5%8F%82%E6%95%B0"><span class="nav-number">4.8.3.</span> <span class="nav-text">soft参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff"><span class="nav-number">4.9.</span> <span class="nav-text">diff</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-number">5.</span> <span class="nav-text">分支</span></a></li></ol>
     </div>
 </div>
 
@@ -627,7 +663,7 @@
             
                 <span>2017</span> -
             
-            2022
+            2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
                 &nbsp;<a href="/">ratears</a>

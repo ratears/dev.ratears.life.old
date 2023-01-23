@@ -631,13 +631,64 @@
 <blockquote>
 <p>注意: 在 MongoDB 中，集合只有在内容插入后才会创建! 就是说，创建集合(数据表)后要再插入一个文档(记录)，集合才会真正创建。</p>
 </blockquote>
-<br>
+<ul>
+<li>查看当前正在使用的数据库命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br>
 
 <br>
 
-<h1 id="查看当前正在使用的数据库命令"><a href="#查看当前正在使用的数据库命令" class="headerlink" title="查看当前正在使用的数据库命令"></a>查看当前正在使用的数据库命令</h1><br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
 
 <br>
 
@@ -707,14 +758,29 @@
             
                 <div class="article-nav">
                     
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8A%E7%BA%BF%E7%A8%8B%E5%85%AB%E5%A4%A7%E6%A0%B8%E5%BF%83-Java%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%B9%B6%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《线程八大核心+Java并发原理及企业级并发解决方案》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="../jvm/"
+                               href="../%E3%80%8A%E4%B8%80%E7%AB%99%E5%BC%8F%E5%AD%A6%E4%B9%A0Redis-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5%E3%80%8Bstudy-notes/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">jvm</span>
+                                <span class="post-nav-title-item">《一站式学习Redis-从入门到高可用分布式实践》study notes</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -812,7 +878,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">MongoDB相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.1.</span> <span class="nav-text">业务应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9MongoDB"><span class="nav-number">2.2.</span> <span class="nav-text">什么时候选择MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB%E7%AE%80%E4%BB%8B"><span class="nav-number">2.3.</span> <span class="nav-text">MongoDB简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E5%92%8CMongoDB%E5%AF%B9%E6%AF%94"><span class="nav-number">2.4.1.</span> <span class="nav-text">MySQL和MongoDB对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BSON%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%82%E8%80%83%E5%88%97%E8%A1%A8"><span class="nav-number">2.5.2.</span> <span class="nav-text">BSON数据类型参考列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.6.</span> <span class="nav-text">MongoDB的特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2"><span class="nav-number">3.</span> <span class="nav-text">单机部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E5%92%8C%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.</span> <span class="nav-text">Linux系统中的安装启动和连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">3.1.1.</span> <span class="nav-text">版本的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">下载安装启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">基本常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E9%9C%80%E6%B1%82"><span class="nav-number">4.1.</span> <span class="nav-text">案例需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%92%8C%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.1.</span> <span class="nav-text">选择和创建数据库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">查看当前正在使用的数据库命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">6.</span> <span class="nav-text">学习备注</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">MongoDB相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.1.</span> <span class="nav-text">业务应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9MongoDB"><span class="nav-number">2.2.</span> <span class="nav-text">什么时候选择MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB%E7%AE%80%E4%BB%8B"><span class="nav-number">2.3.</span> <span class="nav-text">MongoDB简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E5%92%8CMongoDB%E5%AF%B9%E6%AF%94"><span class="nav-number">2.4.1.</span> <span class="nav-text">MySQL和MongoDB对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BSON%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%82%E8%80%83%E5%88%97%E8%A1%A8"><span class="nav-number">2.5.2.</span> <span class="nav-text">BSON数据类型参考列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.6.</span> <span class="nav-text">MongoDB的特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2"><span class="nav-number">3.</span> <span class="nav-text">单机部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E5%92%8C%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.</span> <span class="nav-text">Linux系统中的安装启动和连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">3.1.1.</span> <span class="nav-text">版本的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">下载安装启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">基本常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E9%9C%80%E6%B1%82"><span class="nav-number">4.1.</span> <span class="nav-text">案例需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%92%8C%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.1.</span> <span class="nav-text">选择和创建数据库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">5.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
@@ -836,7 +902,7 @@
             
                 <span>2017</span> -
             
-            2022
+            2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
                 &nbsp;<a href="/">ratears</a>

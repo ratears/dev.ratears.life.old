@@ -212,13 +212,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-12-01 02:31:29</span>
-        <span class="mobile">2022-12-01 02:31</span>
+        <span class="pc">2022-12-01 22:31:29</span>
+        <span class="mobile">2022-12-01 22:31</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-01 02:31:29</span>
+        <span class="pc">2022-12-01 22:31:29</span>
     </span>
     
     
@@ -231,11 +231,11 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="../Categories/Database/Redis/">Redis</a>&nbsp;
+                        &gt; <a href="../Categories/Database/NoSQL/">NoSQL</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="../Categories/study-notes/">study-notes</a>&nbsp;
+                        &gt; <a href="../Categories/Database/NoSQL/Redis/">Redis</a>&nbsp;
                     </li>
                 
             </ul>
@@ -247,7 +247,11 @@
             <ul>
                 
                     <li>
-                        <a href="../Tags/Database/">Database</a>&nbsp;
+                        <a href="../Tags/NoSQL/">NoSQL</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../Tags/Database/">Database</a>&nbsp;
                     </li>
                 
                     <li>
@@ -265,12 +269,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>13.2k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>16.4k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>49 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>62 Mins</span>
         </span>
     
     
@@ -286,17 +290,26 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h1 id="第1章-Redis-概述"><a href="#第1章-Redis-概述" class="headerlink" title="第1章 Redis 概述"></a>第1章 Redis 概述</h1><h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><ul>
-<li><p>Redis，Remote Dictionary Server，远程字典服务，由意大利人 Salvatore Sanfilippo（又名 Antirez）开发，是一个使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、NoSQL 开源内存数据库，其提供多种语言的 API。从 2010 年 3 月 15 日起，Redis 的开发工作由 VMware 主持。从2013 年 5 月开始，Redis 的开发由 Pivotal 赞助。</p>
-</li>
-<li><p>Redis 这个名字的意思是 Remote Dictionary Server。[<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Redis#cite_note-RedisFAQ-6" >6]<i class="fas fa-external-link-alt"></i></a> Redis 项目始于 Salvatore Sanfilippo（绰号<em>antirez</em>），Redis 的原始开发人员试图提高其意大利初创公司的可扩展性，开发了一个<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Real-time_computing" >实时<i class="fas fa-external-link-alt"></i></a>Web 日志分析器。在使用传统数据库系统扩展某些类型的工作负载时遇到重大问题后，Sanfilippo 于 2009 年开始在<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tcl" >Tcl<i class="fas fa-external-link-alt"></i></a>中制作第一个 Redis 概念验证版本的原型。[<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Redis#cite_note-12" >12]<i class="fas fa-external-link-alt"></i></a>后来 Sanfilippo 将该原型翻译成 C 语言并实现了第一种数据类型，即列表。在内部成功使用该项目几周后，Sanfilippo 决定将其开源</p>
-</li>
-<li><p>Redis 之所以称之为字典服务，是因为 Redis 是一个 key-value 存储系统。支持存储的 value类型很多，包括 String(字符串)、List(链表)、Set(集合)、Zset(sorted set –有序集合)和 Hash（哈希类型）等。</p>
+                <h1 id="学习前言"><a href="#学习前言" class="headerlink" title="学习前言"></a>学习前言</h1><ul>
+<li>这个学习笔记，详尽的记录了Redis的核心技术与实战技能。是我学习和使用Redis技术过程的一个笔记。用于复习和查漏补缺</li>
+<li>学习Redis应该着重掌握以下这几个方面内容：<ul>
+<li>技术适用场景（解决了什么问题、同类技术对比、特性与优缺点）</li>
+<li>技术的发展脉络（起源、历史版本差异、未来前瞻）</li>
+<li>开发、运维、监控（Demo、API理解和使用、开发规范、运维监控技术[安装部署]、故障排查与解决）</li>
+<li>底层技术与核心原理（底层算法、数据结构、技术、原理）</li>
+<li>企业级最佳实战（实战案例、高可用、分布式[集群]、高性能[调优]、架构设计[架构方案设计、优化]）</li>
+<li>避坑（故障排查与解决）</li>
+<li>八股文（常见的八股文问题能够知晓、可以独立架构设计）</li>
+</ul>
 </li>
 </ul>
 <br>
 
-<h2 id="NoSQL-简介"><a href="#NoSQL-简介" class="headerlink" title="NoSQL 简介"></a>NoSQL 简介</h2><ul>
+<br>
+
+<br>
+
+<h1 id="Redis-起步"><a href="#Redis-起步" class="headerlink" title="Redis 起步"></a>Redis 起步</h1><h2 id="NoSQL-简介"><a href="#NoSQL-简介" class="headerlink" title="NoSQL 简介"></a>NoSQL 简介</h2><ul>
 <li>NoSQL（“non-relational”， “Not Only SQL”），泛指非关系型的数据库。随着互联网 web2.0网站的兴起，传统的关系数据库在处理 web2.0 网站，特别是超大规模和高并发的 SNS 类型的 web2.0 纯动态网站已经显得力不从心，出现了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。<strong>NoSQL 数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，特别是大数据应用难题。</strong></li>
 </ul>
 <p>（1）键值存储数据库</p>
@@ -317,7 +330,23 @@
 </ul>
 <br>
 
-<h2 id="Redis-的用途"><a href="#Redis-的用途" class="headerlink" title="Redis 的用途"></a>Redis 的用途</h2><ul>
+<h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><h3 id="Redis-起源"><a href="#Redis-起源" class="headerlink" title="Redis 起源"></a>Redis 起源</h3><ul>
+<li>Redis 这个名字的意思是 Remote Dictionary Server。Redis 项目始于 Salvatore Sanfilippo（绰号<em>antirez</em>），Redis 的原始开发人员试图提高其意大利初创公司的可扩展性，开发了一个实时Web 日志分析器。在使用传统数据库系统扩展某些类型的工作负载时遇到重大问题后，Sanfilippo 于 2009 年开始在Tcl中制作第一个 Redis 概念验证版本的原型。后来 Sanfilippo 将该原型翻译成 C 语言并实现了第一种数据类型，即列表。在内部成功使用该项目几周后，Sanfilippo 决定将其开源</li>
+</ul>
+<br>
+
+<h3 id="Redis-是什么"><a href="#Redis-是什么" class="headerlink" title="Redis 是什么"></a>Redis 是什么</h3><ul>
+<li>Redis，Remote Dictionary Server，远程字典服务，由意大利人 Salvatore Sanfilippo（又名 Antirez）开发，是一个使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、NoSQL 开源内存数据库，其提供多种语言的 API。从 2010 年 3 月 15 日起，Redis 的开发工作由 VMware 主持。从2013 年 5 月开始，Redis 的开发由 Pivotal 赞助。</li>
+</ul>
+<blockquote>
+<p>Redis 之所以称之为字典服务，是因为 Redis 是一个 key-value 存储系统。支持存储的 value类型很多，包括 String(字符串)、List(链表)、Set(集合)、Zset(sorted set –有序集合)和 Hash（哈希类型）等。</p>
+</blockquote>
+<blockquote>
+<p><strong>开源、基于 key-value 存储系统、支持多种数据结构、高性能、功能丰富</strong></p>
+</blockquote>
+<br>
+
+<h3 id="Redis-的用途"><a href="#Redis-的用途" class="headerlink" title="Redis 的用途"></a>Redis 的用途</h3><ul>
 <li>Redis 在生产中使用最多的场景就是做数据缓存。即客户端从 DBMS 中查询出的数据首先写入到 Redis 中，后续无论哪个客户端再需要访问该数据，直接读取 Redis 中的即可，不仅减小了 RT，而且降低了 DBMS 的压力。</li>
 </ul>
 <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.cdgu076yuww.webp" width="60%">
@@ -335,25 +364,28 @@
 </blockquote>
 <br>
 
-<h2 id="Redis-特性"><a href="#Redis-特性" class="headerlink" title="Redis 特性"></a>Redis 特性</h2><ul>
-<li>能够做缓存的技术、中间件很多，例如，MyBatis 自带的二级缓存、Memched 等。只所以在生产中做缓存的产品几乎无一例外的会选择 Redis，是因为它有很多其它产品所不具备的特性。</li>
-<li><strong>性能极高</strong>：Redis 读的速度可以达到 11w 次/s，写的速度可以达到 8w 次/s。只所以具有这么高的性能，因为以下几点原因：<ul>
-<li>（1）Redis 的所有操作都是在内存中发生的。</li>
+<h3 id="Redis-特性"><a href="#Redis-特性" class="headerlink" title="Redis 特性"></a>Redis 特性</h3><blockquote>
+<p><font color=red>能够做缓存的技术、中间件很多，例如，MyBatis 自带的二级缓存、Memched 等。只所以在生产中做缓存的产品几乎无一例外的会选择 Redis，是因为它有很多其它产品所不具备的特性。</font></p>
+</blockquote>
+<ul>
+<li><strong>性能极高</strong>：Redis 读的速度可以达到 11w 次/s，写的速度可以达到 8w 次/s。之所以具有这么高的性能，因为以下几点原因：<ul>
+<li>（1）Redis 的所有操作都是在内存中发生的。（性能高的主要原因）</li>
 <li>（2）Redis 是用 C 语言开发的。</li>
-<li>（3）Redis 源码非常精细（集性能与优雅于一身）。</li>
+<li>（3）单线程</li>
+<li>（4）Redis 源码非常精细（集性能与优雅于一身）。</li>
 </ul>
 </li>
-<li><strong>简单稳定</strong>：Redis 源码很少。早期版本只有 2w 行左右。从 3.0 版本开始，增加了集群功能，代码变为了 5w 行左右。</li>
-<li><strong>持久化</strong>：Redis 内存中的数据可以进行持久化，其有两种方式：RDB 与 AOF。</li>
-<li><strong>高可用集群</strong>：Redis 提供了高可用的主从集群功能，可以确保系统的安全性。</li>
+<li><strong>简单稳定</strong>：Redis 源码很少，不依赖外部库，单线程模型。早期版本只有 2w 行左右。从 3.0 版本开始，增加了集群功能，代码变为了 5w 行左右。</li>
+<li><strong>持久化</strong>：Redis的所有数据保存在内存中，对数据的更新异步的保存在磁盘上。（Redis 内存中的数据可以进行持久化，其有两种方式：RDB 与 AOF。）</li>
+<li><strong>高可用、分布式</strong>：Redis 提供了高可用的主从集群功能，可以确保系统的安全性。</li>
 <li><strong>丰富的数据类型</strong>：Redis 是一个 key-value 存储系统。支持存储的 value 类型很多，包括String(字符串)、List(链表)、Set(集合)、Zset(sorted set –有序集合)和 Hash（哈希类型）等，还有 BitMap、HyperLogLog、Geospatial 类型。<ul>
 <li>BitMap：一般用于大数据量的二值性统计。</li>
 <li>HyperLogLog：其是 Hyperlog Log，用于对数据量超级庞大的日志做去重统计。</li>
 <li>Geospatial：地理空间，其主要用于地理位置相关的计算。</li>
 </ul>
 </li>
-<li><strong>强大的功能</strong>：Redis 提供了数据过期功能、发布/订阅功能、简单事务功能，还支持 Lua脚本扩展功能。</li>
-<li><strong>客户端语言广泛</strong>：Redis 提供了简单的 TCP 通信协议，编程语言可以方便地的接入 Redis。所以，有很多的开源社区、大公司等开发出了很多语言的 Redis 客户端。</li>
+<li><strong>功能丰富</strong>：Redis 提供了数据过期功能、发布/订阅功能、简单事务功能，还支持 Lua脚本扩展功能。</li>
+<li><strong>支持多种客户端语言</strong>：Redis 提供了简单的 TCP 通信协议，编程语言可以方便地的接入 Redis。所以，有很多的开源社区、大公司等开发出了很多语言的 Redis 客户端。</li>
 <li><strong>支持 ACL 权限控制</strong>：之前的权限控制非常笨拙。从 Redis6 开始引入了 ACL 模块，可以为不同用户定制不同的用户权限。</li>
 </ul>
 <blockquote>
@@ -365,119 +397,79 @@
 </ul>
 <br>
 
-<h2 id="Redis-的-IO-模型"><a href="#Redis-的-IO-模型" class="headerlink" title="Redis 的 IO 模型"></a>Redis 的 IO 模型</h2><ul>
-<li>Redis 处理客户端请求所采用的处理架构，称为 Redis 的 IO 模型。不同版本的 Redis 采用的 IO 模型是不同的。</li>
+<h3 id="Redis-典型使用场景"><a href="#Redis-典型使用场景" class="headerlink" title="Redis 典型使用场景"></a>Redis 典型使用场景</h3><ul>
+<li>缓存系统</li>
+<li>计数器</li>
+<li>消息队列</li>
+<li>排行榜</li>
+<li>社交网络</li>
+<li>实时系统</li>
 </ul>
 <br>
 
-<h3 id="单线程模型"><a href="#单线程模型" class="headerlink" title="单线程模型"></a>单线程模型</h3><ul>
-<li>对于 Redis 3.0 及其以前版本，Redis 的 IO 模型采用的是<font color=red>纯粹的单线程模型</font>。即所有客户端的请求全部由一个线程处理。</li>
-</ul>
-<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.72e1zah9knw0.webp" width="75%">
+<h2 id="Redis-的安装与启动"><a href="#Redis-的安装与启动" class="headerlink" title="Redis 的安装与启动"></a>Redis 的安装与启动</h2><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><p>（1）下载需要的依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
 
-<br>
-
-<ul>
-<li>Redis 的单线程模型采用了<font color=red>多路复用技术</font>。</li>
-</ul>
 <blockquote>
-<p>对于多路复用器的<font color=red>多路选择算法</font>常见的有三种：select 模型、poll 模型、epoll 模型。</p>
-<ul>
-<li>poll 模型的选择算法：采用的是轮询算法。该模型对客户端的就绪处理是有延迟的。</li>
-<li>epoll 模型的选择算法：采用的是回调方式。根据就绪事件发生后的处理方式的不同，又可分为 LT 模型与 ET 模型。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>每个客户端若要向 Redis 提交请求，都需要与 Redis 建立一个 socket 连接，并向事件分发器注册一个事件。一旦该事件发生就表明该连接已经就绪。而一旦连接就绪，事件分发器就会感知到，然后获取客户端通过该连接发送的请求，并将由该事件分发器所绑定的这个唯一的线程来处理。如果该线程还在处理多个任务，则将该任务写入到任务队列等待线程处理。</p>
-<p>只所以称为事件分发器，是因为它会根据不同的就绪事件，将任务交由不同的事件处理器去处理。</p>
-</blockquote>
-<br>
-
-<h3 id="混合线程模型"><a href="#混合线程模型" class="headerlink" title="混合线程模型"></a>混合线程模型</h3><ul>
-<li>从 Redis 4.0 版本开始，Redis 中就开始加入了多线程元素。处理客户端请求的仍是单线程模型，但对于一些比较耗时但又不影响对客户端的响应的操作，就由后台其它线程来处理。例如，持久化、对 AOF 的 rewrite、对失效连接的清理等。</li>
-</ul>
-<br>
-
-<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><ul>
-<li>Redis 6.0 版本，才是真正意义上的多线程模型。因为其对于客户端请求的处理采用的是多线程模型。</li>
-</ul>
-<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.8h232my5ero.webp" width="75%">
-
-<br>
-
-<ul>
-<li>多线程 IO 模型中的“多线程”仅用于接受、解析客户端的请求，然后将解析出的请求写入到任务队列。而对具体任务（命令）的处理，仍是由主线程处理。这样做使得用户无需考虑线程安全问题，无需考虑事务控制，无需考虑像 LPUSH/LPOP 等命令的执行顺序问题。</li>
-</ul>
-<br>
-
-<h3 id="优缺点总结"><a href="#优缺点总结" class="headerlink" title="优缺点总结"></a>优缺点总结</h3><h4 id="单线程模型-1"><a href="#单线程模型-1" class="headerlink" title="单线程模型"></a>单线程模型</h4><ul>
-<li><p>优点：可维护性高，性能高。不存在并发读写情况，所以也就不存在执行顺序的不确定性，不存在线程切换开销，不存在死锁问题，不存在为了数据安全而进行的加锁/解锁开销。</p>
-</li>
-<li><p>缺点：性能会受到影响，且由于单线程只能使用一个处理器，所以会形成处理器浪费。</p>
-</li>
-</ul>
-<br>
-
-<h4 id="多线程模型-1"><a href="#多线程模型-1" class="headerlink" title="多线程模型"></a>多线程模型</h4><ul>
-<li>优点：其结合了多线程与单线程的优点，避开了它们的所有不足</li>
-<li>缺点：该模型没有显示不足。如果非要找其不足的话就是，其并非是一个真正意义上的“多线程”，因为真正处理“任务”的线程仍是单线程。所以，其对性能也是有些影响的。</li>
-</ul>
-<br>
-
-<br>
-
-<br>
-
-<h1 id="第2章-Redis-的安装与配置"><a href="#第2章-Redis-的安装与配置" class="headerlink" title="第2章 Redis 的安装与配置"></a>第2章 Redis 的安装与配置</h1><h2 id="Redis-的安装"><a href="#Redis-的安装" class="headerlink" title="Redis 的安装"></a>Redis 的安装</h2><h3 id="安装前的准备工作"><a href="#安装前的准备工作" class="headerlink" title="安装前的准备工作"></a>安装前的准备工作</h3><blockquote>
 <p>由于 Redis 是由 C/C++语言编写的，而从官网下载的 Redis 安装包是需要编译后才可安装的，所以对其进行编译就必须要使用相关编译器。对于 C/C++语言的编译器，使用最多的是gcc 与 gcc-c++，而这两款编译器在 CentOS7 中是没有安装的，所以首先要安装这两款编译器。</p>
 <p>GCC，GNU Compiler Collection，GNU 编译器集合。</p>
 </blockquote>
-<ul>
-<li><p>安装 gcc：<code>yum -y install gcc gcc-c++</code></p>
-</li>
-<li><p>下载 Redis。将下载好的压缩包上传到 Linux 的/install/ 目录中。</p>
-</li>
-</ul>
+<p>（2）下载Redis安装包，并解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf redis-7.0.5.tar.gz -C /install/</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（3）编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入到解压目录中，然后执行编译命令 make</span></span><br><span class="line"><span class="comment"># 编译过程是根据 Makefile 文件进行的，而 Redis 解压包中已经存在该文件了。所以可以直接进行编译了。</span></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果直接 make 会失败报错 原因：建立redis时系统默认使用jemalloc作为内存管理工具，但是当前无可用jemalloc，则切换为标准内存管理工具libc问题解决</span></span><br><span class="line">make MALLOC=libc</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（4）安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Linux 中对于编译过的安装包执行 make install 进行安装。</span></span><br><span class="line"></span><br><span class="line">[root@localhost redis-7.0.5]<span class="comment"># make install</span></span><br><span class="line"><span class="built_in">cd</span> src &amp;&amp; make install</span><br><span class="line"><span class="built_in">which</span>: no python3 <span class="keyword">in</span> (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br><span class="line">make[1]: Entering directory `/install/redis-7.0.5/src<span class="string">&#x27;</span></span><br><span class="line"><span class="string">    CC Makefile.dep</span></span><br><span class="line"><span class="string">make[1]: Leaving directory `/install/redis-7.0.5/src&#x27;</span></span><br><span class="line"><span class="built_in">which</span>: no python3 <span class="keyword">in</span> (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br><span class="line">make[1]: Entering directory `/install/redis-7.0.5/src<span class="string">&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Hint: It&#x27;</span>s a good idea to run <span class="string">&#x27;make test&#x27;</span> ;)</span><br><span class="line"></span><br><span class="line">    INSTALL redis-server</span><br><span class="line">    INSTALL redis-benchmark</span><br><span class="line">    INSTALL redis-cli</span><br><span class="line">make[1]: Leaving directory `/install/redis-7.0.5/src<span class="string">&#x27;</span></span><br><span class="line"><span class="string">[root@localhost redis-7.0.5]#</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 可以看到，共安装了三个组件：redis 服务器、客户端、一个性能测试工具 benchmark。</span></span><br></pre></td></tr></table></figure>
+
 <br>
 
-<h3 id="安装-Redis"><a href="#安装-Redis" class="headerlink" title="安装 Redis"></a>安装 Redis</h3><p>（1） 解压 Redis</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 Redis 解压到 /install 目录中。</span></span><br><span class="line">tar -zxvf redis-7.0.5.tar.gz -C /install/</span><br></pre></td></tr></table></figure>
+<h3 id="Redis-可执行文件说明"><a href="#Redis-可执行文件说明" class="headerlink" title="Redis 可执行文件说明"></a>Redis 可执行文件说明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装完成后，在 /usr/local/bin 目录，可以看到出现了很多的redis可执行文件。</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ll /usr/local/bin/</span></span><br><span class="line">total 21500</span><br><span class="line">-rwxr-xr-x. 1 root root  5197848 Nov 15 00:20 redis-benchmark</span><br><span class="line">lrwxrwxrwx. 1 root root       12 Nov 15 00:20 redis-check-aof -&gt; redis-server</span><br><span class="line">lrwxrwxrwx. 1 root root       12 Nov 15 00:20 redis-check-rdb -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root  5411048 Nov 15 00:20 redis-cli</span><br><span class="line">lrwxrwxrwx. 1 root root       12 Nov 15 00:20 redis-sentinel -&gt; redis-server</span><br><span class="line">-rwxr-xr-x. 1 root root 11398056 Nov 15 00:20 redis-server</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>redis-server    -    redis服务器</li>
+<li>redis-cli    -    redis命令行客户端</li>
+<li>redis-benchmark    -    redis性能测试工具</li>
+<li>redis-check-aof    -    AOF文件修复工具</li>
+<li>redis-check-dump    -    RDB文件检查工具</li>
+<li>redis-sentinel    -    Sentinel服务器（2.8之后）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 echo $PATH 可以看到，/usr/local/bin 目录是存在于该系统变量中的，这样这些命令就可以在任意目录中执行了。</span></span><br><span class="line">[root@localhost ~]<span class="comment"># echo $PATH</span></span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span><br></pre></td></tr></table></figure>
 
+<br>
 
-<p>（2） 编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入到解压目录中，然后执行编译命令 make。</span></span><br><span class="line"><span class="built_in">cd</span> /install/redis-7.0.5/</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<h3 id="Redis-的启动"><a href="#Redis-的启动" class="headerlink" title="Redis 的启动"></a>Redis 的启动</h3><h4 id="前台启动"><a href="#前台启动" class="headerlink" title="前台启动"></a>前台启动</h4><h5 id="最简启动-前台启动"><a href="#最简启动-前台启动" class="headerlink" title="最简启动/前台启动"></a>最简启动/前台启动</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在任意目录执行 redis-server 命令即可启动 Redis。这种启动方式使用默认配置启动。且会占用当前命令行窗口。</span></span><br><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="动态参数启动"><a href="#动态参数启动" class="headerlink" title="动态参数启动"></a>动态参数启动</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --port [port]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="后台启动"><a href="#后台启动" class="headerlink" title="后台启动"></a>后台启动</h4><h5 id="命令式后台启动"><a href="#命令式后台启动" class="headerlink" title="命令式后台启动"></a>命令式后台启动</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># nohup redis-server &amp;</span></span><br><span class="line">[1] 35057</span><br><span class="line">[root@localhost ~]<span class="comment"># nohup: ignoring input and appending output to ‘nohup.out’</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># ll</span></span><br><span class="line">total 8</span><br><span class="line">-rw-------. 1 root root 1259 Nov 14 23:52 anaconda-ks.cfg</span><br><span class="line">-rw-------. 1 root root 1195 Nov 15 00:48 nohup.out</span><br><span class="line">[root@localhost ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>编译过程是根据 Makefile 文件进行的，而 Redis 解压包中已经存在该文件了。所以可以直接进行编译了。</p>
+<p>使用 nohup 命令，最后再添加一个&amp;符，可以使要启动的程序在后台以守护进程方式运行。这样的好处是，进程启动后不会占用一个会话窗口，且其还会在当前目录，即运行启动命令的当前目录中创建一个 nohup.out 文件用于记录 Redis 的操作日志。</p>
 </blockquote>
-<p>（3） 安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Linux 中对于编译过的安装包执行 make install 进行安装。</span></span><br><span class="line">[root@bogon redis-7.0.5]<span class="comment"># make install</span></span><br><span class="line"><span class="built_in">cd</span> src &amp;&amp; make install</span><br><span class="line"><span class="built_in">which</span>: no python3 <span class="keyword">in</span> (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br><span class="line">make[1]: 进入目录“/install/redis-7.0.5/src”</span><br><span class="line">    CC Makefile.dep</span><br><span class="line">make[1]: 离开目录“/install/redis-7.0.5/src”</span><br><span class="line"><span class="built_in">which</span>: no python3 <span class="keyword">in</span> (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br><span class="line">make[1]: 进入目录“/install/redis-7.0.5/src”</span><br><span class="line"></span><br><span class="line">Hint: It<span class="string">&#x27;s a good idea to run &#x27;</span>make <span class="built_in">test</span><span class="string">&#x27; ;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    INSTALL redis-server</span></span><br><span class="line"><span class="string">    INSTALL redis-benchmark</span></span><br><span class="line"><span class="string">    INSTALL redis-cli</span></span><br><span class="line"><span class="string">make[1]: 离开目录“/install/redis-7.0.5/src”</span></span><br><span class="line"><span class="string">[root@bogon redis-7.0.5]#</span></span><br><span class="line"><span class="string"># 可以看到，共安装了三个组件：redis 服务器、客户端与一个性能测试工具 benchmark。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 安装完成后，打开/usr/local/bin 目录，可以看到出现了很多的文件。</span></span><br><span class="line"><span class="string">[root@bogon redis-7.0.5]# ll /usr/local/bin/</span></span><br><span class="line"><span class="string">总用量 21500</span></span><br><span class="line"><span class="string">-rwxr-xr-x. 1 root root  5197848 11月 15 00:29 redis-benchmark</span></span><br><span class="line"><span class="string">lrwxrwxrwx. 1 root root       12 11月 15 00:29 redis-check-aof -&gt; redis-server</span></span><br><span class="line"><span class="string">lrwxrwxrwx. 1 root root       12 11月 15 00:29 redis-check-rdb -&gt; redis-server</span></span><br><span class="line"><span class="string">-rwxr-xr-x. 1 root root  5411040 11月 15 00:29 redis-cli</span></span><br><span class="line"><span class="string">lrwxrwxrwx. 1 root root       12 11月 15 00:29 redis-sentinel -&gt; redis-server</span></span><br><span class="line"><span class="string">-rwxr-xr-x. 1 root root 11398056 11月 15 00:29 redis-server</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 通过 echo $PATH 可以看到，/usr/local/bin 目录是存在于该系统变量中的，这样这些命令就可以在任意目录中执行了。</span></span><br><span class="line"><span class="string">[root@bogon redis-7.0.5]# echo $PATH</span></span><br><span class="line"><span class="string">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span></span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p>使用 nohup 命令可以使 Redis 后台启动，但每次都要键入 nohup 与&amp;符，比较麻烦。可以通过修改 Linux 中 Redis 的核心配置文件 redis.conf 达到后台启动的目的。redis.conf 文件在Redis 的安装目录根下。</p>
+</blockquote>
 <br>
 
-<h3 id="Redis-启动与停止"><a href="#Redis-启动与停止" class="headerlink" title="Redis 启动与停止"></a>Redis 启动与停止</h3><h4 id="前台启动"><a href="#前台启动" class="headerlink" title="前台启动"></a>前台启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在任意目录执行 redis-server 命令即可启动 Redis。这种启动方式会占用当前命令行窗口。</span></span><br><span class="line">redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再开启一个会话窗口，可以查看到当前的 Redis 进程，默认端口号为 6379。</span></span><br><span class="line">[root@bogon ~]<span class="comment"># ps -ef |grep redis</span></span><br><span class="line">root      23230  18578  0 00:35 pts/1    00:00:00 redis-server *:6379</span><br><span class="line">root      23237  18614  0 00:36 pts/2    00:00:00 grep --color=auto redis</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过 Ctrl + C 命令可以停止 Redis。</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h4 id="命令式后台启动"><a href="#命令式后台启动" class="headerlink" title="命令式后台启动"></a>命令式后台启动</h4><ul>
-<li>使用 nohup 命令，最后再添加一个&amp;符，可以使要启动的程序在后台以守护进程方式运行。这样的好处是，进程启动后不会占用一个会话窗口，且其还会在当前目录，即运行启动命令的当前目录中创建一个 nohup.out 文件用于记录 Redis 的操作日志。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon install]<span class="comment"># nohup redis-server &amp;</span></span><br><span class="line">[1] 23241</span><br><span class="line">[root@bogon install]<span class="comment"># nohup: 忽略输入并把输出追加到&quot;nohup.out&quot;</span></span><br><span class="line"></span><br><span class="line">[root@bogon install]<span class="comment"># ll</span></span><br><span class="line">总用量 2940</span><br><span class="line">-rw-------. 1 root root    1195 11月 15 00:40 nohup.out</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h4 id="Redis-的停止"><a href="#Redis-的停止" class="headerlink" title="Redis 的停止"></a>Redis 的停止</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过 redis-cli shutdown 命令可以停止 Redis。</span></span><br><span class="line">[root@bogon install]# redis-cli shutdown</span><br><span class="line">[1]+  完成                  nohup redis-server</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h4 id="配置式后台启动"><a href="#配置式后台启动" class="headerlink" title="配置式后台启动"></a>配置式后台启动</h4><ul>
-<li>使用 nohup 命令可以使 Redis 后台启动，但每次都要键入 nohup 与&amp;符，比较麻烦。可以通过修改 Linux 中 Redis 的核心配置文件 redis.conf 达到后台启动的目的。redis.conf 文件在Redis 的安装目录根下。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /install/redis-7.0.5/redis.conf /usr/local/bin/</span><br><span class="line"></span><br><span class="line">vim /usr/local/bin/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 daemonize 属性值由 no 改为 yes，使 Redis 进程以守护进程方式运行。</span></span><br><span class="line">daemonize <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<h5 id="配置文件式后台启动（推荐）"><a href="#配置文件式后台启动（推荐）" class="headerlink" title="配置文件式后台启动（推荐）"></a>配置文件式后台启动（推荐）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server [configPath]</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>修改后再启动 Redis，就无需再键入 nohup 与&amp;符了，但必须要指定启动所使用的 Redis配置文件。</li>
+<li><font color=red><strong>生产环境选择配置文件方式启动，因为我们的配置参数很多，需要（便于）集中化管理。且单机多实例配置文件可以用端口区分开</strong></font></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /usr/local/bin/</span><br><span class="line">[root@localhost bin]# mkdir config</span><br><span class="line">[root@localhost bin]# cp /install/redis-7.0.5/redis.conf config/</span><br><span class="line"></span><br><span class="line">[root@localhost bin]# vim config/redis.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将 daemonize 属性值由 no 改为 <span class="built_in">yes</span>，使 Redis 进程以守护进程方式运行。</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line">[root@localhost bin]# redis-server /usr/local/bin/config/redis.conf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改配置文件后再启动 Redis，就无需再键入 nohup 与&amp;符了，但必须要指定启动所使用的 Redis配置文件。</li>
 </ul>
 <blockquote>
 <p>使用 nohup redis-server &amp;命令启动 Redis 时，启动项中已经设置好了 Redis 各个参数的默认值，Redis 会按照这些设置的参数进行启动。但这些参数是可以在配置文件中进行修改的，修改后，需要在启动命令中指定要加载的配置文件，这样，配置文件中的参数值将覆盖原默认值。</p>
@@ -485,19 +477,22 @@
 <blockquote>
 <p>Redis 已经给我们提供好了配置文件模板，是 Redis 安装目录的根目录下的 redis.conf 文件。由于刚刚对 redis.conf 配置文件做了修改，所以在开启 Redis 时需要显示指出要加载的配置文件。配置文件应紧跟在 redis-server 的后面。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/local/bin/redis.conf</span><br></pre></td></tr></table></figure>
+<br>
+
+<h3 id="Redis服务验证-（查看服务正常启动）"><a href="#Redis服务验证-（查看服务正常启动）" class="headerlink" title="Redis服务验证 （查看服务正常启动）"></a>Redis服务验证 （查看服务正常启动）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep redis</span><br><span class="line"></span><br><span class="line">netstat -antpl grep redis</span><br><span class="line"></span><br><span class="line">redis-cli -h [ip] -p [port] ping </span><br></pre></td></tr></table></figure>
 
 <br>
 
-<h3 id="连接前的配置"><a href="#连接前的配置" class="headerlink" title="连接前的配置"></a>连接前的配置</h3><ul>
+<h3 id="Redis-的停止"><a href="#Redis-的停止" class="headerlink" title="Redis 的停止"></a>Redis 的停止</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-cli shutdown</span><br><span class="line"></span><br><span class="line">redis-cli -a [redis_password] shutdown</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 [redis_pid]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Redis-的客户端"><a href="#Redis-的客户端" class="headerlink" title="Redis 的客户端"></a>Redis 的客户端</h2><h3 id="连接前的配置"><a href="#连接前的配置" class="headerlink" title="连接前的配置"></a>连接前的配置</h3><ul>
 <li>若要使远程主机上的客户端能够连接并访问到服务端的 Redis，则服务端首先要做如下配置。</li>
 </ul>
-<br>
-
-<h4 id="绑定客户端-IP"><a href="#绑定客户端-IP" class="headerlink" title="绑定客户端 IP"></a>绑定客户端 IP</h4><ul>
-<li>Redis 通过修改配置文件来限定可以访问自己的客户端 IP。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认配置如下，只允许当前主机访问当前的 Redis，其它主机均不可访问。所以，如果不想限定访问的客户端，只需要将该行注释掉即可。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bind 127.0.0.1 -::1</span></span><br></pre></td></tr></table></figure>
+<h4 id="绑定客户端-IP"><a href="#绑定客户端-IP" class="headerlink" title="绑定客户端 IP"></a>绑定客户端 IP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis 通过修改配置文件来限定可以访问自己的客户端 IP。</span></span><br><span class="line"><span class="comment"># 默认配置如下，只允许当前主机访问当前的 Redis，其它主机均不可访问。所以，如果不想限定访问的客户端，只需要将该行注释掉即可。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bind 127.0.0.1 -::1</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -522,23 +517,16 @@
 
 <br>
 
-<h4 id="禁止-重命名命令"><a href="#禁止-重命名命令" class="headerlink" title="禁止/重命名命令"></a>禁止/重命名命令</h4><ul>
-<li>两个非常危险的命令：flushall与 flushdb。它们都是用于直接删除整个 Redis数据库的。若让用户可以随便使用它们，可能会危及数据安全。Redis 可以通过修改配置文件来禁止使用这些命令，或重命名这些命令。以下配置，禁用了 flushall 与 flushdb 命令。</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rename-command flushall &quot;&quot;</span><br><span class="line">rename-command flushdb &quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<br>
-
 <h4 id="重启redis"><a href="#重启redis" class="headerlink" title="重启redis"></a>重启redis</h4><ul>
 <li>修改相关配置后，需要重启redis，使其配置生效</li>
 </ul>
 <br>
 
-<h2 id="Redis-客户端分类"><a href="#Redis-客户端分类" class="headerlink" title="Redis 客户端分类"></a>Redis 客户端分类</h2><h3 id="命令行客户端"><a href="#命令行客户端" class="headerlink" title="命令行客户端"></a>命令行客户端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -h：指定要连接的 Redis 服务器的 IP</span></span><br><span class="line"><span class="comment"># -p：指定要连接的 Redis 的端口号</span></span><br><span class="line"><span class="comment"># 若连接的是本机 Redis，且端口号没有改变，保持默认的 6379，则-h 与-p 选项可以省略不写</span></span><br><span class="line"></span><br><span class="line">redis-cli -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
+<h3 id="Redis-客户端分类"><a href="#Redis-客户端分类" class="headerlink" title="Redis 客户端分类"></a>Redis 客户端分类</h3><h4 id="命令行客户端"><a href="#命令行客户端" class="headerlink" title="命令行客户端"></a>命令行客户端</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -h：指定要连接的 Redis 服务器的 IP</span></span><br><span class="line"><span class="comment"># -p：指定要连接的 Redis 的端口号</span></span><br><span class="line"><span class="comment"># 若连接的是本机 Redis，且端口号没有改变，保持默认的 6379，则-h 与-p 选项可以省略不写</span></span><br><span class="line"></span><br><span class="line">redis-cli -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<h3 id="图形界面客户端"><a href="#图形界面客户端" class="headerlink" title="图形界面客户端"></a>图形界面客户端</h3><ul>
+<h4 id="图形界面客户端"><a href="#图形界面客户端" class="headerlink" title="图形界面客户端"></a>图形界面客户端</h4><ul>
 <li>Redis Desktop Manager<ul>
 <li>官网为：<a class="link"   target="_blank" rel="noopener" href="https://resp.app/%EF%BC%88%E5%8E%9F%E6%9D%A5%E6%98%AF" >https://resp.app/（原来是<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="http://redisdesktop.com)./" >http://redisdesktop.com）。<i class="fas fa-external-link-alt"></i></a></li>
 <li>Redis 的图形界面客户端很多，其中较出名的是 Redis Desktop Manager 的客户端。不过，该软件原来是免费软件，从 0.8.8 版本后变为了商业化收费软件。</li>
@@ -548,70 +536,80 @@
 <li>RedisPlus 的官网地址为 <a class="link"   target="_blank" rel="noopener" href="https://gitee.com/MaxBill/RedisPlus%E3%80%82" >https://gitee.com/MaxBill/RedisPlus。<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 </li>
-<li>Java 代码客户端<ul>
+</ul>
+<br>
+
+<h4 id="Java-代码客户端"><a href="#Java-代码客户端" class="headerlink" title="Java 代码客户端"></a>Java 代码客户端</h4><ul>
 <li>所谓 Java 代码客户端就是一套操作 Redis 的 API，其作用就像 JDBC 一样，所以 Java 代码客户端其实就是一个或多个 Jar 包，提供了对 Redis 的操作接口。</li>
 <li>对 Redis 操作的 API 很多，例如 jdbc-redis、jredis 等，但最常用也是最有名的是 Jedis。</li>
 </ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="Redis-API-的使用和理解"><a href="#Redis-API-的使用和理解" class="headerlink" title="Redis API 的使用和理解"></a>Redis API 的使用和理解</h1><h2 id="Redis-命令"><a href="#Redis-命令" class="headerlink" title="Redis 命令"></a>Redis 命令</h2><h3 id="Redis-命令分类概述"><a href="#Redis-命令分类概述" class="headerlink" title="Redis 命令分类概述"></a>Redis 命令分类概述</h3><ul>
+<li><p>Redis 根据命令所操作对象的不同，可以分为三大类：</p>
+<ul>
+<li><p><strong>对 Redis 进行基础性操作的命令</strong></p>
+</li>
+<li><p><strong>对 Key 的操作命令</strong>（包含通用key操作命令和对特定类型的key操作命令）</p>
+</li>
+<li><p><strong>对 Value 的操作命令</strong></p>
+</li>
+</ul>
 </li>
 </ul>
 <br>
 
+<h3 id="Redis-基础命令"><a href="#Redis-基础命令" class="headerlink" title="Redis 基础命令"></a>Redis 基础命令</h3><table>
+<thead>
+<tr>
+<th align="center">操作命令/示例</th>
+<th align="left">功能/说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">redis-cli -a redis@2022</td>
+<td align="left">进入Redis命令行客户端</td>
+</tr>
+<tr>
+<td align="center">ping</td>
+<td align="left">键入 ping 命令，会看到 PONG 响应，则说明该客户端与 Redis 的连接是正常的。该命令亦称为心跳命令。</td>
+</tr>
+<tr>
+<td align="center">set hello word</td>
+<td align="left">set key value 会将指定 key-value 写入到 DB。</td>
+</tr>
+<tr>
+<td align="center">get hello</td>
+<td align="left">get key 则会读取指定 key 的 value 值。</td>
+</tr>
+<tr>
+<td align="center">select 3</td>
+<td align="left">Redis 默认有 16 个数据库。默认使用的是 0 号 DB，可以通过 select db 索引来切换 DB。</td>
+</tr>
+<tr>
+<td align="center">dbsize</td>
+<td align="left">dbsize 命令可以查看<strong>当前数据库中</strong> key 的数量。时间复杂度是O(1)，因其内部维护了一个计数器</td>
+</tr>
+<tr>
+<td align="center">flushdb</td>
+<td align="left">flushdb 命令仅仅删除的是当前数据库中的数据，不影响其它库。<br>如果使用了 禁止/重命名命令 则需要注意</td>
+</tr>
+<tr>
+<td align="center">flushall</td>
+<td align="left">flushall 命令可以删除所有库中的所有数据。所以该命令的使用一定要慎重。<br>如果使用了 禁止/重命名命令 则需要注意</td>
+</tr>
+<tr>
+<td align="center">exit/quit</td>
+<td align="left">使用 exit 或 quit 命令均可退出 Redis 命令行客户端。</td>
+</tr>
+</tbody></table>
 <br>
 
-<br>
-
-<h1 id="第3章-Redis-配置文件详解"><a href="#第3章-Redis-配置文件详解" class="headerlink" title="第3章 Redis 配置文件详解"></a>第3章 Redis 配置文件详解</h1><br>
-
-<br>
-
-<br>
-
-<h1 id="第4章-Redis-命令"><a href="#第4章-Redis-命令" class="headerlink" title="第4章 Redis 命令"></a>第4章 Redis 命令</h1><ul>
-<li>Redis 根据命令所操作对象的不同，可以分为三大类：<ul>
-<li>对 Redis 进行基础性操作的命令</li>
-<li>对 Key 的操作命令</li>
-<li>对 Value 的操作命令</li>
-</ul>
-</li>
-</ul>
-<br>
-
-<h2 id="Redis-基本命令"><a href="#Redis-基本命令" class="headerlink" title="Redis 基本命令"></a>Redis 基本命令</h2><blockquote>
-<p>首先通过 redis-cli 命令进入到 Redis 命令行客户端，然后再运行下面的命令。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -a redis@2022</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="心跳命令-ping"><a href="#心跳命令-ping" class="headerlink" title="心跳命令 ping"></a>心跳命令 ping</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 键入 ping 命令，会看到 PONG 响应，则说明该客户端与 Redis 的连接是正常的。该命令亦称为心跳命令。</span></span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="读写键值命令"><a href="#读写键值命令" class="headerlink" title="读写键值命令"></a>读写键值命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set key value 会将指定 key-value 写入到 DB。get key 则会读取指定 key 的 value 值。</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> name lisi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get name</span><br><span class="line"><span class="string">&quot;lisi&quot;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="DB-切换-select"><a href="#DB-切换-select" class="headerlink" title="DB 切换 select"></a>DB 切换 select</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis 默认有 16 个数据库。默认使用的是 0 号 DB，可以通过 select db 索引来切换 DB。</span></span><br><span class="line">127.0.0.1:6379&gt; select 3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="查看-key-数量-dbsize"><a href="#查看-key-数量-dbsize" class="headerlink" title="查看 key 数量 dbsize"></a>查看 key 数量 dbsize</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dbsize 命令可以查看当前数据库中 key 的数量。</span></span><br><span class="line">127.0.0.1:6379[3]&gt; dbsize</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379[3]&gt; select 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; dbsize</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="删除当前库中数据-flushdb"><a href="#删除当前库中数据-flushdb" class="headerlink" title="删除当前库中数据 flushdb"></a>删除当前库中数据 flushdb</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flushdb 命令仅仅删除的是当前数据库中的数据，不影响其它库。</span></span><br><span class="line"><span class="comment"># 如果使用了 禁止/重命名命令 则需要注意</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="删除所有库中数据命令-flushall"><a href="#删除所有库中数据命令-flushall" class="headerlink" title="删除所有库中数据命令 flushall"></a>删除所有库中数据命令 flushall</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flushall 命令可以删除所有库中的所有数据。所以该命令的使用一定要慎重。</span></span><br><span class="line"><span class="comment"># 如果使用了 禁止/重命名命令 则需要注意</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="退出客户端命令"><a href="#退出客户端命令" class="headerlink" title="退出客户端命令"></a>退出客户端命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 exit 或 quit 命令均可退出 Redis 命令行客户端。</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; quit</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Key-操作命令"><a href="#Key-操作命令" class="headerlink" title="Key 操作命令"></a>Key 操作命令</h2><ul>
+<h3 id="Key-通用操作命令"><a href="#Key-通用操作命令" class="headerlink" title="Key 通用操作命令"></a>Key 通用操作命令</h3><ul>
 <li>Redis 中存储的数据整体是一个 Map，其 key 为 String 类型，而 value 则可以是 String、Hash 表、List、Set 等类型。</li>
 </ul>
 <table>
@@ -718,13 +716,558 @@
 </ul>
 <br>
 
-<h2 id="String-型-Value-操作命令"><a href="#String-型-Value-操作命令" class="headerlink" title="String 型 Value 操作命令"></a>String 型 Value 操作命令</h2><br>
+<h3 id="String-型-Value-操作命令"><a href="#String-型-Value-操作命令" class="headerlink" title="String 型 Value 操作命令"></a>String 型 Value 操作命令</h3><h2 id="Redis-Java-客户端"><a href="#Redis-Java-客户端" class="headerlink" title="Redis Java 客户端"></a>Redis Java 客户端</h2><h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><h4 id="Jedis-简介"><a href="#Jedis-简介" class="headerlink" title="Jedis 简介"></a>Jedis 简介</h4><ul>
+<li>Jedis 是一个基于 java 的 Redis 客户端连接工具，旨在提升性能与易用性。其 github 上的官网地址为：<a class="link"   target="_blank" rel="noopener" href="https://github.com/redis/jedis%E3%80%82" >https://github.com/redis/jedis。<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<br>
+
+<h4 id="Jedis-实战"><a href="#Jedis-实战" class="headerlink" title="Jedis 实战"></a>Jedis 实战</h4><h5 id="（1）引入-maven-依赖"><a href="#（1）引入-maven-依赖" class="headerlink" title="（1）引入 maven 依赖"></a>（1）引入 maven 依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--jedis 依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）Jedis直连"><a href="#（2）Jedis直连" class="headerlink" title="（2）Jedis直连"></a>（2）Jedis直连</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.生成一个Jedis对象，这个对象负责和指定Redis节点进行通信</span></span><br><span class="line">      <span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;192.168.146.135&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">      <span class="comment">// 设置连接密码</span></span><br><span class="line">      jedis.auth(<span class="string">&quot;redis@2022&quot;</span>);</span><br><span class="line">      <span class="comment">// 2.jedis执行set操作</span></span><br><span class="line">      jedis.set(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">      <span class="comment">//3.jedis执行get操作,value=&quot;world</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> jedis.get(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">      System.out.println(value);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Jedis(String host, <span class="type">int</span> port, <span class="type">int</span> connectionTimeout, <span class="type">int</span> soTimeout) </span><br><span class="line"><span class="comment">// host:Redis节点的所在机器的IP</span></span><br><span class="line"><span class="comment">// port : Redis节点的端口</span></span><br><span class="line"><span class="comment">// connectionTimeout:客户端连接超时时间</span></span><br><span class="line"><span class="comment">// soTimeout:客户端读写超时时间</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="（3）JedisPool简单使用"><a href="#（3）JedisPool简单使用" class="headerlink" title="（3）JedisPool简单使用"></a>（3）JedisPool简单使用</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化Jedis连接池，通常来讲JedisPool是单例的。</span></span><br><span class="line">       <span class="type">GenericObjectPoolConfig</span> <span class="variable">poolConfig</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GenericObjectPoolConfig</span>();</span><br><span class="line">       <span class="type">JedisPool</span> <span class="variable">jedisPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JedisPool</span>(poolConfig,<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">// 1.从连接池获取jedis对象</span></span><br><span class="line">           jedis = jedisPool.getResource();</span><br><span class="line">           <span class="comment">// 2. 执行操作</span></span><br><span class="line">           jedis.set(<span class="string">&quot;java&quot;</span>,<span class="string">&quot;spring&quot;</span>);</span><br><span class="line">           System.out.println(jedis.get(<span class="string">&quot;java&quot;</span>));</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">           <span class="comment">// 如果使用JedisPool,close操作不是关闭连接，代表归还连接池</span></span><br><span class="line">           <span class="keyword">if</span> (jedis != <span class="literal">null</span>)&#123;</span><br><span class="line">               jedis.close();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Jedis-与-JedisPool比较"><a href="#Jedis-与-JedisPool比较" class="headerlink" title="Jedis 与 JedisPool比较"></a>Jedis 与 JedisPool比较</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/97b459332ea53d7e42b90bd2743dcda.396pfset03e0.webp" width="50%" />
+
+<br>
+
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/7e5d97f719abbfe9b363126e682f86d.3g21qh3ltu20.webp" width="50%" />
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">直连</td>
+<td align="left">简单方便<br>适用于少量长期连接的场景</td>
+<td align="left">存在每次新建/关闭TCP开销<br>资源无法控制,存在连接泄露的可能<br>Jedis对象线程不安全</td>
+</tr>
+<tr>
+<td align="center">连接池</td>
+<td align="left">Jedis预先生成，降低开销使用<br/>连接池的形式保护和控制资源的使用</td>
+<td align="left">相对于直连，使用相对麻烦尤其在资源的管理上需要很多参数来保证，一旦规划不合理也会出现问题。</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="JedisPool-配置优化"><a href="#JedisPool-配置优化" class="headerlink" title="JedisPool 配置优化"></a>JedisPool 配置优化</h4><h5 id="JedisPool-配置-资源数控制"><a href="#JedisPool-配置-资源数控制" class="headerlink" title="JedisPool 配置 - 资源数控制"></a>JedisPool 配置 - 资源数控制</h5><table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="left">含义</th>
+<th align="center">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">maxTotal</td>
+<td align="left">资源池最大连接数</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">maxIdle</td>
+<td align="left">资源允许最大空闲连接数</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">minIdle</td>
+<td align="left">资源池确保最少空闲连接数</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">jmxEnabled</td>
+<td align="left">是否开启jmx监控，可用于监控</td>
+<td align="center">true</td>
+</tr>
+</tbody></table>
+<br>
+
+<h5 id="JedisPool-配置-借还参数"><a href="#JedisPool-配置-借还参数" class="headerlink" title="JedisPool 配置 - 借还参数"></a>JedisPool 配置 - 借还参数</h5><table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th>含义</th>
+<th align="center">默认值</th>
+<th align="center">使用建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">blockWhenExhausted</td>
+<td>当资源池用尽后，调用者是否要等待。只有当为true时，下面的maxWaitMillis才会生效</td>
+<td align="center">true</td>
+<td align="center">建议使用默认值</td>
+</tr>
+<tr>
+<td align="center">maxWaitMillis</td>
+<td>当资源池连接用尽后，调用者的最大等待时间(单位为毫秒)</td>
+<td align="center">-1:表示永不超时</td>
+<td align="center">不建议使用默认值</td>
+</tr>
+<tr>
+<td align="center">testOnBorrow</td>
+<td>向资源池借用连接时是否做连接有效性检测(ping)，无效连接会被移除</td>
+<td align="center">false</td>
+<td align="center">建议false</td>
+</tr>
+<tr>
+<td align="center">testOnReturn</td>
+<td>向资源池归还连接时是否做连接有效性检测(ping)，无效连接会被移除</td>
+<td align="center">false</td>
+<td align="center">建议false</td>
+</tr>
+</tbody></table>
+<br>
+
+<h5 id="JedisPool-配置建议-适合的-maxTotal"><a href="#JedisPool-配置建议-适合的-maxTotal" class="headerlink" title="JedisPool 配置建议 - 适合的 maxTotal"></a>JedisPool 配置建议 - 适合的 maxTotal</h5><ul>
+<li>比较难确定，举个例子</li>
+</ul>
+<blockquote>
+<ol>
+<li>命令平均执行时间011ms = 0.001s</li>
+<li>业务需要50000 QPS</li>
+<li>maxTotal理论值 = 0.001 * 50000 = 50 。实际值要偏大一些</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>业务希望Redis并发量</li>
+<li>客户端执行命令时间</li>
+<li>Redis资源:例如nodes(例如应用个数)*maxTotal 是不能超过redis的最大连接数。((config get maxclients)</li>
+<li>资源开销:例如虽然希望控制空闲连接，但是不希望因为连接池的频繁释放创建连接造成不必靠开销</li>
+</ol>
+</blockquote>
+<br>
+
+<h5 id="JedisPool-配置建议-适合的maxIdle和minIdle"><a href="#JedisPool-配置建议-适合的maxIdle和minIdle" class="headerlink" title="JedisPool 配置建议 - 适合的maxIdle和minIdle"></a>JedisPool 配置建议 - 适合的maxIdle和minIdle</h5><ul>
+<li>建议 maxIdle = maxTotal</li>
+</ul>
+<blockquote>
+<p>减少创建新连接的开销</p>
+</blockquote>
+<ul>
+<li>建议预热minIdle</li>
+</ul>
+<blockquote>
+<p>减少第一次启动后的新连接开销</p>
+</blockquote>
+<br>
+
+<h4 id="常见问题和解决思路"><a href="#常见问题和解决思路" class="headerlink" title="常见问题和解决思路"></a>常见问题和解决思路</h4><ul>
+<li>常见问题</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.75d32k2l47g0.webp" width="60%" />
+
+<br>
+
+<ul>
+<li>解决思路</li>
+</ul>
+<ol>
+<li>慢查询阻塞:池子连接都被hang住</li>
+<li>资源池参数不合理:例如QPS高、池子小。</li>
+<li>连接泄露(没有close0):此类问题比较难定位，例如client list、netstat等，最重要的是代码</li>
+<li>DNS异常等</li>
+</ol>
+<br>
+
+<ul>
+<li>错误示例</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.31pwe9jqbig0.webp" width="60%" />
+
+<br>
+
+<ul>
+<li>推荐写法</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69xc8p0s24o0.webp" width="60%" />
+
+<br>
+
+<h2 id="Redis-的数据结构和内部编码"><a href="#Redis-的数据结构和内部编码" class="headerlink" title="Redis 的数据结构和内部编码"></a>Redis 的数据结构和内部编码</h2><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3scu9pvrtk80.webp" width="45%" />
+
+<br>
+
+<ul>
+<li>Redis Object</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.69a05a18h8s0.webp" width="75%"/>
+
+
+
+
+
+<br>
+
+<h2 id="Redis-的-IO-模型"><a href="#Redis-的-IO-模型" class="headerlink" title="Redis 的 IO 模型"></a>Redis 的 IO 模型</h2><ul>
+<li>Redis 处理客户端请求所采用的处理架构，称为 Redis 的 IO 模型。不同版本的 Redis 采用的 IO 模型是不同的。</li>
+</ul>
+<br>
+
+<h3 id="单线程模型"><a href="#单线程模型" class="headerlink" title="单线程模型"></a>单线程模型</h3><ul>
+<li>对于 Redis 3.0 及其以前版本，Redis 的 IO 模型采用的是<font color=red>纯粹的单线程模型</font>。即所有客户端的请求全部由一个线程处理。</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.72e1zah9knw0.webp" width="75%">
+
+<br>
+
+<ul>
+<li>Redis 的单线程模型采用了<font color=red>多路复用技术</font>。</li>
+</ul>
+<blockquote>
+<p>对于多路复用器的<font color=red>多路选择算法</font>常见的有三种：select 模型、poll 模型、epoll 模型。</p>
+<ul>
+<li>poll 模型的选择算法：采用的是轮询算法。该模型对客户端的就绪处理是有延迟的。</li>
+<li>epoll 模型的选择算法：采用的是回调方式。根据就绪事件发生后的处理方式的不同，又可分为 LT 模型与 ET 模型。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>每个客户端若要向 Redis 提交请求，都需要与 Redis 建立一个 socket 连接，并向事件分发器注册一个事件。一旦该事件发生就表明该连接已经就绪。而一旦连接就绪，事件分发器就会感知到，然后获取客户端通过该连接发送的请求，并将由该事件分发器所绑定的这个唯一的线程来处理。如果该线程还在处理多个任务，则将该任务写入到任务队列等待线程处理。</p>
+<p>只所以称为事件分发器，是因为它会根据不同的就绪事件，将任务交由不同的事件处理器去处理。</p>
+</blockquote>
+<br>
+
+<h3 id="混合线程模型"><a href="#混合线程模型" class="headerlink" title="混合线程模型"></a>混合线程模型</h3><ul>
+<li>从 Redis 4.0 版本开始，Redis 中就开始加入了多线程元素。处理客户端请求的仍是单线程模型，但对于一些比较耗时但又不影响对客户端的响应的操作，就由后台其它线程来处理。例如，持久化、对 AOF 的 rewrite、对失效连接的清理等。</li>
+</ul>
+<br>
+
+<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><ul>
+<li>Redis 6.0 版本，才是真正意义上的多线程模型。因为其对于客户端请求的处理采用的是多线程模型。</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.8h232my5ero.webp" width="75%">
+
+<br>
+
+<ul>
+<li>多线程 IO 模型中的“多线程”仅用于接受、解析客户端的请求，然后将解析出的请求写入到任务队列。而对具体任务（命令）的处理，仍是由主线程处理。这样做使得用户无需考虑线程安全问题，无需考虑事务控制，无需考虑像 LPUSH/LPOP 等命令的执行顺序问题。</li>
+</ul>
+<br>
+
+<h3 id="Redis-线程模型的优缺点总结"><a href="#Redis-线程模型的优缺点总结" class="headerlink" title="Redis 线程模型的优缺点总结"></a>Redis 线程模型的优缺点总结</h3><h4 id="单线程模型-1"><a href="#单线程模型-1" class="headerlink" title="单线程模型"></a>单线程模型</h4><ul>
+<li><p>优点：可维护性高，性能高。不存在并发读写情况，所以也就不存在执行顺序的不确定性，不存在线程切换开销，不存在死锁问题，不存在为了数据安全而进行的加锁/解锁开销。</p>
+</li>
+<li><p>缺点：性能会受到影响，且由于单线程只能使用一个处理器，所以会形成处理器浪费。</p>
+</li>
+</ul>
+<br>
+
+<h4 id="多线程模型-1"><a href="#多线程模型-1" class="headerlink" title="多线程模型"></a>多线程模型</h4><ul>
+<li>优点：其结合了多线程与单线程的优点，避开了它们的所有不足</li>
+<li>缺点：该模型没有显示不足。如果非要找其不足的话就是，其并非是一个真正意义上的“多线程”，因为真正处理“任务”的线程仍是单线程。所以，其对性能也是有些影响的。</li>
+</ul>
+<br>
+
+<h3 id="Redis-的单线程详解"><a href="#Redis-的单线程详解" class="headerlink" title="Redis 的单线程详解"></a>Redis 的单线程详解</h3><h4 id="单线程为什么这么快"><a href="#单线程为什么这么快" class="headerlink" title="单线程为什么这么快"></a>单线程为什么这么快</h4><ul>
+<li>纯内存（主要原因）</li>
+<li>非阻塞IO（epoll，io多路复用）</li>
+<li>避免线程切换和竞态消耗</li>
+</ul>
+<br>
+
+<h4 id="Redis-单线程使用注意事项"><a href="#Redis-单线程使用注意事项" class="headerlink" title="Redis 单线程使用注意事项"></a>Redis 单线程使用注意事项</h4><ol>
+<li>一次只运行一条命令</li>
+<li>拒绝长（慢）命命令：<code>keys</code> <code>flushall</code> <code>flushdb</code> <code>slow lua script</code> <code>mutil/exec</code> <code>operate big value(collection)</code></li>
+<li>Redis 其实不是单线程：<code>fysnc file descriptor</code> <code>close file descriptor</code></li>
+</ol>
+<br>
+
+<h2 id="Redis其他功能"><a href="#Redis其他功能" class="headerlink" title="Redis其他功能"></a>Redis其他功能</h2><h3 id="slowlog（慢查询）"><a href="#slowlog（慢查询）" class="headerlink" title="slowlog（慢查询）"></a>slowlog（慢查询）</h3><ul>
+<li>慢查询可以帮助我们找到系统的一个瓶颈的命令</li>
+</ul>
+<br>
+
+<h4 id="命令生命周期"><a href="#命令生命周期" class="headerlink" title="命令生命周期"></a>命令生命周期</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.62sxaflbj9s.webp" width="50%" />
+
+<br>
+
+<ul>
+<li>说明<ul>
+<li><strong>（1）慢查询发生在第3阶段</strong></li>
+<li><strong>（2）客户端超时不一定是慢查询，但慢查询是客户端超时的一个可能因素</strong></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h4 id="慢查询的两个配置"><a href="#慢查询的两个配置" class="headerlink" title="慢查询的两个配置"></a>慢查询的两个配置</h4><h5 id="slowlog-max-len"><a href="#slowlog-max-len" class="headerlink" title="slowlog-max-len"></a>slowlog-max-len</h5><ol>
+<li><p><code>slowlog-max-len</code> 表示慢查询队列长度</p>
+</li>
+<li><p>慢查询是一个先进先出的队列；如果在第3步执行过程中，被列入慢查询的范围内，就会进入一个队列（用redis的列表实现的）</p>
+</li>
+<li><p>慢查询队列是固定长度的</p>
+</li>
+<li><p>慢查询队列数据保存在内存中（重启会消失）</p>
+</li>
+</ol>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.44yrctjcttc0.webp" width="60%" />
+
+<br>
+
+<h5 id="slowlog-log-slower-than"><a href="#slowlog-log-slower-than" class="headerlink" title="slowlog-log-slower-than"></a>slowlog-log-slower-than</h5><ol>
+<li><p><code>slowlog-log-slower-than</code> 表示慢查询命令执行时间阈值（单位：微秒，1ms=1000微秒），超过阈值会被加入慢查询队列中</p>
+</li>
+<li><p><code>slowlog-log-slower-than = 0</code> ，记录所有命令</p>
+</li>
+<li><p><code>slowlog-log-slower-than &lt; 0</code> ，不记录任何命令</p>
+<br></li>
+</ol>
+<ul>
+<li>默认值</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; config get slowlog-max-len</span><br><span class="line">1) &quot;slowlog-max-len&quot;</span><br><span class="line">2) &quot;128&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">10000微秒 =》 10ms</span></span><br><span class="line">127.0.0.1:6380&gt; config get slowlog-log-slower-than</span><br><span class="line">1) &quot;slowlog-log-slower-than&quot;</span><br><span class="line">2) &quot;10000&quot;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h5><ol>
+<li><p>方法一：修改配置文件重启（一般在第一次启动redis前进行配置。但如果redis正在运行中，不推荐此方式）</p>
+</li>
+<li><p>方法二：动态配置</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">config set slowlog-max-len 1000</span><br><span class="line">config set slowlog-log-slower-than 1000</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 以上的改动仅仅是在缓存中，如果我们想将其改到配置文件中，需要使用以下命令</span></span></span><br><span class="line">config rewrite</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">操作示例</span></span><br><span class="line">127.0.0.1:6380&gt; config set slowlog-max-len 1000</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6380&gt; config set slowlog-log-slower-than 1000</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6380&gt; config get slowlog-max-len</span><br><span class="line">1) &quot;slowlog-max-len&quot;</span><br><span class="line">2) &quot;1000&quot;</span><br><span class="line">127.0.0.1:6380&gt; config get slowlog-log-slower-than</span><br><span class="line">1) &quot;slowlog-log-slower-than&quot;</span><br><span class="line">2) &quot;1000&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 以上的改动仅仅是在缓存中，如果我们想将其改到配置文件中，需要使用以下命令</span></span></span><br><span class="line">127.0.0.1:6379&gt; config rewrite</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="慢查询命令"><a href="#慢查询命令" class="headerlink" title="慢查询命令"></a>慢查询命令</h4><table>
+<thead>
+<tr>
+<th align="center">慢查询命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">slowlog get [n]</td>
+<td align="center">获取慢查询队列指定条数</td>
+</tr>
+<tr>
+<td align="center">slowlog len</td>
+<td align="center">获取慢查询队列长度</td>
+</tr>
+<tr>
+<td align="center">slowlog reset</td>
+<td align="center">清空慢查询队列</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="运维经验"><a href="#运维经验" class="headerlink" title="运维经验"></a>运维经验</h4><ol>
+<li>slowlog-max-len 不要设置过小，通常设置1000左右 </li>
+<li>slowlog-log-slower-than 不要设置过大。默认10ms，通常设置1ms（实际情况要根据QPS来决定阈值大小，有可能1ms就已经对我们的QPS产生影响了）</li>
+<li>理解命令生命周期，理解慢查询处于命令生命周期的位置。便于我们排错和优化（慢查询、阻塞、网络都可能成为客户端超时的原因）</li>
+<li><strong>定期持久化慢查询（因为慢查询是存在内存中的，且当慢查询数量逐步增多，早前的慢查询就会丢掉。做好持久化，可以分析历史的慢查询问题）。可以通过其它手段或开源软件实现这个功能</strong></li>
+</ol>
+<br>
+
+<h3 id="pipeline（流水线）"><a href="#pipeline（流水线）" class="headerlink" title="pipeline（流水线）"></a>pipeline（流水线）</h3><ul>
+<li>提高客户端的效率</li>
+</ul>
+<h4 id="网络命令通信模型"><a href="#网络命令通信模型" class="headerlink" title="网络命令通信模型"></a>网络命令通信模型</h4><h5 id="1次网络命令通信模型"><a href="#1次网络命令通信模型" class="headerlink" title="1次网络命令通信模型"></a>1次网络命令通信模型</h5><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.10peiok08sk0.webp" width="40%" />
+
+<br>
+
+<h5 id="批量网络命令通信模型"><a href="#批量网络命令通信模型" class="headerlink" title="批量网络命令通信模型"></a>批量网络命令通信模型</h5><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.yo8sxod81o0.webp" width="40%" />
+
+<br>
+
+<h4 id="什么是pipeline（流水线）"><a href="#什么是pipeline（流水线）" class="headerlink" title="什么是pipeline（流水线）"></a>什么是pipeline（流水线）</h4><ul>
+<li>我们知道redis的命令执行是很快的，但是网络时间却不一定。使用pipeline可以帮我们节约大量网络时间</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.v0w62a1vlc0.webp" width="40%" />
+
+<br>
+
+<h4 id="pipeline的作用"><a href="#pipeline的作用" class="headerlink" title="pipeline的作用"></a>pipeline的作用</h4><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">N个命令操作</th>
+<th align="center">1次pipeline（N个命令）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">时间</td>
+<td align="center">n次网络+n次命令</td>
+<td align="center">1次网络时间+n次命令</td>
+</tr>
+<tr>
+<td align="center">数量</td>
+<td align="center">1条命令</td>
+<td align="center">n条命令</td>
+</tr>
+</tbody></table>
+<ul>
+<li>注意</li>
+</ul>
+<ol>
+<li>Redis的命令时间是微秒级别</li>
+<li>pipeline每次条数要控制（网络）</li>
+</ol>
+<ul>
+<li>举例</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2sv2n6wunz20.webp" width="60%" />
+
+<br>
+
+<h3 id="pipeline的jedis实现"><a href="#pipeline的jedis实现" class="headerlink" title="pipeline的jedis实现"></a>pipeline的jedis实现</h3><ul>
+<li>添加maven依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>没有pipe-line</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.2cxbniglxcys.webp" width="70%" />
+
+<br>
+
+<ul>
+<li>使用pipeline</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.41hpky36m4a0.webp" width="60%" />
+
+<br>
+
+<h3 id="pipeline与mget-mset操作的对比"><a href="#pipeline与mget-mset操作的对比" class="headerlink" title="pipeline与mget/mset操作的对比"></a>pipeline与mget/mset操作的对比</h3><ul>
+<li>原生M操作</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6m3lpwqzxqs0.webp" width="60%" />
+
+<br>
+
+<ul>
+<li>pipeline</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.7b0lz2zro400.webp" width="60%" />
+
+<br>
+
+<p><strong>pipeline命令可拆分</strong></p>
+<br>
+
+<h3 id="pipeline使用建议"><a href="#pipeline使用建议" class="headerlink" title="pipeline使用建议"></a>pipeline使用建议</h3><ul>
+<li><strong>注意每次pipeline携带数量</strong></li>
+<li><strong>pipeline每次只能作用在一个Redis节点上</strong></li>
+<li><strong>注意pipeline与M操作的区别</strong></li>
+</ul>
+<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><ul>
+<li>实现发布订阅功能</li>
+</ul>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><ul>
+<li>发布者（publisher）</li>
+<li>订阅者（subscriber）</li>
+<li>频道（channel）</li>
+</ul>
+<br>
+
+<h3 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.5u5skel4tjk0.webp" width="60%" />
+
+<br>
+
+<ul>
+<li><strong>新的订阅者订阅了一个频道，是无法收到之前的消息</strong>（因为无法做消息堆积，因为redis不是一个真正的消息队列这样一个工具）</li>
+</ul>
+<br>
+
+<h3 id="发布订阅API"><a href="#发布订阅API" class="headerlink" title="发布订阅API"></a>发布订阅API</h3><h4 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">向频道发布消息</span></span><br><span class="line">PUBLISH [channel_name] [message]</span><br><span class="line"></span><br><span class="line">127.0.0.1:6380&gt; publish sohu:tv &quot;hello world&quot;</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6380&gt; publish sohu:auto &quot;taxi&quot;</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">订阅一个或多个频道</span></span><br><span class="line">SUBSCRIBE [channel_name]...</span><br><span class="line"></span><br><span class="line">127.0.0.1:6380&gt; subscribe sohu:tv</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) &quot;subscribe&quot;</span><br><span class="line">2) &quot;sohu:tv&quot;</span><br><span class="line">3) (integer) 1</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="unsubscribe"><a href="#unsubscribe" class="headerlink" title="unsubscribe"></a>unsubscribe</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">订阅一个或多个频道</span></span><br><span class="line">UNSUBSCRIBE [channel_name]...</span><br><span class="line"></span><br><span class="line">127.0.0.1:6380&gt; UNSUBSCRIBE sohu:tv</span><br><span class="line">1) &quot;unsubscribe&quot;</span><br><span class="line">2) &quot;sohu:tv&quot;</span><br><span class="line">3) (integer) 0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="其它API"><a href="#其它API" class="headerlink" title="其它API"></a>其它API</h4><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.j7q4w7w0f5c.webp"  width="65%"/>
+
+
+
+<br>
+
+<h4 id="发布订阅与消息队列"><a href="#发布订阅与消息队列" class="headerlink" title="发布订阅与消息队列"></a>发布订阅与消息队列</h4><ul>
+<li>Redis可以实现消息队列，消息队列是抢的模式</li>
+<li>注意二者的区别与使用场景</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.33zfet508q00.webp" width="65%" />
+
+<br>
+
+<h2 id="BItmap（位图）"><a href="#BItmap（位图）" class="headerlink" title="BItmap（位图）"></a>BItmap（位图）</h2><h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><ul>
+<li>Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的（基于HyperLogLog算法：极小空间完成独立数量统计）</li>
+<li>本质还是字符串</li>
+</ul>
+<br>
+
+<h3 id="API（命令）"><a href="#API（命令）" class="headerlink" title="API（命令）"></a>API（命令）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Pfadd 命令将所有元素参数添加到 HyperLogLog 数据结构中</span></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD key element [element ...]</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD mykey a b c d e f g h i j</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT mykey</span><br><span class="line">(integer) 10</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Pfcount 命令返回给定 HyperLogLog 的基数估算值</span></span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT key [key ...]</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD hll foo bar zap</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD hll zap zap zap</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD hll foo bar</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT hll</span><br><span class="line">(integer) 3</span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD some-other-hll 1 2 3</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT hll some-other-hll</span><br><span class="line">(integer) 6</span><br><span class="line"><span class="meta prompt_">redis&gt; </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> PFMERGE 命令将多个 HyperLogLog 合并为一个 HyperLogLog ，合并后的 HyperLogLog 的基数估算值是通过对所有 给定 HyperLogLog 进行并集计算得出的</span></span><br><span class="line">PFMERGE destkey sourcekey [sourcekey ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">redis&gt; </span><span class="language-bash">PFADD hll1 foo bar zap a</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta prompt_">redis&gt; </span><span class="language-bash">PFADD hll2 a b c foo</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta prompt_">redis&gt; </span><span class="language-bash">PFMERGE hll3 hll1 hll2</span></span><br><span class="line">&quot;OK&quot;</span><br><span class="line"><span class="meta prompt_">redis&gt; </span><span class="language-bash">PFCOUNT hll3</span></span><br><span class="line">(integer) 6</span><br><span class="line"><span class="meta prompt_">redis&gt; </span><span class="language-bash"> </span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="示例（百万独立用户-内存消耗）"><a href="#示例（百万独立用户-内存消耗）" class="headerlink" title="示例（百万独立用户-内存消耗）"></a>示例（百万独立用户-内存消耗）</h3><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.540yx2nmmgw0.webp" width="60%" />
+
+<br>
+
+<h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><ul>
+<li>是否能容忍错误？（错误率：0.81%）</li>
+<li>是否需要单条数据？</li>
+</ul>
+<br>
+
+<h1 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h1><ul>
+<li>Redis GEO 主要用于存储地理位置信息，并对存储的信息进行操作（存储经纬度，计算两地距离，范围计算等）</li>
+<li>底层使用 zset 实现</li>
+</ul>
+<br>
+
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>类似微信摇一摇（计算指定范围类的用户）</li>
+<li>根据距离计算周围的酒店餐馆等</li>
+</ul>
+<br>
+
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
+<li>geoadd：添加地理位置的坐标。</li>
+<li>geopos：获取地理位置的坐标。</li>
+<li>geodist：计算两个位置之间的距离。</li>
+<li>georadius：根据用户给定的经纬度坐标来获取指定范围内的地理位置集合。</li>
+<li>georadiusbymember：根据储存在位置集合里面的某个地点获取指定范围内的地理位置集合。</li>
+<li>geohash：返回一个或多个位置对象的 geohash 值。</li>
+</ul>
+<br>
+
+
+
+<br>
+
+<h1 id="Redis-配置文件详解"><a href="#Redis-配置文件详解" class="headerlink" title="* Redis 配置文件详解"></a>* Redis 配置文件详解</h1><br>
 
 <br>
 
 <br>
 
-<h1 id="第5章-Redis-持久化"><a href="#第5章-Redis-持久化" class="headerlink" title="第5章 Redis 持久化"></a>第5章 Redis 持久化</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<h1 id="Redis-的持久化"><a href="#Redis-的持久化" class="headerlink" title="Redis 的持久化"></a>Redis 的持久化</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
 <li>Redis 是一个内存数据库，所以其运行效率非常高。但也存在一个问题：内存中的数据是不持久的，若主机宕机或 Redis 关机重启，则内存中的数据全部丢失。当然，这是不允许的。Redis 具有持久化功能，其会按照设置以快照或操作日志的形式将数据持久化到磁盘。</li>
 <li>根据持久化使用技术的不同，Redis 的持久化分为两种：RDB 与 AOF。</li>
 </ul>
@@ -1337,7 +1880,7 @@
             <span class="type">Post author</span>：<span class="content">ratears</span>
         </li>
         <li>
-            <span class="type">Create time</span>：<span class="content">2022-12-01 02:31:29</span>
+            <span class="type">Create time</span>：<span class="content">2022-12-01 22:31:29</span>
         </li>
         <li class="post-link">
             <span class="type">Post link</span>：<span class="content">Redis-study-notes/</span>
@@ -1353,6 +1896,10 @@
 
             
                 <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../Tags/NoSQL/">#NoSQL</a>&nbsp;
+                        </li>
                     
                         <li class="tag-item">
                             <a href="../Tags/Database/">#Database</a>&nbsp;
@@ -1375,13 +1922,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="../jvm/"
+                               href="../%E3%80%8A%E4%B8%80%E7%AB%99%E5%BC%8F%E5%AD%A6%E4%B9%A0Redis-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5%E3%80%8Bstudy-notes/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">jvm</span>
+                                <span class="post-nav-title-item">《一站式学习Redis-从入门到高可用分布式实践》study notes</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
@@ -1391,10 +1938,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="../%E3%80%8A%E6%B7%B1%E5%85%A5%E6%8B%86%E8%A7%A3-Java-%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8Bstudy-notes/"
+                               href="../jvm/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">《深入拆解 Java 虚拟机》study notes</span>
+                                <span class="post-nav-title-item">jvm</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -1492,7 +2039,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-Redis-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">第1章 Redis 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Redis 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">NoSQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.3.</span> <span class="nav-text">Redis 的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">Redis 特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84-IO-%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">Redis 的 IO 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">混合线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.3.</span> <span class="nav-text">多线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.4.</span> <span class="nav-text">优缺点总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">多线程模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Redis-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">第2章 Redis 的安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Redis 的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装前的准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Redis"><span class="nav-number">2.1.2.</span> <span class="nav-text">安装 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.</span> <span class="nav-text">Redis 启动与停止</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">前台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">命令式后台启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E7%9A%84%E5%81%9C%E6%AD%A2"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">Redis 的停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">配置式后台启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.4.</span> <span class="nav-text">连接前的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%AE%A2%E6%88%B7%E7%AB%AF-IP"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">绑定客户端 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">关闭保护模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">设置访问密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2-%E9%87%8D%E5%91%BD%E5%90%8D%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">禁止&#x2F;重命名命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AFredis"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">重启redis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">Redis 客户端分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.1.</span> <span class="nav-text">命令行客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.2.</span> <span class="nav-text">图形界面客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">第3章 Redis 配置文件详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-Redis-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">第4章 Redis 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">Redis 基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%83%E8%B7%B3%E5%91%BD%E4%BB%A4-ping"><span class="nav-number">4.1.1.</span> <span class="nav-text">心跳命令 ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%AE%E5%80%BC%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.2.</span> <span class="nav-text">读写键值命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DB-%E5%88%87%E6%8D%A2-select"><span class="nav-number">4.1.3.</span> <span class="nav-text">DB 切换 select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-key-%E6%95%B0%E9%87%8F-dbsize"><span class="nav-number">4.1.4.</span> <span class="nav-text">查看 key 数量 dbsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE-flushdb"><span class="nav-number">4.1.5.</span> <span class="nav-text">删除当前库中数据 flushdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%BA%93%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%91%BD%E4%BB%A4-flushall"><span class="nav-number">4.1.6.</span> <span class="nav-text">删除所有库中数据命令 flushall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.7.</span> <span class="nav-text">退出客户端命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">Key 操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-%E5%9E%8B-Value-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">String 型 Value 操作命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-Redis-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">第5章 Redis 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">持久化基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.3.</span> <span class="nav-text">RDB 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="nav-number">5.3.1.</span> <span class="nav-text">持久化的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-save-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">手动 save 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-bgsave-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">手动 bgsave 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9D%A1%E4%BB%B6%E8%A7%A6%E5%8F%91"><span class="nav-number">5.3.1.3.</span> <span class="nav-text">自动条件触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%B6%E9%97%B4"><span class="nav-number">5.3.1.4.</span> <span class="nav-text">查看持久化时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.2.</span> <span class="nav-text">RDB 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#save"><span class="nav-number">5.3.2.1.</span> <span class="nav-text">save</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stop-write-on-bgsave-error"><span class="nav-number">5.3.2.2.</span> <span class="nav-text">stop-write-on-bgsave-error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbcompression"><span class="nav-number">5.3.2.3.</span> <span class="nav-text">rdbcompression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbchecksum"><span class="nav-number">5.3.2.4.</span> <span class="nav-text">rdbchecksum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sanitize-dump-payload"><span class="nav-number">5.3.2.5.</span> <span class="nav-text">sanitize-dump-payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dbfilename"><span class="nav-number">5.3.2.6.</span> <span class="nav-text">dbfilename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-del-sync-files"><span class="nav-number">5.3.2.7.</span> <span class="nav-text">rdb-del-sync-files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">5.3.2.8.</span> <span class="nav-text">dir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">5.3.3.</span> <span class="nav-text">RDB 文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SOF"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">SOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-version"><span class="nav-number">5.3.3.2.</span> <span class="nav-text">rdb_version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EOF"><span class="nav-number">5.3.3.3.</span> <span class="nav-text">EOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check-sum"><span class="nav-number">5.3.3.4.</span> <span class="nav-text">check_sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#databases"><span class="nav-number">5.3.3.5.</span> <span class="nav-text">databases</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">5.3.4.</span> <span class="nav-text">RDB 持久化过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">5.4.</span> <span class="nav-text">AOF 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.</span> <span class="nav-text">AOF 基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E7%9A%84%E5%BC%80%E5%90%AF"><span class="nav-number">5.4.2.1.</span> <span class="nav-text">AOF 的开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.2.</span> <span class="nav-text">文件名配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E5%BC%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%BC%80%E5%90%AF"><span class="nav-number">5.4.2.3.</span> <span class="nav-text">混合式持久化开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.2.4.</span> <span class="nav-text">AOF 文件目录配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">5.4.3.</span> <span class="nav-text">AOF 文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.4.3.1.</span> <span class="nav-text">Redis 协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-AOF-%E6%96%87%E4%BB%B6"><span class="nav-number">5.4.3.2.</span> <span class="nav-text">查看 AOF 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6"><span class="nav-number">5.4.3.3.</span> <span class="nav-text">清单文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rewrite-%E6%9C%BA%E5%88%B6"><span class="nav-number">5.4.4.</span> <span class="nav-text">Rewrite 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E4%B8%BA-rewrite"><span class="nav-number">5.4.4.1.</span> <span class="nav-text">何为 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rewrite-%E8%AE%A1%E7%AE%97"><span class="nav-number">5.4.4.2.</span> <span class="nav-text">rewrite 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">5.4.4.3.</span> <span class="nav-text">手动开启 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">5.4.4.4.</span> <span class="nav-text">自动开启 rewrite</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.5.</span> <span class="nav-text">AOF 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendfsync"><span class="nav-number">5.5.1.</span> <span class="nav-text">appendfsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-appendfsync-on-rewrite"><span class="nav-number">5.5.2.</span> <span class="nav-text">no-appendfsync-on-rewrite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-rewrite-incremental-fsync"><span class="nav-number">5.5.3.</span> <span class="nav-text">aof-rewrite-incremental-fsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-load-truncated"><span class="nav-number">5.5.4.</span> <span class="nav-text">aof-load-truncated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-timestamp-enabeld"><span class="nav-number">5.5.5.</span> <span class="nav-text">aof-timestamp-enabeld</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">5.6.</span> <span class="nav-text">AOF 持久化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E8%AF%A6%E7%BB%86%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">5.6.1.</span> <span class="nav-text">AOF 详细的持久化过程如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E4%B8%8E-AOF-%E5%AF%B9%E6%AF%94"><span class="nav-number">5.7.</span> <span class="nav-text">RDB 与 AOF 对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.1.</span> <span class="nav-text">RDB 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF"><span class="nav-number">5.7.1.1.</span> <span class="nav-text">RDB 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.1.2.</span> <span class="nav-text">RDB 不足</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.2.</span> <span class="nav-text">AOF 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF"><span class="nav-number">5.7.2.1.</span> <span class="nav-text">AOF 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%B8%8D%E8%B6%B3"><span class="nav-number">5.7.2.2.</span> <span class="nav-text">AOF 不足</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">5.8.</span> <span class="nav-text">持久化技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-Redis-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">第6章 Redis 主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-number">6.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="nav-number">6.2.</span> <span class="nav-text">主从集群搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">6.3.</span> <span class="nav-text">伪集群搭建与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6-redis-conf"><span class="nav-number">6.3.1.</span> <span class="nav-text">复制 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-redis-conf"><span class="nav-number">6.3.2.</span> <span class="nav-text">修改 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-redis6380-conf"><span class="nav-number">6.3.3.</span> <span class="nav-text">新建 redis6380.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E5%A4%8D%E5%88%B6%E5%87%BA%E4%B8%A4%E4%B8%AA-conf-%E6%96%87%E4%BB%B6"><span class="nav-number">6.3.4.</span> <span class="nav-text">再复制出两个 conf 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%89%E5%8F%B0-Redis"><span class="nav-number">6.3.5.</span> <span class="nav-text">启动三台 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BB%E4%BB%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">6.3.6.</span> <span class="nav-text">设置主从关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF"><span class="nav-number">6.3.7.</span> <span class="nav-text">查看状态信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">6.4.</span> <span class="nav-text">分级管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E7%81%BE%E5%86%B7%E5%A4%84%E7%90%86"><span class="nav-number">6.5.</span> <span class="nav-text">容灾冷处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">6.6.</span> <span class="nav-text">主从复制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="nav-number">6.6.1.</span> <span class="nav-text">主从复制过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-Redis-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">第7章 Redis 分布式系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">8.</span> <span class="nav-text">学习备注</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">学习前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E8%B5%B7%E6%AD%A5"><span class="nav-number">2.</span> <span class="nav-text">Redis 起步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">NoSQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%AE%80%E4%BB%8B"><span class="nav-number">2.2.</span> <span class="nav-text">Redis 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E8%B5%B7%E6%BA%90"><span class="nav-number">2.2.1.</span> <span class="nav-text">Redis 起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.2.2.</span> <span class="nav-text">Redis 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.2.3.</span> <span class="nav-text">Redis 的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%89%B9%E6%80%A7"><span class="nav-number">2.2.4.</span> <span class="nav-text">Redis 特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%85%B8%E5%9E%8B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.5.</span> <span class="nav-text">Redis 典型使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.</span> <span class="nav-text">Redis 的安装与启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="nav-number">2.3.1.</span> <span class="nav-text">编译安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.2.</span> <span class="nav-text">Redis 可执行文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.</span> <span class="nav-text">Redis 的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">前台启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%90%AF%E5%8A%A8-%E5%89%8D%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.1.1.</span> <span class="nav-text">最简启动&#x2F;前台启动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.1.2.</span> <span class="nav-text">动态参数启动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">后台启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.3.2.1.</span> <span class="nav-text">命令式后台启动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BC%8F%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">2.3.3.2.2.</span> <span class="nav-text">配置文件式后台启动（推荐）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81-%EF%BC%88%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8%EF%BC%89"><span class="nav-number">2.3.4.</span> <span class="nav-text">Redis服务验证 （查看服务正常启动）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84%E5%81%9C%E6%AD%A2"><span class="nav-number">2.3.5.</span> <span class="nav-text">Redis 的停止</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.4.</span> <span class="nav-text">Redis 的客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.1.</span> <span class="nav-text">连接前的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%AE%A2%E6%88%B7%E7%AB%AF-IP"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">绑定客户端 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">关闭保护模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">设置访问密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AFredis"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">重启redis</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%86%E7%B1%BB"><span class="nav-number">2.4.2.</span> <span class="nav-text">Redis 客户端分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">命令行客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">图形界面客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E4%BB%A3%E7%A0%81%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">Java 代码客户端</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-API-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E7%90%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">Redis API 的使用和理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">Redis 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%91%BD%E4%BB%A4%E5%88%86%E7%B1%BB%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.1.</span> <span class="nav-text">Redis 命令分类概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.2.</span> <span class="nav-text">Redis 基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-%E9%80%9A%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.3.</span> <span class="nav-text">Key 通用操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-%E5%9E%8B-Value-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.4.</span> <span class="nav-text">String 型 Value 操作命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-Java-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">Redis Java 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jedis"><span class="nav-number">3.2.1.</span> <span class="nav-text">Jedis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jedis-%E7%AE%80%E4%BB%8B"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">Jedis 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jedis-%E5%AE%9E%E6%88%98"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">Jedis 实战</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BC%95%E5%85%A5-maven-%E4%BE%9D%E8%B5%96"><span class="nav-number">3.2.1.2.1.</span> <span class="nav-text">（1）引入 maven 依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Jedis%E7%9B%B4%E8%BF%9E"><span class="nav-number">3.2.1.2.2.</span> <span class="nav-text">（2）Jedis直连</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89JedisPool%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">3.2.1.2.3.</span> <span class="nav-text">（3）JedisPool简单使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jedis-%E4%B8%8E-JedisPool%E6%AF%94%E8%BE%83"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">Jedis 与 JedisPool比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JedisPool-%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">JedisPool 配置优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JedisPool-%E9%85%8D%E7%BD%AE-%E8%B5%84%E6%BA%90%E6%95%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">3.2.1.4.1.</span> <span class="nav-text">JedisPool 配置 - 资源数控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JedisPool-%E9%85%8D%E7%BD%AE-%E5%80%9F%E8%BF%98%E5%8F%82%E6%95%B0"><span class="nav-number">3.2.1.4.2.</span> <span class="nav-text">JedisPool 配置 - 借还参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JedisPool-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE-%E9%80%82%E5%90%88%E7%9A%84-maxTotal"><span class="nav-number">3.2.1.4.3.</span> <span class="nav-text">JedisPool 配置建议 - 适合的 maxTotal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JedisPool-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE-%E9%80%82%E5%90%88%E7%9A%84maxIdle%E5%92%8CminIdle"><span class="nav-number">3.2.1.4.4.</span> <span class="nav-text">JedisPool 配置建议 - 适合的maxIdle和minIdle</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">常见问题和解决思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">Redis 的数据结构和内部编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E7%9A%84-IO-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text">Redis 的 IO 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.2.</span> <span class="nav-text">混合线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.3.</span> <span class="nav-text">多线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">3.4.4.</span> <span class="nav-text">Redis 线程模型的优缺点总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">单线程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B-1"><span class="nav-number">3.4.4.2.</span> <span class="nav-text">多线程模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.4.5.</span> <span class="nav-text">Redis 的单线程详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB"><span class="nav-number">3.4.5.1.</span> <span class="nav-text">单线程为什么这么快</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.4.5.2.</span> <span class="nav-text">Redis 单线程使用注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD"><span class="nav-number">3.5.</span> <span class="nav-text">Redis其他功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slowlog%EF%BC%88%E6%85%A2%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="nav-number">3.5.1.</span> <span class="nav-text">slowlog（慢查询）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.5.1.1.</span> <span class="nav-text">命令生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%85%8D%E7%BD%AE"><span class="nav-number">3.5.1.2.</span> <span class="nav-text">慢查询的两个配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#slowlog-max-len"><span class="nav-number">3.5.1.2.1.</span> <span class="nav-text">slowlog-max-len</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#slowlog-log-slower-than"><span class="nav-number">3.5.1.2.2.</span> <span class="nav-text">slowlog-log-slower-than</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">3.5.1.2.3.</span> <span class="nav-text">配置方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4"><span class="nav-number">3.5.1.3.</span> <span class="nav-text">慢查询命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%BB%B4%E7%BB%8F%E9%AA%8C"><span class="nav-number">3.5.1.4.</span> <span class="nav-text">运维经验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline%EF%BC%88%E6%B5%81%E6%B0%B4%E7%BA%BF%EF%BC%89"><span class="nav-number">3.5.2.</span> <span class="nav-text">pipeline（流水线）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">网络命令通信模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E6%AC%A1%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.5.2.1.1.</span> <span class="nav-text">1次网络命令通信模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.5.2.1.2.</span> <span class="nav-text">批量网络命令通信模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFpipeline%EF%BC%88%E6%B5%81%E6%B0%B4%E7%BA%BF%EF%BC%89"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">什么是pipeline（流水线）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipeline%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.5.2.3.</span> <span class="nav-text">pipeline的作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline%E7%9A%84jedis%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.5.3.</span> <span class="nav-text">pipeline的jedis实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline%E4%B8%8Emget-mset%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.5.4.</span> <span class="nav-text">pipeline与mget&#x2F;mset操作的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-number">3.5.5.</span> <span class="nav-text">pipeline使用建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85"><span class="nav-number">3.6.</span> <span class="nav-text">发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">3.6.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.6.2.</span> <span class="nav-text">发布订阅模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85API"><span class="nav-number">3.6.3.</span> <span class="nav-text">发布订阅API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#publish"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">publish</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subscribe"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">subscribe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unsubscribe"><span class="nav-number">3.6.3.3.</span> <span class="nav-text">unsubscribe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%83API"><span class="nav-number">3.6.3.4.</span> <span class="nav-text">其它API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="nav-number">3.6.3.5.</span> <span class="nav-text">发布订阅与消息队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BItmap%EF%BC%88%E4%BD%8D%E5%9B%BE%EF%BC%89"><span class="nav-number">3.7.</span> <span class="nav-text">BItmap（位图）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-number">3.8.</span> <span class="nav-text">HyperLogLog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%EF%BC%88%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="nav-number">3.8.1.</span> <span class="nav-text">API（命令）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88%E7%99%BE%E4%B8%87%E7%8B%AC%E7%AB%8B%E7%94%A8%E6%88%B7-%E5%86%85%E5%AD%98%E6%B6%88%E8%80%97%EF%BC%89"><span class="nav-number">3.8.2.</span> <span class="nav-text">示例（百万独立用户-内存消耗）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C"><span class="nav-number">3.8.3.</span> <span class="nav-text">使用经验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GEO"><span class="nav-number">4.</span> <span class="nav-text">GEO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.0.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">4.0.2.</span> <span class="nav-text">API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">5.</span> <span class="nav-text">* Redis 配置文件详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">Redis 的持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">6.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">6.2.</span> <span class="nav-text">持久化基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">6.3.</span> <span class="nav-text">RDB 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="nav-number">6.3.1.</span> <span class="nav-text">持久化的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-save-%E5%91%BD%E4%BB%A4"><span class="nav-number">6.3.1.1.</span> <span class="nav-text">手动 save 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8-bgsave-%E5%91%BD%E4%BB%A4"><span class="nav-number">6.3.1.2.</span> <span class="nav-text">手动 bgsave 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9D%A1%E4%BB%B6%E8%A7%A6%E5%8F%91"><span class="nav-number">6.3.1.3.</span> <span class="nav-text">自动条件触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8C%81%E4%B9%85%E5%8C%96%E6%97%B6%E9%97%B4"><span class="nav-number">6.3.1.4.</span> <span class="nav-text">查看持久化时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">6.3.2.</span> <span class="nav-text">RDB 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#save"><span class="nav-number">6.3.2.1.</span> <span class="nav-text">save</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stop-write-on-bgsave-error"><span class="nav-number">6.3.2.2.</span> <span class="nav-text">stop-write-on-bgsave-error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbcompression"><span class="nav-number">6.3.2.3.</span> <span class="nav-text">rdbcompression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdbchecksum"><span class="nav-number">6.3.2.4.</span> <span class="nav-text">rdbchecksum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sanitize-dump-payload"><span class="nav-number">6.3.2.5.</span> <span class="nav-text">sanitize-dump-payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dbfilename"><span class="nav-number">6.3.2.6.</span> <span class="nav-text">dbfilename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-del-sync-files"><span class="nav-number">6.3.2.7.</span> <span class="nav-text">rdb-del-sync-files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">6.3.2.8.</span> <span class="nav-text">dir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">6.3.3.</span> <span class="nav-text">RDB 文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SOF"><span class="nav-number">6.3.3.1.</span> <span class="nav-text">SOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdb-version"><span class="nav-number">6.3.3.2.</span> <span class="nav-text">rdb_version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EOF"><span class="nav-number">6.3.3.3.</span> <span class="nav-text">EOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check-sum"><span class="nav-number">6.3.3.4.</span> <span class="nav-text">check_sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#databases"><span class="nav-number">6.3.3.5.</span> <span class="nav-text">databases</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">6.3.4.</span> <span class="nav-text">RDB 持久化过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">6.4.</span> <span class="nav-text">AOF 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">6.4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">6.4.2.</span> <span class="nav-text">AOF 基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E7%9A%84%E5%BC%80%E5%90%AF"><span class="nav-number">6.4.2.1.</span> <span class="nav-text">AOF 的开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E9%85%8D%E7%BD%AE"><span class="nav-number">6.4.2.2.</span> <span class="nav-text">文件名配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E5%BC%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%BC%80%E5%90%AF"><span class="nav-number">6.4.2.3.</span> <span class="nav-text">混合式持久化开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="nav-number">6.4.2.4.</span> <span class="nav-text">AOF 文件目录配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.4.3.</span> <span class="nav-text">AOF 文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-%E5%8D%8F%E8%AE%AE"><span class="nav-number">6.4.3.1.</span> <span class="nav-text">Redis 协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-AOF-%E6%96%87%E4%BB%B6"><span class="nav-number">6.4.3.2.</span> <span class="nav-text">查看 AOF 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6"><span class="nav-number">6.4.3.3.</span> <span class="nav-text">清单文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rewrite-%E6%9C%BA%E5%88%B6"><span class="nav-number">6.4.4.</span> <span class="nav-text">Rewrite 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E4%B8%BA-rewrite"><span class="nav-number">6.4.4.1.</span> <span class="nav-text">何为 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rewrite-%E8%AE%A1%E7%AE%97"><span class="nav-number">6.4.4.2.</span> <span class="nav-text">rewrite 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">6.4.4.3.</span> <span class="nav-text">手动开启 rewrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF-rewrite"><span class="nav-number">6.4.4.4.</span> <span class="nav-text">自动开启 rewrite</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">6.5.</span> <span class="nav-text">AOF 优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendfsync"><span class="nav-number">6.5.1.</span> <span class="nav-text">appendfsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-appendfsync-on-rewrite"><span class="nav-number">6.5.2.</span> <span class="nav-text">no-appendfsync-on-rewrite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-rewrite-incremental-fsync"><span class="nav-number">6.5.3.</span> <span class="nav-text">aof-rewrite-incremental-fsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-load-truncated"><span class="nav-number">6.5.4.</span> <span class="nav-text">aof-load-truncated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof-timestamp-enabeld"><span class="nav-number">6.5.5.</span> <span class="nav-text">aof-timestamp-enabeld</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">6.6.</span> <span class="nav-text">AOF 持久化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E8%AF%A6%E7%BB%86%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">6.6.1.</span> <span class="nav-text">AOF 详细的持久化过程如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB-%E4%B8%8E-AOF-%E5%AF%B9%E6%AF%94"><span class="nav-number">6.7.</span> <span class="nav-text">RDB 与 AOF 对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.7.1.</span> <span class="nav-text">RDB 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%BC%98%E5%8A%BF"><span class="nav-number">6.7.1.1.</span> <span class="nav-text">RDB 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.7.1.2.</span> <span class="nav-text">RDB 不足</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.7.2.</span> <span class="nav-text">AOF 优势与不足</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%BC%98%E5%8A%BF"><span class="nav-number">6.7.2.1.</span> <span class="nav-text">AOF 优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.7.2.2.</span> <span class="nav-text">AOF 不足</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">6.8.</span> <span class="nav-text">持久化技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-Redis-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">7.</span> <span class="nav-text">第6章 Redis 主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-number">7.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="nav-number">7.2.</span> <span class="nav-text">主从集群搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">7.3.</span> <span class="nav-text">伪集群搭建与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6-redis-conf"><span class="nav-number">7.3.1.</span> <span class="nav-text">复制 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-redis-conf"><span class="nav-number">7.3.2.</span> <span class="nav-text">修改 redis.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-redis6380-conf"><span class="nav-number">7.3.3.</span> <span class="nav-text">新建 redis6380.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E5%A4%8D%E5%88%B6%E5%87%BA%E4%B8%A4%E4%B8%AA-conf-%E6%96%87%E4%BB%B6"><span class="nav-number">7.3.4.</span> <span class="nav-text">再复制出两个 conf 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%89%E5%8F%B0-Redis"><span class="nav-number">7.3.5.</span> <span class="nav-text">启动三台 Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BB%E4%BB%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">7.3.6.</span> <span class="nav-text">设置主从关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF"><span class="nav-number">7.3.7.</span> <span class="nav-text">查看状态信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">7.4.</span> <span class="nav-text">分级管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E7%81%BE%E5%86%B7%E5%A4%84%E7%90%86"><span class="nav-number">7.5.</span> <span class="nav-text">容灾冷处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">7.6.</span> <span class="nav-text">主从复制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="nav-number">7.6.1.</span> <span class="nav-text">主从复制过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-Redis-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-number">8.</span> <span class="nav-text">第7章 Redis 分布式系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">9.</span> <span class="nav-text">学习备注</span></a></li></ol>
     </div>
 </div>
 
@@ -1516,7 +2063,7 @@
             
                 <span>2017</span> -
             
-            2022
+            2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
                 &nbsp;<a href="/">ratears</a>

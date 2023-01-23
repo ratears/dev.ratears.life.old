@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ratears blog dev.ratears.life">
+    <meta name="description" content="ratears&#39;s blog">
+    <meta name="author" content="ratears">
+    
+    <title>
+        
+            《线程八大核心+Java并发原理及企业级并发解决方案》study notes |
+        
+        ratears&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ratears.gitee.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","favicon":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","avatar":"https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp","font_size":"16px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.jpg","description":"独立天地间，清风洒兰雪","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz","appkey":"fVkafVmPzZAqx86MUOuPhmuE","placeholder":"😜 尽情吐槽吧~"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="atom.xml" title="ratears" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                </a>
+            
+            <a class="logo-title" href="/">
+               ratears&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../archives/"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../Categories/"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../Tags/"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../links/"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../about/"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../archives/">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../Categories/">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../Tags/">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../links/">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../about/">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">《线程八大核心+Java并发原理及企业级并发解决方案》study notes</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.28pe6afbup3w.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">ratears</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-12-26 02:28:04</span>
+        <span class="mobile">2022-12-26 02:28</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-12-26 02:28:04</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../Categories/Java/">Java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="../Categories/Java/Concurrency/">Concurrency</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../Tags/Concurrency/">Concurrency</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../Tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="第1章-开宗明义"><a href="#第1章-开宗明义" class="headerlink" title="第1章 开宗明义"></a>第1章 开宗明义</h1><h2 id="为什么要学习并发编程"><a href="#为什么要学习并发编程" class="headerlink" title="为什么要学习并发编程"></a>为什么要学习并发编程</h2><ol>
+<li>源于JD（job description）的硬性要求，尤其是大厂</li>
+<li>并发痛点（面试中高频出现、内容繁杂、做归纳整理耗时、网上文章水平参差不齐难辨真伪）</li>
+<li>并发学习，是成为高级工程师的必经之路（①几乎所有的程序或多或少都需要并发和多线程；②线上服务用户量过大，并发上万，如果不使用并发编程，性能很快成为瓶颈；③我们在职场打怪升级的过程中，并发编程是绕不过去的内容）</li>
+<li>并发是众多框架的的原理和基础，学好后可以做到一通百通（①Spring中对线程池、单例的应用；②数据库中的乐观锁思想；③Log4j2对阻塞队列的应用）</li>
+</ol>
+<br>
+
+<h2 id="配套资料"><a href="#配套资料" class="headerlink" title="配套资料"></a>配套资料</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.qq.com/doc/DSVNyZ2FNWWFkeFpO" >https://docs.qq.com/doc/DSVNyZ2FNWWFkeFpO<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://naotu.baidu.com/file/07f437ff6bc3fa7939e171b00f133e17?token=6744a1c6ca6860a0" >https://naotu.baidu.com/file/07f437ff6bc3fa7939e171b00f133e17?token=6744a1c6ca6860a0<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://naotu.baidu.com/file/60a0bdcaca7c6b92fcc5f796fe6f6bc9?token=bcdbae34bb3b0533" >https://naotu.baidu.com/file/60a0bdcaca7c6b92fcc5f796fe6f6bc9?token=bcdbae34bb3b0533<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://coding.imooc.com/class/chapter/362.html#Anchor" >https://coding.imooc.com/class/chapter/362.html#Anchor<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://shimo.im/docs/zdkyBdQb94H255A6" >https://shimo.im/docs/zdkyBdQb94H255A6<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第2章-线程八大核心纵观全貌"><a href="#第2章-线程八大核心纵观全貌" class="headerlink" title="第2章 线程八大核心纵观全貌"></a>第2章 线程八大核心纵观全貌</h1><img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.6lp13ul4qko0.webp" width="50%">
+
+<br>
+
+<h2 id="线程八大核心基础"><a href="#线程八大核心基础" class="headerlink" title="线程八大核心基础"></a>线程八大核心基础</h2><ol>
+<li>实现多线程的方法到底有1种还是2种还是4种 ?</li>
+<li>怎样才是正确的线程启动方式?</li>
+<li>上山容易下山难如何正确停止线程 ?( 难点）</li>
+<li>线程的一生6个状态(生命周期）</li>
+<li>Thread和Obiect类中的重要方法详解</li>
+<li>线程的各个属性</li>
+<li>未捕获异常如何处理 ?</li>
+<li>双刃剑: 多线程会导致的问题</li>
+</ol>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第3章-核心1：实现多线程的正确姿势【解读官方文档】"><a href="#第3章-核心1：实现多线程的正确姿势【解读官方文档】" class="headerlink" title="第3章 核心1：实现多线程的正确姿势【解读官方文档】"></a>第3章 核心1：实现多线程的正确姿势【解读官方文档】</h1><h2 id="创建新线程的正确方法"><a href="#创建新线程的正确方法" class="headerlink" title="创建新线程的正确方法"></a>创建新线程的正确方法</h2><ul>
+<li>oracle官方文档：<ul>
+<li>方法一：继承Thread类</li>
+<li>方法二：实现Runnable接口</li>
+</ul>
+</li>
+</ul>
+<img src="https://cdn.staticaly.com/gh/ratears/image-hosting@main/blog-img-bed/image.3bqyazhh2dk.webp" width="1000%">
+
+<br>
+
+<h3 id="总结：创建新线程的方法-精确描述"><a href="#总结：创建新线程的方法-精确描述" class="headerlink" title="总结：创建新线程的方法-精确描述"></a>总结：创建新线程的方法-精确描述</h3><ul>
+<li>通常我们可以分为两类，官网也是这么说的</li>
+<li>准确的讲，创建线程只有一种方式那就是构造Thread类，而实现线程的执行单元有两种方式：<ul>
+<li>方法一：重写Thread的run方法(继承Thread类)</li>
+<li>方法二：实现Runnable接口的run 方法，并把Runnable实例传给Thread类</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h2 id="两种方法的本质对比"><a href="#两种方法的本质对比" class="headerlink" title="两种方法的本质对比"></a>两种方法的本质对比</h2><ul>
+<li>“实现Runnable接口并传入Thread类”和“继承Thread类然后重写run()方法”在实现多线程的本质上，并没有区别，都是最终调用了start()方法来新建线程。这两个方法的最主要区别在于run()方法的内容来源:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (target != <span class="literal">null</span>) &#123;</span><br><span class="line">           target.run();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实现Runnable接口方式: 最终调用target.run ();</li>
+<li>继承Thread类方式: run()整个都被重写</li>
+</ul>
+<br>
+
+<h2 id="典型错误观点分析"><a href="#典型错误观点分析" class="headerlink" title="典型错误观点分析"></a>典型错误观点分析</h2><ul>
+<li>“线程池创建线程也算是一种新建线程的方式”</li>
+<li>“通过Callable和FutureTask创建线程，也算是一种新建线程的方式”</li>
+<li>“无返回值是实现runnable接口，有返回值是实现callable接口，所以callable是新的实现线程的方式”</li>
+<li>定时器</li>
+<li>匿名内部类</li>
+<li>Lambda表达式</li>
+</ul>
+<p><strong>多线程的实现方式，在代码中写法千变万化，但其本质万变不离其宗</strong></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="同时用两种方法会怎么样"><a href="#同时用两种方法会怎么样" class="headerlink" title="同时用两种方法会怎么样"></a>同时用两种方法会怎么样</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BothRunnableThread</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;我来自Runnable&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;我来自Thread&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最终会执行 Thread 类的run方法，因为 run方法已被重写</li>
+</ul>
+<br>
+
+<h2 id="实现多线程—常见面试问题"><a href="#实现多线程—常见面试问题" class="headerlink" title="实现多线程—常见面试问题"></a>实现多线程—常见面试问题</h2><h3 id="有多少种实现线程的方法？"><a href="#有多少种实现线程的方法？" class="headerlink" title="有多少种实现线程的方法？"></a>有多少种实现线程的方法？</h3><ol>
+<li>从不同的角度（代码实现方法，本质实现方法）看，会有不同的答案</li>
+<li>典型答案是两种，分别是实现Runnable接口和继承Thread类，然后具体展开说;各自的优势，劣势</li>
+<li>但是，我们看原理，其实Thread类实现了Runnable接口，并且看Thread类的run方法，会发现其实那两种本质都是一样的</li>
+</ol>
+<blockquote>
+<p>“实现Runnable接口并传入Thread类”和“继承Thread类然后重写run0”在实现多线程的本质上，并没有区别，都是最终调用了start (方法来新建线程。这两个方法的最主要区别在于run0方法的内容来源:</p>
+<ul>
+<li>方法一: 最终调用target.run ();</li>
+<li>方法二:run()整个都被重写</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>然后具体展开说其他方式:还有其他的实现线程的方法，例如线程池、定时器，它们也能新建线程，但是细看源码，从没有逃出过本质，也就是实现Runnable接口和继承Thread类。</li>
+<li>结论:我们只能通过新建Thread类这一种方式来创建线程，但是类里面的run方法有两种方式来5实现，第一种是重写run方法，第二种实现Runnable接口的run方法，然后再把该runnable实例传给Thread类。除此之外，从表面上看线程池、定时器等工具类也可以创建线程，但是它们的本质都逃不出刚才所说的范围。</li>
+</ol>
+<blockquote>
+<p>以上这种描述比直接回答一种、两种、多种都更准确。</p>
+</blockquote>
+<br>
+
+<h3 id="实现Runnable接口和继承Thread类哪种方式更好"><a href="#实现Runnable接口和继承Thread类哪种方式更好" class="headerlink" title="实现Runnable接口和继承Thread类哪种方式更好?"></a>实现Runnable接口和继承Thread类哪种方式更好?</h3><ul>
+<li>实现Runnable接口更好</li>
+</ul>
+<ol>
+<li>从代码架构角度，具体的任务 (run方法)应该和“创建和运行线程的机制(Thread类)”解耦。</li>
+<li>使用继承Thread的方式的话，那么每次想新建一个任务，只能新建一个独立的线程，而这样做的损耗会比较大。如果使用Runnable和线程池，就可以大大减小这样的损耗。</li>
+<li>继承Thread类以后，由于Java语言不支持双继承，这样就无法再继承其他的类，限制了可扩展性。</li>
+</ol>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第4章-核心2：开启多线程启动的世界"><a href="#第4章-核心2：开启多线程启动的世界" class="headerlink" title="第4章 核心2：开启多线程启动的世界"></a>第4章 核心2：开启多线程启动的世界</h1><h2 id="start-方法含义"><a href="#start-方法含义" class="headerlink" title="start()方法含义"></a>start()方法含义</h2><ol>
+<li>启动新线程</li>
+<li>准备工作</li>
+<li>不能重复start()</li>
+</ol>
+<br>
+
+<h2 id="start-源码解析"><a href="#start-源码解析" class="headerlink" title="start()源码解析"></a>start()源码解析</h2><ol>
+<li>启动新线程检查线程状态</li>
+<li>加入线程组</li>
+<li>调用start()</li>
+</ol>
+<br>
+
+<h2 id="启动线程—常见面试题问题"><a href="#启动线程—常见面试题问题" class="headerlink" title="启动线程—常见面试题问题"></a>启动线程—常见面试题问题</h2><h3 id="一个线程两次调用start-方法会出现什么情况-为什么"><a href="#一个线程两次调用start-方法会出现什么情况-为什么" class="headerlink" title="一个线程两次调用start()方法会出现什么情况? 为什么?"></a>一个线程两次调用start()方法会出现什么情况? 为什么?</h3><ul>
+<li>从start()源码可以看出，start的时候会先检查线程状态，只有NEW状态下的线程才能继续执行，否则会抛IllegalThreadStateException(在运行中或者已结束的线程，都不能再次启动)。</li>
+</ul>
+<br>
+
+<h3 id="既然-start-方法会调用-run-方法，为什么我们选择调用-start-方法而不是直接调用-run-方法呢"><a href="#既然-start-方法会调用-run-方法，为什么我们选择调用-start-方法而不是直接调用-run-方法呢" class="headerlink" title="既然 start()方法会调用 run()方法，为什么我们选择调用 start() 方法而不是直接调用 run()方法呢?"></a>既然 start()方法会调用 run()方法，为什么我们选择调用 start() 方法而不是直接调用 run()方法呢?</h3><ul>
+<li>start()才是真正启动一个线程，而如果直接调用run()，那么run()只是一个普通的方法而已，和线程的生命周期没有任何关系</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="第5章-核心3：线程停止、中断之最佳实践【填“坑”式教学，从错误到正确】"><a href="#第5章-核心3：线程停止、中断之最佳实践【填“坑”式教学，从错误到正确】" class="headerlink" title="第5章 核心3：线程停止、中断之最佳实践【填“坑”式教学，从错误到正确】"></a>第5章 核心3：线程停止、中断之最佳实践【填“坑”式教学，从错误到正确】</h1><ul>
+<li>这一节的内容有点难，需要继续学习</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="学习延伸"><a href="#学习延伸" class="headerlink" title="学习延伸"></a>学习延伸</h1><h2 id="学习编程知识的优质途径"><a href="#学习编程知识的优质途径" class="headerlink" title="学习编程知识的优质途径"></a>学习编程知识的优质途径</h2><h3 id="宏观上"><a href="#宏观上" class="headerlink" title="宏观上"></a>宏观上</h3><ul>
+<li>并不是靠工作年限，有的人工作了5年技术却还是只懂皮毛</li>
+<li>要有强大的责任心，不放过任何bug，找到原因并去解决，这就是提高</li>
+<li>主动:永远不会觉得自己的时间多余，重构、优化、学习、总结等。</li>
+<li>敢于承担:虽然这个技术难题以前没碰到过，但是在一定的了解调研后，敢于承担技术难题，让工作充满挑战，这一次次攻克难关的过程中，进步是飞速的</li>
+<li>关心产品，关心业务，而不只是写代码</li>
+</ul>
+<br>
+
+<h3 id="微观上（系统性学习）"><a href="#微观上（系统性学习）" class="headerlink" title="微观上（系统性学习）"></a>微观上（系统性学习）</h3><ul>
+<li>看经典书籍(指外国人写的经典的中国译本，比如说Java并发编程实战、自页向下计算机网络)</li>
+<li>看官方文档</li>
+<li>英文搜google和stackoverflow</li>
+<li>自己动手写，实践写demo，尝试用到项目里</li>
+<li>不理解的参考该领域的多个书本，综合判断</li>
+<li>学习开源项目，分析源码(学习synchronized原理，反编译看cpp代码)</li>
+</ul>
+<br>
+
+<h2 id="如何了解技术领域的最新动态"><a href="#如何了解技术领域的最新动态" class="headerlink" title="如何了解技术领域的最新动态"></a>如何了解技术领域的最新动态</h2><ul>
+<li>高质量固定途径:ohmyrss.com(信息源筛选，为我所用)</li>
+<li>订阅技术网址的邮件 :InfoQ(每周都看 )</li>
+<li>公众号不推荐作为技术知识来源，质量无法保证</li>
+</ul>
+<br>
+
+<h2 id="如何在业务开发中成长"><a href="#如何在业务开发中成长" class="headerlink" title="如何在业务开发中成长"></a>如何在业务开发中成长</h2><ul>
+<li>偏业务方向</li>
+<li>偏技术方向</li>
+<li>两个25%理论</li>
+</ul>
+<br>
+
+<br>
+
+<br>
+
+<h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">red</span>&gt;</span><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span></span><br></pre></td></tr></table></figure>
+
+<img src="" width="70%">
+
+<br>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">《线程八大核心+Java并发原理及企业级并发解决方案》study notes</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">ratears</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-12-26 02:28:04</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">《线程八大核心-Java并发原理及企业级并发解决方案》study-notes/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../Tags/Concurrency/">#Concurrency</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../Tags/Java/">#Java</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E3%80%8A%E4%BB%8E-0-%E5%BC%80%E5%A7%8B%E5%AD%A6%E5%BE%AE%E6%9C%8D%E5%8A%A1%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">《从 0 开始学微服务》study notes</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../%E3%80%8AMongoDB%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8Bstudy-notes/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">《MongoDB快速上手》study notes</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+            new Valine({
+              el: '#vcomments',
+              appId: 'qabhDeoP5PwMdjG1eEotHlts-gzGzoHsz',
+              appKey: 'fVkafVmPzZAqx86MUOuPhmuE',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜 尽情吐槽吧~',
+              lang: 'en'.toLowerCase()
+            });
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author';
+                case 'zh-CN':
+                  return '博主';
+                default:
+                  return 'Master';
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+              if (vcards.length > 0) {
+                let author = 'ratears';
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick');
+                    const vnick = vnick_dom.innerHTML;
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer);
+              } else {
+                clearInterval(getValineDomTimer);
+              }
+            }, 2000);
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine();
+              clearTimeout(loadValineTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%BC%80%E5%AE%97%E6%98%8E%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">第1章 开宗明义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要学习并发编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E5%A5%97%E8%B5%84%E6%96%99"><span class="nav-number">1.2.</span> <span class="nav-text">配套资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-%E7%BA%BF%E7%A8%8B%E5%85%AB%E5%A4%A7%E6%A0%B8%E5%BF%83%E7%BA%B5%E8%A7%82%E5%85%A8%E8%B2%8C"><span class="nav-number">2.</span> <span class="nav-text">第2章 线程八大核心纵观全貌</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%85%AB%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80"><span class="nav-number">2.1.</span> <span class="nav-text">线程八大核心基础</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%A0%B8%E5%BF%831%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF%E3%80%90%E8%A7%A3%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E3%80%91"><span class="nav-number">3.</span> <span class="nav-text">第3章 核心1：实现多线程的正确姿势【解读官方文档】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">创建新线程的正确方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%96%B0%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95-%E7%B2%BE%E7%A1%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.1.1.</span> <span class="nav-text">总结：创建新线程的方法-精确描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">3.2.</span> <span class="nav-text">两种方法的本质对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E9%94%99%E8%AF%AF%E8%A7%82%E7%82%B9%E5%88%86%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">典型错误观点分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-number">3.4.</span> <span class="nav-text">思考题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%E7%94%A8%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="nav-number">3.4.1.</span> <span class="nav-text">同时用两种方法会怎么样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98"><span class="nav-number">3.5.</span> <span class="nav-text">实现多线程—常见面试问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">3.5.1.</span> <span class="nav-text">有多少种实现线程的方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E5%93%AA%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%9B%B4%E5%A5%BD"><span class="nav-number">3.5.2.</span> <span class="nav-text">实现Runnable接口和继承Thread类哪种方式更好?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-%E6%A0%B8%E5%BF%832%EF%BC%9A%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8%E7%9A%84%E4%B8%96%E7%95%8C"><span class="nav-number">4.</span> <span class="nav-text">第4章 核心2：开启多线程启动的世界</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#start-%E6%96%B9%E6%B3%95%E5%90%AB%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">start()方法含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#start-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">start()源码解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E7%BA%BF%E7%A8%8B%E2%80%94%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E9%97%AE%E9%A2%98"><span class="nav-number">4.3.</span> <span class="nav-text">启动线程—常见面试题问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%B8%A4%E6%AC%A1%E8%B0%83%E7%94%A8start-%E6%96%B9%E6%B3%95%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5-%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="nav-number">4.3.1.</span> <span class="nav-text">一个线程两次调用start()方法会出现什么情况? 为什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A2%E7%84%B6-start-%E6%96%B9%E6%B3%95%E4%BC%9A%E8%B0%83%E7%94%A8-run-%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%80%89%E6%8B%A9%E8%B0%83%E7%94%A8-start-%E6%96%B9%E6%B3%95%E8%80%8C%E4%B8%8D%E6%98%AF%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8-run-%E6%96%B9%E6%B3%95%E5%91%A2"><span class="nav-number">4.3.2.</span> <span class="nav-text">既然 start()方法会调用 run()方法，为什么我们选择调用 start() 方法而不是直接调用 run()方法呢?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-%E6%A0%B8%E5%BF%833%EF%BC%9A%E7%BA%BF%E7%A8%8B%E5%81%9C%E6%AD%A2%E3%80%81%E4%B8%AD%E6%96%AD%E4%B9%8B%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E3%80%90%E5%A1%AB%E2%80%9C%E5%9D%91%E2%80%9D%E5%BC%8F%E6%95%99%E5%AD%A6%EF%BC%8C%E4%BB%8E%E9%94%99%E8%AF%AF%E5%88%B0%E6%AD%A3%E7%A1%AE%E3%80%91"><span class="nav-number">5.</span> <span class="nav-text">第5章 核心3：线程停止、中断之最佳实践【填“坑”式教学，从错误到正确】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%BB%B6%E4%BC%B8"><span class="nav-number">6.</span> <span class="nav-text">学习延伸</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%9A%84%E4%BC%98%E8%B4%A8%E9%80%94%E5%BE%84"><span class="nav-number">6.1.</span> <span class="nav-text">学习编程知识的优质途径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8F%E8%A7%82%E4%B8%8A"><span class="nav-number">6.1.1.</span> <span class="nav-text">宏观上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E8%A7%82%E4%B8%8A%EF%BC%88%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">6.1.2.</span> <span class="nav-text">微观上（系统性学习）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BA%86%E8%A7%A3%E6%8A%80%E6%9C%AF%E9%A2%86%E5%9F%9F%E7%9A%84%E6%9C%80%E6%96%B0%E5%8A%A8%E6%80%81"><span class="nav-number">6.2.</span> <span class="nav-text">如何了解技术领域的最新动态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E4%B8%AD%E6%88%90%E9%95%BF"><span class="nav-number">6.3.</span> <span class="nav-text">如何在业务开发中成长</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%A4%87%E6%B3%A8"><span class="nav-number">7.</span> <span class="nav-text">学习备注</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">ratears</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
